@@ -31,6 +31,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib0.raml"
           }
         }
       },
@@ -48,6 +51,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib1.raml"
           }
         }
       },
@@ -65,12 +71,18 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib2.raml"
           }
         }
       }
     ],
     "title": "test API",
-    "extends": "o1.raml"
+    "extends": "o1.raml",
+    "sourceMap": {
+      "path": "o2.raml"
+    }
   },
   "errors": []
 }

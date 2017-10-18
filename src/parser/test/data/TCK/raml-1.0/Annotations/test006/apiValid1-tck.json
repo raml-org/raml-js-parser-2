@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid1.raml"
               }
             },
             "y": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid1.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid1.raml"
           }
         }
       }
@@ -89,6 +98,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiValid1.raml"
+              },
               "items": "Point"
             }
           },
@@ -101,6 +113,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid1.raml"
           }
         }
       }
@@ -140,6 +155,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid1.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -152,6 +170,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiValid1.raml"
     }
   },
   "errors": []

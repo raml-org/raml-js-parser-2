@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/lib.raml"
           }
         }
       }
@@ -41,12 +44,21 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/lib.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/lib.raml"
               }
             }
           },
-          "name": "libTrait1"
+          "name": "libTrait1",
+          "sourceMap": {
+            "path": "lib/lib.raml"
+          }
         }
       }
     ],
@@ -54,15 +66,24 @@
       {
         "resourceType": {
           "name": "resourceType",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "is": [
               "lib.libTrait1"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

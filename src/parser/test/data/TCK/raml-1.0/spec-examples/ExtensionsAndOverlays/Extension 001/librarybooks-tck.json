@@ -8,10 +8,16 @@
         "methods": [
           {
             "description": "Add a new book to the collection",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "extension-post.raml"
+            }
           },
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "librarybooks.raml"
+            }
           }
         ],
         "description": "The collection of library books",
@@ -24,6 +30,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "extension-post.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
@@ -33,15 +42,24 @@
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books"
+        "content": "Automated access to books",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books."
+        "content": "Please respect copyrights on our books.",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       }
     ],
     "usage": "Add administrative functionality",
-    "extends": "librarybooks.raml"
+    "extends": "librarybooks.raml",
+    "sourceMap": {
+      "path": "extension-post.raml"
+    }
   },
   "errors": []
 }

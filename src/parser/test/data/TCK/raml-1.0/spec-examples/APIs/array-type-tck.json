@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "array-type.raml"
               }
             },
             "body": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "array-type.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "array-type.raml"
           }
         }
       },
@@ -87,6 +96,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "array-type.raml"
+          },
           "structuredExample": {
             "value": "[\n  {\n    \"subject\": \"My Email 1\",\n    \"body\": \"This is the text for email 1.\"\n  },\n  {\n    \"subject\": \"My Email 2\",\n    \"body\": \"This is the text for email 2.\"\n  }\n]",
             "strict": true,
@@ -100,13 +112,19 @@
                 "subject": "My Email 2",
                 "body": "This is the text for email 2."
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "array-type.raml"
+            }
           },
           "items": "Email"
         }
       }
     ],
-    "title": "Simple Array Type with Example"
+    "title": "Simple Array Type with Example",
+    "sourceMap": {
+      "path": "array-type.raml"
+    }
   },
   "errors": []
 }

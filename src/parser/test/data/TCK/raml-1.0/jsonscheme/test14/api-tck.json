@@ -9,6 +9,9 @@
           "displayName": "externalType",
           "typePropertyKind": "JSON",
           "schemaPath": "schemas/A.json",
+          "sourceMap": {
+            "path": "schemas/A.json"
+          },
           "type": [
             "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
           ],
@@ -30,6 +33,9 @@
             "structuredValue": {
               "p1": false,
               "p2": 15
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -46,6 +52,9 @@
                 "displayName": "application/json",
                 "typePropertyKind": "JSON",
                 "schemaPath": "schemas/A.json",
+                "sourceMap": {
+                  "path": "schemas/A.json"
+                },
                 "type": [
                   "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
                 ],
@@ -67,11 +76,17 @@
                   "structuredValue": {
                     "p1": false,
                     "p2": 15
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/res",
@@ -83,12 +98,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "res"
         ],
         "absoluteUri": "/res"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

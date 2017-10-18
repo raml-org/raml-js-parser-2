@@ -44,6 +44,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
+              },
               "items": "SomeType"
             },
             "someProperty": {
@@ -63,6 +66,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -73,6 +79,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
@@ -91,12 +100,18 @@
                 }
               ],
               "someProperty": "val3"
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

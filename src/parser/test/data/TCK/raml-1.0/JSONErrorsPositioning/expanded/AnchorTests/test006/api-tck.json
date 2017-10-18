@@ -30,6 +30,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
             "strict": true,
@@ -45,6 +48,9 @@
                   "prop2": false
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -76,6 +82,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
             "strict": true,
@@ -91,6 +100,9 @@
                   "prop2": false
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -99,11 +111,17 @@
     "traits": [
       {
         "tr": {
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

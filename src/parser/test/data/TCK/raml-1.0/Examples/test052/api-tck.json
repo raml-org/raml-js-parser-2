@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "Types",
-        "value": "types.raml"
+        "value": "types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Mulesoft Info",
@@ -69,6 +72,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "[\n  {\n    \"id\": 1,\n    \"title\": \"feature1\",\n    \"description\": \"description of feature 1\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"feature2\",\n    \"description\": \"description of feature 2\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"feature3\",\n    \"description\": \"description of feature 3\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"feature4\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"feature5\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  }\n]",
                       "strict": true,
@@ -104,10 +110,16 @@
                           "description": "description of feature 4",
                           "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
                         }
-                      ]
+                      ],
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     "items": "Types.Feature"
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -121,6 +133,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -132,6 +147,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "features"
@@ -145,6 +163,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

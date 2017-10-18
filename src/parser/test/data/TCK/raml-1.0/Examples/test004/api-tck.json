@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -49,6 +52,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "lastName": {
@@ -68,6 +74,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -80,6 +89,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -124,6 +136,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "logo": {
@@ -143,6 +158,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "followers": {
@@ -163,6 +181,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "items": "User"
             },
             "/.*/": {
@@ -182,6 +203,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -194,6 +218,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           },
           "structuredExample": {
             "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ],\n  \"X\": \"x\"\n}",
@@ -213,13 +240,19 @@
                 }
               ],
               "X": "x"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
     "title": "Testing with Jonathan",
-    "mediaType": "application/json"
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

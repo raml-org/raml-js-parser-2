@@ -33,6 +33,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "single-example.raml"
               }
             },
             "body": {
@@ -52,6 +55,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "single-example.raml"
               }
             },
             "name": {
@@ -71,6 +77,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "single-example.raml"
               }
             },
             "comment": {
@@ -90,6 +99,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "single-example.raml"
               }
             }
           },
@@ -103,6 +115,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "single-example.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
             "strict": true,
@@ -110,12 +125,18 @@
             "structuredValue": {
               "title": "Attention needed",
               "body": "You have been added to group 274"
+            },
+            "sourceMap": {
+              "path": "single-example.raml"
             }
           }
         }
       }
     ],
-    "title": "Single example"
+    "title": "Single example",
+    "sourceMap": {
+      "path": "single-example.raml"
+    }
   },
   "errors": []
 }

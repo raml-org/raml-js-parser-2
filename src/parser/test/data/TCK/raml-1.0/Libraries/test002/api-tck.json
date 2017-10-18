@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "security",
-        "value": "myLibrary.raml"
+        "value": "myLibrary.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -33,12 +36,18 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "myLibrary.raml"
               }
             }
           },
           "name": "security.auth",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "myLibrary.raml"
           }
         }
       }
@@ -49,11 +58,17 @@
           "is": [
             "security.auth"
           ],
-          "name": "myResource"
+          "name": "myResource",
+          "sourceMap": {
+            "path": "rt0.raml"
+          }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

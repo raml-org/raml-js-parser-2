@@ -1,0 +1,152 @@
+{
+  "specification": {
+    "traits": {
+      "pagination": {
+        "queryParameters": {
+          "<<queryParamName>>": {
+            "name": "<<queryParamName>>",
+            "displayName": "<<queryParamName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "This is a <<queryParamName>> value parameter.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "offset": {
+            "name": "offset",
+            "displayName": "offset",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Skip over a number of elements by specifying an offset value for the query",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "pagination"
+      }
+    },
+    "title": "API Animals & People!",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "<<queryParamName>>": {
+                "name": "<<queryParamName>>",
+                "displayName": "<<queryParamName>>",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "This is a <<queryParamName>> value parameter.",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "offset": {
+                "name": "offset",
+                "displayName": "offset",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "Skip over a number of elements by specifying an offset value for the query",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "is": [
+              "pagination"
+            ],
+            "method": "get"
+          }
+        },
+        "relativeUri": "/some",
+        "displayName": "/some",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "some"
+        ],
+        "absoluteUri": "/some",
+        "completeRelativeUri": "/some",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'queryParamName'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 10,
+          "position": 113
+        },
+        "end": {
+          "line": 8,
+          "column": 20,
+          "position": 123
+        }
+      }
+    }
+  ]
+}

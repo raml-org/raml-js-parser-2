@@ -1,0 +1,214 @@
+#%RAML 1.0 Library
+
+uses:
+  commonType: commonTypes.raml
+  planType: plan.raml
+  fund: fund.raml
+
+types:
+  planInfo:
+    type: planType.Plan
+    properties:
+      ParticipantWebsiteVersion: string
+      EligibilityRecordKeptPlanInd: integer
+      DeferralRecordKeptPlanInd: integer
+      BenificiaryRecordKeptPlanInd: integer
+      PlanElectronicConcentInd: integer
+      AssetConsolidation(AC)InboundInd: integer
+      AssetConsolidatoin(AC)OutboundInd: integer
+      AssetConsolidation(AC)WebMessageInd: integer
+      AssetConsolidatoin(AC)DocumentMessageInd: integer
+      AssetProtection(AP)InboundInd: integer
+      AssetProtection(AP)OutboundInd: integer
+      AssetProtection(AP)TermLetterInd: integer
+      AssetProtection(AP)AdvisorInd: integer
+      AssetProtection(AP)AutoDistirbutionInd: integer
+      AssetProtection(AP)WebTargetInd: integer
+      ManagedAccountInd: integer
+      ManagedAccountSolution: string
+      TotalRetirementSolutionsEnabled: integer
+      PlanPhoneNumber: commonType.PhonePattern
+      PlanPhoneTTYNumber: commonType.PhonePattern
+      PlanInternationalPhoneNumber: commonType.PhoneInternationalPattern
+      ParticipantWebURL: commonType.URLPattern
+    examples:
+      Plan1:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-01"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+        ParticipantWebsiteVersion: "New Experience"
+        EligibilityRecordKeptPlanInd: 1
+        DeferralRecordKeptPlanInd: 1
+        BenificiaryRecordKeptPlanInd: 1
+        ManagedAccountInd: 1
+        ManagedAccountSolution: "AAG"
+        TotalRetirementSolutionsEnabled: 1
+        AssetConsolidation(AC)InboundInd: 1
+        AssetConsolidatoin(AC)OutboundInd: 1
+        AssetConsolidation(AC)WebMessageInd: 0
+        AssetConsolidatoin(AC)DocumentMessageInd: 1
+        AssetProtection(AP)InboundInd: 1
+        AssetProtection(AP)OutboundInd: 0
+        AssetProtection(AP)TermLetterInd: 1
+        AssetProtection(AP)AdvisorInd: 0
+        AssetProtection(AP)AutoDistirbutionInd: 1
+        AssetProtection(AP)WebTargetInd: 1
+        PlanElectronicConcentInd: 0
+        PlanPhoneNumber: "999-999-9999"
+        PlanPhoneTTYNumber: "999-999-9999"
+        PlanInternationalPhoneNumber: "+99 9999999999"
+        ParticipantWebURL: "http://www.palnaprticipentweb.com"
+      Plan2:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-02"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+        ParticipantWebsiteVersion: "New Experience"
+        EligibilityRecordKeptPlanInd: 1
+        DeferralRecordKeptPlanInd: 1
+        BenificiaryRecordKeptPlanInd: 1
+        ManagedAccountInd: 1
+        ManagedAccountSolution: "AAG"
+        TotalRetirementSolutionsEnabled: 1
+        AssetConsolidation(AC)InboundInd: 1
+        AssetConsolidatoin(AC)OutboundInd: 1
+        AssetConsolidation(AC)WebMessageInd: 0
+        AssetConsolidatoin(AC)DocumentMessageInd: 1
+        AssetProtection(AP)InboundInd: 1
+        AssetProtection(AP)OutboundInd: 0
+        AssetProtection(AP)TermLetterInd: 1
+        AssetProtection(AP)AdvisorInd: 0
+        AssetProtection(AP)AutoDistirbutionInd: 1
+        AssetProtection(AP)WebTargetInd: 1
+        PlanElectronicConcentInd: 0
+        PlanPhoneNumber: "999-999-9999"
+        PlanPhoneTTYNumber: "999-999-9999"
+        PlanInternationalPhoneNumber: "+99 9999999999"
+        ParticipantWebURL: "http://www.palnaprticipentweb.com"
+      Plan3:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-03"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+        ParticipantWebsiteVersion: "New Experience"
+        EligibilityRecordKeptPlanInd: 1
+        DeferralRecordKeptPlanInd: 1
+        BenificiaryRecordKeptPlanInd: 1
+        ManagedAccountInd: 1
+        ManagedAccountSolution: "AAG"
+        TotalRetirementSolutionsEnabled: 1
+        AssetConsolidation(AC)InboundInd: 1
+        AssetConsolidatoin(AC)OutboundInd: 1
+        AssetConsolidation(AC)WebMessageInd: 0
+        AssetConsolidatoin(AC)DocumentMessageInd: 1
+        AssetProtection(AP)InboundInd: 1
+        AssetProtection(AP)OutboundInd: 0
+        AssetProtection(AP)TermLetterInd: 1
+        AssetProtection(AP)AdvisorInd: 0
+        AssetProtection(AP)AutoDistirbutionInd: 1
+        AssetProtection(AP)WebTargetInd: 1
+        PlanElectronicConcentInd: 0
+        PlanPhoneNumber: "999-999-9999"
+        PlanPhoneTTYNumber: "999-999-9999"
+        PlanInternationalPhoneNumber: "+99 9999999999"
+        ParticipantWebURL: "http://www.palnaprticipentweb.com"
+      Plan4:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-04"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+        ParticipantWebsiteVersion: "New Experience"
+        EligibilityRecordKeptPlanInd: 1
+        DeferralRecordKeptPlanInd: 1
+        BenificiaryRecordKeptPlanInd: 1
+        ManagedAccountInd: 1
+        ManagedAccountSolution: "AAG"
+        TotalRetirementSolutionsEnabled: 1
+        AssetConsolidation(AC)InboundInd: 1
+        AssetConsolidatoin(AC)OutboundInd: 1
+        AssetConsolidation(AC)WebMessageInd: 0
+        AssetConsolidatoin(AC)DocumentMessageInd: 1
+        AssetProtection(AP)InboundInd: 1
+        AssetProtection(AP)OutboundInd: 0
+        AssetProtection(AP)TermLetterInd: 1
+        AssetProtection(AP)AdvisorInd: 0
+        AssetProtection(AP)AutoDistirbutionInd: 1
+        AssetProtection(AP)WebTargetInd: 1
+        PlanElectronicConcentInd: 0
+        PlanPhoneNumber: "999-999-9999"
+        PlanPhoneTTYNumber: "999-999-9999"
+        PlanInternationalPhoneNumber: "+99 9999999999"
+        ParticipantWebURL: "http://www.palnaprticipentweb.com"
+
+  PlanDetail:
+    properties:
+      PlanDetail: planInfo
+      PlanContact:
+        type: commonType.Contact[]
+        required: false
+      PlanFunds:
+        type: fund.Fund[]
+        required: false
+
+    examples:
+      PlanDetail1:
+        PlanDetail:
+          DataDate: "01/01/1900"
+          PlanNumber: "111111-01"
+          OfficialPlanName: "ABC Industries"
+          PlanNameShort: "ABC Industries"
+          StatusCode: "A"
+          PlanIRSGroup: "401"
+          PlanType: "Startup"
+          PlanCategory: "401C"
+          Market: "401K"
+          BusinessSegment: "Rollup"
+          ParticipantWebsiteVersion: "New Experience"
+          EligibilityRecordKeptPlanInd: 1
+          DeferralRecordKeptPlanInd: 1
+          BenificiaryRecordKeptPlanInd: 1
+          ManagedAccountInd: 1
+          ManagedAccountSolution: "AAG"
+          TotalRetirementSolutionsEnabled: 1
+          AssetConsolidation(AC)InboundInd: 1
+          AssetConsolidatoin(AC)OutboundInd: 1
+          AssetConsolidation(AC)WebMessageInd: 0
+          AssetConsolidatoin(AC)DocumentMessageInd: 1
+          AssetProtection(AP)InboundInd: 1
+          AssetProtection(AP)OutboundInd: 0
+          AssetProtection(AP)TermLetterInd: 1
+          AssetProtection(AP)AdvisorInd: 0
+          AssetProtection(AP)AutoDistirbutionInd: 1
+          AssetProtection(AP)WebTargetInd: 1
+          PlanElectronicConcentInd: 0
+          PlanPhoneNumber: "999-999-9999"
+          PlanPhoneTTYNumber: "999-999-9999"
+          PlanInternationalPhoneNumber: "+99 9999999999"
+          ParticipantWebURL: "http://www.palnaprticipentweb.com"
+        PlanContact: []
+        PlanFunds: []

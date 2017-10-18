@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -14,6 +17,9 @@
           "name": "lib.libTrait1",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -22,17 +28,26 @@
           "name": "lib.libTrait2",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
       {
         "ownTrait1": {
-          "name": "ownTrait1"
+          "name": "ownTrait1",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
         "ownTrait2": {
-          "name": "ownTrait2"
+          "name": "ownTrait2",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -42,6 +57,9 @@
           "name": "lib.libResourceType1",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -50,17 +68,26 @@
           "name": "lib.libResourceType2",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
       {
         "ownResourceType1": {
-          "name": "ownResourceType1"
+          "name": "ownResourceType1",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
         "ownResourceType2": {
-          "name": "ownResourceType2"
+          "name": "ownResourceType2",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -76,6 +103,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

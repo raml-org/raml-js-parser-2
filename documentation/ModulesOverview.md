@@ -252,7 +252,7 @@ This module also builds a simplified universe.ts file, serving as a convenient w
 This module provides functionality of RAML types analysis and validation, including both validation of the type definition and validation of type instance against its definition.
 
 ### Usage
-Repository and installation: https://github.com/raml-org/typesystem-ts
+Repository and installation: https://github.com/raml-org/raml-typesystem
 
 The are two type models provided by this module: native typesystem types and nominal types.
 

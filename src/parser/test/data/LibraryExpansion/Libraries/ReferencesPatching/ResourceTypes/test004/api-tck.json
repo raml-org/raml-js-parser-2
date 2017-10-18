@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/lib2.raml"
           }
         }
       }
@@ -42,6 +45,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/lib2.raml"
               }
             }
           },
@@ -59,10 +65,16 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/lib2.raml"
               }
             }
           },
-          "name": "myTrait"
+          "name": "myTrait",
+          "sourceMap": {
+            "path": "lib/lib2.raml"
+          }
         }
       }
     ],
@@ -71,8 +83,14 @@
         "resourceType": {
           "type": "lib1.rt",
           "name": "resourceType",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "post": {
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -85,10 +103,16 @@
               }
             }
           ],
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "lib/lib1.raml"
+          }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

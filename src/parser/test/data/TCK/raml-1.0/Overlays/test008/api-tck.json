@@ -31,6 +31,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "priceMoreThen": {
@@ -50,10 +53,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
-          "name": "FilterableByPrice"
+          "name": "FilterableByPrice",
+          "sourceMap": {
+            "path": "NewOverlay.raml"
+          }
         }
       }
     ],
@@ -84,6 +93,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewOverlay.raml"
               }
             }
           },
@@ -96,12 +108,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "NewOverlay.raml"
           }
         }
       }
     ],
     "title": "Pet Shop Overlay",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": []
 }

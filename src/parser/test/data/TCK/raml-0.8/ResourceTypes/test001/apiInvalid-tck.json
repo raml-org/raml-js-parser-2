@@ -7,6 +7,9 @@
       {
         "Resource": {
           "name": "Resource",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "get": {
             "queryParameters": {
               "a": {
@@ -27,6 +30,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               },
               "b": {
@@ -47,6 +53,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               },
               "c": {
@@ -67,10 +76,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         }
       }
@@ -86,8 +101,14 @@
                 "code": "200",
                 "body": {
                   "application/json": {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
@@ -111,6 +132,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               },
               "b": {
@@ -132,6 +156,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               },
               "c": {
@@ -153,10 +180,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -167,12 +200,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

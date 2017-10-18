@@ -25,6 +25,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
@@ -32,7 +35,10 @@
       "HTTP",
       "HTTPS"
     ],
-    "mediaType": "application/json"
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

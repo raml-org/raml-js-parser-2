@@ -51,6 +51,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -63,6 +66,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           "__METADATA__": {
@@ -71,6 +77,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -114,6 +123,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/lib.raml"
                 }
               },
               "input": {
@@ -136,6 +148,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/lib.raml"
                 }
               },
               "output": {
@@ -158,6 +173,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/lib.raml"
                 }
               }
             },
@@ -170,14 +188,23 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/lib.raml"
             }
           },
           "__METADATA__": {
             "primitiveValuesMeta": {}
+          },
+          "sourceMap": {
+            "path": "lib/lib.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

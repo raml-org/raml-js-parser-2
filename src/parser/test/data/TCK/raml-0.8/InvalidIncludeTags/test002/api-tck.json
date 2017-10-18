@@ -4,12 +4,19 @@
   "specification": {
     "title": "test API",
     "schemas": [
-      {}
+      {
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
     ],
     "traits": [
       {
         "tr": {
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -25,15 +32,24 @@
                   "application/json": {
                     "name": "application/json",
                     "schema": null,
-                    "example": null
+                    "example": null,
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "method": "get",
             "is": [
               "tr"
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -44,12 +60,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

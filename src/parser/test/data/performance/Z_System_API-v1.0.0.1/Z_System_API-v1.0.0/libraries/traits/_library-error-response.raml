@@ -1,0 +1,87 @@
+#%RAML 1.0 Library
+
+usage: |
+  Bibliothek für alle unterstützten Error-Responses.
+
+uses:
+  SharedTypes: ../types/SharedTypes.raml
+
+traits:
+  has400:
+    responses:
+      400:
+        description: |
+          Bad Request / Syntaxfehler.
+          Die Anfrage war fehlerhaft (Syntax) oder konnte aus anderem Grund nicht ausgeführt werden. Die error message zeigt weitere Informationen.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has401:
+    responses:
+      401:
+        description: |
+          Unauthorized / Fehlende Authentifizierung.
+          Fehlender oder ungültiger Access-Token. Die Anfrage kann nicht ohne gültige Authentifizierung durchgeführt werden.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has403:
+    responses:
+      403:
+        description: |
+          Forbidden / Verboten, fehlende Berechtigung.
+          Der authentifizierte Nutzer ist nicht berechtigt die Ressource abzufragen.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has404:
+    responses:
+      404:
+        description: |
+          Not Found.
+          Die angeforderte Ressource wurde nicht gefunden. Die error message zeigt weitere Informationen.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has405:
+    responses:
+      405:
+        description: |
+          Method Not Allowed.
+          Die Anfrage darf nur mit anderen HTTP-Methoden (zum Beispiel GET statt POST) gestellt werden.
+          Gültige Methoden für die betreffende Ressource werden im „Allow“-Header-Feld der Antwort übermittelt.
+        headers:
+          Allow:
+            description: |
+              HTTP-Standard Tag. Zeigt die unterstützten HTTP-Methoden an.
+            type: string
+            required: true
+            example: 'Allow: GET, POST'
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has412:
+    responses:
+      412:
+        description: |
+          Precondition Failed.
+          Die Voraussetzung, die in einem oder mehreren der Request-Header-Felder angegeben wurde, wurde vom Server auf false ausgewertet. Die error message zeigt weitere Informationen.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json
+  has422:
+    responses:
+      422:
+        description: |
+          Unprocessable Entity.
+          Eine Verarbeitung der Anfrage wird z.B. wegen semantischer Fehler abgelehnt. Die error message zeigt weitere Informationen.
+        body:
+          application/json:
+            type: SharedTypes.Error
+            example: !include ../../examples/error/common-error.json

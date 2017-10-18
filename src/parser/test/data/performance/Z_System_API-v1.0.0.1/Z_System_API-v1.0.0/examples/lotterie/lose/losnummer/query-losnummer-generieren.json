@@ -1,0 +1,47 @@
+{
+  "wunschlosnummer": "123456",
+  "loskonfiguration": [
+    {
+      "kombination": {
+        "losart": {
+          "key": "5SterneLos",
+          "name": "5 Sterne-Los"
+        },
+        "ziehungsart": {
+          "key": "Geldziehung",
+          "name": "Geldziehung"
+        },
+        "teilnahmeHaeufigkeit": "wöchentlich",
+        "pflichtZiehungsart": true
+      },
+      "spieleinsatz": {
+        "betrag": 6
+      },
+      "stufe": "Stufe 1",
+      "gewinnpotenzialEinmalig": 500000,
+      "gewinnpotenzialMonatlich": 0
+    },
+    {
+      "kombination": {
+        "losart": {
+          "key": "5SterneLos",
+          "name": "5 Sterne-Los"
+        },
+        "ziehungsart": {
+          "key": "Traumhaus",
+          "name": "Traumhaus"
+        },
+        "teilnahmeHaeufigkeit": "wöchentlich",
+        "pflichtZiehungsart": true
+      },
+      "spieleinsatz": {
+        "betrag": 8.5
+      },
+      "stufe": "Stufe 2",
+      "gewinnpotenzialEinmalig": 1000000,
+      "gewinnpotenzialMonatlich": 0
+    }
+  ],
+  "laufzeit": "1Jahr",
+  "zahlweise": "einmalig"
+}

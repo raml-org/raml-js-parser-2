@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "typeFragment.raml"
               }
             },
             "p2": {
@@ -54,6 +57,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "typeFragment.raml"
               }
             }
           },
@@ -63,11 +69,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "typeFragment.raml"
           }
         }
       }
     ],
-    "title": "BaseUri error message"
+    "title": "BaseUri error message",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             },
             "comment": {
@@ -58,6 +61,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
@@ -68,6 +74,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"Fred\",\n  \"comment\": \"\"\n}",
             "strict": true,
@@ -75,11 +84,17 @@
             "structuredValue": {
               "name": "Fred",
               "comment": ""
+            },
+            "sourceMap": {
+              "path": "lib.raml"
             }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

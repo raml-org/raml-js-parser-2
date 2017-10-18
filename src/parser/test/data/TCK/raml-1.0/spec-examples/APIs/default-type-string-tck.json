@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "default-type-string.raml"
               }
             }
           },
@@ -44,11 +47,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "default-type-string.raml"
           }
         }
       }
     ],
-    "title": "Default type string"
+    "title": "Default type string",
+    "sourceMap": {
+      "path": "default-type-string.raml"
+    }
   },
   "errors": []
 }

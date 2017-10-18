@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apply-annotations-1.raml"
           }
         }
       }
@@ -40,12 +43,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-annotations-1.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-annotations-1.raml"
+    }
   },
   "errors": []
 }

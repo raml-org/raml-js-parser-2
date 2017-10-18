@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib2.raml"
           }
         }
       }
@@ -38,10 +41,16 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib2.raml"
               }
             }
           },
-          "name": "myTrait"
+          "name": "myTrait",
+          "sourceMap": {
+            "path": "lib2.raml"
+          }
         }
       }
     ],
@@ -51,7 +60,10 @@
           "is": [
             "lib1.lib2.myTrait"
           ],
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "lib1.raml"
+          }
         }
       }
     ],
@@ -79,6 +91,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib2.raml"
                 }
               }
             },
@@ -92,6 +107,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -108,6 +126,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -120,6 +141,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

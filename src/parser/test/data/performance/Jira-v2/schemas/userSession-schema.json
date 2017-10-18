@@ -1,0 +1,37 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "loginInfo" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "failedLoginCount" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "loginCount" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "lastFailedLoginTime" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "previousLoginTime" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

@@ -13,11 +13,17 @@
     "uses": [
       {
         "key": "SongsLib",
-        "value": "libraries/songs-library.raml"
+        "value": "libraries/songs-library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "ApiLib",
-        "value": "libraries/api-library.raml"
+        "value": "libraries/api-library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -35,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -53,6 +62,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -85,6 +97,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "lastname": {
@@ -103,11 +118,17 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "structuredExample": {
                 "value": "Doe",
                 "strict": true,
                 "name": null,
-                "structuredValue": "Doe"
+                "structuredValue": "Doe",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             }
           },
@@ -121,12 +142,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"firstname\": \"John\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "firstname": "John"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -153,6 +180,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "secured/accessToken.raml"
               }
             }
           },
@@ -167,6 +197,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "secured/accessToken.raml"
           }
         }
       }
@@ -184,6 +217,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           },
           "get": {
             "responses": {
@@ -206,8 +242,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -222,6 +264,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -254,6 +299,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "deprecatedBy": {
@@ -273,6 +321,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "comment": {
@@ -292,6 +343,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -304,6 +358,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -323,6 +380,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -344,6 +404,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -380,6 +443,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -392,6 +458,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -409,6 +478,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -426,7 +498,13 @@
             "signatures": [
               "HMAC-SHA1",
               "PLAINTEXT"
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -455,6 +533,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -477,19 +558,31 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "responses": [
               {
                 "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           "settings": {
             "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -498,7 +591,13 @@
               "authorization_code",
               "implicit",
               "urn:ietf:params:oauth:grant-type:saml2-bearer"
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -527,18 +626,33 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "responses": [
               {
                 "code": "401",
-                "description": "Bad token.\n"
+                "description": "Bad token.\n",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
-                "code": "403"
+                "code": "403",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -571,6 +685,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       },
       "version": {
@@ -600,6 +717,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
@@ -640,6 +760,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 },
                 "page-size": {
@@ -659,6 +782,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               },
@@ -671,6 +797,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "protocols": [
@@ -689,6 +818,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -706,6 +838,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -725,6 +860,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -742,6 +880,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "api"
@@ -768,8 +909,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -789,6 +936,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -811,8 +961,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -833,6 +989,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -851,6 +1010,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "entry"
@@ -894,6 +1056,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "access_token": {
@@ -913,6 +1078,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "secured/accessToken.raml"
                 }
               }
             },
@@ -930,6 +1098,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -951,6 +1122,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "secured/accessToken.raml"
                 }
               }
             },
@@ -970,6 +1144,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "secured/accessToken.raml"
             }
           }
         ],
@@ -1015,6 +1192,9 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "application/xml": {
@@ -1022,6 +1202,9 @@
                         "displayName": "application/xml",
                         "typePropertyKind": "XML",
                         "schemaPath": "schemas/songs.xsd",
+                        "sourceMap": {
+                          "path": "schemas/songs.xsd"
+                        },
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
@@ -1037,9 +1220,15 @@
                           "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
+                          "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
+                          "sourceMap": {
+                            "path": "api.raml"
+                          }
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -1059,6 +1248,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -1087,6 +1279,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -1102,6 +1297,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "relativeUriPathSegments": [
               "{songId}"
             ],
@@ -1115,6 +1313,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "songs"
         ],
@@ -1124,11 +1325,17 @@
     "documentation": [
       {
         "title": "Getting Started",
-        "content": "This is a getting started guide for the World Music API.\n"
+        "content": "This is a getting started guide for the World Music API.\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "title": "Legal",
-        "content": "See http://legal.musicapi.com"
+        "content": "See http://legal.musicapi.com",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "scalarsAnnotations": {
@@ -1138,6 +1345,9 @@
           "name": "rediractable"
         }
       ]
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

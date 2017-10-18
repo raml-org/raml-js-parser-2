@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apply-annotations-2.raml"
           }
         }
       }
@@ -43,12 +46,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-annotations-2.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-annotations-2.raml"
+    }
   },
   "errors": []
 }

@@ -7,7 +7,10 @@
         "basic": {
           "name": "basic",
           "type": "Basic Authentication",
-          "description": "This API supports Basic Authentication.\n"
+          "description": "This API supports Basic Authentication.\n",
+          "sourceMap": {
+            "path": "security-schemes-basic.raml"
+          }
         }
       }
     ],
@@ -42,6 +45,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "security-schemes-basic.raml"
         }
       }
     },
@@ -54,6 +60,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "security-schemes-basic.raml"
     }
   },
   "errors": []

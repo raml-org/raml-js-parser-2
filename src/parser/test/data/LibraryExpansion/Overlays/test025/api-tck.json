@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -46,6 +49,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             },
             "secondProp": {
@@ -65,6 +71,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
@@ -74,6 +83,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
@@ -103,13 +115,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        },
         "relativeUriPathSegments": [
           "servers"
         ],
         "absoluteUri": "/servers"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "errors": []
 }

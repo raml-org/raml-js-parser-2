@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             },
             "long": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             }
           },
@@ -60,6 +66,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "query-string.raml"
           }
         }
       },
@@ -92,6 +101,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             }
           },
@@ -104,6 +116,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "query-string.raml"
           }
         }
       },
@@ -133,6 +148,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             },
             "page-size": {
@@ -152,6 +170,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             }
           },
@@ -164,6 +185,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "query-string.raml"
           }
         }
       }
@@ -190,6 +214,9 @@
                     "start": 2,
                     "lat": 12,
                     "long": 13
+                  },
+                  "sourceMap": {
+                    "path": "query-string.raml"
                   }
                 },
                 {
@@ -200,6 +227,9 @@
                     "start": 2,
                     "page-size": 20,
                     "location": "1,2"
+                  },
+                  "sourceMap": {
+                    "path": "query-string.raml"
                   }
                 },
                 {
@@ -209,6 +239,9 @@
                   "structuredValue": {
                     "lat": 12,
                     "location": 2
+                  },
+                  "sourceMap": {
+                    "path": "query-string.raml"
                   }
                 }
               ],
@@ -218,9 +251,15 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "query-string.raml"
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "query-string.raml"
+            }
           }
         ],
         "relativeUri": "/locations",
@@ -232,12 +271,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "query-string.raml"
+        },
         "relativeUriPathSegments": [
           "locations"
         ],
         "absoluteUri": "/locations"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "query-string.raml"
+    }
   },
   "errors": []
 }

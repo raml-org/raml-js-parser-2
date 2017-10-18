@@ -7,6 +7,9 @@
       {
         "relativeUri": "/resource",
         "displayName": "Test4",
+        "sourceMap": {
+          "path": "NewExtension3.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -21,6 +24,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "NewExtension3.raml"
         },
         "relativeUriPathSegments": [
           "anotherResource"
@@ -37,13 +43,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewExtension3.raml"
+        },
         "relativeUriPathSegments": [
           "anotherResource2"
         ],
         "absoluteUri": "/anotherResource2"
       }
     ],
-    "extends": "NewExtension2.raml"
+    "extends": "NewExtension2.raml",
+    "sourceMap": {
+      "path": "NewExtension3.raml"
+    }
   },
   "errors": []
 }

@@ -33,6 +33,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "title??": {
@@ -49,6 +52,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -59,6 +65,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"eleo\",\n  \"title??\": \"Yes, I have a title\"\n}",
             "strict": true,
@@ -66,12 +75,18 @@
             "structuredValue": {
               "name": "eleo",
               "title??": "Yes, I have a title"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "properties with trailing question marks"
+    "title": "properties with trailing question marks",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

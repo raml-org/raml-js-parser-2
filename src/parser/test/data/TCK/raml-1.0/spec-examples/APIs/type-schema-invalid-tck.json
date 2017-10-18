@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "type-schema-invalid.raml"
           }
         }
       }
@@ -50,12 +53,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "type-schema-invalid.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "type-schema-invalid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "type-schema-invalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -67,12 +79,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "type-schema-invalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "type-schema-invalid.raml"
+    }
   },
   "errors": [
     {

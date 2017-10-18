@@ -1,0 +1,17 @@
+{
+  "success": false,
+  "message": "Bad Request",
+  "path": "/resource/",
+  "context": [
+    {"argName":"GA_ID","argValue": "385030-01"},
+    {"argName":"Database","argValue": "inst"}
+  ],
+  "errors": [
+    {
+      "id" : "a32f-234-ad12341",
+      "code" : "400",
+      "title" : "Invalid Request submitted",
+      "detail" : "Ind_ID was not provided"
+    }
+  ]
+}

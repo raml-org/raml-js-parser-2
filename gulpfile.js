@@ -50,12 +50,13 @@ var testFilesLibExpand = [
   'dist/parser/test/TCK2-newFormat.js',
   'dist/parser/test/libraryExpansion-newFormat.js',
   'dist/parser/test/astReuseTests.js',
-  // 'dist/parser/test/astReuseTestsBasicTyping.js',
-  // 'dist/parser/test/astReuseTestsComplexTyping.js',
-  // 'dist/parser/test/longivityTestsBasicTyping.js',
-  // 'dist/parser/test/longivityTestsComplexTyping.js',
-  // 'dist/parser/test/longivityTestsUserTyping.js',
+  'dist/parser/test/astReuseTestsBasicTyping.js',
+  'dist/parser/test/astReuseTestsComplexTyping.js',
+  'dist/parser/test/longivityTestsBasicTyping.js',
+  'dist/parser/test/longivityTestsComplexTyping.js',
+  'dist/parser/test/longivityTestsUserTyping.js',
   'dist/parser/test/unfoldTypes.js',
+    'dist/parser/test/unfoldTypesLibExpand.js',
   // // //
   'src/parser/test/data/parser/test/specs/optionals.js',
   'src/parser/test/data/parser/test/specs/parser.js',
@@ -158,83 +159,6 @@ gulp.task('watch:test', function () {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test']);
 });
 
-
-gulp.task('typescript:prepare-compile', [], function () {
-  var hasError = false;
-  var tsResult = gulp.src(['src/parser/tools/prepare.ts'])
-      .pipe(sourcemaps.init())
-      .pipe(ts(tsProject))
-      .on('error', function () {
-        hasError = true;
-      })
-      .on('end', function () {
-        if (hasError && !tsWatch) {
-          throw new Error('TypeScript contains errors');
-        }
-      });
-
-  return tsResult.js
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest('src/parser/tools/'));
-});
-
-gulp.task('typescript:compile', [
-
-], function () {
-  var hasError = false;
-  var tsResult = gulp.src(['**/*.ts', '!java/**', '!node_modules/**', '!examples/**', '!microsite/dist/examples/**', '!atom-package/**', '!custom_typings/**', '!typings/**'])
-    .pipe(sourcemaps.init())
-    .pipe(ts(tsProject))
-    .on('error', function () {
-      hasError = true;
-    })
-    .on('end', function () {
-      if (hasError && !tsWatch) {
-        throw new Error('TypeScript contains errors');
-      }
-    });
-
-  return tsResult.js
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('.'));
-});
-
-gulp.task('typescript:prepare', ['typescript:prepare-compile'], function (done) {
-  return spawn('node', [join(__dirname, 'src/parser/tools/prepare.js')], done);
-});
-
-gulp.task('typescript:generate-parser', [
-  'typescript:gen-artifacts',
-  'typescript:compile'
-], function (done) {
-  return spawn('node', [join(__dirname, 'src/parser/tools/buildParsers.js')], done);
-});
-
-
-gulp.task('typescript:compile-with-generated-parser', [
-  'typescript:generate-parser'
-], function () {
-  var hasError = false;
-
-  var tsResult = gulp.src(['**/**.ts', '!java/**', '!node_modules/**', '!examples/**', '!microsite/dist/examples/**', '!atom-package/**', '!custom_typings/**', '!typings/**'])
-      .pipe(sourcemaps.init())
-      .pipe(ts(tsProject))
-      .on('error', function () {
-        hasError = true;
-      })
-      .on('end', function () {
-        if (hasError && !tsWatch) {
-          throw new Error('TypeScript contains errors');
-        }
-      });
-
-  return tsResult.js
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest('.'));
-});
-
-gulp.task('typescript', ['typescript:compile', 'typescript:generate-parser', 'typescript:compile-with-generated-parser']);
-
 gulp.task('coffee', function (done) {
   var isWin = /^win/.test(process.platform);
   var coffecmd = isWin? 'coffee.cmd' : 'coffee';
@@ -243,9 +167,7 @@ gulp.task('coffee', function (done) {
 });
 
 gulp.task('build', [
-  'typescript',
-  'microsite',
-
+  'microsite'
 ]);
 
 gulp.task('watch:coffee', function (done) {
@@ -254,13 +176,6 @@ gulp.task('watch:coffee', function (done) {
   var path = join(NODE_BIN_PATH, coffecmd);
   spawn(path, ['-cw', 'src'], done);
 });
-
-gulp.task('watch:typescript', function () {
-  tsWatch = true;
-
-  gulp.watch('**/*.ts', ['typescript:compile']);
-});
-
 
 
 var API_WORKBENCH_PACKAGE_ORG = 'mulesoft'
@@ -301,7 +216,7 @@ gulp.task('package-readme', function () {
     .pipe(gulp.dest('atom-package'))
 })
 
-gulp.task('package-build', ['coffee', 'typescript'], function (done) {
+gulp.task('package-build', ['coffee'], function (done) {
   var config =  {
     entry: join(__dirname, 'src/atom/main'),
     output: {

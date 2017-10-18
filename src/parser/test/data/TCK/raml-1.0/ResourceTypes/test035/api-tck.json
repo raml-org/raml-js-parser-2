@@ -6,8 +6,14 @@
       {
         "rt": {
           "name": "rt",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "<<params>>": null
           }
         }
@@ -18,7 +24,10 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": "rt",
@@ -31,12 +40,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

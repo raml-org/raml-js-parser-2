@@ -41,6 +41,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "annotations-targets.raml"
               }
             }
           },
@@ -50,6 +53,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations-targets.raml"
           }
         }
       }
@@ -76,6 +82,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations-targets.raml"
           }
         }
       },
@@ -99,6 +108,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations-targets.raml"
           }
         }
       }
@@ -145,12 +157,21 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "annotations-targets.raml"
+                    },
                     "items": "User"
                   }
+                },
+                "sourceMap": {
+                  "path": "annotations-targets.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "annotations-targets.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -162,12 +183,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "annotations-targets.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "annotations-targets.raml"
+    }
   },
   "errors": []
 }

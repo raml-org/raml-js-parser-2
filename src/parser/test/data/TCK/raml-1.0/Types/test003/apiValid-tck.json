@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"somestring\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "name": "somestring"
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
@@ -78,6 +87,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -88,6 +100,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -123,6 +138,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -133,6 +151,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"someProperty\": {\n    \"name\": \"stringValue\",\n    \"age\": 123\n  }\n}",
             "strict": true,
@@ -142,12 +163,18 @@
                 "name": "stringValue",
                 "age": 123
               }
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

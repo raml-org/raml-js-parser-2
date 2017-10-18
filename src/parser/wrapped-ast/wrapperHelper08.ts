@@ -6,6 +6,7 @@ import core=require("./parserCore");
 
 import ramlPathMatch = require("../../util/raml-path-match")
 import hl = require('../highLevelAST');
+import ll = require("../lowLevelAST");
 import hlimpl = require('../highLevelImpl');
 
 import defs = require('raml-definition-system');
@@ -14,14 +15,11 @@ import expander=require("../ast.core/expander")
 import expanderLL=require("../ast.core/expanderLL")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import linter=require("../ast.core/linter")
-import Opt = require('../../Opt')
 import util = require('../../util/index');
-import typeexpression=require("../ast.core/typeBuilder")
 import search=require("../../search/search-interface")
-import ramlservices=require("../definition-system/ramlServices")
 import universeHelpers = require("../tools/universeHelpers");
 
-import ll=require("../jsyaml/jsyaml2lowLevel");
+import jsyaml=require("../jsyaml/jsyaml2lowLevel");
 import path=require("path")
 import _ = require("underscore");
 //export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
@@ -32,7 +30,7 @@ import _ = require("underscore");
 let messageRegistry = require("../../../resources/errorMessages");
 
 export function load(pth: string):core.BasicNode{
-    var m=new ll.Project(path.dirname(pth));
+    var m=new jsyaml.Project(path.dirname(pth));
     var unit=m.unit(path.basename(pth));
     if (unit){
         if (unit.isRAMLUnit()){
@@ -369,11 +367,13 @@ export function uriParametersPrimary(resource:RamlWrapper.Resource):RamlWrapper.
  **/
 export function uriParameters(resource:RamlWrapper.Resource):RamlWrapper.Parameter[]{
 
-    var uri = resource.relativeUri().value();
+    let uriNode = resource.relativeUri();
+    var uri = uriNode.value();
     var params = (<RamlWrapperImpl.ResourceImpl>resource).uriParameters_original();
     var propName = universes.Universe08.Resource.properties.uriParameters.name;
 
-    return extractParams(params, uri, resource, propName);
+    let llNode = uriNode.highLevel().lowLevel();
+    return extractParams(params, uri, resource, propName, llNode);
 }
 
 /**
@@ -410,11 +410,13 @@ export function baseUriParametersPrimary(api:RamlWrapper.Api):RamlWrapper.Parame
  **/
 export function baseUriParameters(api:RamlWrapper.Api):RamlWrapper.Parameter[]{
 
-    var uri = api.baseUri() ? api.baseUri().value() : '';
+    let uriNode = api.baseUri();
+    var uri = uriNode ? uriNode.value() : '';
     var params = (<RamlWrapperImpl.ApiImpl>api).baseUriParameters_original();
     var propName = universes.Universe08.Api.properties.baseUriParameters.name;
 
-    return extractParams(params, uri, api, propName);
+    let llNode = uriNode && uriNode.highLevel().lowLevel();
+    return extractParams(params, uri, api, propName,llNode);
 }
 
 /**
@@ -609,7 +611,8 @@ function extractParams(
     params:RamlWrapper.Parameter[],
     uri:string,
     owner:core.BasicNode,
-    propName:string):RamlWrapper.Parameter[] {
+    propName:string,
+    propNode:ll.ILowLevelASTNode):RamlWrapper.Parameter[] {
 
     var ownerHl = owner.highLevel();
     var prop = ownerHl.definition().property(propName);
@@ -642,9 +645,11 @@ function extractParams(
             describedParams[paramName].forEach(x=>allParams.push(x));
         }
         else {
+            let propUnit = propNode && hlimpl.actualUnit(propNode);
                 var uriParameter = new RamlWrapperImpl.StringTypeDeclarationImpl(paramName);
                 uriParameter.setName(paramName);
                 var hlNode = uriParameter.highLevel();
+                (<jsyaml.ASTNode>hlNode.lowLevel()).setUnit(propUnit);
                 hlNode.setParent(ownerHl);
                 (<core.NodeMetadataImpl>uriParameter.meta()).setCalculated();
                 (<hlimpl.ASTNodeImpl>hlNode).patchProp(prop);

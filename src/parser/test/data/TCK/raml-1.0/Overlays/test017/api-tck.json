@@ -4,7 +4,10 @@
   "specification": {
     "title": "Pet shop",
     "version": "6",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": [
     {

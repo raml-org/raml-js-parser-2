@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "message": "Not Found",
+  "path": "/invalidResource/",
+  "context": [],
+  "errors": [
+    {
+      "id" : "a32f-234-ad1233213",
+      "code" : "404",
+      "title" : "Cannot locate resource",
+      "detail" : "Resource Id: {resourceId} could not be found."
+    }
+  ]
+}

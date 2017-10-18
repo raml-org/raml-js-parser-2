@@ -41,6 +41,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
+              },
               "items": "boolean"
             }
           },
@@ -53,12 +56,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
     ],
     "title": "WebOfMe",
-    "mediaType": "application/json"
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

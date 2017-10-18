@@ -1,0 +1,134 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "LotterieTypes.StandardDateTime": {
+          "name": "StandardDateTime",
+          "displayName": "StandardDateTime",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "datetime"
+          ],
+          "format": "rfc3339",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "LotterieTypes.Losgutschein": {
+          "name": "Losgutschein",
+          "displayName": "Losgutschein",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "mailSendeDatum": {
+              "name": "mailSendeDatum",
+              "displayName": "mailSendeDatum",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "LotterieTypes.StandardDateTime"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "System API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "LotterieTypes.Losgutschein"
+                ],
+                "example": {
+                  "mailSendeDatum": null
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n    \"mailSendeDatum\" : null\n  \n}\n",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "mailSendeDatum": null
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "relativeUri": "/losgutscheine",
+        "displayName": "/losgutscheine",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "losgutscheine"
+        ],
+        "absoluteUri": "/losgutscheine"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 16,
+          "position": 231
+        },
+        "end": {
+          "line": 11,
+          "column": 23,
+          "position": 238
+        }
+      }
+    }
+  ]
+}

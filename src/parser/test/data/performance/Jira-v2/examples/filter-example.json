@@ -1,0 +1,32 @@
+{
+  "self" : "http://www.example.com/jira/rest/api/2/filter/10000" ,
+  "id" : "10000" ,
+  "name" : "All Open Bugs" ,
+  "description" : "Lists all open bugs" ,
+  "owner" : {
+    "self" : "http://www.example.com/jira/rest/api/2/user?username=fred" ,
+    "name" : "fred" ,
+    "avatarUrls" : {
+      "24x24" : "http://www.example.com/jira/secure/useravatar?size=small&ownerId=fred" ,
+      "16x16" : "http://www.example.com/jira/secure/useravatar?size=xsmall&ownerId=fred" ,
+      "32x32" : "http://www.example.com/jira/secure/useravatar?size=medium&ownerId=fred" ,
+      "48x48" : "http://www.example.com/jira/secure/useravatar?size=large&ownerId=fred"
+    } ,
+    "displayName" : "Fred F. User" ,
+    "active" : false
+  } ,
+  "jql" : "type = Bug and resolution is empty" ,
+  "viewUrl" : "http://www.example.com/jira/secure/IssueNavigator.jspa?mode=hide&requestId=10000" ,
+  "searchUrl" : "http://www.example.com/jira/rest/api/2/search?jql=type%20%3D%20Bug%20and%20resolutino%20is%20empty" ,
+  "favourite" : true ,
+  "sharePermissions" : [
+  ] ,
+  "subscriptions" : {
+    "size" : 0 ,
+    "items" : [
+    ] ,
+    "max-results" : 1000 ,
+    "start-index" : 0 ,
+    "end-index" : 0
+  }
+}

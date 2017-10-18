@@ -5,11 +5,17 @@
     "uses": [
       {
         "key": "defaultResponses",
-        "value": "libraries/responseBase.raml"
+        "value": "libraries/responseBase.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "error-types",
-        "value": "types/error-types.raml"
+        "value": "types/error-types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -32,8 +38,14 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "traits/generic-responses.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/generic-responses.raml"
               }
             },
             "423": {
@@ -52,14 +64,23 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "traits/generic-responses.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/generic-responses.raml"
               }
             }
           },
           "name": "defaultResponses.general",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "traits/generic-responses.raml"
           }
         }
       }
@@ -68,6 +89,9 @@
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "get": {
             "is": [
               {
@@ -76,7 +100,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       }
@@ -112,8 +139,14 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/generic-responses.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/generic-responses.raml"
                     }
                   },
                   "423": {
@@ -132,8 +165,14 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/generic-responses.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/generic-responses.raml"
                     }
                   }
                 },
@@ -154,6 +193,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             ],
@@ -171,6 +213,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "relativeUriPathSegments": [
               "letters"
             ],
@@ -184,6 +229,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "alpha"
         ],
@@ -196,6 +244,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

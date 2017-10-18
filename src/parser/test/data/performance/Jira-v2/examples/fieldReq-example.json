@@ -1,0 +1,6 @@
+{
+  "name" : "New custom field" ,
+  "description" : "Custom field for picking groups" ,
+  "type" : "com.atlassian.jira.plugin.system.customfieldtypes:grouppicker" ,
+  "searcherKey" : "com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher"
+}

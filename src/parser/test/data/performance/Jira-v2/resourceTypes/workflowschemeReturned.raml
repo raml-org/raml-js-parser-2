@@ -1,0 +1,35 @@
+delete?: 
+  responses: 
+    200?: 
+      body: 
+        application/json: 
+post?: 
+  body: 
+    application/json: 
+      schema: workflowschemeReq
+      example: !include examples/workflowschemeReq-example.json
+  responses: 
+    201: 
+      body: 
+        application/json: 
+          schema: workflowscheme
+          example: !include examples/workflowscheme-example.json
+get?: 
+  responses: 
+    200: 
+      body: 
+        application/json: 
+          schema: workflowscheme
+          example: !include examples/workflowscheme-example.json
+put?: 
+  body: 
+    application/json: 
+      schema: workflowschemePutReq
+      example: !include examples/workflowschemePutReq-example.json
+  responses: 
+    200: 
+      body: 
+        application/json: 
+          schema: workflowscheme
+          example: !include examples/workflowscheme-example.json
+type: base

@@ -1,0 +1,20 @@
+#%RAML 1.0 Trait
+
+headers:
+  Accept-Encoding:
+    description: |
+      HTTP-Standard Parameter.
+      Hier sollte gzip akzeptiert werden.
+      Identity Encoding (=uncompressed) ist immer erlaubt, auch wenn es nicht im Accept-Encoding Header-Feld explizit genannt wird. (Ausnahme: identity;q=o verbietet uncompresst nach RFC 7231)
+    type: string
+    required: true
+    default: gzip
+    example: 'Accept-Encoding: gzip;q=1.0, identity;q=0.1, *;q=0'
+  Content-Encoding:
+    description: |
+      HTTP-Standard Parameter.
+      Hier sollte gzip genutzt werden.
+    type: string
+    required: true
+    default: gzip
+    example: 'Content-Encoding: gzip'

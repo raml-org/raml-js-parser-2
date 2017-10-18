@@ -1,0 +1,59 @@
+#%RAML 1.0 Library
+uses:
+  standardDataTypes: ../libraries/standardDataTypes.raml
+
+traits:
+  paginated:
+    queryParameters:
+      offset:
+        description: Skip over a number of elements by specifying an offset value for the query
+        type: integer
+        required: false
+        example: 15
+        default: 0
+      limit:
+        description: Limit the number of elements on the response
+        type: integer
+        required: false
+        example: 15
+        default: 5
+        maximum: 25
+  clientRestricted:
+    displayName: Client ID/Secret Policy Enforcement
+    headers:
+      client_id:
+        displayName: Client ID
+        description: Client ID provided for API Access
+        required: true
+      client_secret:
+        displayName: Client Secret
+        description: Client Secret value provided for API access
+        required: true
+  standardErrors:
+    usage: Reusable Error Handling responses
+    responses:
+      400:
+        body:
+          application/json:
+            type: standardDataTypes.ErrorResponse
+            example: <<example400>>
+      401:
+        body:
+          application/json:
+            type: standardDataTypes.ErrorResponse
+            example: <<example401>>
+      403:
+        body:
+          application/json:
+            type: standardDataTypes.ErrorResponse
+            example: <<example403>>
+      404:
+        body:
+          application/json:
+            type: standardDataTypes.ErrorResponse
+            example: <<example404>>
+      500:
+        body:
+          application/json:
+            type: standardDataTypes.ErrorResponse
+            example: <<example500>>

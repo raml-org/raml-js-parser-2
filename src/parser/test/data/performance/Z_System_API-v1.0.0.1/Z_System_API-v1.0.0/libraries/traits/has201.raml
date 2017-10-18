@@ -1,0 +1,15 @@
+#%RAML 1.0 Trait
+
+responses:
+  201:
+    description: |
+      Created.
+      <<description>>
+    headers:
+      Location:
+        description: |
+          HTTP-Standard Parameter.
+          Location der neuen Resource, die von der Request erstellt wurde.
+        type: string
+        required: true
+        example: 'Location: http://example.org/other'

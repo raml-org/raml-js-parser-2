@@ -1,0 +1,23 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "cropperWidth" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "cropperOffsetX" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "cropperOffsetY" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "needsCropping" : {
+      "type" : "boolean" ,
+      "required" : false
+    }
+  }
+}

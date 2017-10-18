@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             },
             "Head": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -86,6 +95,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             },
             "lastname": {
@@ -105,6 +117,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             },
             "title": {
@@ -124,6 +139,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             }
           },
@@ -133,6 +151,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -151,6 +172,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -181,6 +205,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
+              },
               "items": "Person"
             },
             "phone": {
@@ -200,6 +227,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             }
           },
@@ -209,6 +239,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -245,6 +278,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             }
           },
@@ -254,6 +290,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -283,6 +322,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types-complex.raml"
               }
             }
           },
@@ -292,6 +334,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       },
@@ -309,6 +354,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types-complex.raml"
           }
         }
       }
@@ -336,12 +384,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "introduction-types-complex.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "introduction-types-complex.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "introduction-types-complex.raml"
+            }
           }
         ],
         "uriParameters": {
@@ -366,6 +423,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "introduction-types-complex.raml"
             }
           }
         },
@@ -378,13 +438,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "introduction-types-complex.raml"
+        },
         "relativeUriPathSegments": [
           "orgs",
           "{orgId}"
         ],
         "absoluteUri": "/orgs/{orgId}"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "introduction-types-complex.raml"
+    }
   },
   "errors": []
 }

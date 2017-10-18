@@ -28,6 +28,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
                 }
               }
             },
@@ -50,19 +53,31 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
                 }
               }
             },
             "responses": [
               {
                 "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               },
               {
                 "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           },
           "settings": {
             "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -75,7 +90,13 @@
             "scopes": [
               "USER",
               "ADMINISTRATOR"
-            ]
+            ],
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
           }
         }
       },
@@ -91,7 +112,13 @@
             "signatures": [
               "HMAC-SHA1",
               "PLAINTEXT"
-            ]
+            ],
+            "sourceMap": {
+              "path": "securitySchemes/oauth_1_0.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/oauth_1_0.raml"
           }
         }
       }
@@ -127,6 +154,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apply-security-schemes.raml"
         }
       }
     },
@@ -154,6 +184,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apply-security-schemes.raml"
             }
           }
         ],
@@ -172,6 +205,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-security-schemes.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
@@ -184,6 +220,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apply-security-schemes.raml"
     }
   },
   "errors": []

@@ -1,0 +1,32 @@
+{
+  "id" : "10001" ,
+  "type" : {
+    "id" : "1000" ,
+    "name" : "Duplicate" ,
+    "inward" : "Duplicated by" ,
+    "outward" : "Duplicates" ,
+    "self" : "http://www.example.com/jira/rest/api/2//issueLinkType/1000"
+  } ,
+  "inwardIssue" : {
+    "id" : "10004" ,
+    "key" : "PRJ-3" ,
+    "self" : "http://www.example.com/jira/rest/api/2/issue/PRJ-3" ,
+    "fields" : {
+      "status" : {
+        "iconUrl" : "http://www.example.com/jira//images/icons/statuses/open.png" ,
+        "name" : "Open"
+      }
+    }
+  } ,
+  "outwardIssue" : {
+    "id" : "10004L" ,
+    "key" : "PRJ-2" ,
+    "self" : "http://www.example.com/jira/rest/api/2/issue/PRJ-2" ,
+    "fields" : {
+      "status" : {
+        "iconUrl" : "http://www.example.com/jira//images/icons/statuses/open.png" ,
+        "name" : "Open"
+      }
+    }
+  }
+}

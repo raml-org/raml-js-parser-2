@@ -1,0 +1,9 @@
+{
+  "version" : "1.0",
+  "code" : 2004,
+  "name" : "API_KUNDE_DATEN",
+  "reason" : "KUNDE_EMAIL_INVALID",
+  "message" : "Die Email Adresse ist fehlerhaft.",
+  "technical_message" : "System | Service | Backend-Error-Message",
+  "trace_id" : "9Q2yhcX3x0hXdtK71zMX"
+}

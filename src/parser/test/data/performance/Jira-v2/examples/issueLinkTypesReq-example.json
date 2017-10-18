@@ -1,0 +1,5 @@
+{
+  "name" : "Duplicate" ,
+  "inward" : "Duplicated by" ,
+  "outward" : "Duplicates"
+}

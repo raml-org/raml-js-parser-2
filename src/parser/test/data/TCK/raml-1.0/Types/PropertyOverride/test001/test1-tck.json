@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             },
             "geometry": {
@@ -51,6 +54,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             },
             "properties": {
@@ -70,6 +76,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -79,6 +88,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -110,6 +122,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "test1.raml"
+              },
               "items": "object"
             },
             "_links": {
@@ -127,6 +142,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -139,6 +157,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -169,6 +190,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -178,6 +202,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -207,6 +234,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             },
             "_links": {
@@ -236,6 +266,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "test1.raml"
                   }
                 }
               },
@@ -248,6 +281,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -257,6 +293,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -286,6 +325,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -298,6 +340,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -328,6 +373,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test1.raml"
               }
             }
           },
@@ -337,6 +385,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       },
@@ -355,6 +406,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test1.raml"
           }
         }
       }
@@ -381,6 +435,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "test1.raml"
             }
           }
         ],
@@ -401,6 +458,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "test1.raml"
                 }
               }
             ],
@@ -443,6 +503,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "test1.raml"
+                            },
                             "structuredExample": {
                               "value": "[\n  {\n    \"id\": \"foo\",\n    \"type\": \"Feature\",\n    \"geometry\": {},\n    \"properties\": {\n      \"acquired\": \"2016-02-28T16:41:41.090Z\",\n      \"vnd_camera_gain\": 5\n    },\n    \"_embeds\": [],\n    \"_links\": {\n      \"licenses\": \"https://api.planet.com/v1/scenes/foo/licenses\"\n    }\n  }\n]",
                               "strict": true,
@@ -461,10 +524,16 @@
                                     "licenses": "https://api.planet.com/v1/scenes/foo/licenses"
                                   }
                                 }
-                              ]
+                              ],
+                              "sourceMap": {
+                                "path": "test1.raml"
+                              }
                             },
                             "items": "PlanetScene"
                           }
+                        },
+                        "sourceMap": {
+                          "path": "test1.raml"
                         }
                       }
                     },
@@ -479,6 +548,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "test1.raml"
                     }
                   }
                 ],
@@ -490,6 +562,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "test1.raml"
                 },
                 "relativeUriPathSegments": [
                   "planetscope"
@@ -504,6 +579,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "relativeUriPathSegments": [
               "scenes"
             ],
@@ -517,12 +595,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "relativeUriPathSegments": [
           "v1"
         ],
         "absoluteUri": "http://api.planet.com/v1"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "test1.raml"
+    }
   },
   "errors": [
     {

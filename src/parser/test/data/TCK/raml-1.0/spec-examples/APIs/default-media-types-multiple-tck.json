@@ -7,7 +7,10 @@
     "mediaType": [
       "application/json",
       "application/xml"
-    ]
+    ],
+    "sourceMap": {
+      "path": "default-media-types-multiple.raml"
+    }
   },
   "errors": []
 }

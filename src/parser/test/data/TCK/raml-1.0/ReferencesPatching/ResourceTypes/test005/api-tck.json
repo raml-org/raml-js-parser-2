@@ -5,11 +5,17 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "lib1.raml"
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -29,12 +35,18 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib2.raml"
               }
             }
           },
           "name": "lib1.lib2.myTrait",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib2.raml"
           }
         }
       }
@@ -48,6 +60,9 @@
           "name": "lib1.rt",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib1.raml"
           }
         }
       }
@@ -76,6 +91,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -89,6 +107,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -105,6 +126,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -117,6 +141,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

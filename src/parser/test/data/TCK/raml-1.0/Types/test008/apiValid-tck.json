@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "property2": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -60,6 +66,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -89,6 +98,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "property4": {
@@ -108,6 +120,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -120,6 +135,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -137,6 +155,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -179,6 +200,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiValid.raml"
+              },
               "items": "SimpleUnion"
             }
           },
@@ -188,6 +212,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"unionArray\": [\n    {\n      \"property1\": \"val1\",\n      \"property2\": \"val2\"\n    },\n    {\n      \"property3\": \"val3\",\n      \"property4\": \"val4\"\n    }\n  ]\n}",
@@ -204,12 +231,18 @@
                   "property4": "val4"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

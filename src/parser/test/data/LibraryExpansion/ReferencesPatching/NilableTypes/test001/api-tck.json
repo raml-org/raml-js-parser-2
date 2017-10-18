@@ -18,6 +18,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "libraries/SharedTypes.raml"
           }
         }
       },
@@ -47,6 +50,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries/types.raml"
               }
             }
           },
@@ -59,6 +65,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "libraries/types.raml"
           }
         }
       }
@@ -86,17 +95,26 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"id\": null\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
                     "id": null
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -108,12 +126,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

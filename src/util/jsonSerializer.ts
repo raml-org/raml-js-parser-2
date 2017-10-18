@@ -175,11 +175,23 @@ export class JsonSerializer {
 
                 }
             }
+            if(this.options.sourceMap && typeof obj == "object") {
+                let unitPath = hlImpl.actualPath(node.highLevel());
+                let sourceMap = obj.sourceMap;
+                if(!sourceMap){
+                    sourceMap = {};
+                    obj.sourceMap = sourceMap;
+                }
+                if(!sourceMap.path) {
+                    sourceMap.path = unitPath;
+                }
+            }
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, nodeProperty||node.highLevel().property())) {
                     obj = x.transform(obj, node);
                 }
             });
+
             var result:any = {};
             if (rootNodeDetails) {
                 if (definition) {
@@ -314,11 +326,12 @@ export class JsonSerializer {
     }
 
     private dumpProperties(props, node:coreApi.BasicNode|coreApi.AttributeNode):any {
-        var obj = {};
+        var obj:any = {};
         var definition:hl.ITypeDefinition;
         if(node.highLevel().isElement()){
             definition = node.highLevel().definition();
         }
+        let scalarsSources:any = {};
         Object.keys(props).forEach(propName=> {
 
             var nodeProperty:hl.IProperty;
@@ -334,7 +347,8 @@ export class JsonSerializer {
                 return;
             }
             var property = props[propName];
-            var value = node[propName]();
+            let originalValue = node[propName]();
+            var value = originalValue;
             if (value && propName == "structuredType" && typeof value === "object") {
                 value = null;
                 var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
@@ -441,7 +455,16 @@ export class JsonSerializer {
 
                         relativePath = relativePath.replace(/\\/g,'/');
 
-                        obj["schemaPath"] = relativePath + postfix;
+                        let schemaPath = relativePath + postfix;
+                        obj["schemaPath"] = schemaPath;
+                        if(this.options.sourceMap) {
+                            let sourceMap = obj.sourceMap;
+                            if (!sourceMap) {
+                                sourceMap = {};
+                                obj.sourceMap = sourceMap;
+                            }
+                            sourceMap.path = schemaPath;
+                        }
                     }
                 }
             }
@@ -459,7 +482,7 @@ export class JsonSerializer {
                 //we should not use
             }
             if ((<coreApi.BasicNode>node).definition
-                && universeHelpers.isTypeDeclarationSibling((<coreApi.BasicNode>node).definition())
+                && universeHelpers.isTypeDeclarationDescendant((<coreApi.BasicNode>node).definition())
                 && universeHelpers.isTypeProperty(property)) {
 
                 //custom handling of not adding "type" property to the types having "schema" inside, even though the property actually exist,
@@ -506,6 +529,22 @@ export class JsonSerializer {
                     }
                 }
                 obj[propName] = propertyValue;
+                if(props[propName].isValueProperty()){
+                    let sPaths:string[] = [];
+                    for(let a of originalValue){
+                        if(core.AttributeNodeImpl.isInstance(a)){
+                            let attr = a.highLevel();
+                            let sPath = hlImpl.actualPath(attr, true);
+                            sPaths.push(sPath);
+                        }
+                        else{
+                            sPaths.push(null);
+                        }
+                    }
+                    if(sPaths.filter(x=>x!=null).length>0){
+                        scalarsSources[propName] = sPaths.map(x=>{return {path:x}});
+                    }
+                }
             }
             else {
                 var val = this.dumpInternal(value);
@@ -528,8 +567,28 @@ export class JsonSerializer {
                 if (propName === 'example' && this.options && this.options.dumpXMLRepresentationOfExamples && value.expandable && value.expandable._owner) {
                     (<any>val).asXMLString = value.expandable.asXMLString();
                 }
+                if(originalValue && props[propName].isValueProperty()){
+                    let v = Array.isArray(originalValue) ? originalValue[0] : originalValue;
+                    if(core.AttributeNodeImpl.isInstance(v)) {
+                        let attr = v.highLevel();
+                        if (!attr.isFromKey()) {
+                            let sPath = hlImpl.actualPath(attr, true);
+                            if (sPath) {
+                                scalarsSources[propName] = [{path: sPath}];
+                            }
+                        }
+                    }
+                }
             }
         });
+        if (this.options.sourceMap && Object.keys(scalarsSources).length > 0) {
+            let sourceMap = obj.sourceMap;
+            if(!sourceMap){
+                sourceMap = {};
+                obj.sourceMap = sourceMap;
+            }
+            sourceMap.scalarsSources = scalarsSources;
+        }
         return obj;
     }
 
@@ -961,8 +1020,13 @@ class SchemasTransformer implements Transformation{
             return value;
         }
         else {
-            var obj = {};
+            var obj:any = {};
             obj[value.key] = value.value;
+            if(value.sourceMap && value.sourceMap.path){
+                obj.sourceMap = {
+                    path: value.sourceMap.path
+                };
+            }
             return obj;
         }
     }
@@ -1261,4 +1325,9 @@ export interface SerializeOptions{
     dumpXMLRepresentationOfExamples?:boolean
 
     dumpSchemaContents?:boolean
+
+    /**
+     * Whether to serialize source maps
+     */
+    sourceMap?: boolean
 }

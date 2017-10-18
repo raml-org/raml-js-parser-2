@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries.raml"
               }
             },
             "length": {
@@ -51,6 +54,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries.raml"
               }
             }
           },
@@ -63,6 +69,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "libraries.raml"
           }
         }
       }
@@ -91,10 +100,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries.raml"
               }
             }
           },
-          "name": "drm"
+          "name": "drm",
+          "sourceMap": {
+            "path": "libraries.raml"
+          }
         }
       }
     ],
@@ -102,22 +117,34 @@
       {
         "file": {
           "name": "file",
+          "sourceMap": {
+            "path": "libraries.raml"
+          },
           "get": {
             "is": [
               "drm"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           },
           "put": {
             "is": [
               "drm"
             ],
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
         }
       }
     ],
-    "usage": "Use to define some basic file-related constructs.\n"
+    "usage": "Use to define some basic file-related constructs.\n",
+    "sourceMap": {
+      "path": "libraries.raml"
+    }
   },
   "errors": []
 }

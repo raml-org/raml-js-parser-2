@@ -1,0 +1,722 @@
+[
+  {
+    "kombination": {
+      "losart": {
+        "key": "Jahreslos500k",
+        "name": "Jahreslos 500.000"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "monatlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 18
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "Jahreslos1000k",
+        "name": "Jahreslos 1 Million"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "monatlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 36
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "monatlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Traumhaus",
+        "name": "Traumhaus"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Traumhaus",
+        "name": "Traumhaus"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 8.5
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Haushaltsgeld",
+        "name": "Haushaltsgeld"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 2.5
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 3000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Haushaltsgeld",
+        "name": "Haushaltsgeld"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 5
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 6000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Rentenziehung",
+        "name": "Rentenziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 5
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 2500
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "Rentenziehung",
+        "name": "Rentenziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 10
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 5000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "XtraSuperlos",
+        "name": "Xtra-Superlos"
+      },
+      "ziehungsart": {
+        "key": "SuperGewinn2Millionen",
+        "name": "Super Gewinn 2 Millionen"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 10
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 2000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 12
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Traumhaus",
+        "name": "Traumhaus"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Traumhaus",
+        "name": "Traumhaus"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 8.5
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Haushaltsgeld",
+        "name": "Haushaltsgeld"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 2.5
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 3000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Haushaltsgeld",
+        "name": "Haushaltsgeld"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 5
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 6000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Rentenziehung",
+        "name": "Rentenziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 5
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 2500
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "Rentenziehung",
+        "name": "Rentenziehung"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 10
+    },
+    "stufe": "Stufe 2",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 5000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "5SterneLos",
+        "name": "5 Sterne-Los"
+      },
+      "ziehungsart": {
+        "key": "SuperGewinn2Millionen",
+        "name": "Super Gewinn 2 Millionen"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 10
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 2000000,
+     "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Dauergewinn",
+        "name": "Dauergewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 2500
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Dauergewinn",
+        "name": "Dauergewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 9
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 3750
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Dauergewinn",
+        "name": "Dauergewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 12
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 5000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Dauergewinn",
+        "name": "Dauergewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 18
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 7500
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Dauergewinn",
+        "name": "Dauergewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 24
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 0,
+    "gewinnpotenzialMonatlich": 10000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Kombigewinn",
+        "name": "Kombigewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 250000,
+    "gewinnpotenzialMonatlich": 1250
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Kombigewinn",
+        "name": "Kombigewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 9
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 375000,
+    "gewinnpotenzialMonatlich": 1750
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Kombigewinn",
+        "name": "Kombigewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 12
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 2500
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Kombigewinn",
+        "name": "Kombigewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 18
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 750000,
+    "gewinnpotenzialMonatlich": 3750
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Kombigewinn",
+        "name": "Kombigewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 24
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 5000
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Sofortgewinn",
+        "name": "Sofortgewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 6
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Sofortgewinn",
+        "name": "Sofortgewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 9
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 750000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Sofortgewinn",
+        "name": "Sofortgewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 12
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 1000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Sofortgewinn",
+        "name": "Sofortgewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 18
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 1500000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Sofortgewinn",
+        "name": "Sofortgewinn"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 24
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 2000000,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "MeinGlueckslos",
+        "name": "Mein Glücks-Los"
+      },
+      "ziehungsart": {
+        "key": "Zusatzspiel",
+        "name": "Zusatzspiel"
+      },
+      "teilnahmeHaeufigkeit": "wöchentlich",
+      "pflichtZiehungsart": false
+    },
+    "spieleinsatz": {
+      "betrag": 2
+    },
+    "stufe": "ohne",
+    "gewinnpotenzialEinmalig": 12500,
+    "gewinnpotenzialMonatlich": 0
+  },
+  {
+    "kombination": {
+      "losart": {
+        "key": "Monatslos",
+        "name": "Monatslos"
+      },
+      "ziehungsart": {
+        "key": "Geldziehung",
+        "name": "Geldziehung"
+      },
+      "teilnahmeHaeufigkeit": "monatlich",
+      "pflichtZiehungsart": true
+    },
+    "spieleinsatz": {
+      "betrag": 1.5
+    },
+    "stufe": "Stufe 1",
+    "gewinnpotenzialEinmalig": 500000,
+    "gewinnpotenzialMonatlich": 0
+  }
+]

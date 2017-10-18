@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für Geschäftsobjekte der Domäne Querschnitt Finanzen
+
+uses:
+  PrivateFinanzenTypes: FinanzenTypes_private.raml
+
+types:
+  Zahlungsart:
+      type: object
+      description: |
+        Eine Zahlungsart. Das Attribut 'key' gibt an, um welche Zahlungsart es sich handelt und welches der Objekte in 'zahlart' gefüllt ist.
+      properties:
+        zahlungsartID:
+          type: integer
+          format: int64
+          required: true
+        zahlart:
+          type: [ PrivateFinanzenTypes.bankverbindung | PrivateFinanzenTypes.kreditkarte | PrivateFinanzenTypes.paypal | PrivateFinanzenTypes.ueberweisung | PrivateFinanzenTypes.rechnung | PrivateFinanzenTypes.guthaben ]

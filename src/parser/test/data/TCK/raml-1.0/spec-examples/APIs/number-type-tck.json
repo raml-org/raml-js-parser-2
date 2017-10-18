@@ -21,11 +21,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "number-type.raml"
           }
         }
       }
     ],
-    "title": "Number Type"
+    "title": "Number Type",
+    "sourceMap": {
+      "path": "number-type.raml"
+    }
   },
   "errors": []
 }

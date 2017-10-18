@@ -31,6 +31,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType04.raml"
               }
             },
             "initial_comments": {
@@ -50,6 +53,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType04.raml"
               }
             },
             "user": {
@@ -69,6 +75,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType04.raml"
               }
             },
             "time_stamp": {
@@ -88,6 +97,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType04.raml"
               }
             },
             "created": {
@@ -107,6 +119,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType04.raml"
               }
             }
           },
@@ -119,6 +134,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "oType04.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
             "strict": true,
@@ -127,12 +145,18 @@
               "initial_comments": "oo",
               "user": "Raml",
               "time_stamp": 1422378528
+            },
+            "sourceMap": {
+              "path": "oType04.raml"
             }
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType04.raml"
+    }
   },
   "errors": [
     {

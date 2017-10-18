@@ -7,6 +7,9 @@
       {
         "relativeUri": "/resource",
         "displayName": "Test3",
+        "sourceMap": {
+          "path": "NewExtension2.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -22,13 +25,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewExtension2.raml"
+        },
         "relativeUriPathSegments": [
           "anotherResource"
         ],
         "absoluteUri": "/anotherResource"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewExtension2.raml"
+    }
   },
   "errors": []
 }

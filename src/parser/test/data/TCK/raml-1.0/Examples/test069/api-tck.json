@@ -6,6 +6,9 @@
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "post": {
             "body": {
               "application/json": {
@@ -26,15 +29,24 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                },
                 "structuredExample": {
                   "value": "<<postRequestBodyExample>>",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "<<postRequestBodyExample>>"
+                  "structuredValue": "<<postRequestBodyExample>>",
+                  "sourceMap": {
+                    "path": "resourceTypes/collection.raml"
+                  }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       }
@@ -72,6 +84,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"subscriptionID\": \"8f19cb50-3f57-4d38\",\n  \"name\": \"NewSub\",\n  \"description\": \"This is the new subscription.\",\n  \"startDate\": \"2015-01-01\",\n  \"endDate\": \"2018-01-01\",\n  \"quantity\": 5,\n  \"productName\": \"ABC Product\",\n  \"supportLevel\": 4\n}",
                   "strict": true,
@@ -86,11 +101,17 @@
                     "quantity": 5,
                     "productName": "ABC Product",
                     "supportLevel": 4
+                  },
+                  "sourceMap": {
+                    "path": "resourceTypes/collection.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -116,12 +137,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "testURI"
         ],
         "absoluteUri": "/testURI"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

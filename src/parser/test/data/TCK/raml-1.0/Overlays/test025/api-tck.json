@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        }
       }
     ],
     "title": "Overlay 2",
@@ -33,13 +36,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        },
         "relativeUriPathSegments": [
           "servers"
         ],
         "absoluteUri": "/servers"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "errors": []
 }

@@ -19,6 +19,9 @@
               "structuredValue": {
                 "first": "Karl",
                 "last": "Popper"
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             {
@@ -27,13 +30,19 @@
               "name": "",
               "structuredValue": {
                 "last": "Popper"
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             {
               "value": "null",
               "strict": true,
               "name": "minimal",
-              "structuredValue": null
+              "structuredValue": null,
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "properties": {
@@ -54,6 +63,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "last": {
@@ -73,6 +85,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -82,11 +97,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "Test"
+    "title": "Test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

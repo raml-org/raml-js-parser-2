@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/lib.raml"
+        "value": "libs/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Test API",
@@ -49,6 +52,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "fragments/type.raml"
                       }
                     },
                     "stringProperty": {
@@ -68,6 +74,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "fragments/type.raml"
                       }
                     }
                   },
@@ -81,6 +90,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "fragments/type.raml"
                   }
                 },
                 "__METADATA__": {
@@ -89,6 +101,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "structuredExample": {
                   "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}",
@@ -99,11 +114,17 @@
                       "prop": "string"
                     },
                     "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -115,12 +136,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

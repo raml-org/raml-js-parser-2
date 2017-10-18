@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             },
             "p2": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
@@ -60,6 +66,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
@@ -90,6 +99,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
                   "strict": true,
@@ -97,11 +109,17 @@
                   "structuredValue": {
                     "p1": "stringValue",
                     "p2": 10
+                  },
+                  "sourceMap": {
+                    "path": "lib.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "relativeUri": "/customer",
@@ -113,12 +131,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "relativeUriPathSegments": [
           "customer"
         ],
         "absoluteUri": "/customer"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

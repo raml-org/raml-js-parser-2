@@ -19,6 +19,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "uri-parameters-1.raml"
+        },
         "relativeUriPathSegments": [
           "user"
         ],
@@ -47,6 +50,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
                 }
               }
             },
@@ -63,6 +69,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                },
                 "relativeUriPathSegments": [
                   "followers"
                 ],
@@ -77,6 +86,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
                 },
                 "relativeUriPathSegments": [
                   "following"
@@ -106,6 +118,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "uri-parameters-1.raml"
                         }
                       }
                     },
@@ -117,6 +132,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "uri-parameters-1.raml"
                     },
                     "relativeUriPathSegments": [
                       "{keyId}"
@@ -131,6 +149,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                },
                 "relativeUriPathSegments": [
                   "keys"
                 ],
@@ -143,6 +164,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "uri-parameters-1.raml"
             },
             "relativeUriPathSegments": [
               "{userId}"
@@ -157,6 +181,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "uri-parameters-1.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
@@ -169,6 +196,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "uri-parameters-1.raml"
     }
   },
   "errors": []

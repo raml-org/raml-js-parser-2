@@ -1,0 +1,22 @@
+#%RAML 1.0 Library
+
+usage: |
+  Bibliothek mit den Standard-Resource-Pattern für Services auf Auflistungen (collections) und einzelne Entitäten (items) der Resource / des Geschäftsobjekts, aufgeteilt in read-only und mit Schreibzugriff.
+
+uses:
+  StandardTraits: ../traits/_library-standard-traits.raml
+
+# # # # # # # # # #
+# RESOURCE TYPES
+# # # # # # # # # #
+
+resourceTypes:
+  collection:
+    type:
+    put?:
+        #is: [StandardTraits.hasRequestCollection: {descriptionRequest : <<descriptionRequestCollectionPut>>, typeName : <<typeNameRequestCollectionItemPut>>, example : <<exampleRequestCollectionPut>>}, StandardTraits.has204: {description: <<descriptionResponse204Put>>}]
+        body:
+          application/json:
+            type: array
+            items: <<typeNameRequestCollectionItemPut>>
+            example: <<exampleRequestCollectionPut>>

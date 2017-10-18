@@ -1,0 +1,19 @@
+{
+  "success": false,
+  "message": "Unable to get allocation template",
+  "path": "/resource/action/METHOD NAME ie PUT POST",
+  "context": [
+    {"argName":"IND_ID","argValue": "6329922"},
+    {"argName":"GA_ID","argValue": "385030-01"},
+    {"argName":"Database","argValue": "inst"}
+  ],
+  "errors": [
+    {
+      "id" : "a32f-234-ad12341",
+      "code" : "500",
+      "title" : "Unable to get allocation template",
+      "detail" : "Cannot process employer directed money type grouping",
+      "stacktrace" : "java.lang.RuntimeException: Cannot process employer directed money type grouping"
+    }
+  ]
+}

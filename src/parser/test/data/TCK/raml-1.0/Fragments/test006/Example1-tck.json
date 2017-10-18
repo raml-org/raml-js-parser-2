@@ -7,6 +7,9 @@
     "structuredValue": {
       "property1": "string value",
       "property2": 1
+    },
+    "sourceMap": {
+      "path": "Example1.raml"
     }
   },
   "errors": []

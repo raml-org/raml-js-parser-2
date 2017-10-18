@@ -34,11 +34,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "structuredExample": {
           "value": "example.com",
           "strict": true,
           "name": null,
-          "structuredValue": "example.com"
+          "structuredValue": "example.com",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       "mediaType": {
@@ -62,13 +68,19 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
     "protocols": [
       "HTTP",
       "HTTPS"
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

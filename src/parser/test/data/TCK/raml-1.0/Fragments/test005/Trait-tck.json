@@ -21,8 +21,14 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "Trait.raml"
           }
         }
+      },
+      "sourceMap": {
+        "path": "Trait.raml"
       }
     }
   },

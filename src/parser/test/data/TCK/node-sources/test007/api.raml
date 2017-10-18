@@ -1,0 +1,20 @@
+#%RAML 1.0
+
+title: test API
+
+uses:
+  lib: libraries/lib.raml
+
+/resource:
+  type: lib.resourceType1
+  get:
+    body:
+      application/xml:
+
+  post:
+    is: [ lib.trait1 ]
+    queryParameters:
+      param2: boolean
+
+    body:
+      application/xml:

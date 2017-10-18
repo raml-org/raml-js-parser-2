@@ -16,7 +16,10 @@
                   5,
                   false
                 ],
-                "method": "get"
+                "method": "get",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "type": true,
@@ -42,6 +45,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -53,6 +59,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -67,12 +76,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

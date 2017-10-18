@@ -1,0 +1,53 @@
+#%RAML 1.0 Library
+usage: Standard Data types
+
+types:
+  Paginated:
+    description: Paginated response of object
+    properties:
+      totalSize: integer
+      start: integer
+      limit: integer
+      size: integer
+  contextData:
+    description: This is to be used in the context array below
+    properties:
+      argName: string
+      argValue: string
+  ErrorResponse:
+    usage: Reusable response object for error conditions
+    properties:
+      success: boolean
+      message: string
+      path: string
+      context:
+        type: contextData[]
+        required: true
+      errors:
+        type: Error[]
+        required: false
+  Error:
+    usage: Detailed reusable error object to use in an Error Response
+    properties:
+      id:
+        type: string
+        description: A unique identifier for this particular occurrence of the problem.
+      code:
+        type: string
+        description: An application-specific error code
+      title:
+        type: string
+        description: A generic short, human readable description that does not change across occurences of the error.
+      detail:
+        type: string
+        description: A human readable explaination specific to the individual occurence of the problem
+      stacktrace:
+        type: string
+        required: false
+        description: Stack trace of the exception
+  Confirmation:
+    usage: Used to return event confirmation info
+    properties:
+      confirmId:
+        type: string
+        description: The confirmation number returned after successfull add or update

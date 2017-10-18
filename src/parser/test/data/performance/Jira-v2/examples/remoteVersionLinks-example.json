@@ -1,0 +1,23 @@
+{
+  "links" : [
+    {
+      "self" : "http://www.example.com/version/10000/SomeGlobalId" ,
+      "name" : "Version 1" ,
+      "link" : {
+        "globalId" : "SomeGlobalId" ,
+        "myCustomLinkProperty" : true ,
+        "colors" : [
+          "red" ,
+          "green" ,
+          "blue"
+        ]
+      }
+    } , {
+      "self" : "http://www.example.com/version/10101/SomeGlobalId" ,
+      "name" : "Version 2" ,
+      "link" : {
+        "globalId" : "SomeGlobalId"
+      }
+    }
+  ]
+}

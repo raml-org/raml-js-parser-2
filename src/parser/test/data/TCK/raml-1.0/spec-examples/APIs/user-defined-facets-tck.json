@@ -21,6 +21,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "user-defined-facets.raml"
               }
             },
             "noHolidays": {
@@ -36,6 +39,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "user-defined-facets.raml"
               }
             }
           },
@@ -49,6 +55,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "user-defined-facets.raml"
           }
         }
       },
@@ -69,11 +78,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "user-defined-facets.raml"
           }
         }
       }
     ],
-    "title": "API with Types"
+    "title": "API with Types",
+    "sourceMap": {
+      "path": "user-defined-facets.raml"
+    }
   },
   "errors": []
 }

@@ -22,6 +22,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "[\n  100500,\n  \"not number\"\n]",
             "strict": true,
@@ -29,13 +32,19 @@
             "structuredValue": [
               100500,
               "not number"
-            ]
+            ],
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           },
           "items": "number"
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

@@ -1,0 +1,113 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für strukturierte Übergabe-Parameter.
+
+uses:
+  LotterieTypes: LotterieTypes.raml
+
+types:
+  # # # # # # # # # #
+  # Lotterie
+  # # # # # # # # # #
+  Query-losgutschein-aktivieren:
+    type: object
+    description: Die Daten zur Losgutscheinaktivierung.
+    properties:
+      gutschein:
+        type: object
+        description: Die Daten des Losgutscheins für die Aktivierung. Je nach Losgutschenart werden nur losnummer, losnummer und code/pin, nur code/pin benötigt.
+        properties:
+          losnummer:
+            type: LotterieTypes.Losnummer?
+            description: Die Losnummer des zu aktivierenden Losgutscheins.
+            required: true
+          code:
+            type: string?
+            description: Aktivierungscode oder PIN
+            required: true
+      losempfänger:
+        type: object
+        description: |
+          Die Daten des Empfängers des aktivierten Loses.
+          Muss nur angegeben werden, wenn
+            a) der Kunde nicht authentifiziert/angemeldet ist oder
+            b) der Losgutschein für einen anderen, als den authentisierten Kunden, aktiviert werden soll.
+        required: false
+        properties:
+          anrede:
+            description: Die Anrede der Person, für den der Losgutschein aktiviert werden soll. Bei fehlendem Parameter wird als Default "keine Anrede" gesetzt.
+            type: string
+            enum: [Herr, Frau, OHNE]
+            default: OHNE
+            required: true
+            example: Herr
+          vorname:
+            description: Der Vorname der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: Max
+          nachname:
+            description: Der Nachname der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: Musterman
+          strasse:
+            description: Die Straße der Adresse der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: Hauptstrasse 2
+          plz:
+            description: Die Postleitzahl der Adresse der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: "51234"
+          ort:
+            description: Der Wohnort der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: Musterort
+          land:
+            description: Das Land der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            required: true
+            example: Deutschland
+          mail:
+            description: Die Mailadresse der Person, für den der Losgutschein aktiviert werden soll. (Pflichtangabe für erfolgreiche Aktivierung, wenn Nutzer nicht authentifiziert ist)
+            type: string
+            pattern: .+@.+
+            required: true
+            example: maxm@example.com
+  Query-losnummer-generieren:
+    type: object
+    required: true
+    properties:
+      wunschlosnummer:
+        type: string
+        minLength: 6
+        maxLength: 6
+        required: false
+        description: 6-stellige Wunschlosnummer
+      loskonfiguration:
+        type: LotterieTypes.Produkt
+        required: true
+      laufzeit :
+        type : string
+        required : false
+        enum : [1Jahr, dauerhaft]
+        description :  Angabe der Laufzeit. Relevant wenn Losart ist Jahreslos.
+      zahlweise :
+        type : string
+        required : false
+        enum : [einmalig, jaehrlich]
+        description :  Angabe der Zahlweise.  Relevant wenn Losart ist Jahreslos.
+
+  # # # # # # # # # #
+  # RESPONSES
+  # # # # # # # # # #
+  Response-losgutschein-identifizieren-missing-data:
+    type: object
+    properties:
+      fehlendeDaten:
+          type: string
+          enum: [KEINE, pin, losnummer, aktivierungscode]
+    example: !include ../../examples/lotterie/lose/losgutscheine/identifizieren.json

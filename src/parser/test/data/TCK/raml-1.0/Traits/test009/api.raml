@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: API Animals & People!
+
+traits:
+  pagination: !include pagination.raml
+
+/some:
+  get:
+    is: [ pagination ]

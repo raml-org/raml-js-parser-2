@@ -25,6 +25,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "DataType.raml"
         }
       },
       "second": {
@@ -44,6 +47,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "DataType.raml"
         }
       }
     },
@@ -56,6 +62,9 @@
           "insertedAsDefault": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "DataType.raml"
     }
   },
   "errors": []

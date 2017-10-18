@@ -1,0 +1,67 @@
+delete?: 
+  body: 
+    application/json: 
+  responses: 
+    200?: 
+      description: Returned if successful.
+    204?: 
+      description: Returned if successful.
+    400?: 
+      description: Returned if the the request is invalid.
+    401?: 
+      description: Returned if the calling user is not authenticated.
+    403?: 
+      description: "Returned if the object is disabled or if you don't have permission to remove."
+    404?: 
+      description: Returned if the object is not found.
+    500?: 
+      description: Returned if an error occurs while retrieving.
+post?: 
+  body: 
+    application/json: 
+  responses: 
+    201?: 
+      description: Returned if the object was created successful.
+    200?: 
+      description: Returned if the object was retrieved successful.
+    400?: 
+      description: Returned if the the request is invalid.
+    401?: 
+      description: Returned if the calling user is not authenticated.
+    403?: 
+      description: "Returned if the object is disabled or if you don't have permission to retrieve."
+    404?: 
+      description: Returned if the object is not found.
+    500?: 
+      description: Returned if an error occurs while retrieving.
+get?: 
+  responses: 
+    200: 
+    400?: 
+      description: Returned if the the request is invalid.
+    401?: 
+      description: Returned if the calling user is not authenticated.
+    403?: 
+      description: "Returned if the object is disabled or if you don't have permission to retrieve."
+    404?: 
+      description: Returned if the object is not found.
+    500?: 
+      description: Returned if an error occurs while retrieving.
+put?: 
+  body: 
+    application/json: 
+  responses: 
+    200?: 
+      description: Returned if the object was retrieved successful.
+    201?: 
+      description: Returned if the object was created successful.
+    400?: 
+      description: Returned if the the request is invalid.
+    401?: 
+      description: Returned if the calling user is not authenticated.
+    403?: 
+      description: "Returned if the object is disabled or if you don't have permission to retrieve."
+    404?: 
+      description: Returned if the object is not found.
+    500?: 
+      description: Returned if an error occurs while retrieving.

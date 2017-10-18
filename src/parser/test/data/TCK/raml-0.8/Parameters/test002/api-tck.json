@@ -29,11 +29,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "123456789-11",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "123456789-11"
+                  "structuredValue": "123456789-11",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               }
             },
@@ -45,6 +51,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -59,12 +68,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "policies"
         ],
         "absoluteUri": "/policies"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

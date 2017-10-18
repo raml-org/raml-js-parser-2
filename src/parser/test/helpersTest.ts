@@ -826,6 +826,39 @@ describe('Helper methods', function () {
             assert.equal(x.kind(),"UnionTypeDeclaration")
         });
     });
+    it('async parse raml from content 1 (new format)', function () {
+        index.load(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n")).then(x=>{
+            assert.equal((<any>x.specification).title,"My API with Types");
+        });
+    });
+    it('async parse raml from content 2 (new format)', function () {
+        index.load(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n")).then(x=>{
+            assert.equal(x.type,"UnionTypeDeclaration")
+        });
+    });
+
+    it('async parse raml from content 1 (High Level)', function () {
+        index.parse(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n")).then(x=>{
+            assert.equal(x.attr("title").value(),"My API with Types");
+        });
+    });
+    it('async parse raml from content 2 (High Level)', function () {
+        index.parse(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n")).then(x=>{
+            assert.equal(x.definition().nameId(),"UnionTypeDeclaration")
+        });
+    });
 
     it('Items() for array expression 1', function () {
         var api=(<any>index.parseRAMLSync(["#%RAML 1.0",

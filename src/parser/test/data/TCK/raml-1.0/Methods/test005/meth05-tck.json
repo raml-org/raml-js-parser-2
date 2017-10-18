@@ -31,12 +31,18 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth05.raml"
                 }
               }
             },
             "responses": {
               "201": {
-                "code": "201"
+                "code": "201",
+                "sourceMap": {
+                  "path": "meth05.raml"
+                }
               }
             },
             "body": {
@@ -56,10 +62,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth05.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth05.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -71,12 +83,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth05.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth05.raml"
+    }
   },
   "errors": []
 }

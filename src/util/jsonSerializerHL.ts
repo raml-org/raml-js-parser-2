@@ -4,7 +4,8 @@ import def = require("raml-definition-system")
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import hlImpl = require("../parser/highLevelImpl");
-import builder = require("../parser/ast.core/builder");
+import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
+import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
 
 import typeSystem = def.rt;
@@ -56,7 +57,7 @@ export class JsonSerializer {
         this.nodeTransformers = [
             new ResourcesTransformer(),
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
-            new TypeTransformer(this.options),
+            new TypeTransformer(this.options,this),
             //new ParametersTransformer(),
             //new ArrayExpressionTransformer(),
             //new UsesTransformer(),
@@ -119,7 +120,11 @@ export class JsonSerializer {
 
     private helpersMap:{[key:string]:HelperMethod};
 
+    private _astRoot:hl.IParseResult;
+
     private init(node:hl.IParseResult){
+
+        this._astRoot = node;
 
         this.helpersMap = {
             "baseUriParameters" :  baseUriParametersHandler,
@@ -144,6 +149,10 @@ export class JsonSerializer {
                 this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
             }
         }
+    }
+
+    astRoot():hl.IParseResult{
+        return this._astRoot;
     }
 
     private dispose(){
@@ -613,6 +622,8 @@ export interface SerializeOptions{
     allUriParameters?:boolean
 
     unfoldTypes?:boolean
+
+    typeReferences?:boolean
 }
 
 class PropertyValue{
@@ -1186,11 +1197,11 @@ class ResourcesTransformer extends BasicTransformation{
 
 class TypeTransformer extends BasicTransformation{
 
-    constructor(private options:SerializeOptions = {}){
+    constructor(private options:SerializeOptions = {},private owner:JsonSerializer){
         super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
-    transform(_value:any,node?:hl.IParseResult){
+    transform(_value:any,node:hl.IParseResult){
 
         var isArray = Array.isArray(_value);
         if(isArray && _value.length==0){
@@ -1294,7 +1305,7 @@ class TypeTransformer extends BasicTransformation{
             value["typePropertyKind"] = "INPLACE";
         }
         if(this.options.unfoldTypes) {
-            value.unfolded = this.processExpressions(value);
+            value.unfolded = this.processExpressions(value,node);
         }
         if(value.type.length==1){
             var typeVal = value.type[0];
@@ -1316,15 +1327,15 @@ class TypeTransformer extends BasicTransformation{
         return _value;
     }
 
-    private processExpressions(value:any):any{
+    private processExpressions(value:any,node:hl.IParseResult):any{
         let copy = util.deepCopy(value);
-        this.parseExpressions(copy);
+        this.parseExpressions(copy,node);
         return copy;
     }
 
-    private parseExpressions(obj){
-        this.parseExpressionsForProperty(obj,"type");
-        this.parseExpressionsForProperty(obj,"items");
+    private parseExpressions(obj,node:hl.IParseResult){
+        this.parseExpressionsForProperty(obj,"type",node);
+        this.parseExpressionsForProperty(obj,"items",node);
         if(obj.properties){
             for(var pName of Object.keys(obj.properties)){
                 let p = obj.properties[pName];
@@ -1335,7 +1346,7 @@ class TypeTransformer extends BasicTransformation{
         }
     }
 
-    private parseExpressionsForProperty(obj:any, prop:string){
+    private parseExpressionsForProperty(obj:any, prop:string,node:hl.IParseResult){
 
         let value = obj[prop];
         if(!value){
@@ -1343,12 +1354,12 @@ class TypeTransformer extends BasicTransformation{
         }
         let isSingleString = false;
         if(!Array.isArray(value)){
-            if(typeof value == "object"){
+            if(value && typeof value == "object"){
                 if(value.unfolded){
                     obj.prop = value.unfolded;
                 }
                 else {
-                    this.parseExpressions(value);
+                    this.parseExpressions(value,node);
                 }
                 return;
             }
@@ -1360,21 +1371,23 @@ class TypeTransformer extends BasicTransformation{
         let resultingArray:any[] = [];
         for(var i = 0 ; i < value.length ; i++) {
             let expr = value[i];
-            if(typeof expr=="object"){
+            if(expr && typeof expr=="object"){
                 if(expr.unfolded){
                     expr = expr.unfolded;
                 }
                 else {
-                    this.parseExpressions(expr);
+                    this.parseExpressions(expr,node);
                 }
             }
-            resultingArray.push(expr);
             if(typeof expr != "string"){
+                resultingArray.push(expr);
                 continue;
             }
             let str = expr;
             var gotExpression = referencePatcher.checkExpression(str);
             if (!gotExpression) {
+                let ref = this.options.typeReferences ? this.typeReference(node, expr) : expr;
+                resultingArray.push(ref);
                 continue;
             }
             let escapeData:referencePatcher.EscapeData = {
@@ -1386,10 +1399,12 @@ class TypeTransformer extends BasicTransformation{
                     str = escapeData.resultingString;
                     gotExpression = referencePatcher.checkExpression(str);
                     if(!gotExpression){
+                        resultingArray.push(expr);
                         continue;
                     }
                 }
                 else if (escapeData.status == referencePatcher.ParametersEscapingStatus.ERROR){
+                    resultingArray.push(expr);
                     continue;
                 }
             }
@@ -1397,21 +1412,26 @@ class TypeTransformer extends BasicTransformation{
             try {
                 parsedExpression = typeExpressions.parse(str);
             } catch (exception) {
+                resultingArray.push(expr);
                 continue;
             }
 
             if (!parsedExpression) {
+                resultingArray.push(expr);
                 continue;
             }
-            let exprObj = this.expressionToObject(parsedExpression,escapeData);
+            let exprObj = this.expressionToObject(parsedExpression,escapeData,node);
             if(exprObj!=null){
-                resultingArray[i] = exprObj;
+                resultingArray.push(exprObj);
             }
         }
         obj[prop] = isSingleString ? resultingArray[0] : resultingArray;
     }
 
-    private expressionToObject(expr:typeExpressions.BaseNode, escapeData:referencePatcher.EscapeData):any{
+    private expressionToObject(
+        expr:typeExpressions.BaseNode,
+        escapeData:referencePatcher.EscapeData,
+        node:hl.IParseResult):any{
 
         let result:any;
         let arr = 0;
@@ -1424,9 +1444,9 @@ class TypeTransformer extends BasicTransformation{
                 if(unescapeData.status==referencePatcher.ParametersEscapingStatus.OK){
                     result = unescapeData.resultingString;
                 }
-                else if(unescapeData.status==referencePatcher.ParametersEscapingStatus.ERROR){
-                    result = null;
-                }
+            }
+            if(this.options.typeReferences){
+                result = this.typeReference(node, result);
             }
         }
         else if(expr.type=="union"){
@@ -1441,15 +1461,15 @@ class TypeTransformer extends BasicTransformation{
                     result = null;
                     break;
                 }
-                let c1 = this.expressionToObject(c,escapeData);
+                let c1 = this.expressionToObject(c,escapeData,node);
                 result.options.push(c1);
             }
-            result.options = _.unique(result.options).sort()
+            result.options = _.unique(result.options);
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
             arr = parens.arr;
-            result = this.expressionToObject(parens.expr,escapeData);
+            result = this.expressionToObject(parens.expr,escapeData,node);
         }
         if(result!=null) {
             while (arr-- > 0) {
@@ -1487,6 +1507,58 @@ class TypeTransformer extends BasicTransformation{
         return result;
     }
 
+
+    private typeReference(node: hl.IParseResult, result: string) {
+        if(!result){
+            return result;
+        }
+        let rootNode = this.owner.astRoot();
+        let types = rootNode.isElement() && rootNode.asElement().types();
+        let t = types && types.getTypeRegistry().getByChain(result);
+        if (!t) {
+            // let i0 = result.indexOf("<<");
+            // if(i0>=0 && result.indexOf(">>",i0)>=0 && linter.typeOfContainingTemplate(node)){
+            //
+            // }
+            // else {
+            //
+            // }
+        }
+        else if (t.isBuiltin()) {
+
+        }
+        else {
+            let src = t.getExtra(typeSystem.SOURCE_EXTRA);
+            let llNode: ll.ILowLevelASTNode;
+            if (hlImpl.BasicASTNode.isInstance(src)) {
+                llNode = src.lowLevel();
+            }
+            else if (jsyaml.ASTNode.isInstance(src)
+                || llJson.AstNode.isInstance(src)
+                || proxy.LowLevelProxyNode.isInstance(src)) {
+                llNode = src;
+            }
+            else if (hlImpl.LowLevelWrapperForTypeSystem.isInstance(src)) {
+                llNode = src.node();
+            }
+            let llRoot = rootNode.lowLevel();
+            if(llRoot.actual().libExpanded){
+                result = "#/specification/types/" + t.name();
+            }
+            else {
+                let location = "";
+                let rootUnit = llRoot.unit();
+                let unit = llNode.unit();
+                if (unit.absolutePath() != rootUnit.absolutePath()) {
+                    let resolver = (<jsyaml.Project>unit.project()).namespaceResolver();
+                    let d = resolver.expandedPathMap(rootUnit)[unit.absolutePath()];
+                    location = location + d.includePath;
+                }
+                result = location + "#/specification/types/" + t.name();
+            }
+        }
+        return result;
+    }
 }
 
 class SimpleNamesTransformer extends MatcherBasedTransformation{

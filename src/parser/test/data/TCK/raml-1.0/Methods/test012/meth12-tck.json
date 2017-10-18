@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "meth12.raml"
           }
         }
       },
@@ -49,6 +52,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "meth12.raml"
               }
             }
           },
@@ -59,12 +65,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "meth12.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"baseField\": \"name\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "baseField": "name"
+            },
+            "sourceMap": {
+              "path": "meth12.raml"
             }
           }
         }
@@ -99,6 +111,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "meth12.raml"
               }
             }
           },
@@ -109,6 +124,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "meth12.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"baseField\": \"name\",\n  \"field\": \"value\"\n}",
             "strict": true,
@@ -116,6 +134,9 @@
             "structuredValue": {
               "baseField": "name",
               "field": "value"
+            },
+            "sourceMap": {
+              "path": "meth12.raml"
             }
           }
         }
@@ -159,6 +180,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "meth12.raml"
                         }
                       }
                     },
@@ -169,6 +193,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "meth12.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"baseField\": \"base\",\n  \"field\": \"any text\"\n}",
                       "strict": true,
@@ -176,9 +203,15 @@
                       "structuredValue": {
                         "baseField": "base",
                         "field": "any text"
+                      },
+                      "sourceMap": {
+                        "path": "meth12.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth12.raml"
                 }
               }
             },
@@ -198,10 +231,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth12.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth12.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -213,12 +252,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth12.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth12.raml"
+    }
   },
   "errors": []
 }

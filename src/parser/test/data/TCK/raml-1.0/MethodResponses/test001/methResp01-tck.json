@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "methResp01.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "methResp01.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"field\": \"value\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "field": "value"
+            },
+            "sourceMap": {
+              "path": "methResp01.raml"
             }
           }
         }
@@ -60,10 +69,16 @@
           {
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "methResp01.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "methResp01.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -75,12 +90,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "methResp01.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "methResp01.raml"
+    }
   },
   "errors": []
 }

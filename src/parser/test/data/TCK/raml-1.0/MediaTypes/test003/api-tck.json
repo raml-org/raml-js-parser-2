@@ -6,7 +6,10 @@
     "mediaType": [
       "application/xml",
       "application/json"
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

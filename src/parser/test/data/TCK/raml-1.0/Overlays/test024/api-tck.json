@@ -16,6 +16,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "NewOverlay2.raml"
           }
         }
       }
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -42,7 +48,10 @@
       {
         "x-ttt": {
           "name": "x-ttt",
-          "type": "Digest Authentication"
+          "type": "Digest Authentication",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -73,13 +82,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "servers"
         ],
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "errors": []
 }

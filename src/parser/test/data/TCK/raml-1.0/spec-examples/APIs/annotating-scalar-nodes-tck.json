@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotating-scalar-nodes.raml"
           }
         }
       }
@@ -40,6 +43,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "annotating-scalar-nodes.raml"
     }
   },
   "errors": []

@@ -26,6 +26,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "schemas/customer.raml"
               }
             },
             "age": {
@@ -42,6 +45,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "schemas/customer.raml"
               }
             },
             "email": {
@@ -61,6 +67,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "schemas/customer.raml"
               }
             },
             "mobile": {
@@ -80,6 +89,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "schemas/customer.raml"
               }
             },
             "addresses": {
@@ -115,6 +127,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "schemas/address.raml"
                   }
                 },
                 "line1": {
@@ -134,6 +149,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "schemas/address.raml"
                   }
                 },
                 "line2": {
@@ -153,6 +171,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "schemas/address.raml"
                   }
                 },
                 "suburb": {
@@ -172,6 +193,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "schemas/address.raml"
                   }
                 },
                 "postcode": {
@@ -191,6 +215,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "schemas/address.raml"
                   }
                 }
               },
@@ -200,6 +227,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "schemas/address.raml"
               }
             }
           },
@@ -228,6 +258,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "schemas/commonBase.raml"
                 }
               },
               "eTag": {
@@ -247,6 +280,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "schemas/commonBase.raml"
                 }
               }
             },
@@ -256,6 +292,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "schemas/commonBase.raml"
             }
           },
           "__METADATA__": {
@@ -264,6 +303,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "schemas/customer.raml"
           }
         }
       }
@@ -316,6 +358,9 @@
                             "calculated": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "sample-api.raml"
                       }
                     },
                     "__METADATA__": {
@@ -324,6 +369,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "sample-api.raml"
                     },
                     "structuredExample": {
                       "value": "[{\n  \"id\": \"ID124\",\n  \"eTag\": \"13298308323\",\n  \"name\" : \"Smith\",\n  \"age\" : 30,\n  \"addresses\" : {\n    \"addressType\" : \"postal\",\n    \"line1\" : \"Walker Street\",\n    \"suburb\" : \"Sydney\",\n    \"postcode\" : 1234\n    }\n}]\n",
@@ -342,9 +390,15 @@
                             "postcode": 1234
                           }
                         }
-                      ]
+                      ],
+                      "sourceMap": {
+                        "path": "sample-api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "sample-api.raml"
                 }
               }
             },
@@ -358,6 +412,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "sample-api.raml"
             }
           }
         ],
@@ -369,6 +426,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "sample-api.raml"
         },
         "relativeUriPathSegments": [
           "customers"
@@ -382,6 +442,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "sample-api.raml"
     }
   },
   "errors": []

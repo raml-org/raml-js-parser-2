@@ -18,6 +18,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-3-invalid.raml"
           }
         }
       },
@@ -36,6 +39,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-3-invalid.raml"
           }
         }
       },
@@ -54,11 +60,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-3-invalid.raml"
           }
         }
       }
     ],
-    "title": "Mulitple Inheritance using facets"
+    "title": "Mulitple Inheritance using facets",
+    "sourceMap": {
+      "path": "multiple-inheritance-3-invalid.raml"
+    }
   },
   "errors": [
     {

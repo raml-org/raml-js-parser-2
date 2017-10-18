@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -77,6 +86,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -119,6 +131,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiValid.raml"
+              },
               "items": "AnotherType"
             }
           },
@@ -131,6 +146,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": 23\n    },\n    {\n      \"name\": \"Jane\",\n      \"age\": 28\n    }\n  ]\n}",
@@ -147,12 +165,18 @@
                   "age": 28
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

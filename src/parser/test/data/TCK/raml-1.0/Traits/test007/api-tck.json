@@ -27,10 +27,39 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "pagination.raml"
+              }
+            },
+            "offset": {
+              "name": "offset",
+              "displayName": "offset",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "description": "Skip over a number of elements by specifying an offset value for the query",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "pagination.raml"
               }
             }
           },
-          "name": "pagination"
+          "name": "pagination",
+          "sourceMap": {
+            "path": "pagination.raml"
+          }
         }
       }
     ],
@@ -40,15 +69,15 @@
         "methods": [
           {
             "queryParameters": {
-              "<<queryParamName>>": {
-                "name": "<<queryParamName>>",
-                "displayName": "<<queryParamName>>",
+              "param": {
+                "name": "param",
+                "displayName": "param",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
                 "required": true,
-                "description": "This is a <<queryParamName>> value parameter.",
+                "description": "This is a param value parameter.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -61,13 +90,46 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "pagination.raml"
+                }
+              },
+              "offset": {
+                "name": "offset",
+                "displayName": "offset",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "Skip over a number of elements by specifying an offset value for the query",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "pagination.raml"
                 }
               }
             },
             "is": [
-              "pagination"
+              {
+                "pagination": {
+                  "queryParamName": "param"
+                }
+              }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/some",
@@ -79,66 +141,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "some"
         ],
         "absoluteUri": "/some"
       }
-    ]
-  },
-  "errors": [
-    {
-      "code": "VALUE_NOT_PROVIDED",
-      "message": "Value is not provided for parameter: 'queryParamName'",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 8,
-          "column": 9,
-          "position": 112
-        },
-        "end": {
-          "line": 8,
-          "column": 19,
-          "position": 122
-        }
-      }
-    },
-    {
-      "code": "UNKNOWN_FACET",
-      "message": "Specifying unknown facet: 'offset'",
-      "path": "pagination.raml",
-      "range": {
-        "start": {
-          "line": 4,
-          "column": 4,
-          "position": 123
-        },
-        "end": {
-          "line": 4,
-          "column": 10,
-          "position": 129
-        }
-      },
-      "trace": [
-        {
-          "code": "UNKNOWN_FACET",
-          "message": "Specifying unknown facet: 'offset' pagination.raml",
-          "path": "api.raml",
-          "range": {
-            "start": {
-              "line": 7,
-              "column": 2,
-              "position": 98
-            },
-            "end": {
-              "line": 7,
-              "column": 5,
-              "position": 101
-            }
-          }
-        }
-      ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
-  ]
+  },
+  "errors": []
 }

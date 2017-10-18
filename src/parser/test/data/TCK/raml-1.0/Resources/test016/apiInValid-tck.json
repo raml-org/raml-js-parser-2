@@ -14,13 +14,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInValid.raml"
+        },
         "relativeUriPathSegments": [
           "root",
           "{id"
         ],
         "absoluteUri": "/root/{id"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInValid.raml"
+    }
   },
   "errors": [
     {

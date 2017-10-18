@@ -1,0 +1,10 @@
+{
+  "self" : "http://www.example.com/jira/rest/api/2.0/user/fred" ,
+  "name" : "fred" ,
+  "loginInfo" : {
+    "failedLoginCount" : 10 ,
+    "loginCount" : 127 ,
+    "lastFailedLoginTime" : "2014-06-11T07:33:40.865+0000" ,
+    "previousLoginTime" : "2014-06-11T07:33:40.865+0000"
+  }
+}

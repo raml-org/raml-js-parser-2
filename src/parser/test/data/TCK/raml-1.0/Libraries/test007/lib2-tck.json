@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "lib1.raml"
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "lib2.raml"
+        }
       }
     ],
     "types": [
@@ -23,10 +26,16 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib2.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib2.raml"
+    }
   },
   "errors": [
     {

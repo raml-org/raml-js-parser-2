@@ -1,0 +1,70 @@
+#%RAML 1.0 Library
+usage: Standard resourceTypes
+uses:
+  standardTraits: ../traits/standardTraits.raml
+  standardDataTypes: ../libraries/standardDatatypes.raml
+
+resourceTypes:
+  base:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<itemType>>
+
+  read-only-collection:
+    type: { base: { itemType : <<itemType>> } }
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<itemType>>[]
+              example: <<exampleCollection>>
+  collection:
+    type: { read-only-collection: { itemType : <<itemType>>, exampleCollection : <<exampleCollection>>} }
+    description: A collection of <<resourcePathName>>
+    post:
+      description: |
+        Post all <<itemType>>
+      responses:
+        201:
+          description: Created
+          body:
+            application/json:
+              type: standardDataTypes.Confirmation
+              example: !include ../examples/confirmation.json
+          headers:
+            Location:
+              description: uri of new resource
+              type: string
+              required: true
+
+  item:
+    type: { base: { itemType : <<itemType>> } }
+    put?:
+      body:
+        type: <<itemType>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: standardDataTypes.Confirmation
+              example: !include ../examples/confirmation.json
+    patch?:
+      body:
+        type: <<itemType>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: standardDataTypes.Confirmation
+              example: !include ../examples/confirmation.json
+    delete?:
+      responses:
+        200:
+          body:
+            application/json:
+              type: standardDataTypes.Confirmation
+              example: !include ../examples/confirmation.json

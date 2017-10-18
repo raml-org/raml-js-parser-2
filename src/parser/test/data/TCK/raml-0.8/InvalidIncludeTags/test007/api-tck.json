@@ -5,7 +5,10 @@
     "title": "test API",
     "schemas": [
       {
-        "sch1": "path/to/schema.xsd"
+        "sch1": "path/to/schema.xsd",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resources": [
@@ -21,8 +24,21 @@
                     "name": "application/xml",
                     "schema": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n",
                     "example": "./example.xml",
-                    "schemaContent": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
+                    "schemaContent": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n",
+                    "sourceMap": {
+                      "scalarsSources": {
+                        "schema": [
+                          {
+                            "path": "schema.xsd"
+                          }
+                        ]
+                      },
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "201": {
@@ -31,12 +47,21 @@
                   "application/xml": {
                     "name": "application/xml",
                     "schema": "./path/to/schema.xsd",
-                    "schemaContent": "./path/to/schema.xsd"
+                    "schemaContent": "./path/to/schema.xsd",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -47,12 +72,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

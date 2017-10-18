@@ -26,17 +26,26 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/secured.raml"
+              },
               "structuredExample": {
                 "value": "5757gh76",
                 "strict": true,
                 "name": null,
-                "structuredValue": "5757gh76"
+                "structuredValue": "5757gh76",
+                "sourceMap": {
+                  "path": "traits/secured.raml"
+                }
               }
             }
           },
           "description": "Some requests require authentication.",
           "name": "secured",
-          "usage": "Apply this to any method that needs to be secured"
+          "usage": "Apply this to any method that needs to be secured",
+          "sourceMap": {
+            "path": "traits/secured.raml"
+          }
         }
       },
       {
@@ -59,17 +68,26 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/paged.raml"
+              },
               "structuredExample": {
                 "value": "2",
                 "strict": true,
                 "name": null,
-                "structuredValue": 2
+                "structuredValue": 2,
+                "sourceMap": {
+                  "path": "traits/paged.raml"
+                }
               }
             }
           },
           "description": "Some responses require paging.",
           "name": "paged",
-          "usage": "Apply this to any method that needs to be paged"
+          "usage": "Apply this to any method that needs to be paged",
+          "sourceMap": {
+            "path": "traits/paged.raml"
+          }
         }
       },
       {
@@ -92,17 +110,26 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/rate-limited.raml"
+              },
               "structuredExample": {
                 "value": "5000",
                 "strict": true,
                 "name": null,
-                "structuredValue": 5000
+                "structuredValue": 5000,
+                "sourceMap": {
+                  "path": "traits/rate-limited.raml"
+                }
               }
             }
           },
           "description": "Some requests require rate limiting.",
           "name": "rateLimited",
-          "usage": "Apply this to any method that needs to be rate limited"
+          "usage": "Apply this to any method that needs to be rate limited",
+          "sourceMap": {
+            "path": "traits/rate-limited.raml"
+          }
         }
       }
     ],
@@ -112,9 +139,15 @@
           "description": "A collection resource",
           "name": "collection",
           "usage": "Use this to describe a resource that lists items",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "get": {
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           "post": {
             "responses": {
@@ -141,13 +174,22 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       },
@@ -156,9 +198,15 @@
           "description": "A single <<resourcePathName | !singularize>>",
           "name": "member",
           "usage": "This resourceType should be used for any specific member of a collection",
+          "sourceMap": {
+            "path": "resourceTypes/member.raml"
+          },
           "get": {
             "description": "Get a <<resourcePathName | !singularize>>",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/member.raml"
+            }
           }
         }
       }
@@ -187,11 +235,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/paged.raml"
+                },
                 "structuredExample": {
                   "value": "2",
                   "strict": true,
                   "name": null,
-                  "structuredValue": 2
+                  "structuredValue": 2,
+                  "sourceMap": {
+                    "path": "traits/paged.raml"
+                  }
                 }
               },
               "limit": {
@@ -211,11 +265,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/rate-limited.raml"
+                },
                 "structuredExample": {
                   "value": "5000",
                   "strict": true,
                   "name": null,
-                  "structuredValue": 5000
+                  "structuredValue": 5000,
+                  "sourceMap": {
+                    "path": "traits/rate-limited.raml"
+                  }
                 }
               },
               "access_token": {
@@ -238,11 +298,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/secured.raml"
+                },
                 "structuredExample": {
                   "value": "5757gh76",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "5757gh76"
+                  "structuredValue": "5757gh76",
+                  "sourceMap": {
+                    "path": "traits/secured.raml"
+                  }
                 }
               }
             },
@@ -251,7 +317,10 @@
               "rateLimited"
             ],
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apply-resourcetypes-traits.raml"
+            }
           },
           {
             "headers": {
@@ -275,11 +344,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/secured.raml"
+                },
                 "structuredExample": {
                   "value": "5757gh76",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "5757gh76"
+                  "structuredValue": "5757gh76",
+                  "sourceMap": {
+                    "path": "traits/secured.raml"
+                  }
                 }
               }
             },
@@ -307,13 +382,22 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "apply-resourcetypes-traits.raml"
+            }
           }
         ],
         "is": [
@@ -330,12 +414,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-resourcetypes-traits.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-resourcetypes-traits.raml"
+    }
   },
   "errors": []
 }

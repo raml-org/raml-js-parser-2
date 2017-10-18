@@ -1,0 +1,15 @@
+#%RAML 1.0 Trait
+
+responses:
+  202:
+    description: |
+      Accepted / Akzeptiert.
+      Die Anfrage wurde angenommen und wird verarbeitet, aber die Verarbeitung ist noch nicht abgeschlossen.
+    headers:
+      Location:
+        description: |
+          HTTP-Standard Parameter.
+          URL, die der Client verwenden sollte, um den Status seiner Anfrage zu überwachen.
+        type: string
+        required: true
+        example: 'Location: http://example.org/util/status/{status_id}'

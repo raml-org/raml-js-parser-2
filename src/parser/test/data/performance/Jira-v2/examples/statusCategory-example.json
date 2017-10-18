@@ -1,0 +1,7 @@
+{
+  "self" : "http://localhost:8090/jira/rest/api/2.0/statuscategory/1" ,
+  "id" : 1 ,
+  "key" : "in-flight" ,
+  "colorName" : "yellow" ,
+  "name" : "In Progress"
+}

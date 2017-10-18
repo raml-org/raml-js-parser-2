@@ -22,10 +22,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
-          "name": "bodyTrait"
+          "name": "bodyTrait",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -34,19 +40,31 @@
         "oneRT": {
           "type": "<<parentResourceType | !singularize>>",
           "name": "oneRT",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "is": [
               "<<trait | !singularize>>"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
       {
         "twoRT": {
           "name": "twoRT",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "post": {
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -73,16 +91,25 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "is": [
               "bodyTrait"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -100,12 +127,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

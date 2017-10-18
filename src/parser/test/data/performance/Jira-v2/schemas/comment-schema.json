@@ -1,0 +1,85 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "id" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "author" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "displayName" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "active" : {
+          "type" : "boolean" ,
+          "required" : false
+        }
+      }
+    } ,
+    "body" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "updateAuthor" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "displayName" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "active" : {
+          "type" : "boolean" ,
+          "required" : false
+        }
+      }
+    } ,
+    "created" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "updated" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "visibility" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "type" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "value" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

@@ -370,11 +370,11 @@
   },
   "OPTIONAL_SCLARAR_PROPERTIES_10" : {
     "code" : "OPTIONAL_SCLARAR_PROPERTIES_10",
-    "message" : "Optional scalar properties are not allowed in {{templateNamePlural}} and their descendants: '{{propName}}?'"
+    "message" : "Optional scalar properties are not allowed in {{templateName|!pluralize|!sentencecase|!lowercase}} and their descendants: '{{propName}}?'"
   },
   "OPTIONAL_PROPERTIES_10" : {
     "code" : "OPTIONAL_PROPERTIES_10",
-    "message" : "Optional properties are not allowed in '{{propName}}': '{{oPropName}}'"
+    "message" : "Optional properties are not allowed in '{{propName|!pluralize|!sentencecase|!lowercase}}': '{{oPropName}}'"
   },
   "ONLY_METHODS_CAN_BE_OPTIONAL" : {
     "code" : "ONLY_METHODS_CAN_BE_OPTIONAL",
@@ -390,7 +390,7 @@
   },
   "SEQUENCE_NOT_ALLOWED_10" : {
     "code" : "SEQUENCE_NOT_ALLOWED_10",
-    "message" : "In RAML 1.0 {{propName}} is not allowed to have sequence as definition"
+    "message" : "In RAML 1.0 {{propName|!singularize|!sentencecase|!lowercase}} is not allowed to have sequence as definition"
   },
   "MAP_EXPECTED" : {
     "code" : "MAP_EXPECTED",

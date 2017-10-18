@@ -1,0 +1,15 @@
+#%RAML 1.0 Trait
+
+headers:
+  x-client_id:
+    description: |
+      Die Client-ID der Application. Wird vom Portal bereitgestellt, wenn eine neue Version der Application registriert wird.
+      Jede Anfrage muss mit einem Application Key (Client Id und Client Secret) durchgeführt werden, die den Client identifiziert. Alle Anfragen enthalten einen Identifier, der von der API-Facade im Vorhinein vergeben wird und die anfragende Anwendung und deren Version identifiziert. Diese kann bspw. dazu verwendet werden, älteren Versionen einer Anwendung die Rechte für den Zugriff auf die APIs zu entziehen.
+    type: string
+    example: c6VwL5qIGQAhJfmZADoR
+  x-client_secret:
+    description: |
+      Das Client-Secret der Application. Wird vom Portal bereitgestellt, wenn eine neue Version der Application registriert wird.
+      Jede Anfrage muss mit einem Application Key (Client Id und Client Secret) durchgeführt werden, die den Client identifiziert. Alle Anfragen enthalten einen Identifier, der von der API-Facade im Vorhinein vergeben wird und die anfragende Anwendung und deren Version identifiziert. Diese kann bspw. dazu verwendet werden, älteren Versionen einer Anwendung die Rechte für den Zugriff auf die APIs zu entziehen.
+    type: string
+    example: dGfk4xKTGPcZ4MvMxpl5

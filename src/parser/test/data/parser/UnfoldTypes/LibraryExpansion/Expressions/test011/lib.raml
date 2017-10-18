@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+
+types:
+  T1:
+  T2:
+  T3:
+  T4:
+
+resourceTypes:
+  rt:
+    post:
+      body:
+        application/json:
+          type: array
+          items: (T1|<<param1>>)[]|(T3|<<param2>>)

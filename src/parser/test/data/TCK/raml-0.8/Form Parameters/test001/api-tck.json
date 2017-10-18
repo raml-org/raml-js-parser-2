@@ -36,6 +36,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -66,6 +69,9 @@
                                 "insertedAsDefault": true
                               }
                             }
+                          },
+                          "sourceMap": {
+                            "path": "api.raml"
                           }
                         },
                         {
@@ -88,6 +94,9 @@
                                 "insertedAsDefault": true
                               }
                             }
+                          },
+                          "sourceMap": {
+                            "path": "api.raml"
                           }
                         }
                       ],
@@ -111,8 +120,14 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -126,6 +141,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -136,6 +154,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{resourceId}"
@@ -151,6 +172,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -163,6 +187,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

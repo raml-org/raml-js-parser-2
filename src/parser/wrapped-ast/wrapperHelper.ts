@@ -1298,6 +1298,7 @@ export class ExampleSpecImpl extends core.BasicNodeImpl{
             this._node.definition().property(universeDef.Universe10.ExampleSpec.properties.description.name),
             descriptionValue);
 
+        (<llImpl.ASTNode>attr.lowLevel()).setUnit(this._node.lowLevel().unit());
         var result = new RamlWrapperImpl.MarkdownStringImpl(attr);
         return result;
     }

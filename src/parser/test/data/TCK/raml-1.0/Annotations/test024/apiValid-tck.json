@@ -18,6 +18,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -30,6 +33,9 @@
           "name": "z"
         }
       ]
+    },
+    "sourceMap": {
+      "path": "apiValid.raml"
     }
   },
   "errors": []

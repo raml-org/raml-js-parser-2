@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -70,6 +76,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -82,6 +91,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -91,6 +103,9 @@
         "ResourceTypeWithParams": {
           "type": "<<resourceTypeParam>>",
           "name": "ResourceTypeWithParams",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -118,6 +133,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
                 },
@@ -127,16 +145,25 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
       {
         "ResourceType1": {
           "name": "ResourceType1",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -164,6 +191,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
                 },
@@ -176,16 +206,25 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
       {
         "ResourceType2": {
           "name": "ResourceType2",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -213,6 +252,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
                 },
@@ -225,10 +267,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -241,6 +289,9 @@
             }
           },
           "name": "Resource",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -265,6 +316,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"propertyFromType1\": \"stringValue1\",\n  \"propertyFromResourceType2\": \"stringValue2\",\n  \"extraProperty\": \"stringValue3\"\n}",
                   "strict": true,
@@ -273,11 +327,17 @@
                     "propertyFromType1": "stringValue1",
                     "propertyFromResourceType2": "stringValue2",
                     "extraProperty": "stringValue3"
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       }
@@ -318,6 +378,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   },
                   "propertyFromResourceType2": {
@@ -337,6 +400,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
                 },
@@ -347,6 +413,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"propertyFromType1\": \"stringValue1\",\n  \"propertyFromResourceType2\": \"stringValue2\",\n  \"extraProperty\": \"stringValue3\"\n}",
                   "strict": true,
@@ -355,11 +424,17 @@
                     "propertyFromType1": "stringValue1",
                     "propertyFromResourceType2": "stringValue2",
                     "extraProperty": "stringValue3"
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "type": "Resource",
@@ -372,12 +447,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

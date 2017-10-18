@@ -9,11 +9,17 @@
           "value": "libraries/files.raml"
         }
       ],
+      "sourceMap": {
+        "path": "libraries-resourcetype.raml"
+      },
       "get": {
         "is": [
           "files.drm"
         ],
-        "method": "get"
+        "method": "get",
+        "sourceMap": {
+          "path": "libraries-resourcetype.raml"
+        }
       }
     }
   },

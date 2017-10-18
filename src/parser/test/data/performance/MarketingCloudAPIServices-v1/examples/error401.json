@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "message": "Not Authenticated",
+  "path": "/resource/",
+  "context": [],
+  "errors": [
+    {
+      "id" : "a32f-234-ad12341",
+      "code" : "401",
+      "title" : "Not Authenticated",
+      "detail" : "Username or password incorrect"
+    }
+  ]
+}

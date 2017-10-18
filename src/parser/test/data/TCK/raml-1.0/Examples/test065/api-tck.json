@@ -18,6 +18,9 @@
               "name": "ex1",
               "structuredValue": {
                 "p": "stringValue1"
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             {
@@ -26,6 +29,9 @@
               "name": "ex2",
               "structuredValue": {
                 "p": "stringValue2"
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           ],
@@ -47,6 +53,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -59,6 +68,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -79,6 +91,9 @@
               "description": "Example for the 'T2' type",
               "structuredValue": {
                 "p": "stringValue1"
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           ],
@@ -100,6 +115,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -112,6 +130,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -119,11 +140,17 @@
     "traits": [
       {
         "tr": {
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

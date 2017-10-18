@@ -13,6 +13,9 @@
                 "displayName": "application/xml",
                 "typePropertyKind": "XML",
                 "schemaPath": "schema.xsd#country",
+                "sourceMap": {
+                  "path": "schema.xsd#country"
+                },
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n<xs:element name=\"c2NoZW1hLnhzZC9jb3VudHJ5\" originalname=\"country\" requestedname=\"country\" extraelement=\"true\"/></xs:schema>"
                 ],
@@ -28,11 +31,17 @@
                   "value": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
+                  "structuredValue": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
+                  }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -44,12 +53,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

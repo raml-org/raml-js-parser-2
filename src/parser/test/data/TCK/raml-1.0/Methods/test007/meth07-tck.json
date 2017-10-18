@@ -9,7 +9,10 @@
           {
             "responses": {
               "201": {
-                "code": "201"
+                "code": "201",
+                "sourceMap": {
+                  "path": "meth07.raml"
+                }
               }
             },
             "body": {
@@ -29,6 +32,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth07.raml"
                 }
               }
             },
@@ -36,7 +42,10 @@
               "HTTP",
               "HTTPS"
             ],
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth07.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -48,12 +57,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth07.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth07.raml"
+    }
   },
   "errors": []
 }

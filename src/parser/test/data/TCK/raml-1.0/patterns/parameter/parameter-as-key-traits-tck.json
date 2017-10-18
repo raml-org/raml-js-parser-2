@@ -8,10 +8,16 @@
           "responses": {
             "<<status>>": {
               "code": "<<status>>",
-              "description": "<<description>>"
+              "description": "<<description>>",
+              "sourceMap": {
+                "path": "parameter-as-key-traits.raml"
+              }
             }
           },
-          "name": "respCode"
+          "name": "respCode",
+          "sourceMap": {
+            "path": "parameter-as-key-traits.raml"
+          }
         }
       }
     ],
@@ -24,7 +30,10 @@
             "responses": {
               "201": {
                 "code": 201,
-                "description": "Post created, returns the created post."
+                "description": "Post created, returns the created post.",
+                "sourceMap": {
+                  "path": "parameter-as-key-traits.raml"
+                }
               }
             },
             "is": [
@@ -36,7 +45,10 @@
               }
             ],
             "description": "test",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "parameter-as-key-traits.raml"
+            }
           }
         ],
         "relativeUri": "/servers",
@@ -48,12 +60,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "parameter-as-key-traits.raml"
+        },
         "relativeUriPathSegments": [
           "servers"
         ],
         "absoluteUri": "/servers"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "parameter-as-key-traits.raml"
+    }
   },
   "errors": []
 }

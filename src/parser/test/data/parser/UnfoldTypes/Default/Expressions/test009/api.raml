@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test API
+
+uses:
+  lib: lib.raml
+
+/resource:
+  post:
+    body:
+      application/json:
+        type: array
+        items: (lib.T2|lib.T4)|(lib.T1|lib.T3)

@@ -9,6 +9,9 @@
           "displayName": "ExtLocale",
           "typePropertyKind": "JSON",
           "schemaPath": "schemas/locale.xsd",
+          "sourceMap": {
+            "path": "schemas/locale.xsd"
+          },
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"language\": {\"type\": \"string\", \"minLength\": 2},\n    \"country\": {\"type\": \"string\", \"minLength\": 2}\n  },\n  \"required\": [\"language\"]\n}"
           ],
@@ -35,6 +38,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/library.raml"
           }
         }
       }
@@ -43,6 +49,9 @@
       {
         "exampleRes": {
           "name": "exampleRes",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "post": {
             "body": {
               "application/json": {
@@ -58,14 +67,23 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

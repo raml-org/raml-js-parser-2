@@ -20,11 +20,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "default-types-2.raml"
           }
         }
       }
     ],
-    "title": "Default type 2"
+    "title": "Default type 2",
+    "sourceMap": {
+      "path": "default-types-2.raml"
+    }
   },
   "errors": []
 }

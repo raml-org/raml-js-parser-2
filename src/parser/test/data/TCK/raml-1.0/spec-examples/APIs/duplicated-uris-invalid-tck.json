@@ -18,6 +18,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "duplicated-uris-invalid.raml"
+            },
             "relativeUriPathSegments": [
               "foo"
             ],
@@ -30,6 +33,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "duplicated-uris-invalid.raml"
         },
         "relativeUriPathSegments": [
           "users"
@@ -46,13 +52,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "duplicated-uris-invalid.raml"
+        },
         "relativeUriPathSegments": [
           "users",
           "foo"
         ],
         "absoluteUri": "/users/foo"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "duplicated-uris-invalid.raml"
+    }
   },
   "errors": [
     {

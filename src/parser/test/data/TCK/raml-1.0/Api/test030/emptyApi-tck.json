@@ -1,7 +1,11 @@
 {
   "ramlVersion": "RAML10",
   "type": "Api",
-  "specification": {},
+  "specification": {
+    "sourceMap": {
+      "path": "emptyApi.raml"
+    }
+  },
   "errors": [
     {
       "code": "MISSING_REQUIRED_PROPERTY",

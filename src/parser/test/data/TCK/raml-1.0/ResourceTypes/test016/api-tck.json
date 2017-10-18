@@ -6,6 +6,9 @@
       {
         "member": {
           "name": "member",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -29,17 +32,29 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "<<param1>>",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "<<param1>>"
+                      "structuredValue": "<<param1>>",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -50,7 +65,10 @@
               "param1": "<<param2>>"
             }
           },
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -89,6 +107,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n",
                       "strict": true,
@@ -100,13 +121,22 @@
                         "orderItemId": "9877292",
                         "status": "scheduled",
                         "droneId": "f"
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -122,6 +152,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "resource1"
@@ -160,6 +193,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n",
                       "strict": true,
@@ -171,13 +207,22 @@
                         "orderItemId": "9877292",
                         "status": "scheduled",
                         "droneId": "f"
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -194,12 +239,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource2"
         ],
         "absoluteUri": "/resource2"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "value": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -86,6 +95,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "payload": {
@@ -114,6 +126,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 },
                 "filename": {
@@ -133,6 +148,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 },
                 "headers": {
@@ -152,6 +170,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   },
                   "items": "Header"
                 },
@@ -181,6 +202,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     },
                     "data": {
@@ -200,6 +224,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   },
@@ -212,6 +239,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 },
                 "parts": {
@@ -232,6 +262,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "api.raml"
+                  },
                   "items": "Message"
                 }
               },
@@ -244,6 +277,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "sizeEstimate": {
@@ -263,6 +299,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -272,6 +311,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -337,6 +379,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "historyId": {
@@ -356,6 +401,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "messages": {
@@ -376,6 +424,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "items": "Message"
             }
           },
@@ -385,6 +436,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           },
           "structuredExample": {
             "value": "{\n  \"id\": \"146df5d64e5cb7dc\",\n  \"historyId\": \"535370\",\n  \"messages\": [\n    {\n      \"id\": \"146df5d64e5cb7dc\",\n      \"payload\": {\n        \"mimeType\": \"text/plain\",\n        \"filename\": \"\",\n        \"headers\": [\n          {\n            \"name\": \"Received\",\n            \"value\": \"from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Date\",\n            \"value\": \"Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Message-Id\",\n            \"value\": \"<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>\"\n          },\n          {\n            \"name\": \"From\",\n            \"value\": \"someaccount@gmail.com\"\n          }\n        ],\n        \"body\": {\n          \"size\": 1,\n          \"data\": \"\"\n        }\n      },\n      \"sizeEstimate\": 331\n    }\n  ]\n}",
@@ -425,12 +479,18 @@
                   "sizeEstimate": 331
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "usage": "Gmail types"
+    "usage": "Gmail types",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

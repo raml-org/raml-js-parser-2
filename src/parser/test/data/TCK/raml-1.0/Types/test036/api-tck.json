@@ -26,6 +26,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -38,11 +41,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "test"
+    "title": "test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

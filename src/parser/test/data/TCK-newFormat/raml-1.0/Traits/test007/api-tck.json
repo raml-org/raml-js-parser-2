@@ -26,6 +26,27 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "offset": {
+            "name": "offset",
+            "displayName": "offset",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Skip over a number of elements by specifying an offset value for the query",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "name": "pagination"
@@ -37,14 +58,14 @@
         "methods": {
           "get": {
             "queryParameters": {
-              "<<queryParamName>>": {
-                "name": "<<queryParamName>>",
-                "displayName": "<<queryParamName>>",
+              "param": {
+                "name": "param",
+                "displayName": "param",
                 "type": [
                   "string"
                 ],
                 "required": true,
-                "description": "This is a <<queryParamName>> value parameter.",
+                "description": "This is a param value parameter.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -60,10 +81,35 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "offset": {
+                "name": "offset",
+                "displayName": "offset",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "Skip over a number of elements by specifying an offset value for the query",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "is": [
-              "pagination"
+              {
+                "pagination": {
+                  "queryParamName": "param"
+                }
+              }
             ],
             "method": "get"
           }
@@ -88,59 +134,5 @@
   },
   "ramlVersion": "RAML10",
   "type": "Api",
-  "errors": [
-    {
-      "code": "VALUE_NOT_PROVIDED",
-      "message": "Value is not provided for parameter: 'queryParamName'",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 8,
-          "column": 9,
-          "position": 112
-        },
-        "end": {
-          "line": 8,
-          "column": 19,
-          "position": 122
-        }
-      }
-    },
-    {
-      "code": "UNKNOWN_FACET",
-      "message": "Specifying unknown facet: 'offset'",
-      "path": "pagination.raml",
-      "range": {
-        "start": {
-          "line": 4,
-          "column": 4,
-          "position": 123
-        },
-        "end": {
-          "line": 4,
-          "column": 10,
-          "position": 129
-        }
-      },
-      "trace": [
-        {
-          "code": "UNKNOWN_FACET",
-          "message": "Specifying unknown facet: 'offset' pagination.raml",
-          "path": "api.raml",
-          "range": {
-            "start": {
-              "line": 7,
-              "column": 2,
-              "position": 98
-            },
-            "end": {
-              "line": 7,
-              "column": 5,
-              "position": 101
-            }
-          }
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

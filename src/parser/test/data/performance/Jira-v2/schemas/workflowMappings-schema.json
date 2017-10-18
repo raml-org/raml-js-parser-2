@@ -1,0 +1,24 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "workflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "issueTypes" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "string"
+        }
+      ]
+    } ,
+    "defaultMapping" : {
+      "type" : "boolean" ,
+      "required" : false
+    }
+  }
+}

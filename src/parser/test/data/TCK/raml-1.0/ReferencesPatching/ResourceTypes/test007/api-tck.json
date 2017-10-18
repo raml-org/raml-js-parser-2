@@ -5,15 +5,24 @@
     "uses": [
       {
         "key": "rt",
-        "value": "lib/resource-types.raml"
+        "value": "lib/resource-types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.ty",
-        "value": "lib/types.raml"
+        "value": "lib/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.tr",
-        "value": "lib/traits.raml"
+        "value": "lib/traits.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -41,6 +50,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/traits.raml"
+                  },
                   "structuredExample": {
                     "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
                     "strict": true,
@@ -48,9 +60,15 @@
                     "structuredValue": {
                       "code": "abc123",
                       "message": "Bad request"
+                    },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
                     }
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/traits.raml"
               }
             },
             "500": {
@@ -74,6 +92,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/traits.raml"
+                  },
                   "structuredExample": {
                     "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
                     "strict": true,
@@ -81,15 +102,24 @@
                     "structuredValue": {
                       "code": "xyz123",
                       "message": "Server error"
+                    },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
                     }
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/traits.raml"
               }
             }
           },
           "name": "rt.tr.ResponseCommonErrors",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib/traits.raml"
           }
         }
       }
@@ -101,6 +131,9 @@
           "__METADATA__": {
             "calculated": true
           },
+          "sourceMap": {
+            "path": "lib/resource-types.raml"
+          },
           "get": {
             "is": [
               {
@@ -109,7 +142,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           }
         }
       }
@@ -142,6 +178,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
                       "strict": true,
@@ -149,9 +188,15 @@
                       "structuredValue": {
                         "code": "abc123",
                         "message": "Bad request"
+                      },
+                      "sourceMap": {
+                        "path": "lib/traits.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               },
               "500": {
@@ -175,6 +220,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
                       "strict": true,
@@ -182,9 +230,15 @@
                       "structuredValue": {
                         "code": "xyz123",
                         "message": "Server error"
+                      },
+                      "sourceMap": {
+                        "path": "lib/traits.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               }
             },
@@ -195,7 +249,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           }
         ],
         "type": "rt.Collection",
@@ -208,12 +265,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "products"
         ],
         "absoluteUri": "/products"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

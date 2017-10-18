@@ -1,0 +1,29 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "description" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "defaultWorkflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "issueTypeMappings" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "IsueTypeId" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

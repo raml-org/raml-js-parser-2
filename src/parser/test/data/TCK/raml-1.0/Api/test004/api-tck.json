@@ -7,7 +7,10 @@
     "protocols": [
       "HTTP",
       "HTTPS"
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

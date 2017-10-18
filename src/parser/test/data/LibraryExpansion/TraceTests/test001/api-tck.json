@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries/lib1.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "libraries/lib1.raml"
           }
         }
       },
@@ -73,6 +79,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "libraries/lib2.raml"
               }
             }
           },
@@ -86,12 +95,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "libraries/lib2.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"p1\": \"01/01/1900\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "p1": "01/01/1900"
+            },
+            "sourceMap": {
+              "path": "libraries/lib2.raml"
             }
           }
         }
@@ -118,10 +133,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -133,12 +154,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

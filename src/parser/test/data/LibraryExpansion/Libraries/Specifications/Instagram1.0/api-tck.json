@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "name": {
@@ -55,6 +58,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "latitude": {
@@ -74,6 +80,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "longitude": {
@@ -93,6 +102,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "street_address": {
@@ -112,6 +124,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -121,6 +136,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"id\": \"1\",\n  \"name\": \"John\",\n  \"latitude\": 34.016242,\n  \"longitude\": -95.800781,\n  \"street_address\": \"\"\n}",
@@ -132,6 +150,9 @@
               "latitude": 34.016242,
               "longitude": -95.800781,
               "street_address": ""
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -165,6 +186,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -175,12 +199,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"code\": 200\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "code": 200
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -225,6 +255,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.Location"
             }
           },
@@ -234,6 +267,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"John\",\n      \"latitude\": 34.016242,\n      \"longitude\": -95.800781\n    }\n  ]\n}",
@@ -251,6 +287,9 @@
                   "longitude": -95.800781
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -286,6 +325,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "follows": {
@@ -305,6 +347,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "followed_by": {
@@ -324,6 +369,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -334,6 +382,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"media\": 2,\n  \"follows\": 3,\n  \"followed_by\": 5\n}",
             "strict": true,
@@ -342,6 +393,9 @@
               "media": 2,
               "follows": 3,
               "followed_by": 5
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -395,6 +449,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "username": {
@@ -414,6 +471,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "full_name": {
@@ -433,6 +493,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "profile_picture": {
@@ -452,6 +515,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "bio": {
@@ -471,6 +537,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "website": {
@@ -490,6 +559,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "count": {
@@ -509,6 +581,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -521,6 +596,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -530,6 +608,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"data\": {\n    \"id\": \"1\",\n    \"username\": \"John\",\n    \"full_name\": \"John Smith\",\n    \"profile_picture\": \"URL\",\n    \"website\": \"example.org\",\n    \"count\": {\n      \"media\": 2,\n      \"follows\": 3,\n      \"followed_by\": 5\n    }\n  }\n}",
@@ -548,6 +629,9 @@
                   "followed_by": 5
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -590,6 +674,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "username": {
@@ -609,6 +696,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "full_name": {
@@ -628,6 +718,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "profile_picture": {
@@ -650,6 +743,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "bio": {
@@ -669,6 +765,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "website": {
@@ -688,6 +787,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "count": {
@@ -707,6 +809,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -716,6 +821,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"id\": \"1\",\n  \"username\": \"John\",\n  \"full_name\": \"John Smith\",\n  \"profile_picture\": \"URL\",\n  \"website\": \"example.org\",\n  \"count\": {\n    \"media\": 2,\n    \"follows\": 3,\n    \"followed_by\": 5\n  }\n}",
@@ -732,6 +840,9 @@
                 "follows": 3,
                 "followed_by": 5
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -784,6 +895,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "object_id": {
@@ -803,6 +917,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "aspect": {
@@ -822,6 +939,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "callback_url": {
@@ -841,6 +961,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "type": {
@@ -860,6 +983,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "id": {
@@ -879,6 +1005,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "lat": {
@@ -898,6 +1027,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "lng": {
@@ -917,6 +1049,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "radius": {
@@ -936,6 +1071,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -948,6 +1086,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -957,6 +1098,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": {\n    \"object_id\": \"25\",\n    \"callback_url\": \"url\",\n    \"id\": \"22\",\n    \"lat\": 34.016242,\n    \"lng\": -95.800781,\n    \"radius\": 20\n  }\n}",
@@ -974,6 +1118,9 @@
                 "lng": -95.800781,
                 "radius": 20
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1009,6 +1156,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "type": {
@@ -1028,6 +1178,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "object": {
@@ -1047,6 +1200,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "aspect": {
@@ -1066,6 +1222,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "callback_url": {
@@ -1085,6 +1244,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "object_id": {
@@ -1104,6 +1266,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1114,6 +1279,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"object_id\": \"25\",\n  \"callback_url\": \"url\",\n  \"id\": \"22\"\n}",
             "strict": true,
@@ -1122,6 +1290,9 @@
               "object_id": "25",
               "callback_url": "url",
               "id": "22"
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1165,6 +1336,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.SubscriptionData"
             }
           },
@@ -1174,6 +1348,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": [\n    {\n      \"object_id\": \"25\",\n      \"callback_url\": \"url\",\n      \"id\": \"22\"\n    }\n  ]\n}",
@@ -1190,6 +1367,9 @@
                   "id": "22"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1230,6 +1410,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1239,6 +1422,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": {\n    \"object_id\": \"25\",\n    \"callback_url\": \"url\",\n    \"id\": \"22\"\n  }\n}",
@@ -1253,6 +1439,9 @@
                 "callback_url": "url",
                 "id": "22"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1298,6 +1487,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "name": {
@@ -1317,6 +1509,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -1329,6 +1524,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1339,6 +1537,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"data\": {\n    \"media_count\": 2,\n    \"name\": \"forest\"\n  }\n}",
             "strict": true,
@@ -1348,6 +1549,9 @@
                 "media_count": 2,
                 "name": "forest"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1382,6 +1586,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "name": {
@@ -1401,6 +1608,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1411,6 +1621,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"media_count\": 2,\n  \"name\": \"forest\"\n}",
             "strict": true,
@@ -1418,6 +1631,9 @@
             "structuredValue": {
               "media_count": 2,
               "name": "forest"
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1460,6 +1676,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.SerachTagItem"
             }
           },
@@ -1469,6 +1688,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": [\n    {\n      \"media_count\": 2,\n      \"name\": \"forest\"\n    }\n  ]\n}",
@@ -1484,6 +1706,9 @@
                   "name": "forest"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1520,6 +1745,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "last_name": {
@@ -1539,6 +1767,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "id": {
@@ -1558,6 +1789,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "type": {
@@ -1577,6 +1811,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1587,6 +1824,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"id\": \"2\",\n  \"type\": \"string\"\n}",
             "strict": true,
@@ -1596,6 +1836,9 @@
               "last_name": "Smith",
               "id": "2",
               "type": "string"
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1637,6 +1880,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.MediaLike"
             }
           },
@@ -1646,6 +1892,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"data\": [\n    {\n      \"first_name\": \"John\",\n      \"last_name\": \"Smith\",\n      \"id\": \"2\",\n      \"type\": \"string\"\n    }\n  ]\n}",
@@ -1660,6 +1909,9 @@
                   "type": "string"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1700,6 +1952,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "text": {
@@ -1719,6 +1974,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "from": {
@@ -1747,6 +2005,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -1759,6 +2020,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "id": {
@@ -1778,6 +2042,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -1787,6 +2054,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"created_time\": \"1382576494\",\n  \"text\": \"text\",\n  \"from\": {\n    \"username\": \"John\",\n    \"id\": \"2000\",\n    \"full_name\": \"John Smith\"\n  },\n  \"id\": \"200\"\n}",
@@ -1801,6 +2071,9 @@
                 "full_name": "John Smith"
               },
               "id": "200"
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1849,6 +2122,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.Comment"
             }
           },
@@ -1858,6 +2134,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": [\n    {\n      \"created_time\": \"1382576494\",\n      \"text\": \"text\",\n      \"from\": {\n        \"username\": \"John\",\n        \"id\": \"2000\",\n        \"full_name\": \"John Smith\"\n      },\n      \"id\": \"200\"\n    }\n  ]\n}",
@@ -1879,6 +2158,9 @@
                   "id": "200"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -1923,6 +2205,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "author_name": {
@@ -1942,6 +2227,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "author_url": {
@@ -1961,6 +2249,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "heght": {
@@ -1980,6 +2271,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "media_id": {
@@ -1999,6 +2293,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "provider_name": {
@@ -2018,6 +2315,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "provider_url": {
@@ -2037,6 +2337,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "title": {
@@ -2056,6 +2359,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "type": {
@@ -2075,6 +2381,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "url": {
@@ -2094,6 +2403,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "version": {
@@ -2113,6 +2425,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "width": {
@@ -2132,6 +2447,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2141,6 +2459,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"author_id\": 20,\n  \"author_name\": \"John\",\n  \"author_url\": \"URL\",\n  \"heght\": 400,\n  \"media_id\": \"29\",\n  \"provider_name\": \"Alex\",\n  \"provider_url\": \"URL\",\n  \"title\": \"Photos\",\n  \"type\": \"media\",\n  \"url\": \"URL\",\n  \"version\": \"2.11\",\n  \"width\": 600\n}",
@@ -2159,6 +2480,9 @@
               "url": "URL",
               "version": "2.11",
               "width": 600
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2206,6 +2530,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -2218,6 +2545,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2227,6 +2557,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": {\n    \"outgoing_status\": \"none\"\n  }\n}",
@@ -2239,6 +2572,9 @@
               "data": {
                 "outgoing_status": "none"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2287,6 +2623,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "incoming_status": {
@@ -2306,6 +2645,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -2318,6 +2660,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2327,6 +2672,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": {\n    \"outgoing_status\": \"none\",\n    \"incoming_status\": \"requested_by\"\n  }\n}",
@@ -2340,6 +2688,9 @@
                 "outgoing_status": "none",
                 "incoming_status": "requested_by"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2389,6 +2740,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "profile_picture": {
@@ -2408,6 +2762,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "id": {
@@ -2427,6 +2784,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -2439,6 +2799,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2448,6 +2811,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"data\": {\n    \"username\": \"John\",\n    \"profile_picture\": \"URL\",\n    \"id\": \"25\"\n  }\n}",
@@ -2462,6 +2828,9 @@
                 "profile_picture": "URL",
                 "id": "25"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2499,6 +2868,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "first_name": {
@@ -2518,6 +2890,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "profile_picture": {
@@ -2537,6 +2912,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "id": {
@@ -2556,6 +2934,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "last_name": {
@@ -2575,6 +2956,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2584,6 +2968,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"username\": \"John\",\n  \"first_name\": \"John\",\n  \"profile_picture\": \"URL\",\n  \"id\": \"25\",\n  \"last_name\": \"Smith\"\n}",
@@ -2595,6 +2982,9 @@
               "profile_picture": "URL",
               "id": "25",
               "last_name": "Smith"
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2637,6 +3027,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.UsersItem"
             }
           },
@@ -2646,6 +3039,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"data\": [\n    {\n      \"username\": \"John\",\n      \"first_name\": \"John\",\n      \"profile_picture\": \"URL\",\n      \"id\": \"25\",\n      \"last_name\": \"Smith\"\n    }\n  ]\n}",
@@ -2661,6 +3057,9 @@
                   "last_name": "Smith"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2696,6 +3095,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "data": {
@@ -2715,6 +3117,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2725,6 +3130,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"meta\": {\n    \"code\": 200\n  }\n}",
             "strict": true,
@@ -2733,6 +3141,9 @@
               "meta": {
                 "code": 200
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2780,6 +3191,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "data": {
@@ -2800,6 +3214,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.User"
             }
           },
@@ -2809,6 +3226,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"count\": 42,\n  \"data\": [\n    {\n      \"id\": \"1\",\n      \"username\": \"John\",\n      \"full_name\": \"John Smith\",\n      \"profile_picture\": \"URL\",\n      \"website\": \"example.org\",\n      \"count\": {\n        \"media\": 2,\n        \"follows\": 3,\n        \"followed_by\": 5\n      }\n    }\n  ]\n}",
@@ -2830,6 +3250,9 @@
                   }
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2865,6 +3288,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "width": {
@@ -2884,6 +3310,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "height": {
@@ -2903,6 +3332,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -2913,6 +3345,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib/types.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"url\": \"URL\",\n  \"width\": 400,\n  \"height\": 600\n}",
             "strict": true,
@@ -2921,6 +3356,9 @@
               "url": "URL",
               "width": 400,
               "height": 600
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -2968,6 +3406,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "thumbnail": {
@@ -2987,6 +3428,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "standard_resolution": {
@@ -3006,6 +3450,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -3015,6 +3462,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"low_resolution\": {\n    \"url\": \"URL\",\n    \"width\": 200,\n    \"height\": 400\n  },\n  \"thumbnail\": {\n    \"url\": \"URL\",\n    \"width\": 400,\n    \"height\": 600\n  },\n  \"standard_resolution\": {\n    \"url\": \"URL\",\n    \"width\": 600,\n    \"height\": 800\n  }\n}",
@@ -3036,6 +3486,9 @@
                 "width": 600,
                 "height": 800
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -3115,6 +3568,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.TagsRecentMediaItem"
             }
           },
@@ -3124,6 +3580,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"data\": [\n    {\n      \"type\": \"photo\",\n      \"tags\": [\n        \"forest\",\n        \"flovers\"\n      ],\n      \"comments\": {\n        \"data\": [\n          {\n            \"created_time\": \"1382576494\",\n            \"text\": \"text\",\n            \"from\": {\n              \"username\": \"John\",\n              \"id\": \"2000\",\n              \"full_name\": \"John Smith\"\n            },\n            \"id\": \"200\"\n          }\n        ],\n        \"count\": 1\n      },\n      \"caption\": null,\n      \"likes\": {\n        \"count\": 42,\n        \"data\": [\n          {\n            \"id\": \"1\",\n            \"username\": \"John\",\n            \"full_name\": \"John Smith\",\n            \"profile_picture\": \"URL\",\n            \"website\": \"example.org\",\n            \"count\": {\n              \"media\": 2,\n              \"follows\": 3,\n              \"followed_by\": 5\n            }\n          }\n        ]\n      },\n      \"link\": \"link\",\n      \"created_time\": \"1386312776\",\n      \"id\": \"id\",\n      \"location\": null\n    }\n  ]\n}",
@@ -3176,6 +3635,9 @@
                   "location": null
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -3263,6 +3725,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "users_in_photo": {
@@ -3283,6 +3748,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.UsersInPhoto"
             },
             "filter": {
@@ -3302,6 +3770,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "tags": {
@@ -3321,6 +3792,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               },
               "items": "string"
             },
@@ -3351,6 +3825,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
+                  },
                   "items": "types.Comment"
                 },
                 "count": {
@@ -3370,6 +3847,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -3382,6 +3862,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "caption": {
@@ -3401,6 +3884,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "likes": {
@@ -3420,6 +3906,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "link": {
@@ -3439,6 +3928,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "created_time": {
@@ -3458,6 +3950,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "images": {
@@ -3477,6 +3972,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "id": {
@@ -3496,6 +3994,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "location": {
@@ -3515,6 +4016,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -3524,6 +4028,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"type\": \"photo\",\n  \"tags\": [\n    \"forest\",\n    \"flovers\"\n  ],\n  \"comments\": {\n    \"data\": [\n      {\n        \"created_time\": \"1382576494\",\n        \"text\": \"text\",\n        \"from\": {\n          \"username\": \"John\",\n          \"id\": \"2000\",\n          \"full_name\": \"John Smith\"\n        },\n        \"id\": \"200\"\n      }\n    ],\n    \"count\": 2\n  },\n  \"caption\": {\n    \"created_time\": \"1382576494\",\n    \"text\": \"text\",\n    \"from\": {\n      \"username\": \"John\",\n      \"id\": \"2000\"\n    }\n  },\n  \"likes\": {\n    \"count\": 42,\n    \"data\": [\n      {\n        \"id\": \"1\",\n        \"username\": \"John\",\n        \"full_name\": \"John Smith\",\n        \"profile_picture\": \"URL\",\n        \"website\": \"example.org\",\n        \"count\": {\n          \"media\": 2,\n          \"follows\": 3,\n          \"followed_by\": 5\n        }\n      }\n    ]\n  },\n  \"link\": \"link\",\n  \"created_time\": \"1386312776\",\n  \"id\": \"id\",\n  \"location\": {\n    \"latitude\": 37.77872018361018,\n    \"longitude\": -122.3962783813477,\n    \"id\": \"520640\",\n    \"street_address\": \"\",\n    \"name\": \"Le Truc\"\n  }\n}",
@@ -3585,6 +4092,9 @@
                 "street_address": "",
                 "name": "Le Truc"
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -3633,6 +4143,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "position": {
@@ -3661,6 +4174,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "y": {
@@ -3680,6 +4196,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -3692,6 +4211,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -3701,6 +4223,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"user\": {\n    \"id\": \"1\",\n    \"username\": \"John\",\n    \"full_name\": \"John Smith\",\n    \"profile_picture\": \"URL\",\n    \"website\": \"example.org\",\n    \"count\": {\n      \"media\": 2,\n      \"follows\": 3,\n      \"followed_by\": 5\n    }\n  },\n  \"position\": {\n    \"x\": 275,\n    \"y\": 705\n  }\n}",
@@ -3723,6 +4248,9 @@
                 "x": 275,
                 "y": 705
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -3850,6 +4378,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
+                  },
                   "items": "types.UsersInPhoto"
                 },
                 "filter": {
@@ -3869,6 +4400,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "tags": {
@@ -3888,6 +4422,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   },
                   "items": "string "
                 },
@@ -3918,6 +4455,9 @@
                           }
                         }
                       },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
+                      },
                       "items": "types.Comment"
                     },
                     "count": {
@@ -3937,6 +4477,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     }
                   },
@@ -3949,6 +4492,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "caption": {
@@ -3968,6 +4514,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "likes": {
@@ -3987,6 +4536,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "link": {
@@ -4006,6 +4558,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "user": {
@@ -4025,6 +4580,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "created_time": {
@@ -4044,6 +4602,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "id": {
@@ -4063,6 +4624,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "location": {
@@ -4082,6 +4646,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -4094,6 +4661,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -4103,6 +4673,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"data\": {\n    \"users_in_photo\": [\n      {\n        \"user\": {\n          \"id\": \"1\",\n          \"username\": \"John\",\n          \"full_name\": \"John Smith\",\n          \"profile_picture\": \"URL\",\n          \"website\": \"example.org\",\n          \"count\": {\n            \"media\": 2,\n            \"follows\": 3,\n            \"followed_by\": 5\n          }\n        },\n        \"position\": {\n          \"x\": 275,\n          \"y\": 705\n        }\n      }\n    ],\n    \"filter\": \"filter\",\n    \"tags\": [\n      \"forest\",\n      \"animals\"\n    ],\n    \"comments\": {\n      \"data\": [\n        {\n          \"created_time\": \"1382576494\",\n          \"text\": \"text\",\n          \"from\": {\n            \"username\": \"John\",\n            \"id\": \"2000\",\n            \"full_name\": \"John Smith\"\n          },\n          \"id\": \"200\"\n        }\n      ]\n    },\n    \"caption\": {\n      \"created_time\": \"1296710352\",\n      \"text\": \"Inside le truc\",\n      \"from\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin Systrom\",\n        \"type\": \"user\",\n        \"id\": \"3\"\n      },\n      \"id\": \"26621408\"\n    },\n    \"likes\": {\n      \"count\": 42,\n      \"data\": [\n        {\n          \"id\": \"1\",\n          \"username\": \"John\",\n          \"full_name\": \"John Smith\",\n          \"profile_picture\": \"URL\",\n          \"website\": \"example.org\",\n          \"count\": {\n            \"media\": 2,\n            \"follows\": 3,\n            \"followed_by\": 5\n          }\n        }\n      ]\n    },\n    \"link\": \"link\",\n    \"created_time\": \"1386312776\",\n    \"id\": \"id\",\n    \"location\": null,\n    \"user\": {\n      \"id\": \"1\",\n      \"username\": \"John\",\n      \"full_name\": \"John Smith\",\n      \"profile_picture\": \"URL\",\n      \"website\": \"example.org\",\n      \"count\": {\n        \"media\": 2,\n        \"follows\": 3,\n        \"followed_by\": 5\n      }\n    }\n  }\n}",
@@ -4194,6 +4767,9 @@
                   }
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -4305,6 +4881,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "type": {
@@ -4324,6 +4903,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "users_in_photo": {
@@ -4344,6 +4926,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "types.UsersInPhoto"
             },
             "filter": {
@@ -4363,6 +4948,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "tags": {
@@ -4382,6 +4970,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               },
               "items": "string"
             },
@@ -4412,6 +5003,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
+                  },
                   "items": "types.Comment"
                 },
                 "count": {
@@ -4431,6 +5025,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -4443,6 +5040,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "caption": {
@@ -4462,6 +5062,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "likes": {
@@ -4481,6 +5084,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "link": {
@@ -4500,6 +5106,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "user": {
@@ -4519,6 +5128,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "created_time": {
@@ -4538,6 +5150,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "id": {
@@ -4557,6 +5172,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "images": {
@@ -4576,6 +5194,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "location": {
@@ -4595,6 +5216,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -4604,6 +5228,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"distance\": 50,\n  \"users_in_photo\": [\n    {\n      \"user\": {\n        \"id\": \"1\",\n        \"username\": \"John\",\n        \"full_name\": \"John Smith\",\n        \"profile_picture\": \"URL\",\n        \"website\": \"example.org\",\n        \"count\": {\n          \"media\": 2,\n          \"follows\": 3,\n          \"followed_by\": 5\n        }\n      },\n      \"position\": {\n        \"x\": 275,\n        \"y\": 705\n      }\n    }\n  ],\n  \"filter\": \"filter\",\n  \"tags\": [\n    \"forest\",\n    \"animals\"\n  ],\n  \"comments\": {\n    \"data\": [\n      {\n        \"created_time\": \"1382576494\",\n        \"text\": \"text\",\n        \"from\": {\n          \"username\": \"John\",\n          \"id\": \"2000\",\n          \"full_name\": \"John Smith\"\n        },\n        \"id\": \"200\"\n      }\n    ]\n  },\n  \"caption\": null,\n  \"likes\": {\n    \"count\": 42,\n    \"data\": [\n      {\n        \"id\": \"1\",\n        \"username\": \"John\",\n        \"full_name\": \"John Smith\",\n        \"profile_picture\": \"URL\",\n        \"website\": \"example.org\",\n        \"count\": {\n          \"media\": 2,\n          \"follows\": 3,\n          \"followed_by\": 5\n        }\n      }\n    ]\n  },\n  \"link\": \"link\",\n  \"created_time\": \"1386312776\",\n  \"id\": \"id\",\n  \"location\": {\n    \"id\": \"833\",\n    \"latitude\": 37.77956,\n    \"longitude\": -122.4138,\n    \"name\": \"Civic Center BART\"\n  },\n  \"user\": {\n    \"id\": \"1\",\n    \"username\": \"John\",\n    \"full_name\": \"John Smith\",\n    \"profile_picture\": \"URL\",\n    \"website\": \"example.org\",\n    \"count\": {\n      \"media\": 2,\n      \"follows\": 3,\n      \"followed_by\": 5\n    }\n  }\n}",
@@ -4689,6 +5316,9 @@
                   "followed_by": 5
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -4823,6 +5453,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             },
             "videos": {
@@ -4860,6 +5493,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     },
                     "width": {
@@ -4879,6 +5515,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     },
                     "height": {
@@ -4898,6 +5537,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     }
                   },
@@ -4910,6 +5552,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "standard_resolution": {
@@ -4938,6 +5583,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     },
                     "width": {
@@ -4957,6 +5605,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     },
                     "height": {
@@ -4976,6 +5627,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     }
                   },
@@ -4988,6 +5642,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "users_in_photo": {
@@ -5008,6 +5665,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
+                  },
                   "items": "types.UsersInPhoto"
                 },
                 "type": {
@@ -5027,6 +5687,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "filter": {
@@ -5046,6 +5709,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "tags": {
@@ -5065,6 +5731,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   },
                   "items": "string"
                 },
@@ -5095,6 +5764,9 @@
                           }
                         }
                       },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
+                      },
                       "items": "types.Comment"
                     },
                     "count": {
@@ -5114,6 +5786,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "lib/types.raml"
                       }
                     }
                   },
@@ -5126,6 +5801,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "caption": {
@@ -5145,6 +5823,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "likes": {
@@ -5164,6 +5845,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "link": {
@@ -5183,6 +5867,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "user": {
@@ -5202,6 +5889,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "created_time": {
@@ -5221,6 +5911,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "id": {
@@ -5240,6 +5933,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "images": {
@@ -5259,6 +5955,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 },
                 "location": {
@@ -5278,6 +5977,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib/types.raml"
                   }
                 }
               },
@@ -5290,6 +5992,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -5299,6 +6004,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           },
           "structuredExample": {
             "value": "{\n  \"distance\": 50,\n  \"videos\": {\n    \"low_resolution\": {\n      \"url\": \"URL\",\n      \"width\": 200,\n      \"height\": 400\n    },\n    \"standard_resolution\": {\n      \"url\": \"URL\",\n      \"width\": 400,\n      \"height\": 600\n    },\n    \"users_in_photo\": [\n      {\n        \"user\": {\n          \"id\": \"1\",\n          \"username\": \"John\",\n          \"full_name\": \"John Smith\",\n          \"profile_picture\": \"URL\",\n          \"website\": \"example.org\",\n          \"count\": {\n            \"media\": 2,\n            \"follows\": 3,\n            \"followed_by\": 5\n          }\n        },\n        \"position\": {\n          \"x\": 275,\n          \"y\": 705\n        }\n      }\n    ],\n    \"filter\": \"filter\",\n    \"tags\": [\n      \"forest\",\n      \"animals\"\n    ],\n    \"comments\": {\n      \"data\": [\n        {\n          \"created_time\": \"1382576494\",\n          \"text\": \"text\",\n          \"from\": {\n            \"username\": \"John\",\n            \"id\": \"2000\",\n            \"full_name\": \"John Smith\"\n          },\n          \"id\": \"200\"\n        }\n      ]\n    },\n    \"caption\": {\n      \"created_time\": \"1296710352\",\n      \"text\": \"Inside le truc\",\n      \"from\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin Systrom\",\n        \"type\": \"user\",\n        \"id\": \"3\"\n      },\n      \"id\": \"26621408\"\n    },\n    \"likes\": {\n      \"count\": 42,\n      \"data\": [\n        {\n          \"id\": \"1\",\n          \"username\": \"John\",\n          \"full_name\": \"John Smith\",\n          \"profile_picture\": \"URL\",\n          \"website\": \"example.org\",\n          \"count\": {\n            \"media\": 2,\n            \"follows\": 3,\n            \"followed_by\": 5\n          }\n        }\n      ]\n    },\n    \"link\": \"link\",\n    \"created_time\": \"1386312776\",\n    \"id\": \"id\",\n    \"location\": {\n      \"latitude\": 37.77872018361018,\n      \"longitude\": -122.3962783813477,\n      \"id\": \"520640\",\n      \"street_address\": \"\",\n      \"name\": \"Le Truc\"\n    },\n    \"user\": {\n      \"id\": \"1\",\n      \"username\": \"John\",\n      \"full_name\": \"John Smith\",\n      \"profile_picture\": \"URL\",\n      \"website\": \"example.org\",\n      \"count\": {\n        \"media\": 2,\n        \"follows\": 3,\n        \"followed_by\": 5\n      }\n    }\n  }\n}",
@@ -5407,6 +6115,9 @@
                   }
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             }
           }
         }
@@ -5437,6 +6148,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/types.raml"
               }
             }
           },
@@ -5446,6 +6160,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           }
         }
       },
@@ -5476,6 +6193,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "lib/types.raml"
+              },
               "items": "(types.MediaSearchFirstType | types.MediaSearchSecondType)"
             }
           },
@@ -5485,6 +6205,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/types.raml"
           }
         }
       }
@@ -5516,15 +6239,24 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/acceptCallback.raml"
+              },
               "structuredExample": {
                 "value": "callbackFunction",
                 "strict": true,
                 "name": null,
-                "structuredValue": "callbackFunction"
+                "structuredValue": "callbackFunction",
+                "sourceMap": {
+                  "path": "traits/acceptCallback.raml"
+                }
               }
             }
           },
-          "name": "acceptCallback"
+          "name": "acceptCallback",
+          "sourceMap": {
+            "path": "traits/acceptCallback.raml"
+          }
         }
       },
       {
@@ -5548,6 +6280,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             },
             "lng": {
@@ -5568,6 +6303,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             },
             "distance": {
@@ -5590,10 +6328,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             }
           },
-          "name": "limitableByGeoPoint"
+          "name": "limitableByGeoPoint",
+          "sourceMap": {
+            "path": "traits/limitableByGeoPoint.raml"
+          }
         }
       },
       {
@@ -5619,15 +6363,24 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/limitable.raml"
+              },
               "structuredExample": {
                 "value": "1",
                 "strict": true,
                 "name": null,
-                "structuredValue": 1
+                "structuredValue": 1,
+                "sourceMap": {
+                  "path": "traits/limitable.raml"
+                }
               }
             }
           },
-          "name": "limitable"
+          "name": "limitable",
+          "sourceMap": {
+            "path": "traits/limitable.raml"
+          }
         }
       },
       {
@@ -5651,6 +6404,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByTime.raml"
               }
             },
             "min_timestamp": {
@@ -5671,10 +6427,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByTime.raml"
               }
             }
           },
-          "name": "limitableByTime"
+          "name": "limitableByTime",
+          "sourceMap": {
+            "path": "traits/limitableByTime.raml"
+          }
         }
       },
       {
@@ -5698,6 +6460,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableById.raml"
               }
             },
             "max_id": {
@@ -5718,10 +6483,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableById.raml"
               }
             }
           },
-          "name": "limitableById"
+          "name": "limitableById",
+          "sourceMap": {
+            "path": "traits/limitableById.raml"
+          }
         }
       }
     ],
@@ -5739,6 +6510,9 @@
             }
           ],
           "name": "usersListing",
+          "sourceMap": {
+            "path": "resourceTypes/usersListing.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -5783,6 +6557,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/usersListing.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                       "strict": true,
@@ -5811,9 +6588,15 @@
                             "last_name": "Tiddy"
                           }
                         ]
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/usersListing.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/usersListing.raml"
                 }
               }
             },
@@ -5833,6 +6616,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/usersListing.raml"
             }
           }
         }
@@ -5841,6 +6627,9 @@
         "mediaSearch": {
           "type": "base",
           "name": "mediaSearch",
+          "sourceMap": {
+            "path": "resourceTypes/mediaSearch.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -5954,6 +6743,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/mediaSearch.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"data\": {\n        \"distance\" : 50,\n        \"type\": \"image\",\n        \"users_in_photo\": [{\n            \"user\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n            },\n            \"position\": {\n                \"x\": 0.315,\n                \"y\": 0.9111\n            }\n        }],\n        \"filter\": \"Walden\",\n        \"tags\": [],\n        \"comments\": {\n            \"data\": [{\n                \"created_time\": \"1279332030\",\n                \"text\": \"Love the sign here\",\n                \"from\": {\n                    \"username\": \"mikeyk\",\n                    \"full_name\": \"Mikey Krieger\",\n                    \"id\": \"4\",\n                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n                },\n                \"id\": \"8\"\n            }],\n            \"count\": 2\n        },\n        \"caption\": {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"likes\": {\n            \"count\": 1,\n            \"data\": [{\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikeyk\",\n                \"id\": \"4\",\n                \"profile_picture\": \"...\"\n            }]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"...\",\n            \"bio\": \"...\",\n            \"website\": \"...\",\n            \"id\": \"3\"\n        },\n        \"created_time\": \"1279340983\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"id\": \"3\",\n        \"location\": {\n            \"id\": \"id\",\n            \"latitude\": -34,\n            \"longitude\": -53,\n            \"name\": \"some place\"\n        }\n    }\n}\n",
                       "strict": true,
@@ -6051,13 +6843,22 @@
                             "name": "some place"
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/mediaSearch.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/mediaSearch.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/mediaSearch.raml"
+            }
           }
         }
       },
@@ -6074,6 +6875,9 @@
             }
           ],
           "name": "secured",
+          "sourceMap": {
+            "path": "resourceTypes/secured.raml"
+          },
           "delete": {
             "responses": {
               "200": {
@@ -6102,6 +6906,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                       "strict": true,
@@ -6111,9 +6918,15 @@
                           "code": 200
                         },
                         "data": null
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/secured.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
                 }
               }
             },
@@ -6129,6 +6942,9 @@
             "method": "delete",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
           },
           "post": {
@@ -6156,6 +6972,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                       "strict": true,
@@ -6165,9 +6984,15 @@
                           "code": 200
                         },
                         "data": null
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/secured.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
                 }
               }
             },
@@ -6183,6 +7008,9 @@
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
           }
         }
@@ -6190,35 +7018,53 @@
       {
         "base": {
           "name": "base",
+          "sourceMap": {
+            "path": "resourceTypes/base.raml"
+          },
           "delete": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "method": "delete",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           },
           "post": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           },
           "get": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "is": [
@@ -6228,6 +7074,9 @@
             "method": "get",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           }
         }
@@ -6236,6 +7085,9 @@
         "feedsListing": {
           "type": "base",
           "name": "feedsListing",
+          "sourceMap": {
+            "path": "resourceTypes/feedsListing.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -6440,6 +7292,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/feedsListing.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"data\": [{\n        \"distance\" : 50,\n        \"location\": {\n            \"id\": \"833\",\n            \"latitude\": 37.77956816727314,\n            \"longitude\": -122.41387367248539,\n            \"street_address\": \"\",\n            \"name\": \"Civic Center BART\"\n        },\n        \"comments\": {\n            \"count\": 16,\n            \"data\": [  ]\n        },\n        \"caption\":  {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"link\": \"http://instagr.am/p/BXsFz/\",\n        \"likes\": {\n            \"count\": 190,\n            \"data\": [{\n                \"username\": \"shayne\",\n                \"full_name\": \"Shayne Sweeney\",\n                \"id\": \"20\",\n                \"profile_picture\": \"...\"\n            }, {}]\n        },\n        \"created_time\": \"1296748524\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"type\": \"image\",\n        \"users_in_photo\": [{\n            \"user\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n            },\n            \"position\": {\n                \"x\": 0.315,\n                \"y\": 0.9111\n            }\n        }],\n        \"filter\": \"Earlybird\",\n        \"tags\": [],\n        \"id\": \"22987123\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n            \"id\": \"3\"\n        }\n    },\n    {\n        \"distance\" : 50,\n        \"videos\": {\n            \"low_resolution\": {\n                \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n                \"width\": 480,\n                \"height\": 480\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n                \"width\": 640,\n                \"height\": 640\n            },\n        \"comments\": {\n            \"data\": [{\n                \"created_time\": \"1279332030\",\n                \"text\": \"Love the sign here\",\n                \"from\": {\n                    \"username\": \"mikeyk\",\n                    \"full_name\": \"Mikey Krieger\",\n                    \"id\": \"4\",\n                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n                },\n                \"id\": \"8\"\n            },\n            {\n                \"created_time\": \"1279341004\",\n                \"text\": \"Chilako taco\",\n                \"from\": {\n                    \"username\": \"kevin\",\n                    \"full_name\": \"Kevin S\",\n                    \"id\": \"3\",\n                    \"profile_picture\": \"...\"\n                },\n                \"id\": \"3\"\n            }],\n            \"count\": 2\n        },\n        \"caption\": {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"likes\": {\n            \"count\": 1,\n            \"data\": [{\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikeyk\",\n                \"id\": \"4\",\n                \"profile_picture\": \"...\"\n            }]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n            \"id\": \"3\"\n        },\n            \"location\": {\n                \"id\": \"833\",\n                \"latitude\": 37.77956816727314,\n                \"longitude\": -122.41387367248539,\n                \"street_address\": \"\",\n                \"name\": \"Civic Center BART\"\n            }\n    }}]\n}\n",
                       "strict": true,
@@ -6628,13 +7483,22 @@
                             }
                           }
                         ]
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/feedsListing.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/feedsListing.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/feedsListing.raml"
+            }
           }
         }
       }
@@ -6668,8 +7532,14 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
                 }
               }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
             }
           },
           "settings": {
@@ -6683,7 +7553,13 @@
               "comments",
               "relationships",
               "likes"
-            ]
+            ],
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
           }
         }
       },
@@ -6717,18 +7593,33 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "securitySchemes/clientId.raml"
+                },
                 "structuredExample": {
                   "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893"
+                  "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893",
+                  "sourceMap": {
+                    "path": "securitySchemes/clientId.raml"
+                  }
                 }
               }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/clientId.raml"
             }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/clientId.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

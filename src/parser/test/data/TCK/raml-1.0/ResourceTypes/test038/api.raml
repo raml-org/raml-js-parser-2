@@ -1,0 +1,45 @@
+#%RAML 1.0
+
+title: test API
+
+annotationTypes:
+  a1: string
+  a2:
+    properties:
+      p1: string
+      p2: number
+
+resourceTypes:
+  rt:
+    post:
+      body:
+        application/json:
+          (a1): <<param01>>
+          (a2):
+            p1: <<param02>>
+            p2: <<param03>>
+            <<param04>>: stringValue
+          (<<param05>>): stringValue
+          type: <<param06>>
+          items: <<param07>>|string
+          <<param08>>:
+            something: anything
+          facets:
+            f1: <<param09>>
+            <<param10>>: string
+            f2: unknownType
+          properties:
+            p1: <<param11>>
+            <<param12>>: string
+            p2:
+              (a1): <<param13>>
+              (a2):
+                p1: <<param14>>
+                p2: <<param15>>
+                <<param16>>: stringValue
+              (<<param17>>): stringValue
+            p3:
+              (a1): 15
+          minimum: 15
+          maxProperties: 5
+          invalidFacet: 14

@@ -1,0 +1,142 @@
+[
+  {
+    "datum": "2016-10-04",
+    "ziehungen": [
+      {
+        "datum": "2016-10-04",
+        "ziehungsart": {
+          "key": "Geldziehung",
+          "name": "Geldziehung"
+        },
+        "ergebnisse": [
+          {
+            "nummern": [
+              "8985318"
+            ],
+            "ziehungsrang": "Rang 1",
+            "anzahlEndziffern": 7,
+            "gewinnMonatlich": 100000,
+            "gewinnEinmalig": 0
+          },
+          {
+            "nummern": [
+              "936729",
+              "723845"
+            ],
+            "ziehungsrang": "Rang 2",
+            "anzahlEndziffern": 6,
+            "gewinnMonatlich": 10000,
+            "gewinnEinmalig": 0
+          },
+          {
+            "nummern": [
+              "58410",
+              "17426",
+              "98205",
+              "62531"
+            ],
+            "ziehungsrang": "Rang 3",
+            "anzahlEndziffern": 5,
+            "gewinnMonatlich": 5000,
+            "gewinnEinmalig": 0
+          },
+          {
+            "nummern": [
+              "5233"
+            ],
+            "ziehungsrang": "Rang 4",
+            "anzahlEndziffern": 4,
+            "gewinnMonatlich": 5000,
+            "gewinnEinmalig": 0
+          },
+          {
+            "nummern": [
+              "529531"
+            ],
+            "ziehungsrang": "Rang 5",
+            "anzahlEndziffern": 3,
+            "gewinnMonatlich": 5000,
+            "gewinnEinmalig": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "datum": "2016-10-11",
+    "ziehungen": [
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Geldziehung",
+          "name": "Geldziehung"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Traumhaus",
+          "name": "Traumhaus"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Haushaltsgeld",
+          "name": "Haushaltsgeld"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Rentenziehung",
+          "name": "Rentenziehung"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "SuperGewinn2Millionen",
+          "name": "Super Gewinn 2 Millionen"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Sofortgewinn",
+          "name": "Sofortgewinn"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Kombigewinn",
+          "name": "Kombigewinn"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Dauergewinn",
+          "name": "Dauergewinn"
+        },
+        "ergebnisse": []
+      },
+      {
+        "datum": "2016-10-11",
+        "ziehungsart": {
+          "key": "Zusatzspiel",
+          "name": "Zusatzspiel"
+        },
+        "ergebnisse": []
+      }
+    ]
+  }
+]

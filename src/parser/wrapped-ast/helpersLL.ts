@@ -46,8 +46,9 @@ export function uriParameters(resource:hl.IHighLevelNode,serializeMetadata=false
     if(!universeHelpers.isResourceType(resource.definition())){
         return params;
     }
-    var uri = resource.attr(universes.Universe10.Resource.properties.relativeUri.name).value();
-    return extractParams(params, uri, resource, propName,serializeMetadata);
+    let uriAttr = resource.attr(universes.Universe10.Resource.properties.relativeUri.name);
+    var uri = uriAttr.value();
+    return extractParams(params, uri, resource, propName,serializeMetadata,uriAttr);
 }
 
 /**
@@ -71,7 +72,7 @@ export function baseUriParameters(api:hl.IHighLevelNode,serializeMetadata=true):
     var propName = universes.Universe10.Api.properties.baseUriParameters.name;
     var params = api.elementsOfKind(propName);
 
-    return extractParams(params, uri, api, propName,serializeMetadata);
+    return extractParams(params, uri, api, propName,serializeMetadata,buriAttr);
 }
 
 function extractParams(
@@ -79,7 +80,8 @@ function extractParams(
     uri:string,
     ownerHl:hl.IHighLevelNode,
     propName:string,
-    serializeMetadata:boolean):hl.IHighLevelNode[] {
+    serializeMetadata:boolean,
+    propAttr: hl.IAttribute):hl.IHighLevelNode[] {
 
     if(typeof(uri)!='string'){
         return [];
@@ -116,9 +118,10 @@ function extractParams(
             describedParams[paramName].forEach(x=>allParams.push(x));
         }
         else {
+            let propUnit = hlimpl.actualUnit(propAttr.lowLevel());
             var universe = definition.universe();
             var nc=<def.NodeClass>universe.type(universeDef.Universe10.StringTypeDeclaration.name);
-            var hlNode=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
+            var hlNode=stubs.createStubNode(nc,null,paramName,propUnit);
             hlNode.setParent(ownerHl);
             if(serializeMetadata) {
                 (<any>hlNode.wrapperNode().meta()).setCalculated();

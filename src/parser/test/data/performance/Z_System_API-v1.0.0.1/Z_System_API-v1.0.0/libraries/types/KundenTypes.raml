@@ -1,0 +1,152 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für Geschäftsobjekte der Domäne Kunden
+
+uses:
+  SharedTypes: SharedTypes.raml
+  FinanzenTypes: FinanzenTypes.raml
+
+types:
+  Person:
+    type: object
+    description: Eine natürliche Person.
+    properties:
+      personID:
+        type: integer
+        format: int64
+        description: UUID des Kunden, die sich auch nicht ändert, wenn die Email Adresse geändert wird. Kann benutzt werden, um auf Kundenidentitäten zu verweisen.
+        required: true
+      verwaltung:
+        type: object
+        properties:
+          wirdBetreut:
+            type: boolean
+            description: Gibt an, ob der Kunde betreut wird
+          betreuer:
+            type: integer
+            format: int64
+            description: personID des Betreuers, Verweis auf eine Person
+          rechtsnachfolger:
+            type: integer
+            format: int64
+            description: personID des Rechtsnachfolgers, Verweis auf eine Person
+      basisdaten:
+        type: object
+        properties:
+          anrede:
+            type: string
+            enum: [Herr, Frau, OHNE]
+            description: Anrede "Herr", "Frau", ohne Anrede
+          titel:
+            type: string
+          vorname:
+            type: string
+          namenszusatz:
+            type: string
+          nachname:
+            type: string
+          geburtsdatum:
+            type: date-only
+            description: Geburtstag des Kunden (Datum im Format nach full-date - RFC3339)
+            example: 2015-05-23
+      adressePrivat: SharedTypes.Adresse
+      adresseGeschaeftlich: SharedTypes.Adresse
+      kontaktPrivat:
+        type: object
+        properties:
+          email:
+            type: string
+          telefonnummer:
+            type: string
+          mobilnummer:
+            type: string
+            description: Mobilfunknummer des Kunden
+      kontaktGeschaeftlich:
+        type: object
+        properties:
+          email:
+            type: string
+          telefonnummer:
+            type: string
+          mobilnummer:
+            type: string
+          faxnummer:
+            type: string
+      kontaktkanal:
+        type: object
+        properties:
+          bevorzugterKontaktkanal:
+            type: string
+            enum: [beliebig, email, telefon, fax, post]
+          newsletterAbo:
+            type: boolean
+      stoppKennzeichen:
+        type: object
+        properties:
+          werbestopp:
+            type: boolean
+            description: Allgemeine Werbesperre. Ist die Sperre gesetzt, erhält der Kontakt keine Werbung von Aktion Mensch.
+          nichtAnrufen:
+            type: boolean
+          nichtAnmailen:
+            type: boolean
+          nichtanschreiben:
+            type: boolean
+      berufsdaten:
+        type: object
+        properties:
+          berufsgruppe:
+            type: string
+            description: Berufsgruppe des Kontakts - Schüler / Student 0, Hilfsarbeitskraft 1, Fachkraft 2, Akademischer Beruf 3, Geschäftsführung 4, Selbstständig 5, Rentner 6
+          beruf:
+            type: string
+          position:
+            type: string
+            description: Position bzw. Funktion, die diese Person bei einer Firma hat (z.B. Abteilungsleiter)
+      lotterie:
+        type: object
+        properties:
+          spieleinsatzlimit:
+            type: number
+            format: double
+            description: Spieleinsatzlimit des Kunden
+          datenVollstaendig:
+            type: boolean
+            description: Zeigt, ob aus Sicht des Servers die Kundeninformationen vollständig sind (um einen Loskauf durchzuführen)
+          volljaehrigkeitBestaetigt:
+            type: boolean
+            description: Zeigt an, ob der Kunde bereits die Volljährigkeitsprüfung erfolgreich absolviert hat - sei es durch Schufa Überprüfung oder manueller Prüfung des Personalausweis.
+          statusVolljaehrigkeitspruefung:
+            type: string
+            enum: [NichtGeprueft, HeuristischeAnnahme, GeprueftBestand, GeprueftSchufa]
+          urlausweisBild:
+            type: string
+            description: URL zu einem hochgeladenen Ausweisbild zur Volljährigkeitsprüfung.
+      finanzen:
+        type: object
+        properties:
+          zahlungsarten:
+            type: array
+            items: FinanzenTypes.Zahlungsart
+          primaereZahlungsart: FinanzenTypes.Zahlungsart
+      profil:
+        type: object
+        properties:
+          urlProfilBild:
+            type: string
+            description: URL des Profilbilds des Kunden (falls vorhanden).
+      app:
+        type: object
+        properties:
+          erlaubeLosPush:
+            type: boolean
+            description: Push-Nachrichten zu Losen erlaubt?
+          erlaubeGewinnPush:
+            type: boolean
+            description: Push-Nachricht bei Gewinn eines Loses erlaubt?
+          erlaubeZiehungsPush:
+            type: boolean
+            description: Push-Nachricht zu aktuellen Ziehungen erlaubt?
+          erlaubeNewsPush:
+            type: boolean
+            description: Push-Nachricht zu aktuellen Informationen erlaubt?

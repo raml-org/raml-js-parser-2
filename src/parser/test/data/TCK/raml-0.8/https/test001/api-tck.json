@@ -7,45 +7,69 @@
       {
         "a": {
           "name": "a",
+          "sourceMap": {
+            "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
+          },
           "delete": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
+                }
               }
             },
             "method": "delete",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
             }
           },
           "post": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
+                }
               }
             },
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
             }
           },
           "get": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
+                }
               }
             },
             "method": "get",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "https://gist.githubusercontent.com/y0an/3a089190b27596bed143/raw/7adea5ea4ac1ae70febb38e1cce69aa98bb90c40/base.yaml"
             }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

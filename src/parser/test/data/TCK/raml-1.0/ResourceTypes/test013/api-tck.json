@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "library.raml"
+        "value": "library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -26,6 +29,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -50,13 +56,22 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "hasResponseCollection.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "hasResponseCollection.raml"
               }
             }
           },
           "name": "hasResponseCollection",
-          "usage": "Use this trait for resources whose response body is a collection of items"
+          "usage": "Use this trait for resources whose response body is a collection of items",
+          "sourceMap": {
+            "path": "hasResponseCollection.raml"
+          }
         }
       },
       {
@@ -78,8 +93,14 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "hasResponseCollection.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "hasResponseCollection.raml"
               }
             }
           },
@@ -87,6 +108,9 @@
           "usage": "Use this trait for resources whose response body is a collection of items",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "hasResponseCollection.raml"
           }
         }
       }
@@ -96,19 +120,28 @@
         "collection": {
           "description": "A collection of <<resourcePathName|!uppercamelcase>>",
           "name": "collection",
+          "sourceMap": {
+            "path": "collection.raml"
+          },
           "get": {
             "is": [
               "lib.hasResponseCollection"
             ],
             "description": "Get all <<resourcePathName|!uppercamelcase>>,\noptionally filtered\n",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           },
           "post": {
             "is": [
               "hasResponseCollection"
             ],
             "description": "Create a <<resourcePathName|!uppercamelcase>>\n",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           }
         }
       }
@@ -135,8 +168,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "hasResponseCollection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
                 }
               }
             },
@@ -144,7 +183,10 @@
               "lib.hasResponseCollection"
             ],
             "description": "Get all Example,\noptionally filtered\n",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           },
           {
             "responses": {
@@ -164,8 +206,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "hasResponseCollection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
                 }
               }
             },
@@ -173,7 +221,10 @@
               "hasResponseCollection"
             ],
             "description": "Create a Example\n",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           }
         ],
         "type": "collection",
@@ -187,12 +238,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "example"
         ],
         "absoluteUri": "/example"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

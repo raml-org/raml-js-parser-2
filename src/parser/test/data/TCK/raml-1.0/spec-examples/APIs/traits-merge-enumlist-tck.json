@@ -30,10 +30,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits-merge-enumlist.raml"
               }
             }
           },
-          "name": "withQueryParameters"
+          "name": "withQueryParameters",
+          "sourceMap": {
+            "path": "traits-merge-enumlist.raml"
+          }
         }
       }
     ],
@@ -69,13 +75,19 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "traits-merge-enumlist.raml"
                 }
               }
             },
             "is": [
               "withQueryParameters"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "traits-merge-enumlist.raml"
+            }
           }
         ],
         "relativeUri": "/installer",
@@ -87,12 +99,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "traits-merge-enumlist.raml"
+        },
         "relativeUriPathSegments": [
           "installer"
         ],
         "absoluteUri": "/installer"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "traits-merge-enumlist.raml"
+    }
   },
   "errors": []
 }

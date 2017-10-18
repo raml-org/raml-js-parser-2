@@ -2,7 +2,7 @@
 var path = require('path');
 
 console.log(path.resolve(__dirname,'../../../../../../dist/parser/artifacts/raml08parser'))
-var converter = require('../../../../../../dist/util/ramlToJson08');
+var converter = require('../../../../../../dist/parser/test/converters-to-old-js-format/ramlToJson08');
 var raml1Parser = require('../../../../../../dist/parser/artifacts/raml08parser');
 var fs = require('fs');
 

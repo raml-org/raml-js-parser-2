@@ -5,11 +5,17 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libA.raml"
+        "value": "libA.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib.lib",
-        "value": "libB.raml"
+        "value": "libB.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -33,6 +39,9 @@
           "__METADATA__": {
             "calculated": true
           },
+          "sourceMap": {
+            "path": "libB.raml"
+          },
           "get": {
             "annotations": {
               "<<param1>>": {
@@ -40,7 +49,10 @@
                 "name": "<<param1>>"
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           "post": {
             "annotations": {
@@ -49,7 +61,10 @@
                 "name": "<<param2>>"
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           "put": {
             "annotations": {
@@ -58,7 +73,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           "delete": {
             "annotations": {
@@ -75,7 +93,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           }
         }
       },
@@ -90,6 +111,9 @@
           "name": "lib.rt",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "libA.raml"
           }
         }
       }
@@ -109,6 +133,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -138,7 +165,10 @@
                 "name": "Monkey"
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           {
             "annotations": {
@@ -147,7 +177,10 @@
                 "name": "lib.Monkey"
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           {
             "annotations": {
@@ -156,7 +189,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           },
           {
             "annotations": {
@@ -173,7 +209,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           }
         ],
         "type": {
@@ -190,12 +229,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

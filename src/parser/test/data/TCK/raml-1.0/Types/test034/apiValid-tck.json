@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -42,11 +45,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -69,11 +78,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -91,6 +106,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -110,11 +128,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -135,6 +159,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -157,11 +184,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -179,6 +212,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -198,11 +234,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -220,6 +262,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -239,11 +284,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -264,6 +315,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -286,11 +340,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -311,6 +371,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -333,11 +396,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "stringValue",
             "strict": true,
             "name": null,
-            "structuredValue": "stringValue"
+            "structuredValue": "stringValue",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
@@ -370,6 +439,9 @@
                 "strProp_61": "stringValue_StringType_61",
                 "strProp_70": "stringValue_StringType_70",
                 "strProp_71": "stringValue_StringType_71"
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             {
@@ -392,6 +464,9 @@
                 "strProp_61": "",
                 "strProp_70": "",
                 "strProp_71": ""
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           ],
@@ -413,6 +488,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_11": {
@@ -432,6 +510,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_12": {
@@ -451,6 +532,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_20": {
@@ -470,6 +554,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_21": {
@@ -489,6 +576,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_30": {
@@ -508,6 +598,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_31": {
@@ -527,6 +620,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_40": {
@@ -546,6 +642,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_41": {
@@ -565,6 +664,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_50": {
@@ -584,6 +686,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_51": {
@@ -603,6 +708,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_60": {
@@ -622,6 +730,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_61": {
@@ -641,6 +752,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_70": {
@@ -660,6 +774,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "strProp_71": {
@@ -679,6 +796,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -691,11 +811,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

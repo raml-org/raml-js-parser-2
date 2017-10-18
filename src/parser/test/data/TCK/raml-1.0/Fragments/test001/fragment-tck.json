@@ -25,6 +25,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "fragment.raml"
         }
       },
       "prop2": {
@@ -44,13 +47,19 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "fragment.raml"
         }
       }
     },
     "uses": [
       {
         "key": "lib",
-        "value": "lib/lib.raml"
+        "value": "lib/lib.raml",
+        "sourceMap": {
+          "path": "fragment.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -62,6 +71,9 @@
           "insertedAsDefault": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "fragment.raml"
     }
   },
   "errors": []

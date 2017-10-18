@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "decls",
-        "value": "lib/decls.raml"
+        "value": "lib/decls.raml",
+        "sourceMap": {
+          "path": "slave.raml"
+        }
       }
     ],
     "title": "Slave RAML",
@@ -21,11 +24,17 @@
             },
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "master.raml"
+                }
               }
             },
             "description": "describing your method here\n",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "slave.raml"
+            }
           }
         ],
         "relativeUri": "/elements",
@@ -37,13 +46,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "slave.raml"
+        },
         "relativeUriPathSegments": [
           "elements"
         ],
         "absoluteUri": "/elements"
       }
     ],
-    "extends": "master.raml"
+    "extends": "master.raml",
+    "sourceMap": {
+      "path": "slave.raml"
+    }
   },
   "errors": []
 }

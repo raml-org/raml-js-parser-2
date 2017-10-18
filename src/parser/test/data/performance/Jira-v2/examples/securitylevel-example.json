@@ -1,0 +1,6 @@
+{
+  "self" : "http://localhost:8090/jira/rest/api/2/securitylevel/10021" ,
+  "id" : "10000" ,
+  "description" : "Only the reporter and internal staff can see this issue." ,
+  "name" : "Reporter Only"
+}

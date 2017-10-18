@@ -1,0 +1,109 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "update" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "summary" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "set" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "timetracking" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "edit" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "originalEstimate" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "remainingEstimate" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        } ,
+        "labels" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "add" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            } , {
+              "type" : "object" ,
+              "properties" : {
+                "remove" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "components" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "set" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        }
+      }
+    } ,
+    "fields" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "summary" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "customfield_10010" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "customfield_10000" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "SongId": "{ \"type\": \"integer\" }"
+      },
+      {
+        "SongDuration": "{ \"type\": \"number\" }"
+      },
+      {
+        "SongType": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n"
+      },
+      {
+        "SongName": "{\n  \"type\": \"string\"\n}\n"
+      },
+      {
+        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+      },
+      {
+        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+      }
+    ],
+    "resourceTypes": {
+      "rt": {
+        "name": "rt",
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "Included1",
+                "schemaContent": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+              }
+            },
+            "method": "post"
+          },
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "Included2",
+                "schemaContent": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+              }
+            },
+            "method": "put"
+          }
+        }
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "type": "rt",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "SongId",
+                    "schemaContent": "{ \"type\": \"integer\" }"
+                  }
+                }
+              },
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "SongDuration",
+                    "schemaContent": "{ \"type\": \"number\" }"
+                  }
+                }
+              },
+              "202": {
+                "code": "202",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "SongType",
+                    "schemaContent": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n"
+                  }
+                }
+              },
+              "203": {
+                "code": "203",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "SongName",
+                    "schemaContent": "{\n  \"type\": \"string\"\n}\n"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "Included1",
+                "schemaContent": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+              }
+            },
+            "method": "post"
+          },
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "Included2",
+                "schemaContent": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+              }
+            },
+            "method": "put"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}
