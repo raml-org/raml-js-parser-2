@@ -39,7 +39,7 @@
     "mkdirp": "^0.5.1",
     "pluralize": "^7.0.0",
     "q": "^1.5.0",
-    "raml-definition-system": "0.0.70",
+    "raml-definition-system": "0.0.71",
     "then-request": "^4.1.0",
     "ts-structure-parser": "0.0.14",
     "ts-model": "0.0.16",
