@@ -49,7 +49,7 @@
                 "displayName": "numericParam",
                 "type": "number",
                 "required": false,
-                "example": "111",
+                "example": 111,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

@@ -1,143 +1,89 @@
 {
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "specification": {
-    "title": "A",
-    "resourceTypes": {
-      "Resource": {
-        "name": "Resource",
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "a": {
-                "name": "a",
-                "displayName": "a",
-                "type": "number",
-                "required": false,
-                "repeat": false,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              "b": {
-                "name": "b",
-                "displayName": "b",
-                "type": "boolean",
-                "required": false,
-                "repeat": false,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              "c": {
-                "name": "c",
-                "displayName": "c",
-                "type": "string",
-                "required": false,
-                "repeat": false,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "method": "get"
-          }
-        }
-      }
-    },
+    "title": "test API",
     "resources": [
       {
         "relativeUri": "/resource",
-        "type": "Resource",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json"
-                  }
-                }
-              }
-            },
+        "methods": [
+          {
             "queryParameters": {
-              "a": {
-                "name": "a",
-                "displayName": "a",
-                "type": "number",
-                "required": false,
-                "example": 11,
-                "repeat": false,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              "b": {
-                "name": "b",
-                "displayName": "b",
-                "type": "boolean",
-                "required": false,
-                "example": true,
-                "repeat": false,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              "c": {
-                "name": "c",
-                "displayName": "c",
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
                 "type": "string",
                 "required": false,
-                "example": "stringValue",
+                "default": "0",
+                "example": "0",
+                "repeat": false,
+                "enum": [
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "param2": {
+                "name": "param2",
+                "displayName": "param2",
+                "type": "string",
+                "required": false,
+                "default": "true",
+                "example": "false",
+                "repeat": false,
+                "enum": [
+                  "0",
+                  "1",
+                  "true",
+                  "false"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "param3": {
+                "name": "param3",
+                "displayName": "param3",
+                "type": "number",
+                "required": false,
+                "default": 0,
+                "example": 0,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -151,12 +97,43 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "param4": {
+                "name": "param4",
+                "displayName": "param4",
+                "type": "boolean",
+                "required": false,
+                "default": true,
+                "example": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -165,16 +142,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource",
-        "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "errors": []
 }

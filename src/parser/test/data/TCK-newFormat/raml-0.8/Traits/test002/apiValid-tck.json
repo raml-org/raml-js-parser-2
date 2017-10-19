@@ -89,7 +89,7 @@
                 "displayName": "a",
                 "type": "number",
                 "required": false,
-                "example": "11",
+                "example": 11,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -110,7 +110,7 @@
                 "displayName": "b",
                 "type": "boolean",
                 "required": false,
-                "example": "true",
+                "example": true,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

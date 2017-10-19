@@ -131,7 +131,7 @@
                 "displayName": "c",
                 "type": "boolean",
                 "required": false,
-                "example": "true",
+                "example": true,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

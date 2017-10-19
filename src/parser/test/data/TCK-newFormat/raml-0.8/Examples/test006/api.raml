@@ -1,0 +1,22 @@
+#%RAML 0.8
+title: test API
+
+/resource:
+  get:
+    queryParameters:
+      param1:
+        example: 0
+        default: 0
+        enum: [ 0, 1, 2, 3 ]
+      param2:
+        example: false
+        default: true
+        enum: [ 0, 1, true, false ]
+      param3:
+        type: number
+        example: 0
+        default: 0
+      param4:
+        type: boolean
+        example: false
+        default: true

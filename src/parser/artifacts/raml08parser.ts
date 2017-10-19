@@ -1280,8 +1280,8 @@ setDefault( param:any ){
         /**
          * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
          **/
-example(  ):string{
-             return <string>super.attribute('example', this.toString);
+example(  ):any{
+             return <any>super.attribute('example', this.toAny);
          }
 
 
@@ -1289,7 +1289,7 @@ example(  ):string{
          * @hidden
          * Set example value
          **/
-setExample( param:string ){
+setExample( param:any ){
             this.highLevel().attrOrCreate("example").setValue(""+param);
             return this;
         }
