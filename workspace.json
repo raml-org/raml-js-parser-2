@@ -12,7 +12,8 @@
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
-    "gitUrl" : "https://github.com/raml-org/raml-typesystem.git"
+    "gitUrl" : "https://github.com/raml-org/raml-typesystem.git",
+    "gitBranch": "hotfix-1.1.34"
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
@@ -28,7 +29,8 @@
   },
   "yaml-ast-parser" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git"
+    "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git",
+    "gitBranch": "hotfix-1.1.34"
   },
   "ts-model" : {
     "build" : "npm run build",
