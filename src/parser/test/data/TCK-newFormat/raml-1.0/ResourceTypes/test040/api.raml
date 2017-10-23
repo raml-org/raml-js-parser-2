@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: test API
+
+mediaType: application/json
+
+resourceTypes:
+  collection:
+    get:
+      description: List <<resourcePathName>>
+      responses:
+        200:
+          body:
+            type: ResponseWrapper
+            properties:
+              response:
+                type: <<objectType>>List
+
+types:
+  ResponseWrapper:
+    properties:
+      response?: object

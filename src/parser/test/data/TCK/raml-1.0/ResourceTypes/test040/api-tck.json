@@ -1,0 +1,130 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ResponseWrapper": {
+          "name": "ResponseWrapper",
+          "displayName": "ResponseWrapper",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "response": {
+              "name": "response",
+              "displayName": "response",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "sourceMap": {
+            "path": "api.raml"
+          },
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "ResponseWrapper"
+                    ],
+                    "properties": {
+                      "response": {
+                        "name": "response",
+                        "displayName": "response",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "<<objectType>>List"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "description": "List <<resourcePathName>>",
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}
