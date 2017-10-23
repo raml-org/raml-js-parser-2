@@ -534,6 +534,12 @@ export class JsonSerializer {
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);
             }
+            if(y.range.start==null){
+                return 1;
+            }
+            else if(x.range.start==null){
+                return -1;
+            }
             if (x.range.start.position != y.range.start.position) {
                 return x.range.start.position - y.range.start.position;
             }
