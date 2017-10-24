@@ -82,6 +82,7 @@
                     "type": [
                       "object"
                     ],
+                    "example": "{ d\":5 ,\"r\":2 }\n",
                     "properties": {
                       "x": {
                         "name": "x",
@@ -123,6 +124,7 @@
                       "value": "{ d\":5 ,\"r\":2 }\n",
                       "strict": true,
                       "name": null,
+                      "structuredValue": "{ d\":5 ,\"r\":2 }\n",
                       "sourceMap": {
                         "path": "api.raml"
                       }

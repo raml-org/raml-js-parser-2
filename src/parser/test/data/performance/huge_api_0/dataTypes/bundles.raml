@@ -1,0 +1,113 @@
+#%RAML 1.0 Library
+uses:
+  resources: resources.raml
+  primitives: primitives.raml
+  elements: elements.raml
+  entries: entries.raml
+types:
+  Bundle:
+    type: resources.Resource
+    properties:
+      resourceType?: string
+      type:
+        type: primitives.code
+        enum: [document, message, transaction,  transaction-response, batch, batch-response,  history, searchset, collection]
+      total?: primitives.unsignedInt
+      link?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            relation: string
+            url: primitives.uri
+      signature?: elements.Signature
+  SlotBundle:
+    type: Bundle
+    properties:
+      entry?: entries.SlotEntry[]
+  ScheduleBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ScheduleEntry[]
+  PractitionerBundle:
+    type: Bundle
+    properties:
+      entry?: entries.PractitionerEntry[]
+  PatientBundle:
+    type: Bundle
+    properties:
+      entry?: entries.PatientEntry[]
+  ObservationBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ObservationEntry[]
+  MedicationOrderBundle:
+    type: Bundle
+    properties:
+      entry?: entries.MedicationOrderEntry[]
+  MedicationBundle:
+    type: Bundle
+    properties:
+      entry?: entries.MedicationEntry[]
+  EncounterBundle:
+    type: Bundle
+    properties:
+      entry?: entries.EncounterEntry[]
+  DeviceBundle:
+    type: Bundle
+    properties:
+      entry?: entries.DeviceEntry[]
+  ConditionBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ConditionEntry[]
+  AppointmentBundle:
+    type: Bundle
+    properties:
+      entry?: entries.AppointmentEntry[]
+  AllergyIntoleranceBundle:
+    type: Bundle
+    properties:
+      entry?: entries.AllergyIntoleranceEntry[]
+  GeneralBundle:
+    type: Bundle
+    properties:
+      entry?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            link?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  relation: string
+                  url: primitives.uri
+            fullUrl?: primitives.uri
+            resource?: resources.Resource
+            search?:
+              type: elements.BackboneElement
+              properties:
+                mode?:
+                  type: primitives.code
+                  enum: [match, include, outcome]
+                score?: primitives.decimal
+            request?:
+              type: elements.BackboneElement
+              properties:
+                method:
+                  type: primitives.code
+                  enum: [GET, PUT, POST, DELETE]
+                url: primitives.uri
+                ifNoneMatch?: string
+                ifModifiedSince?: primitives.instant
+                ifMatch: string
+                ifNoneExist: string
+            response?:
+              type: elements.BackboneElement
+              properties:
+                status: string
+                location?: primitives.uri
+                etag?: string
+                lastModified?: primitives.instant

@@ -1,0 +1,5 @@
+{
+  "self" : "http://www.example.com/jira/rest/api/2/version/10000" ,
+  "issuesFixedCount" : 23 ,
+  "issuesAffectedCount" : 101
+}

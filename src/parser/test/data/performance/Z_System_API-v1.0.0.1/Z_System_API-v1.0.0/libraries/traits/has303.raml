@@ -1,0 +1,14 @@
+#%RAML 1.0 Trait
+
+responses:
+  303:
+    description: |
+      See other location.
+      Wird genutzt in Zusammenhang mit 202, um nach einer Abfrage der Warteschlange auf das fertig verarbeitete Objekt zu verweisen.
+    headers:
+      Location:
+        description: |
+          HTTP-Standard Parameter.
+        type: string
+        required: true
+        example: 'Location: http://example.org/other'

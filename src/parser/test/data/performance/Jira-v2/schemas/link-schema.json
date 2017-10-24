@@ -1,0 +1,113 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "type" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "id" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "inward" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "outward" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "inwardIssue" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "id" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "key" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "fields" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "status" : {
+              "type" : "object" ,
+              "required" : false ,
+              "properties" : {
+                "iconUrl" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "name" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "outwardIssue" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "id" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "key" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "fields" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "status" : {
+              "type" : "object" ,
+              "required" : false ,
+              "properties" : {
+                "iconUrl" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "name" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

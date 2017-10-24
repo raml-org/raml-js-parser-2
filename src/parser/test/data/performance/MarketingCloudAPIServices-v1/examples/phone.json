@@ -1,0 +1,12 @@
+{
+  "PhoneID": 9999999,
+  "PhoneRecieverType": "Advisor",
+  "PhoneNumber": "999-999-9999",
+  "PhoneType": "Cell",
+  "PhoneSource": "Nexis",
+  "TTYIndicator": "0",
+  "BlockedIndicator": "0",
+  "TextMessageStatus": "Transactional",
+  "BestPhoneInd": "0",
+  "BestCellInd": "1"
+}

@@ -719,7 +719,7 @@
             "displayName": "count",
             "type": "integer",
             "required": false,
-            "example": "1",
+            "example": 1,
             "repeat": false,
             "description": "Number of items you would like to receive.",
             "__METADATA__": {
@@ -3741,7 +3741,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -4145,7 +4145,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -5358,7 +5358,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -6613,7 +6613,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -7225,7 +7225,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -8147,7 +8147,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -8714,7 +8714,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -9487,7 +9487,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -10409,7 +10409,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -10807,7 +10807,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -11286,7 +11286,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -11981,7 +11981,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -12534,7 +12534,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -13387,7 +13387,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "10",
+                    "example": 10,
                     "repeat": false,
                     "description": "Number of users to return.",
                     "__METADATA__": {
@@ -13818,7 +13818,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -14328,7 +14328,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -14959,7 +14959,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -15560,7 +15560,7 @@
                         "displayName": "max_like_id",
                         "type": "integer",
                         "required": false,
-                        "example": "100",
+                        "example": 100,
                         "repeat": false,
                         "description": "Return media liked before this id.",
                         "__METADATA__": {
@@ -15585,7 +15585,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -16589,7 +16589,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -17200,7 +17200,7 @@
                         "displayName": "count",
                         "type": "integer",
                         "required": false,
-                        "example": "1",
+                        "example": 1,
                         "repeat": false,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
@@ -18071,7 +18071,7 @@
                     "displayName": "count",
                     "type": "integer",
                     "required": false,
-                    "example": "1",
+                    "example": 1,
                     "repeat": false,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
@@ -18836,7 +18836,7 @@
                 "displayName": "min_id",
                 "type": "integer",
                 "required": false,
-                "example": "0",
+                "example": 0,
                 "repeat": false,
                 "description": "Return media before this min_id.",
                 "__METADATA__": {
@@ -18861,7 +18861,7 @@
                 "displayName": "count",
                 "type": "integer",
                 "required": false,
-                "example": "1",
+                "example": 1,
                 "repeat": false,
                 "description": "Number of items you would like to receive.",
                 "__METADATA__": {
@@ -19452,7 +19452,7 @@
                 "displayName": "count",
                 "type": "integer",
                 "required": false,
-                "example": "1",
+                "example": 1,
                 "repeat": false,
                 "description": "Number of items you would like to receive.",
                 "__METADATA__": {

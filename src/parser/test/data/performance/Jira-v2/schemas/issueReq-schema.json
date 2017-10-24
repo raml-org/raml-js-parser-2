@@ -1,0 +1,236 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "update" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "worklog" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "add" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "started" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "timeSpent" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    } ,
+    "fields" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "project" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "summary" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "issuetype" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "assignee" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "name" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "reporter" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "name" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "priority" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "labels" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "string"
+            }
+          ]
+        } ,
+        "timetracking" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "originalEstimate" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "remainingEstimate" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "security" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "versions" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "environment" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "description" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "duedate" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "fixVersions" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "components" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "customfield_60000" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "customfield_20000" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "customfield_80000" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "value" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "customfield_40000" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "customfield_30000" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "string"
+            }
+          ]
+        } ,
+        "customfield_70000" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "string"
+            }
+          ]
+        } ,
+        "customfield_50000" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "customfield_10000" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

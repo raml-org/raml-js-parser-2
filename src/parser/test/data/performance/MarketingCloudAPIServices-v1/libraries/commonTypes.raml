@@ -1,0 +1,589 @@
+#%RAML 1.0 Library
+types:
+  PhonePattern:
+    type: string
+    pattern: ^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$
+    example: 123-211-1001
+
+  PhoneInternationalPattern:
+    #pattern: ^\(?(?'prefix'\+|(?:0(?:0(?:0|1|9)?|1(?:0|1))?|119)[-. ])?(?'group'[1-9])[-. ]?(?'CC'[0-9]{0,3})\)?[)-. ](?'number'(?:[0-9]+[-. ]?)+)$
+    example: +1 123 56787234
+
+  EmailPattern:
+    type: string
+    pattern: ^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,63}[.](([a-zA-Z0-9]){2,63})+$
+    example: john.doe@abc.com
+
+  URLPattern:
+    type: string
+    pattern: https?:\/\/(?:www\.)?([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b)*(\/[\/\d\w\.-]*)*(?:[\?])*(.+)*
+    example: http://www.palnaprticipentweb.com
+  SSNPattern:
+    type: string
+    pattern: ^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$
+    example: 100-01-0021
+  GenderPattern:
+    type: string
+    pattern: ^M?$|^F?$
+    example: M
+
+  Address:
+    properties:
+      MailId: number
+      MailRecipentType: string
+      AddressLine1: string
+      AddressLine2: string
+      City: string
+      State: string
+      Zip: string
+      TimeZoneCode: string
+      CountryCode: string
+      ReturnMailStatus: string
+      MailForwardStatus: string
+      MailHoldDate: date-only
+      MailSource: string
+      DoNotSolicitIndicator: integer
+      MailCreationDate: date-only
+      BestMailInd: integer
+
+    examples:
+      address1:
+        MailId: 10000001
+        MailRecipentType: "Participant"
+        AddressLine1: "1234 E MyStreet Pl"
+        AddressLine2: "Unit 999-AB"
+        City: "MyTown"
+        State: "AA"
+        Zip: "99999-9999"
+        TimeZoneCode: "HAW"
+        CountryCode: "USA"
+        ReturnMailStatus: "Y"
+        MailForwardStatus: "Y"
+        MailHoldDate: "01/01/1900"
+        MailSource: "PS EASY"
+        DoNotSolicitIndicator: 0
+        MailCreationDate: "01/01/1900"
+        BestMailInd: 1
+      address2:
+        MailId: 10000002
+        MailRecipentType: "Participant"
+        AddressLine1: "5432 E MyStreet Pl"
+        AddressLine2: ""
+        City: "Wahoo"
+        State: "AA"
+        Zip: "10012-5432"
+        TimeZoneCode: "HAW"
+        CountryCode: "USA"
+        ReturnMailStatus: "Y"
+        MailForwardStatus: "Y"
+        MailHoldDate: "01/01/1900"
+        MailSource: "PS EASY"
+        DoNotSolicitIndicator: 0
+        MailCreationDate: "01/01/1900"
+        BestMailInd: 1
+      address3:
+        MailId: 10000003
+        MailRecipentType: "Participant"
+        AddressLine1: "1234 E MyStreet Pl"
+        AddressLine2: "Unit 999-AB"
+        City: "MyTown"
+        State: "AA"
+        Zip: "99999-9999"
+        TimeZoneCode: "HAW"
+        CountryCode: "USA"
+        ReturnMailStatus: "Y"
+        MailForwardStatus: "Y"
+        MailHoldDate: "01/01/1900"
+        MailSource: "PS EASY"
+        DoNotSolicitIndicator: 0
+        MailCreationDate: "01/01/1900"
+        BestMailInd: 1
+      address4:
+        MailId: 10000004
+        MailRecipentType: "Participant"
+        AddressLine1: "1234 E MyStreet Pl"
+        AddressLine2: "Unit 999-AB"
+        City: "MyTown"
+        State: "AA"
+        Zip: "99999-9999"
+        TimeZoneCode: "HAW"
+        CountryCode: "USA"
+        ReturnMailStatus: "Y"
+        MailForwardStatus: "Y"
+        MailHoldDate: "01/01/1900"
+        MailSource: "PS EASY"
+        DoNotSolicitIndicator: 0
+        MailCreationDate: "01/01/1900"
+        BestMailInd: 1
+
+  Email:
+    displayName: Email Object
+    properties:
+      EmailID: number
+      EmailRecipientType: string
+      EmailAddress: EmailPattern
+      EmailDomain: string
+      CompanyEmailIndicator: integer
+      EmailSource: string
+      EmailCreationDate: date-only
+      HardBounceIndicaor: integer
+      ExternalVerifyStatus: string
+      ExternalVerifyDate: date-only
+      VerificationStatus: string
+      AAGInsights&EducationOptOut: integer
+      AAGNewslettersOptOut: integer
+      AAGPlanInformationOptOut: integer
+      GWFAnnuityInsights&EducationOptOut: integer
+      GWFAnnuityNewslettersOptOut: integer
+      GWFIRAInsights&EducationOptOut: integer
+      GWFIRANewslettersOptOut: integer
+      GWFIRAPlanInformationOptOut: integer
+      GWFLifeInsuranceInsights&EdOptOut: integer
+      GWFLifeInsuranceNewslettersOptOut: integer
+      RetirementPartNewslettersOptOut: integer
+      RetirementPartPlanInformationOptOut: integer
+      RetirementPartProduct&ServiceOptOut: integer
+      RetirementPlanAnnouncementsOptOut: integer
+      RetirementPlanInsights&EdOptOut: integer
+      RetirementPlanNewslettersOptOut: integer
+      BestReglatoryEmail: integer
+      BestEmpowerMarketingEmail: integer
+      BestClientMarketingEmail: integer
+
+    examples:
+      email1:
+        EmailID: 100002
+        EmailRecipientType: "Participant"
+        EmailAddress: "john.doe@myemail.com"
+        EmailDomain: "myemail.com"
+        CompanyEmailIndicator: 1
+        EmailSource: "PPT Web"
+        EmailCreationDate: "01/01/1900"
+        HardBounceIndicaor: 0
+        ExternalVerifyStatus: "Y"
+        ExternalVerifyDate: "01/01/1900"
+        VerificationStatus: "Confirmed"
+        AAGInsights&EducationOptOut: 0
+        AAGNewslettersOptOut: 0
+        AAGPlanInformationOptOut: 1
+        GWFAnnuityInsights&EducationOptOut: 1
+        GWFAnnuityNewslettersOptOut: 1
+        GWFIRAInsights&EducationOptOut: 0
+        GWFIRANewslettersOptOut: 0
+        GWFIRAPlanInformationOptOut: 0
+        GWFLifeInsuranceInsights&EdOptOut: 1
+        GWFLifeInsuranceNewslettersOptOut: 1
+        RetirementPartNewslettersOptOut: 1
+        RetirementPartPlanInformationOptOut: 0
+        RetirementPartProduct&ServiceOptOut: 0
+        RetirementPlanAnnouncementsOptOut: 0
+        RetirementPlanInsights&EdOptOut: 1
+        RetirementPlanNewslettersOptOut: 1
+        BestReglatoryEmail: 1
+        BestEmpowerMarketingEmail: 0
+        BestClientMarketingEmail: 0
+      email2:
+        EmailID: 100002
+        EmailRecipientType: "Participant"
+        EmailAddress: "john.doe@myemail.com"
+        EmailDomain: "myemail.com"
+        CompanyEmailIndicator: 1
+        EmailSource: "PPT Web"
+        EmailCreationDate: "01/01/1900"
+        HardBounceIndicaor: 0
+        ExternalVerifyStatus: "Y"
+        ExternalVerifyDate: "01/01/1900"
+        VerificationStatus: "Confirmed"
+        AAGInsights&EducationOptOut: 0
+        AAGNewslettersOptOut: 0
+        AAGPlanInformationOptOut: 1
+        GWFAnnuityInsights&EducationOptOut: 1
+        GWFAnnuityNewslettersOptOut: 1
+        GWFIRAInsights&EducationOptOut: 0
+        GWFIRANewslettersOptOut: 0
+        GWFIRAPlanInformationOptOut: 0
+        GWFLifeInsuranceInsights&EdOptOut: 1
+        GWFLifeInsuranceNewslettersOptOut: 1
+        RetirementPartNewslettersOptOut: 1
+        RetirementPartPlanInformationOptOut: 0
+        RetirementPartProduct&ServiceOptOut: 0
+        RetirementPlanAnnouncementsOptOut: 0
+        RetirementPlanInsights&EdOptOut: 1
+        RetirementPlanNewslettersOptOut: 1
+        BestReglatoryEmail: 1
+        BestEmpowerMarketingEmail: 0
+        BestClientMarketingEmail: 0
+      email3:
+        EmailID: 100003
+        EmailRecipientType: "Participant"
+        EmailAddress: "john.doe@myemail.com"
+        EmailDomain: "myemail.com"
+        CompanyEmailIndicator: 1
+        EmailSource: "PPT Web"
+        EmailCreationDate: "01/01/1900"
+        HardBounceIndicaor: 0
+        ExternalVerifyStatus: "Y"
+        ExternalVerifyDate: "01/01/1900"
+        VerificationStatus: "Confirmed"
+        AAGInsights&EducationOptOut: 0
+        AAGNewslettersOptOut: 0
+        AAGPlanInformationOptOut: 1
+        GWFAnnuityInsights&EducationOptOut: 1
+        GWFAnnuityNewslettersOptOut: 1
+        GWFIRAInsights&EducationOptOut: 0
+        GWFIRANewslettersOptOut: 0
+        GWFIRAPlanInformationOptOut: 0
+        GWFLifeInsuranceInsights&EdOptOut: 1
+        GWFLifeInsuranceNewslettersOptOut: 1
+        RetirementPartNewslettersOptOut: 1
+        RetirementPartPlanInformationOptOut: 0
+        RetirementPartProduct&ServiceOptOut: 0
+        RetirementPlanAnnouncementsOptOut: 0
+        RetirementPlanInsights&EdOptOut: 1
+        RetirementPlanNewslettersOptOut: 1
+        BestReglatoryEmail: 1
+        BestEmpowerMarketingEmail: 0
+        BestClientMarketingEmail: 0
+      email4:
+        EmailID: 100004
+        EmailRecipientType: "Participant"
+        EmailAddress: "john.doe@myemail.com"
+        EmailDomain: "myemail.com"
+        CompanyEmailIndicator: 1
+        EmailSource: "PPT Web"
+        EmailCreationDate: "01/01/1900"
+        HardBounceIndicaor: 0
+        ExternalVerifyStatus: "Y"
+        ExternalVerifyDate: "01/01/1900"
+        VerificationStatus: "Confirmed"
+        AAGInsights&EducationOptOut: 0
+        AAGNewslettersOptOut: 0
+        AAGPlanInformationOptOut: 1
+        GWFAnnuityInsights&EducationOptOut: 1
+        GWFAnnuityNewslettersOptOut: 1
+        GWFIRAInsights&EducationOptOut: 0
+        GWFIRANewslettersOptOut: 0
+        GWFIRAPlanInformationOptOut: 0
+        GWFLifeInsuranceInsights&EdOptOut: 1
+        GWFLifeInsuranceNewslettersOptOut: 1
+        RetirementPartNewslettersOptOut: 1
+        RetirementPartPlanInformationOptOut: 0
+        RetirementPartProduct&ServiceOptOut: 0
+        RetirementPlanAnnouncementsOptOut: 0
+        RetirementPlanInsights&EdOptOut: 1
+        RetirementPlanNewslettersOptOut: 1
+        BestReglatoryEmail: 1
+        BestEmpowerMarketingEmail: 0
+        BestClientMarketingEmail: 0
+
+  Phone:
+    properties:
+      PhoneID: number
+      PhoneRecieverType: string
+      PhoneNumber:  PhonePattern
+      PhoneType: string
+      PhoneSource: string
+      TTYIndicator: integer
+      BlockedIndicator: integer
+      TextMessageStatus: string
+      BestPhoneInd: integer
+      BestCellInd: integer
+
+    examples:
+      phone1:
+        PhoneID: 2342
+        PhoneRecieverType: "string"
+        PhoneNumber:  "123-123-2312"
+        PhoneType: "string"
+        PhoneSource: "string"
+        TTYIndicator: 1
+        BlockedIndicator: 2
+        TextMessageStatus: "string"
+        BestPhoneInd: 3
+        BestCellInd: 4
+      phone2:
+        PhoneID: 3423
+        PhoneRecieverType: "string"
+        PhoneNumber:  "123-123-2312"
+        PhoneType: "string"
+        PhoneSource: "string"
+        TTYIndicator: 1
+        BlockedIndicator: 2
+        TextMessageStatus: "string"
+        BestPhoneInd: 3
+        BestCellInd: 4
+      phone3:
+        PhoneID: 4234
+        PhoneRecieverType: "string"
+        PhoneNumber:  "123-123-2312"
+        PhoneType: "string"
+        PhoneSource: "string"
+        TTYIndicator: 1
+        BlockedIndicator: 2
+        TextMessageStatus: "string"
+        BestPhoneInd: 3
+        BestCellInd: 4
+      phone4:
+        PhoneID: 2345
+        PhoneRecieverType: "string"
+        PhoneNumber:  "123-123-2312"
+        PhoneType: "string"
+        PhoneSource: "string"
+        TTYIndicator: 1
+        BlockedIndicator: 2
+        TextMessageStatus: "string"
+        BestPhoneInd: 3
+        BestCellInd: 4
+
+  Contact:
+    properties:
+      ContactType: string
+      ContactAddress: Address
+      ContactPhone: Phone
+      ContactEmail: Email
+    examples:
+      Contact1:
+        ContactType: "Participant"
+        ContactAddress:
+          MailId: 10000001
+          MailRecipentType: "Participant"
+          AddressLine1: "1234 E MyStreet Pl"
+          AddressLine2: "Unit 999-AB"
+          City: "MyTown"
+          State: "AA"
+          Zip: "99999-9999"
+          TimeZoneCode: "HAW"
+          CountryCode: "USA"
+          ReturnMailStatus: "Y"
+          MailForwardStatus: "Y"
+          MailHoldDate: "01/01/1900"
+          MailSource: "PS EASY"
+          DoNotSolicitIndicator: 0
+          MailCreationDate: "01/01/1900"
+          BestMailInd: 1
+        ContactPhone:
+          PhoneID: 2342
+          PhoneRecieverType: "string"
+          PhoneNumber:  "123-123-2312"
+          PhoneType: "string"
+          PhoneSource: "string"
+          TTYIndicator: 1
+          BlockedIndicator: 2
+          TextMessageStatus: "string"
+          BestPhoneInd: 3
+          BestCellInd: 4
+        ContactEmail:
+          EmailID: 100002
+          EmailRecipientType: "Participant"
+          EmailAddress: "john.doe@myemail.com"
+          EmailDomain: "myemail.com"
+          CompanyEmailIndicator: 1
+          EmailSource: "PPT Web"
+          EmailCreationDate: "01/01/1900"
+          HardBounceIndicaor: 0
+          ExternalVerifyStatus: "Y"
+          ExternalVerifyDate: "01/01/1900"
+          VerificationStatus: "Confirmed"
+          AAGInsights&EducationOptOut: 0
+          AAGNewslettersOptOut: 0
+          AAGPlanInformationOptOut: 1
+          GWFAnnuityInsights&EducationOptOut: 1
+          GWFAnnuityNewslettersOptOut: 1
+          GWFIRAInsights&EducationOptOut: 0
+          GWFIRANewslettersOptOut: 0
+          GWFIRAPlanInformationOptOut: 0
+          GWFLifeInsuranceInsights&EdOptOut: 1
+          GWFLifeInsuranceNewslettersOptOut: 1
+          RetirementPartNewslettersOptOut: 1
+          RetirementPartPlanInformationOptOut: 0
+          RetirementPartProduct&ServiceOptOut: 0
+          RetirementPlanAnnouncementsOptOut: 0
+          RetirementPlanInsights&EdOptOut: 1
+          RetirementPlanNewslettersOptOut: 1
+          BestReglatoryEmail: 1
+          BestEmpowerMarketingEmail: 0
+          BestClientMarketingEmail: 0
+      Contact2:
+        ContactType: "Participant"
+        ContactAddress:
+          MailId: 10000002
+          MailRecipentType: "Participant"
+          AddressLine1: "5432 E MyStreet Pl"
+          AddressLine2: ""
+          City: "Wahoo"
+          State: "AA"
+          Zip: "10012-5432"
+          TimeZoneCode: "HAW"
+          CountryCode: "USA"
+          ReturnMailStatus: "Y"
+          MailForwardStatus: "Y"
+          MailHoldDate: "01/01/1900"
+          MailSource: "PS EASY"
+          DoNotSolicitIndicator: 0
+          MailCreationDate: "01/01/1900"
+          BestMailInd: 1
+        ContactPhone:
+          PhoneID: 3423
+          PhoneRecieverType: "string"
+          PhoneNumber:  "123-123-2312"
+          PhoneType: "string"
+          PhoneSource: "string"
+          TTYIndicator: 1
+          BlockedIndicator: 2
+          TextMessageStatus: "string"
+          BestPhoneInd: 3
+          BestCellInd: 4
+        ContactEmail:
+          EmailID: 100002
+          EmailRecipientType: "Participant"
+          EmailAddress: "john.doe@myemail.com"
+          EmailDomain: "myemail.com"
+          CompanyEmailIndicator: 1
+          EmailSource: "PPT Web"
+          EmailCreationDate: "01/01/1900"
+          HardBounceIndicaor: 0
+          ExternalVerifyStatus: "Y"
+          ExternalVerifyDate: "01/01/1900"
+          VerificationStatus: "Confirmed"
+          AAGInsights&EducationOptOut: 0
+          AAGNewslettersOptOut: 0
+          AAGPlanInformationOptOut: 1
+          GWFAnnuityInsights&EducationOptOut: 1
+          GWFAnnuityNewslettersOptOut: 1
+          GWFIRAInsights&EducationOptOut: 0
+          GWFIRANewslettersOptOut: 0
+          GWFIRAPlanInformationOptOut: 0
+          GWFLifeInsuranceInsights&EdOptOut: 1
+          GWFLifeInsuranceNewslettersOptOut: 1
+          RetirementPartNewslettersOptOut: 1
+          RetirementPartPlanInformationOptOut: 0
+          RetirementPartProduct&ServiceOptOut: 0
+          RetirementPlanAnnouncementsOptOut: 0
+          RetirementPlanInsights&EdOptOut: 1
+          RetirementPlanNewslettersOptOut: 1
+          BestReglatoryEmail: 1
+          BestEmpowerMarketingEmail: 0
+          BestClientMarketingEmail: 0
+
+      Contact3:
+        ContactType: "Participant"
+        ContactAddress:
+          MailId: 10000003
+          MailRecipentType: "Participant"
+          AddressLine1: "1234 E MyStreet Pl"
+          AddressLine2: "Unit 999-AB"
+          City: "MyTown"
+          State: "AA"
+          Zip: "99999-9999"
+          TimeZoneCode: "HAW"
+          CountryCode: "USA"
+          ReturnMailStatus: "Y"
+          MailForwardStatus: "Y"
+          MailHoldDate: "01/01/1900"
+          MailSource: "PS EASY"
+          DoNotSolicitIndicator: 0
+          MailCreationDate: "01/01/1900"
+          BestMailInd: 1
+        ContactPhone:
+          PhoneID: 4234
+          PhoneRecieverType: "string"
+          PhoneNumber:  "123-123-2312"
+          PhoneType: "string"
+          PhoneSource: "string"
+          TTYIndicator: 1
+          BlockedIndicator: 2
+          TextMessageStatus: "string"
+          BestPhoneInd: 3
+          BestCellInd: 4
+        ContactEmail:
+          EmailID: 100003
+          EmailRecipientType: "Participant"
+          EmailAddress: "john.doe@myemail.com"
+          EmailDomain: "myemail.com"
+          CompanyEmailIndicator: 1
+          EmailSource: "PPT Web"
+          EmailCreationDate: "01/01/1900"
+          HardBounceIndicaor: 0
+          ExternalVerifyStatus: "Y"
+          ExternalVerifyDate: "01/01/1900"
+          VerificationStatus: "Confirmed"
+          AAGInsights&EducationOptOut: 0
+          AAGNewslettersOptOut: 0
+          AAGPlanInformationOptOut: 1
+          GWFAnnuityInsights&EducationOptOut: 1
+          GWFAnnuityNewslettersOptOut: 1
+          GWFIRAInsights&EducationOptOut: 0
+          GWFIRANewslettersOptOut: 0
+          GWFIRAPlanInformationOptOut: 0
+          GWFLifeInsuranceInsights&EdOptOut: 1
+          GWFLifeInsuranceNewslettersOptOut: 1
+          RetirementPartNewslettersOptOut: 1
+          RetirementPartPlanInformationOptOut: 0
+          RetirementPartProduct&ServiceOptOut: 0
+          RetirementPlanAnnouncementsOptOut: 0
+          RetirementPlanInsights&EdOptOut: 1
+          RetirementPlanNewslettersOptOut: 1
+          BestReglatoryEmail: 1
+          BestEmpowerMarketingEmail: 0
+          BestClientMarketingEmail: 0
+      Contact4:
+        ContactType: "Participant"
+        ContactAddress:
+          MailId: 10000004
+          MailRecipentType: "Participant"
+          AddressLine1: "1234 E MyStreet Pl"
+          AddressLine2: "Unit 999-AB"
+          City: "MyTown"
+          State: "AA"
+          Zip: "99999-9999"
+          TimeZoneCode: "HAW"
+          CountryCode: "USA"
+          ReturnMailStatus: "Y"
+          MailForwardStatus: "Y"
+          MailHoldDate: "01/01/1900"
+          MailSource: "PS EASY"
+          DoNotSolicitIndicator: 0
+          MailCreationDate: "01/01/1900"
+          BestMailInd: 1
+        ContactPhone:
+          PhoneID: 2345
+          PhoneRecieverType: "string"
+          PhoneNumber:  "123-123-2312"
+          PhoneType: "string"
+          PhoneSource: "string"
+          TTYIndicator: 1
+          BlockedIndicator: 2
+          TextMessageStatus: "string"
+          BestPhoneInd: 3
+          BestCellInd: 4
+        ContactEmail:
+          EmailID: 100004
+          EmailRecipientType: "Participant"
+          EmailAddress: "john.doe@myemail.com"
+          EmailDomain: "myemail.com"
+          CompanyEmailIndicator: 1
+          EmailSource: "PPT Web"
+          EmailCreationDate: "01/01/1900"
+          HardBounceIndicaor: 0
+          ExternalVerifyStatus: "Y"
+          ExternalVerifyDate: "01/01/1900"
+          VerificationStatus: "Confirmed"
+          AAGInsights&EducationOptOut: 0
+          AAGNewslettersOptOut: 0
+          AAGPlanInformationOptOut: 1
+          GWFAnnuityInsights&EducationOptOut: 1
+          GWFAnnuityNewslettersOptOut: 1
+          GWFIRAInsights&EducationOptOut: 0
+          GWFIRANewslettersOptOut: 0
+          GWFIRAPlanInformationOptOut: 0
+          GWFLifeInsuranceInsights&EdOptOut: 1
+          GWFLifeInsuranceNewslettersOptOut: 1
+          RetirementPartNewslettersOptOut: 1
+          RetirementPartPlanInformationOptOut: 0
+          RetirementPartProduct&ServiceOptOut: 0
+          RetirementPlanAnnouncementsOptOut: 0
+          RetirementPlanInsights&EdOptOut: 1
+          RetirementPlanNewslettersOptOut: 1
+          BestReglatoryEmail: 1
+          BestEmpowerMarketingEmail: 0
+          BestClientMarketingEmail: 0

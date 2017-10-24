@@ -116,7 +116,7 @@
                     },
                     "examples": [
                       {
-                        "value": null,
+                        "value": "{ d\":5 ,\"r\":2 }\n",
                         "strict": true,
                         "name": null
                       }

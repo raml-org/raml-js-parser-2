@@ -1,0 +1,70 @@
+{
+  "visibleFieldNames" : [
+    {
+      "value" : "affectedVersion" ,
+      "displayName" : "affectedVersion" ,
+      "auto" : true ,
+      "orderable" : true ,
+      "searchable" : true ,
+      "operators" : [
+        "=" ,
+        "!=" ,
+        "in" ,
+        "not in" ,
+        "is" ,
+        "is not" ,
+        "<" ,
+        "<=" ,
+        ">" ,
+        ">="
+      ] ,
+      "types" : [
+        "com.atlassian.jira.project.version.Version"
+      ]
+    } , {
+      "value" : "assignee" ,
+      "displayName" : "assignee" ,
+      "auto" : true ,
+      "orderable" : true ,
+      "searchable" : true ,
+      "operators" : [
+        "!=" ,
+        "was not in" ,
+        "not in" ,
+        "was not" ,
+        "is" ,
+        "was in" ,
+        "was" ,
+        "=" ,
+        "in" ,
+        "changed" ,
+        "is not"
+      ] ,
+      "types" : [
+        "com.atlassian.crowd.embedded.api.User"
+      ]
+    }
+  ] ,
+  "visibleFunctionNames" : [
+    {
+      "value" : "currentLogin()" ,
+      "displayName" : "currentLogin()" ,
+      "types" : [
+        "java.util.Date"
+      ]
+    } , {
+      "value" : "currentUser()" ,
+      "displayName" : "currentUser()" ,
+      "types" : [
+        "com.atlassian.crowd.embedded.api.User"
+      ]
+    }
+  ] ,
+  "jqlReservedWords" : [
+    "empty" ,
+    "and" ,
+    "or" ,
+    "in" ,
+    "distinct"
+  ]
+}

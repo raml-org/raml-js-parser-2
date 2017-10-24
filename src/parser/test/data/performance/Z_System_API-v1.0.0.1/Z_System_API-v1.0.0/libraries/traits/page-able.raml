@@ -1,0 +1,17 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  offset:
+    description: |
+      Überspringe eine bestimmte Anzahl an Elementen entsprechend dem Wert des Parameters.
+    type: integer
+    required: false
+    default: 0
+    example: 20
+  limit:
+    description: |
+      Beschränkt die Anzahl an Rückgabe-Elementen.
+    type: integer
+    required: false
+    default: 10
+    example: 80

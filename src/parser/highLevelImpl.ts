@@ -711,7 +711,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     private _sval:StructuredValue;
     value():any {
-        if (this._value){
+        if (this._value!=null){
             return this._value
         }
         this._value=this.calcValue();
@@ -798,11 +798,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
         }
 
-        var isString = this.property()!=null
-            && !(this.parent()==null||this.parent().definition()==null||
-                    (universeHelpers.isTypeOrSchemaProperty(this.property())
-                        && universeHelpers.isTypeDeclarationDescendant(this.parent().definition())))
-            && universeHelpers.isStringTypeType(this.property().range());
+        var isString = valueMustBeString(this);
 
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
@@ -993,6 +989,41 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     }
 
 }
+
+function valueMustBeString(attr:hl.IAttribute):boolean {
+
+    let prop = attr.property();
+    if(!prop){
+        return false;
+    }
+
+    let parent = attr.parent();
+    let parentDef = parent && parent.definition();
+    if(!parentDef){
+        return false;
+    }
+
+    if(parentDef.universe().version()=="RAML08"){
+        if(universeHelpers.isStringTypeDeclarationDescendant(parentDef)){
+            if(universeHelpers.isExampleProperty(prop)
+                ||universeHelpers.isDefaultValue(prop)
+                ||universeHelpers.isEnumProperty(prop)){
+                return true;
+            }
+        }
+    }
+    else{
+        if(universeHelpers.isTypeOrSchemaProperty(prop)
+            && universeHelpers.isTypeDeclarationDescendant(parentDef)){
+            return false;
+        }
+    }
+    if(!universeHelpers.isStringTypeType(prop.range())){
+        return false;
+    }
+    return true;
+};
+
 
 /**
  * Instanceof for ASTPropImpl class
@@ -1374,6 +1405,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             let llWrapper = new LowLevelWrapperForTypeSystem(this.lowLevel(), this);
             if(linter.typeOfContainingTemplate(this)){
                 markTemplateTypes(llWrapper);
+            }
+            if(this.universe().version()=="RAML08"&&universeHelpers.isStringTypeDeclarationDescendant(this.definition())){
+                llWrapper.addMeta("acceptAllScalarsAsStrings",true);
             }
             if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
                 var isParametrizedType:boolean = this.isParametrizedType();

@@ -1,0 +1,43 @@
+#%RAML 1.0 Library
+uses:
+  commonType: commonTypes.raml
+  standardDataTypes: standardDataTypes.raml
+types:
+  Participant:
+    properties:
+      DataDate: date-only
+      PlanNumber: string
+      IndividualId: integer
+      FullName: string
+    examples:
+      Participant1:
+        PlanNumber: "111111-01"
+        DataDate: "01/01/1900"
+        IndividualId: 1234
+        FullName: "John Doe"
+      Participant2:
+        PlanNumber: "111111-01"
+        DataDate: "01/01/1900"
+        IndividualId: 2345
+        FullName: "John Doe"
+      Participant3:
+        PlanNumber: "111111-01"
+        DataDate: "01/01/1900"
+        IndividualId: 3456
+        FullName: "John Doe"
+      Participant4:
+        PlanNumber: "111111-01"
+        DataDate: "01/01/1900"
+        IndividualId: 4567
+        FullName: "John Doe"
+
+  Participant-Paginated:
+    type: standardDataTypes.Paginated
+    properties:
+      results: Participant[]
+    example:
+      totalSize: 100
+      start: 20
+      limit: 10
+      size: 0
+      results: []

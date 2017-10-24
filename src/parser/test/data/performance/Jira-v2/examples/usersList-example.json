@@ -1,0 +1,13 @@
+{
+  "users" : [
+    {
+      "name" : "fred" ,
+      "key" : "fred" ,
+      "html" : "fred@example.com" ,
+      "displayName" : "Fred Grumble" ,
+      "avatarUrl" : "http://www.example.com/jira/secure/useravatar?size=small&ownerId=fred"
+    }
+  ] ,
+  "total" : 25 ,
+  "header" : "Showing 20 of 25 matching groups"
+}

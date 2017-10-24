@@ -81,12 +81,16 @@ describe('Virtual File System Tests', function() {
 
 describe('HTTP Asynchronous tests',function() {
     this.timeout(15000);
-    it("RAML references test", function (done) {
+    it("RAML references test 1", function (done) {
         testAPIHttpAsync(`./vfsTests/ramlRefsTest001/api.raml`).should.be.fulfilled.and.notify(done);
     });
 
-    it("JSON references test", function (done) {
+    it("JSON references test 2", function (done) {
         testAPIHttpAsync(`./vfsTests/jsonRefsTest001/api-remote.raml`).should.be.fulfilled.and.notify(done);
+    });
+
+    it("JSON references test 3", function (done) {
+        testAPIHttpAsync(`./vfsTests/jsonRefsTest002/api.raml`).should.be.rejectedWith("Unexpected end of JSON input").and.notify(done);
     });
 
 
@@ -129,7 +133,7 @@ export function testAPIHttpAsync(apiRelPath:string):any{
         return inspect(x,apiDir);
     },y=>{
         console.warn(y);
-        return Promise.reject(y);
+        return Promise.reject(y.message);
     });
 
 }

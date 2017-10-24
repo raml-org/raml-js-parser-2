@@ -1,0 +1,37 @@
+{
+  "subject" : "Duis eu justo eget augue iaculis fermentum." ,
+  "textBody" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper." ,
+  "htmlBody" : "Lorem ipsum <strong>dolor</strong> sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper." ,
+  "to" : {
+    "reporter" : false ,
+    "assignee" : false ,
+    "watchers" : true ,
+    "voters" : true ,
+    "users" : [
+      {
+        "name" : "fred" ,
+        "active" : false
+      }
+    ] ,
+    "groups" : [
+      {
+        "name" : "notification-group" ,
+        "self" : "http://www.example.com/jira/rest/api/2/group?groupname=notification-group"
+      }
+    ]
+  } ,
+  "restrict" : {
+    "groups" : [
+      {
+        "name" : "notification-group" ,
+        "self" : "http://www.example.com/jira/rest/api/2/group?groupname=notification-group"
+      }
+    ] ,
+    "permissions" : [
+      {
+        "id" : "10" ,
+        "key" : "BROWSE"
+      }
+    ]
+  }
+}

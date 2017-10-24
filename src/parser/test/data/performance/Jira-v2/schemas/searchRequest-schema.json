@@ -1,0 +1,28 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "jql" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "startAt" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "maxResults" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "fields" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "string"
+        }
+      ]
+    }
+  }
+}

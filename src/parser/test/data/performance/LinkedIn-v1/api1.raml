@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: Datetime format
+
+traits:
+  tr:
+    description: Test <<resourcePathName|!singularize|!uppercamelcase>>
+
+/monkey-lookers:
+  get:
+    is: [ tr ]

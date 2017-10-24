@@ -1,0 +1,123 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "subject" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "textBody" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "htmlBody" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "to" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "reporter" : {
+          "type" : "boolean" ,
+          "required" : false
+        } ,
+        "assignee" : {
+          "type" : "boolean" ,
+          "required" : false
+        } ,
+        "watchers" : {
+          "type" : "boolean" ,
+          "required" : false
+        } ,
+        "voters" : {
+          "type" : "boolean" ,
+          "required" : false
+        } ,
+        "users" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "name" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "active" : {
+                  "type" : "boolean" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "groups" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "name" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "self" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        }
+      }
+    } ,
+    "restrict" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "groups" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "name" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "self" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "permissions" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "key" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

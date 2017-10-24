@@ -1,0 +1,93 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für private Geschäftsobjekte der Domäne Querschnitt Finanzen, die nur in den Objekten der Domäne selbst Verwendung finden.
+
+types:
+  bankverbindung:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: bankverbindung
+        enum:
+          - bankverbindung
+      inhaber:
+        type: string
+        required: true
+      iban:
+        type: string
+        description: Kontonummer des Kunden
+        required: true
+      bic:
+        type: string
+        required: true
+  kreditkarte:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: kreditkarte
+        enum:
+          - kreditkarte
+      marke:
+        type: string
+        required: true
+      nummer:
+        type: string
+        required: true
+      inhaber:
+        type: string
+        required: true
+      ablaufmonat:
+        type: string
+        required: true
+      ablaufjahr:
+        type: string
+        required: true
+  paypal:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: paypal
+        enum:
+          - paypal
+      emailadresse:
+        type: string
+        required: true
+  ueberweisung:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: ueberweisung
+        enum:
+          - ueberweisung
+      aktiv:
+        type: boolean
+  rechnung:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: rechnung
+        enum:
+          - rechnung
+      aktiv:
+        type: boolean
+  guthaben:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        default: guthaben
+        enum:
+          - guthaben
+      aktiv:
+        type: boolean

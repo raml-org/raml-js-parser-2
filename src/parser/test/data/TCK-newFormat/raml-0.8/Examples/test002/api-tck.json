@@ -12,7 +12,7 @@
                 "displayName": "param1",
                 "type": "number",
                 "required": false,
-                "example": "2",
+                "example": 2,
                 "repeat": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

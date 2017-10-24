@@ -1,0 +1,35 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "key" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "value" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "desc" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "type" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "defaultValue" : {
+      "type" : "string" ,
+      "required" : false
+    }
+  }
+}

@@ -1,0 +1,10 @@
+#%RAML 1.0 Trait
+
+headers:
+  If-None-Match:
+    description: |
+      HTTP-Standard Parameter.
+      Validierungstoken des Servers aus dem ETag header Feld der letzten Response. Ermöglicht effiziente Aktualisierungsprüfungen von Ressourcen. Es werden keine Daten übertragen, wenn sich die Ressource nicht geändert hat.
+    type: string
+    required: false
+    example: 'If-None-Match: "dCSmICLSJwsmGze3d4Ri"'

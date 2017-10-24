@@ -1,0 +1,711 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "expand" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "id" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "key" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "fields" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "sub-tasks" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "type" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "inward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "outward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "outwardIssue" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "key" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "fields" : {
+                      "type" : "object" ,
+                      "required" : false ,
+                      "properties" : {
+                        "status" : {
+                          "type" : "object" ,
+                          "required" : false ,
+                          "properties" : {
+                            "iconUrl" : {
+                              "type" : "string" ,
+                              "required" : false
+                            } ,
+                            "name" : {
+                              "type" : "string" ,
+                              "required" : false
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        } ,
+        "timetracking" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "originalEstimate" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "remainingEstimate" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "timeSpent" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "originalEstimateSeconds" : {
+              "type" : "number" ,
+              "required" : false
+            } ,
+            "remainingEstimateSeconds" : {
+              "type" : "number" ,
+              "required" : false
+            } ,
+            "timeSpentSeconds" : {
+              "type" : "number" ,
+              "required" : false
+            }
+          }
+        } ,
+        "project" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "self" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "key" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "name" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "avatarUrls" : {
+              "type" : "object" ,
+              "required" : false ,
+              "properties" : {
+                "24x24" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "16x16" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "32x32" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "48x48" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          }
+        } ,
+        "updated" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "description" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "issuelinks" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "type" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "inward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "outward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "outwardIssue" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "key" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "fields" : {
+                      "type" : "object" ,
+                      "required" : false ,
+                      "properties" : {
+                        "status" : {
+                          "type" : "object" ,
+                          "required" : false ,
+                          "properties" : {
+                            "iconUrl" : {
+                              "type" : "string" ,
+                              "required" : false
+                            } ,
+                            "name" : {
+                              "type" : "string" ,
+                              "required" : false
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            } , {
+              "type" : "object" ,
+              "properties" : {
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "type" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "inward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "outward" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "inwardIssue" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "id" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "key" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "fields" : {
+                      "type" : "object" ,
+                      "required" : false ,
+                      "properties" : {
+                        "status" : {
+                          "type" : "object" ,
+                          "required" : false ,
+                          "properties" : {
+                            "iconUrl" : {
+                              "type" : "string" ,
+                              "required" : false
+                            } ,
+                            "name" : {
+                              "type" : "string" ,
+                              "required" : false
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        } ,
+        "attachment" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "self" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "filename" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "author" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "avatarUrls" : {
+                      "type" : "object" ,
+                      "required" : false ,
+                      "properties" : {
+                        "24x24" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "16x16" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "32x32" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "48x48" : {
+                          "type" : "string" ,
+                          "required" : false
+                        }
+                      }
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "created" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "size" : {
+                  "type" : "number" ,
+                  "required" : false
+                } ,
+                "mimeType" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "content" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "thumbnail" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        } ,
+        "watcher" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "self" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "isWatching" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "watchCount" : {
+              "type" : "number" ,
+              "required" : false
+            } ,
+            "watchers" : {
+              "type" : "array" ,
+              "required" : false ,
+              "items" : [
+                {
+                  "type" : "object" ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "avatarUrls" : {
+                      "type" : "object" ,
+                      "required" : false ,
+                      "properties" : {
+                        "24x24" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "16x16" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "32x32" : {
+                          "type" : "string" ,
+                          "required" : false
+                        } ,
+                        "48x48" : {
+                          "type" : "string" ,
+                          "required" : false
+                        }
+                      }
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        } ,
+        "comment" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "self" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "author" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "body" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "updateAuthor" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "created" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "updated" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "visibility" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "type" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "value" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        } ,
+        "worklog" : {
+          "type" : "array" ,
+          "required" : false ,
+          "items" : [
+            {
+              "type" : "object" ,
+              "properties" : {
+                "self" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "author" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "updateAuthor" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "self" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "name" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "displayName" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "active" : {
+                      "type" : "boolean" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "comment" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "visibility" : {
+                  "type" : "object" ,
+                  "required" : false ,
+                  "properties" : {
+                    "type" : {
+                      "type" : "string" ,
+                      "required" : false
+                    } ,
+                    "value" : {
+                      "type" : "string" ,
+                      "required" : false
+                    }
+                  }
+                } ,
+                "started" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "timeSpent" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "timeSpentSeconds" : {
+                  "type" : "number" ,
+                  "required" : false
+                } ,
+                "id" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          ]
+        }
+      }
+    } ,
+    "names" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "sub-tasks" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "timetracking" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "project" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "updated" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "description" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "issuelinks" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "attachment" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "watcher" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "comment" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "worklog" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "schema" : {
+      "type" : "object" ,
+      "required" : false
+    }
+  }
+}

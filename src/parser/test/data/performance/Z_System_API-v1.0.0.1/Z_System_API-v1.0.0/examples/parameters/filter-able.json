@@ -1,0 +1,27 @@
+[
+  {
+    "f":"field1",
+    "v":[
+      "value1.1",
+      "value1.2"
+    ],
+    "o":"operator1",
+    "l":"logic1"
+  },
+  {
+    "f":"field2",
+    "v":[
+      "value2.1"
+    ],
+    "o":"operator2",
+    "l":"logic2"
+  },
+  {
+    "f":"fieldN",
+    "v":[
+      "valueN.1"
+    ],
+    "o":"operatorN",
+    "l":"logicN"
+  }
+]

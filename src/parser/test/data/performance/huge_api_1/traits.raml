@@ -1,0 +1,160 @@
+#%RAML 1.0 Library
+uses:
+  resources: dataTypes/resources.raml
+  primitives: dataTypes/primitives.raml
+  bundles: dataTypes/bundles.raml
+traits:
+  allergyIntolerancePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/allergyIntoleranceParams.yaml
+  appointmentPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/appointmentParams.yaml
+  conditionPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/conditionParams.yaml
+  devicePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/deviceParams.yaml
+  encounterPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/encounterParams.yaml
+  medicationPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/medicationParams.yaml
+  medicationOrderPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/medicationOrderParams.yaml
+  patientPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/patientParams.yaml
+  observationPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/observationParams.yaml
+  practitionerPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/practitionerParams.yaml
+  schedulePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/scheduleParams.yaml
+  slotPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties: !include queryParams/resources/slotParams.yaml
+  allergyIntoleranceSearch:
+    queryParameters: !include queryParams/resources/allergyIntoleranceParams.yaml
+  appointmentSearch:
+    queryParameters: !include queryParams/resources/appointmentParams.yaml
+  conditionSearch:
+    queryParameters: !include queryParams/resources/conditionParams.yaml
+  deviceSearch:
+    queryParameters: !include queryParams/resources/deviceParams.yaml
+  encounterSearch:
+    queryParameters: !include queryParams/resources/encounterParams.yaml
+  medicationSearch:
+    queryParameters: !include queryParams/resources/medicationParams.yaml
+  medicationOrderSearch:
+    queryParameters: !include queryParams/resources/medicationOrderParams.yaml
+  observationSearch:
+    queryParameters: !include queryParams/resources/observationParams.yaml
+  patientSearch:
+    queryParameters: !include queryParams/resources/patientParams.yaml
+  practitionerSearch:
+    queryParameters: !include queryParams/resources/practitionerParams.yaml
+  scheduleSearch:
+    queryParameters: !include queryParams/resources/scheduleParams.yaml
+  slotSearch:
+    queryParameters: !include queryParams/resources/slotParams.yaml
+  conditionalOperation:
+    queryParameters: !include queryParams/resourceParams.yaml
+  conformance:
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources.Conformance
+          application/xml:
+            type: resources.Conformance
+  create:
+    responses:
+      201:
+        description: Created
+        headers:
+          Location:
+            example: http://xxx/Condidition/123/_history/1
+          Last-Modified: datetime
+          ETag:
+            example: '1.0'
+  delete:
+    responses:
+      204:
+        description: Deleted
+  history:
+    queryParameters:
+      _count:
+        required: false
+      _since:
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: bundles.<<bundleName>>
+  read:
+    queryParameters:
+      _format:
+        required: false
+        enum: [application/json, application/xml]
+      _summary:
+        required: false
+        enum: ['true', 'false', text, data]
+    headers:
+      If-Modified-Since:
+        type: primitives.instant
+        required: false
+      If-None-Match:
+        required: false
+    responses:
+      304:
+        description: Not Modified
+  search:
+    queryParameters: !include queryParams/searchParams.yaml
+  update:
+    responses:
+      200:
+        description: Updated
+      201:
+        description: Created
+        headers:
+          Location:
+            example: http://xxx/condidition/123/_history/1
+          Last-Modified: datetime
+          ETag:
+            example: '1.0'
+      422:
+        description: |
+          Unprocessable Entity - the proposed resource violated applicable FHIR profiles or server business rules
+  vread:
+    queryParameters:
+      _format:
+        required: false
+        enum: [application/json, application/xml]
+    responses:
+      200:
+        headers:
+          ETag:
+          Last-Modified: primitives.instant
+        body:
+          application/json:
+            type: resources.<<resourceName>>

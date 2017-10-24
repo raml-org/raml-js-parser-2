@@ -1,0 +1,17 @@
+[
+  {
+    "self" : "http://localhost:8090/jira/rest/api/2.0/issueType/3" ,
+    "id" : "3" ,
+    "description" : "A task that needs to be done." ,
+    "iconUrl" : "http://localhost:8090/jira/images/icons/issuetypes/task.png" ,
+    "name" : "Task" ,
+    "subtask" : false
+  } , {
+    "self" : "http://localhost:8090/jira/rest/api/2.0/issueType/1" ,
+    "id" : "1" ,
+    "description" : "A problem with the software." ,
+    "iconUrl" : "http://localhost:8090/jira/images/icons/issuetypes/bug.png" ,
+    "name" : "Bug" ,
+    "subtask" : false
+  }
+]

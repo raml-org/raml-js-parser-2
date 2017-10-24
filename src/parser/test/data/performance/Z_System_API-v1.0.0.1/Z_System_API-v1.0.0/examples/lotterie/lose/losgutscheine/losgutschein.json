@@ -1,0 +1,55 @@
+{
+  "losgutscheinID": 7612968701235389440,
+  "datumAktivierung": "2016-11-30T16:32:48.5+01:00",
+  "losnummer": "932337834275",
+  "losgutscheinart": "Glueckslos",
+  "konfiguration": [
+    {
+      "kombination": {
+        "losart": {
+          "key": "MeinGlueckslos",
+          "name": "Mein Glücks-Los"
+        },
+        "ziehungsart": {
+          "key": "Dauergewinn",
+          "name": "Dauergewinn"
+        },
+        "teilnahmeHaeufigkeit": "wöchentlich",
+        "pflichtZiehungsart": false
+      },
+      "spieleinsatz": {
+        "betrag": 12
+      },
+      "stufe": "ohne",
+      "gewinnpotenzialEinmalig": 0,
+      "gewinnpotenzialMonatlich": 5000
+    },
+    {
+      "kombination": {
+        "losart": {
+          "key": "MeinGlueckslos",
+          "name": "Mein Glücks-Los"
+        },
+        "ziehungsart": {
+          "key": "Sofortgewinn",
+          "name": "Sofortgewinn"
+        },
+        "teilnahmeHaeufigkeit": "wöchentlich",
+        "pflichtZiehungsart": false
+      },
+      "spieleinsatz": {
+        "betrag": 6
+      },
+      "stufe": "ohne",
+      "gewinnpotenzialEinmalig": 500000,
+      "gewinnpotenzialMonatlich": 0
+    }
+  ],
+  "aktivierungscode": null,
+  "erwerb": "NONE",
+  "datumAblauf": null,
+  "geschenk": {
+    "mailadresseBeschenkter": null,
+    "mailSendeDatum": null
+  }
+}

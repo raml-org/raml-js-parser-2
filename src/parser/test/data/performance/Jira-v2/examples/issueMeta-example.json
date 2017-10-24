@@ -1,0 +1,23 @@
+{
+  "fields" : {
+    "summary" : {
+      "required" : false ,
+      "schema" : {
+        "type" : "array" ,
+        "items" : "option" ,
+        "custom" : "com.atlassian.jira.plugin.system.customfieldtypes:multiselect" ,
+        "customId" : 10001
+      } ,
+      "name" : "My Multi Select" ,
+      "hasDefaultValue" : false ,
+      "operations" : [
+        "set" ,
+        "add"
+      ] ,
+      "allowedValues" : [
+        "red" ,
+        "blue"
+      ]
+    }
+  }
+}

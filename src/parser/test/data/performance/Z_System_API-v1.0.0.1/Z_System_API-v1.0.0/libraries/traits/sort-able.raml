@@ -1,0 +1,10 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  sort:
+    description: |
+     Sortieren nach diesem Feld. Standardmäßig ist die Response aufsteigend sortiert, ein '-' vor dem Feldnamen bewirkt eine absteigende Sortierung.
+     Mögliche Feldnamen sind: <<descriptionSortierungFeldListe>>
+    type: string
+    required: false
+    example: '/lose?sort=-losnummer'

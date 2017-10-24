@@ -3549,7 +3549,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
 
         var pObj=this.parseObject(node,cb,strictValidation);
-        if (!pObj){
+        if (pObj==null){
             return;
         }
         var schema=this.aquireSchema(node);
@@ -3826,18 +3826,6 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                         pObj = JSON.parse(vl);
                     }
                     else {
-                        if (vl=="true"){
-                            return true;
-                        }
-                        else if (vl=="false"){
-                            return false;
-                        }
-                        else{
-                            var n=parseFloat(vl);
-                            if (!isNaN(vl)){
-                                return n;
-                            }
-                        }
                         return vl;
                     }
                 }catch (e){

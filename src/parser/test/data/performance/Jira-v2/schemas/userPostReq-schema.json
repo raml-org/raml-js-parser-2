@@ -1,0 +1,23 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "password" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "emailAddress" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "displayName" : {
+      "type" : "string" ,
+      "required" : false
+    }
+  }
+}

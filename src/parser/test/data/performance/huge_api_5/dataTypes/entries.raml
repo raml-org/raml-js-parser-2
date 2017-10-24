@@ -1,0 +1,90 @@
+#%RAML 1.0 Library
+uses:
+  elements: elements.raml
+  resources: resources.raml
+types:
+  Entry:
+    type: elements.BackboneElement
+    properties:
+      link?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            relation: string
+            url: string
+      fullUrl?: string
+      search?:
+        type: elements.BackboneElement
+        properties:
+          mode?:
+            type: string
+            enum: [match, include, outcome]
+          score?: number
+      request?:
+        type: elements.BackboneElement
+        properties:
+          method:
+            type: string
+            enum: [GET, PUT, POST, DELETE]
+          url: string
+          ifNoneMatch?: string
+          ifModifiedSince?: string
+          ifMatch: string
+          ifNoneExist: string
+      response?:
+        type: object
+        properties:
+          status: string
+          location?: string
+          etag?: string
+          lastModified?: string
+
+  ConditionEntry:
+    type: Entry
+    properties:
+      resource?: resources.Condition
+  SlotEntry:
+    type: Entry
+    properties:
+      resource?: resources.Slot
+  ScheduleEntry:
+    type: Entry
+    properties:
+      resource?: resources.Schedule
+  AllergyIntoleranceEntry:
+    type: Entry
+    properties:
+      resource?: resources.AllergyIntolerance
+  AppointmentEntry:
+    type: Entry
+    properties:
+      resource?: resources.Appointment
+  PatientEntry:
+    type: Entry
+    properties:
+      resource?: resources.Patient
+  PractitionerEntry:
+    type: Entry
+    properties:
+      resource?: resources.Practitioner
+  ObservationEntry:
+    type: Entry
+    properties:
+      resource?: resources.Observation
+  MedicationEntry:
+    type: Entry
+    properties:
+      resource?: resources.Medication
+  MedicationOrderEntry:
+    type: Entry
+    properties:
+      resource?: resources.MedicationOrder
+  EncounterEntry:
+    type: Entry
+    properties:
+      resource?: resources.Encounter
+  DeviceEntry:
+    type: Entry
+    properties:
+      resource?: resources.Device

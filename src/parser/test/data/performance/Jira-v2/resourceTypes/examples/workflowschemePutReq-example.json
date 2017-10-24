@@ -1,0 +1,10 @@
+{
+  "id" : 57585 ,
+  "name" : "Updated Workflow Scheme Name" ,
+  "description" : "Updated Workflow Scheme Name" ,
+  "defaultWorkflow" : "DefaultWorkflowName" ,
+  "issueTypeMappings" : {
+    "IsueTypeId" : "WorkflowName"
+  } ,
+  "updateDraftIfNeeded" : false
+}

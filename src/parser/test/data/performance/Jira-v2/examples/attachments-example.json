@@ -1,0 +1,43 @@
+[
+  {
+    "self" : "http://www.example.com/jira/rest/api/2.0/attachments/10000" ,
+    "filename" : "picture.jpg" ,
+    "author" : {
+      "self" : "http://www.example.com/jira/rest/api/2/user?username=fred" ,
+      "name" : "fred" ,
+      "avatarUrls" : {
+        "24x24" : "http://www.example.com/jira/secure/useravatar?size=small&ownerId=fred" ,
+        "16x16" : "http://www.example.com/jira/secure/useravatar?size=xsmall&ownerId=fred" ,
+        "32x32" : "http://www.example.com/jira/secure/useravatar?size=medium&ownerId=fred" ,
+        "48x48" : "http://www.example.com/jira/secure/useravatar?size=large&ownerId=fred"
+      } ,
+      "displayName" : "Fred F. User" ,
+      "active" : false
+    } ,
+    "created" : "2014-05-27T08:32:06.728+0000" ,
+    "size" : 23123 ,
+    "mimeType" : "image/jpeg" ,
+    "content" : "http://www.example.com/jira/attachments/10000" ,
+    "thumbnail" : "http://www.example.com/jira/secure/thumbnail/10000"
+  } , {
+    "self" : "http://www.example.com/jira/rest/api/2.0/attachments/10001" ,
+    "filename" : "dbeuglog.txt" ,
+    "author" : {
+      "self" : "http://www.example.com/jira/rest/api/2/user?username=fred" ,
+      "name" : "fred" ,
+      "avatarUrls" : {
+        "24x24" : "http://www.example.com/jira/secure/useravatar?size=small&ownerId=fred" ,
+        "16x16" : "http://www.example.com/jira/secure/useravatar?size=xsmall&ownerId=fred" ,
+        "32x32" : "http://www.example.com/jira/secure/useravatar?size=medium&ownerId=fred" ,
+        "48x48" : "http://www.example.com/jira/secure/useravatar?size=large&ownerId=fred"
+      } ,
+      "displayName" : "Fred F. User" ,
+      "active" : false
+    } ,
+    "created" : "2014-05-27T08:32:06.728+0000" ,
+    "size" : 2460 ,
+    "mimeType" : "text/plain" ,
+    "content" : "http://www.example.com/jira/attachments/10001" ,
+    "thumbnail" : "http://www.example.com/jira/secure/thumbnail/10002"
+  }
+]

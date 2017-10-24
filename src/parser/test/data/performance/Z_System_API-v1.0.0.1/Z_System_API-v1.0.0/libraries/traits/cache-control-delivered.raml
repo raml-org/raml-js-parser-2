@@ -1,0 +1,13 @@
+#%RAML 1.0 Trait
+
+responses:
+  200:
+    headers:
+      Cache-Control:
+        description: |
+          HTTP-Standard Parameter.
+          Mit der Cache-Control-Anweisungen wird geregelt, wer die Antwort im Cachespeicher ablegen kann, unter welchen Bedingungen und über welchen Zeitraum.
+          Relevant ist insbesondere "max-age": Mit dieser Anweisung wird der maximale Zeitraum in Sekunden vorgegeben, während dem ab dem Zeitpunkt der Anfrage die abgerufene Antwort wiederverwendet werden darf, z. B. gibt max-age=60 an, dass die Antwort während der nächsten 60 Sekunden zwischengespeichert und erneut genutzt werden kann.
+        type: string
+        required: true
+        example: 'Cache-Control: max-age=86400'

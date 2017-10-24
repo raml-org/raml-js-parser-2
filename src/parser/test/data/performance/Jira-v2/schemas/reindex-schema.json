@@ -1,0 +1,35 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "progressUrl" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "currentProgress" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "type" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "submittedTime" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "startTime" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "finishTime" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "success" : {
+      "type" : "boolean" ,
+      "required" : false
+    }
+  }
+}

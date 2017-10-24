@@ -1,0 +1,15 @@
+#%RAML 1.0 SecurityScheme
+
+description: |
+  Die Standard-Authentifizierungsmethode ist OAuth2.
+type: OAuth 2.0
+describedBy:
+  headers:
+    Authorization:
+      description: |
+         tbd
+      type: string
+settings:
+  authorizationUri: https://tbd
+  accessTokenUri: https://tbd
+  authorizationGrants: [ authorization_code, implicit ]

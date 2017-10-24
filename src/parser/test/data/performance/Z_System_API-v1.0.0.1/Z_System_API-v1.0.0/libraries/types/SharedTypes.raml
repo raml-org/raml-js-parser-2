@@ -1,0 +1,98 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für domänenlose Geschäftsobjekte, die in verschiedenen Kontexten wiederverwendet werden.
+
+types:
+  Zeitspanne:
+    type: object
+    description: Zeitraumangabe für verschiedene Zwecke
+    properties:
+      beginDatum:
+        type: date-only
+        description: Anfangsdatum (im Format nach full-date - RFC3339)
+        example: 2015-05-23
+      endeDatum:
+        type: date-only
+        description: Endatum (im Format nach full-date - RFC3339)
+        example: 2015-05-23
+
+  Adresse:
+    type: object
+    description: Standardisierte Adressangabe
+    properties:
+      strasse:
+        type: string
+      hausnummer:
+        type: string
+      postfachnummer:
+        type: string
+      plz:
+        type: string
+        description: Die Postleitzahl
+      ort:
+        type: string
+      ortsteil:
+        type: string
+      postalischerZusatz:
+        type: string
+      laendercode:
+        type: string
+        description: Ländercode (ISO-3166-3) z.B. DE für Deutschland, AT für Österreich, FR für Frankreich oder VC für St. Vincent und die Grenadinen
+      gueltigVon:
+        type: date-only
+        description: Datum, ab dem diese Adresse gültig ist - wird ggf. mit dem Datum der letzten Änderung befüllt. (Datum im Format nach full-date - RFC3339)
+        example: 2015-05-23
+        required: false
+      gueltigBis:
+        type: date-only
+        description: Datum, bis zu dem diese Adresse gültig ist. (Datum im Format nach full-date - RFC3339)
+        example: 2015-05-23
+        required: false
+
+  Webadresse:
+    type: object
+    description: Ein Link zu einer Webseite. Enum des Keys hier als Basisset dargetellt, erweitert sich ständig.
+    properties:
+      key:
+        type: string
+        description: Der Identifier
+      link:
+        type: string
+        description: Der Link zur Webadresse.
+
+  Error:
+    type: object
+    properties:
+      version:
+        type: string
+        description: Die Version der error-message Definition.
+      code:
+        type: integer
+        format: int32
+        description: Fehlercode
+      name:
+        type: string
+        description: Der Name des Fehlers entsprechend der code-Nummer.
+      reason:
+        type: string
+        description: Weitere fachliche Klassifizierung des Fehlers.
+      message:
+        type: string
+        description: Optional. Die Fehlermitteilung für den Nutzer, die die Anwendung ausgeben kann. Eine genaue Beschreibung des Fehlers istr auf Basis code und reason im Confluence der Aktion Mensch zu finden.
+      technical_message:
+        type: string
+        description: Interner Parameter. Die Beschreibung des Fehlers für den Entwickler. Wird nur für interne Meldungen mitgeliefert.
+      trace_id:
+        type: string
+        description: x-transaction_id des Aufrufs, wird auch im LogFile verwendet, um die Verbindung zur Fehlermeldung herzustellen.
+
+  StandardDateTime:
+    type: datetime
+    format: rfc3339 # ist default, spezifikation eigentlich nicht noetig
+    description: Datum im Format nach date-time - RFC3339
+    example: 2016-02-28T16:41:41.0+01:00
+
+  StandardInt64:
+    type: integer
+    format: int64
+    description: Standard Int64 für optionale Parameter

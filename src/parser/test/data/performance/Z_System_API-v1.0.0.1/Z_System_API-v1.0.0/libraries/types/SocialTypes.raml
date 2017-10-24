@@ -1,0 +1,67 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für Geschäftsobjekte der Domäne Social
+  
+types:
+  Auszeichnung:
+    type: object
+    description: Eine Auszeichnung/Trophäe, die von einem Kunden verdient worden ist
+    properties:
+      id:
+        type: integer
+        format: int64
+      art:
+        type: integer
+        format: int64
+        description: Verweis auf die ID des Auszeichnungstyps
+      datumVerleihung:
+        type: datetime
+        format: rfc3339 # ist default, spezifikation eigentlich nicht noetig
+        description: Datum und Zeit, an dem der Kunde die Auszeichnung erlangt hat. (Datum im Format nach date-time - RFC3339)
+        example: 2016-02-28T16:41:41.090Z
+  
+  Auszeichnungsart:
+    type: object
+    description: Eine Auszeichnungsart
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+        description: Name der Auszeichnung
+      score:
+        type: integer
+        format: int32
+        description: Wieviel Punkte man für eine Auszeichnung dieses Typs bekommt
+      urlAuszeichnungBesitz:
+        type: string
+        description: URL zum Bild der Auszeichnung, wenn man diese verdient hat
+      urlAuszeichnungKeinBesitz:
+        type: string
+        description: URL zum Bild der Auszeichnung, wenn man diese noch nicht verdient hat
+  
+  AuszeichnungsScore:
+    type: object
+    description: Informationen zum aktuellen Auszeichnungs-Punktestand sowie dem relativem Erfolg im PLZ-Gebiet
+    properties:
+      totalScore:
+        type: integer
+        format: int32
+        description: Der Gesamt-Punktestand
+      platzierungPlz: Plazierung
+      platzierungTotal: Plazierung
+  
+  Plazierung:
+    type: object
+    description: Platzierung à la 27. von 98
+    properties:
+      rang:
+        type: integer
+        format: int32
+        description: Die eigene Platzierung
+      teilnehmerzahl:
+        type: integer
+        format: int32
+        description: Die komplette Anzahl an Teilnehmern
+  

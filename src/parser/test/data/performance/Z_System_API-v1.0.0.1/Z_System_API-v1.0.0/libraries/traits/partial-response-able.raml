@@ -1,0 +1,13 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  felder:
+    description: |
+      Liefert nur die angegebenen Felder zurück.
+      Format: CSV
+      Mögliche Rückgabefelder sind: <<descriptionPartialResponseFeldListe>>
+    type: string
+    # pattern = format csv
+    pattern: (\w+)(,\s*\w+)*
+    required: false
+    example: '/lose?felder=losnummer,losart,konfiguration'

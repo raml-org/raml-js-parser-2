@@ -1,0 +1,134 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Error": {
+          "name": "Error",
+          "displayName": "Error",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "type": "internal_server_error"
+          },
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "discriminator": "type",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"type\": \"internal_server_error\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "type": "internal_server_error"
+            }
+          }
+        }
+      },
+      {
+        "ServerError": {
+          "name": "ServerError",
+          "displayName": "ServerError",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Error"
+          ],
+          "discriminatorValue": "internal_server_error",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "description": "Test <<resourcePathName|!singularize|!uppercamelcase>>",
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "Datetime format",
+    "resources": [
+      {
+        "methods": [
+          {
+            "is": [
+              "tr"
+            ],
+            "description": "Test MonkeyLooker",
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/monkey-lookers",
+        "displayName": "/monkey-lookers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "monkey-lookers"
+        ],
+        "absoluteUri": "/monkey-lookers"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCORRECT_DISCRIMINATOR",
+      "message": "None of the 'Error' type known subtypes declare 'internal_server_error' as value of discriminating property 'type'.",
+      "path": "api1.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 6,
+          "position": 157
+        },
+        "end": {
+          "line": 12,
+          "column": 10,
+          "position": 161
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

@@ -458,7 +458,7 @@ required(  ):boolean
         /**
          * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
          **/
-example(  ):string
+example(  ):any
 
 
         /**

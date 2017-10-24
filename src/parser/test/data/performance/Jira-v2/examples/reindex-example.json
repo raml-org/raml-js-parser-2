@@ -1,0 +1,9 @@
+{
+  "progressUrl" : "http://localhost:8080/jira" ,
+  "currentProgress" : 0 ,
+  "type" : "FOREGROUND" ,
+  "submittedTime" : "2014-06-11T07:33:41.989+0000" ,
+  "startTime" : "2014-06-11T07:33:41.989+0000" ,
+  "finishTime" : "2014-06-11T07:33:41.989+0000" ,
+  "success" : true
+}

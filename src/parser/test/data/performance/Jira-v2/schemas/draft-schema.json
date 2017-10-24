@@ -1,0 +1,131 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "description" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "defaultWorkflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "issueTypeMappings" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "IsueTypeId2" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "IsueTypeId" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "originalDefaultWorkflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "originalIssueTypeMappings" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "IssueTypeId" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "draft" : {
+      "type" : "boolean" ,
+      "required" : false
+    } ,
+    "lastModifiedUser" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "emailAddress" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "avatarUrls" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "24x24" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "16x16" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "32x32" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "48x48" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "displayName" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "active" : {
+          "type" : "boolean" ,
+          "required" : false
+        } ,
+        "timeZone" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "groups" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "size" : {
+              "type" : "number" ,
+              "required" : false
+            } ,
+            "items" : {
+              "type" : "array" ,
+              "required" : false ,
+              "items" : [
+              ]
+            }
+          }
+        }
+      }
+    } ,
+    "lastModified" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    }
+  }
+}

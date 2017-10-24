@@ -1,0 +1,5 @@
+{
+  "issueType" : "IssueTypeId" ,
+  "workflow" : "WorkflowName" ,
+  "updateDraftIfNeeded" : false
+}

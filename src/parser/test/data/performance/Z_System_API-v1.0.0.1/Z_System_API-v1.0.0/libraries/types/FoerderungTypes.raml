@@ -1,0 +1,63 @@
+#%RAML 1.0 Library
+usage: |
+  Bibliothek für Geschäftsobjekte der Domäne Förderung
+  
+types:
+  Projekt:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name des Projektes
+      plz:
+        type: string
+        description: Postleitzahl
+      stadt:
+        type: string
+        description: Ort
+      leuchtturmprojekt:
+        type: boolean
+        description:  wenn es sich um ein Leuchtturmprojekt handelt.
+      teaser:
+        type: string
+        description: Ein Teaser-Text für das Projekt, für eine hochwertige Darstellung von Leuchturmprojekten. (Ausführliche Informationen sollen hinter der Detail-URL abrufbar sein)
+      foerdersumme:
+        type: integer
+        description: Die Fördersumme des Projektes
+      urlDetail:
+        type: string
+        description: URL zu einem (Web-View) Beitrag über das Leuchturmprojekt.
+      urlCoverBild:
+        type: string
+        description: Wenn vorhanden, die URL zu einem Bild für eine hochwertige Darstellung. Pflicht für Leuchturmprojekte.
+      latitude:
+        type: number
+        format: double
+        description: Breitengrad des Projekts oder auf der Karte als Koordinaten (z.B. 50.9655612)
+      longitude:
+        type: number
+        format: double
+        description: Längengrad des Projekts oder auf der Karte als Koordinaten (z.B. 7.0086665)
+      kontaktAMName:
+        type: string
+        description: Der Name der Kontaktperson bei Aktion Mensch (optional)
+      kontaktAMMail:
+        type: string
+        description: Die Mailadresse der Kontaktperson bei Aktion Mensch (optional)
+      kontaktName:
+        type: string
+        description: Der Name der Kontaktperson des Projekts direkt (optional)
+      kontaktMail:
+        type: string
+        description: Die Mailadresse der Kontaktperson des Projekts direkt (optional)
+      kontaktURL:
+        type: string
+        description: Die URL, unter der sich das Projekt selbst präsentiert (außerhalb der AM-Seiten) (optional)
+      projektart:
+        type: string
+        enum:
+          - GefoerdertesProjekt
+          - FreiwilligenDatenbank
+          - respectSchooljamTour
+          - AktionenZumFuenftenMai
+        description: Die Art des Projektes (kann danach gefiltert werden)

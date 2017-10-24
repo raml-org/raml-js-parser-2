@@ -1,0 +1,17 @@
+{
+  "issueLinkTypes" : [
+    {
+      "id" : "1000" ,
+      "name" : "Duplicate" ,
+      "inward" : "Duplicated by" ,
+      "outward" : "Duplicates" ,
+      "self" : "http://www.example.com/jira/rest/api/2//issueLinkType/1000"
+    } , {
+      "id" : "1010" ,
+      "name" : "Blocks" ,
+      "inward" : "Blocked by" ,
+      "outward" : "Blocks" ,
+      "self" : "http://www.example.com/jira/rest/api/2//issueLinkType/1010"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  filter:
+    description: |
+      Filtert die Rückgabeliste nach den übergebenen Werten ('v') für die wählbaren Felder ('f').
+      Optional kann zwischen den unterstützten Operatoren ('o') für den Vergleich und den Logik-Operatoren ('l') gewählt werden.
+      Format (JSON array): [{"f":"field1","v":["value1.1","value1.2"],"o":"operator1","l":"logic1"},{"f":"field2","v":["value2.1"],"o":"operator2","l":"logic2"},...,{"f":"fieldN","v":["valueN.1"],"o":"operatorN","l":"logicN"}] mit folgenden gültigen Werten:
+    type: array
+    items:
+      type: object
+      properties:
+        f:
+          type: string
+          description: |
+            Filterbare Felder für diese Resource sind: <<descriptionFilterbareFelder>>
+          required: true
+        v:
+          type: array
+          items: string
+          description: |
+            Werte. Begriffe, nach denen gefiltert werden soll.
+          required: true
+        o:
+          type: string
+          enum: ["=","<>",">","<",">=","<=","like"]
+          default: =
+          description: |
+            Unterstützte Vergleichs-Operatoren für diese Resource (optional) sind: <<descriptionFilterUnterstuetzteOperatoren>>
+            Ist kein Operator angegeben, so wird als Default-Operator '=' genutzt.
+          required: false
+        l:
+          type: string
+          enum: ["AND","OR","XOR"]
+          default: OR
+          description: |
+            Logik-Operator (optional). Werden für ein Feld mehrere Werte übergeben, so können diese mittels 'AND', 'OR' oder 'XOR' verknüpft werden.
+            Ist kein Logik-Element angegeben, so wird als Default 'AND' benutzt.
+          required: false
+    example: !include ../../examples/parameters/filter-able-example.json
+    required: false

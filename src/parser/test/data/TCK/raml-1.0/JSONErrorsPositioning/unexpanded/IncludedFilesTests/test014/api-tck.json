@@ -40,6 +40,7 @@
               "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
               "strict": true,
               "name": "ex2",
+              "structuredValue": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
               "sourceMap": {
                 "path": "api.raml"
               }

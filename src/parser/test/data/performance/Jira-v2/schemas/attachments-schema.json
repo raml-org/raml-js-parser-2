@@ -1,0 +1,84 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "array" ,
+  "items" : [
+    {
+      "type" : "object" ,
+      "properties" : {
+        "self" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "filename" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "author" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "self" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "name" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "avatarUrls" : {
+              "type" : "object" ,
+              "required" : false ,
+              "properties" : {
+                "24x24" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "16x16" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "32x32" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "48x48" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            } ,
+            "displayName" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "active" : {
+              "type" : "boolean" ,
+              "required" : false
+            }
+          }
+        } ,
+        "created" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "size" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "mimeType" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "content" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "thumbnail" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  ]
+}

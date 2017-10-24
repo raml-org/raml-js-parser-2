@@ -1,0 +1,72 @@
+#%RAML 1.0
+title: Marketing Cloud API
+version: v1
+#baseUri: /hadoopAppoAPIServices
+baseUri: https://mocksvc.mulesoft.com/mocks/96c800b8-7d6c-4189-a710-57fe804f4a70/hadoopAppoAPIServices
+description: This API retrieves snapshot data to produce Markeing print/electronic and campain materials.
+             The initial implimentation is to retrieve snapshot data from Hadoop/Cloundera using Mule ESB to
+             serve Marketing systems (Appo / Journey Builder)
+mediaType: application/json
+uses:
+  planType: libraries/plan.raml
+  planDetailType: libraries/planDetail.raml
+  participantType: libraries/participant.raml
+  participantDetailType: libraries/participantDetail.raml
+  standardTraits: traits/standardTraits.raml
+  standardResourceTypes: resourceTypes/standardResourceTypes.raml
+
+/marketingPlans:
+  description: Return list of Marketing Plans
+  displayName: List of Marketing Plans
+  is: [standardTraits.clientRestricted,standardTraits.paginated,standardTraits.standardErrors: {example400 : !include examples/error400.json, example401: !include examples/error401.json, example403 : !include examples/error403.json, example404 : !include examples/error404.json, example500 : !include examples/error500.json}]
+  type:
+    standardResourceTypes.read-only-collection:
+      itemType : planType.Plan-Paginated
+      exampleCollection: !include examples/plans.json
+
+/marketingPlanDetails:
+  description: Returns data for given Marketing Plan and it's realted
+  displayName: Marketing Plan Details
+  type:
+    standardResourceTypes.read-only-collection:
+      itemType: planDetailType.PlanDetail
+      exampleCollection: !include examples/planDetail.json
+  get:
+    is: [standardTraits.clientRestricted,standardTraits.standardErrors: {example400 : !include examples/error400.json, example401: !include examples/error401.json, example403 : !include examples/error403.json, example404 : !include examples/error404.json, example500 : !include examples/error500.json}]
+    queryParameters:
+      marketingPlanNumber:
+        type: string
+        required: true
+
+/marketingParticipants:
+  description: Return list of Participants for given <<marketingPlanNumber>>
+  displayName: Marketing Participants for given <<marketingPlanNumber>>
+  type:
+    standardResourceTypes.read-only-collection:
+      itemType: participantType.Participant-Paginated
+      exampleCollection: !include examples/participants.json
+
+  get:
+    is: [standardTraits.clientRestricted,standardTraits.paginated,standardTraits.standardErrors: {example400 : !include examples/error400.json, example401: !include examples/error401.json, example403 : !include examples/error403.json, example404 : !include examples/error404.json, example500 : !include examples/error500.json}]
+    queryParameters:
+      markeingPlanNumber:
+        type: string
+        required: true
+
+/participantDetails:
+  description: Returns data related to Participants for given <<marketingPlanNumber>> and <<IndividualId>>
+  displayName: Marketing Participant Detils for given <<marketingPlanNumber>> and <<IndividualId>>
+  type:
+    standardResourceTypes.read-only-collection:
+      itemType: participantDetailType.ParticipantDetail
+      exampleCollection: !include examples/participantDetail.json
+
+  get:
+    is: [standardTraits.clientRestricted,standardTraits.standardErrors: {example400 : !include examples/error400.json, example401: !include examples/error401.json, example403 : !include examples/error403.json, example404 : !include examples/error404.json, example500 : !include examples/error500.json}]
+    queryParameters:
+      marketingPlanNumber:
+        type: string
+        required: true
+      individualId:
+        type: string
+        required: true

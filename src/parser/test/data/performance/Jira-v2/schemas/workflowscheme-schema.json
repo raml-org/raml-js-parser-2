@@ -1,0 +1,45 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "description" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "defaultWorkflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "issueTypeMappings" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "IsueTypeId2" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "IsueTypeId" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "draft" : {
+      "type" : "boolean" ,
+      "required" : false
+    } ,
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    }
+  }
+}

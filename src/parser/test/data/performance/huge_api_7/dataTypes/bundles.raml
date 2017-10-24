@@ -1,0 +1,112 @@
+#%RAML 1.0 Library
+uses:
+  resources: resources.raml
+  elements: elements.raml
+  entries: entries.raml
+types:
+  Bundle:
+    type: resources.Resource
+    properties:
+      resourceType?: string
+      type:
+        type: string
+        enum: [document, message, transaction,  transaction-response, batch, batch-response,  history, searchset, collection]
+      total?: number
+      link?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            relation: string
+            url: string
+      signature?: elements.Signature
+  SlotBundle:
+    type: Bundle
+    properties:
+      entry?: entries.SlotEntry[]
+  ScheduleBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ScheduleEntry[]
+  PractitionerBundle:
+    type: Bundle
+    properties:
+      entry?: entries.PractitionerEntry[]
+  PatientBundle:
+    type: Bundle
+    properties:
+      entry?: entries.PatientEntry[]
+  ObservationBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ObservationEntry[]
+  MedicationOrderBundle:
+    type: Bundle
+    properties:
+      entry?: entries.MedicationOrderEntry[]
+  MedicationBundle:
+    type: Bundle
+    properties:
+      entry?: entries.MedicationEntry[]
+  EncounterBundle:
+    type: Bundle
+    properties:
+      entry?: entries.EncounterEntry[]
+  DeviceBundle:
+    type: Bundle
+    properties:
+      entry?: entries.DeviceEntry[]
+  ConditionBundle:
+    type: Bundle
+    properties:
+      entry?: entries.ConditionEntry[]
+  AppointmentBundle:
+    type: Bundle
+    properties:
+      entry?: entries.AppointmentEntry[]
+  AllergyIntoleranceBundle:
+    type: Bundle
+    properties:
+      entry?: entries.AllergyIntoleranceEntry[]
+  GeneralBundle:
+    type: Bundle
+    properties:
+      entry?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            link?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  relation: string
+                  url: string
+            fullUrl?: string
+            resource?: resources.Resource
+            search?:
+              type: elements.BackboneElement
+              properties:
+                mode?:
+                  type: string
+                  enum: [match, include, outcome]
+                score?: number
+            request?:
+              type: elements.BackboneElement
+              properties:
+                method:
+                  type: string
+                  enum: [GET, PUT, POST, DELETE]
+                url: string
+                ifNoneMatch?: string
+                ifModifiedSince?: string
+                ifMatch: string
+                ifNoneExist: string
+            response?:
+              type: elements.BackboneElement
+              properties:
+                status: string
+                location?: string
+                etag?: string
+                lastModified?: string

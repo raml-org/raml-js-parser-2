@@ -1,0 +1,673 @@
+#%RAML 1.0 Library
+uses:
+  primitives: primitives.raml
+  elements: elements.raml
+
+types:
+  Resource:
+    properties:
+      id?: primitives.id
+      meta?: elements.Meta
+      implicitRules?: primitives.uri
+      language?: primitives.code
+  DomainResource:
+    type: Resource
+    properties:
+      resourceType: string
+      text?:
+        type: elements.Narrative
+      contained?: Resource[]
+      extension?: elements.Extension[]
+      modifierExtension?: elements.Extension[]
+  Encounter:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      status: primitives.EncounterState
+      statusHistory?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            status: primitives.EncounterState
+            period: elements.Period
+      class:
+        type: primitives.code
+        enum: [inpatient, outpatient, ambulatory, emergency]
+      type?: elements.CodeableConcept[]
+      priority?: elements.CodeableConcept
+      patient?: elements.Reference
+      episodeOfCare?: elements.Reference[]
+      incomingReferral?: elements.Reference[]
+      participant?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            type?: elements.CodeableConcept
+            period?: elements.Period
+            individual?: elements.Reference
+      appointment?: elements.Reference
+      period?: elements.Period
+      length?: elements.Duration
+      reason?: elements.CodeableConcept[]
+      indication?: elements.Reference[]
+      hospitalization?:
+        type: elements.BackboneElement
+        properties:
+          preAdmissionIdentifier?: elements.Identifier
+          origin?: elements.Reference
+          admitSource?: elements.CodeableConcept
+          admittingDiagnosis?: elements.Reference[]
+          reAdmission?: elements.CodeableConcept
+          dietPreference?: elements.CodeableConcept[]
+          specialCourtesy?: elements.CodeableConcept[]
+          specialArrangement?: elements.CodeableConcept[]
+          destination?: elements.Reference
+          dischargeDisposition?: elements.CodeableConcept
+          dischargeDiagnosis?: elements.Reference[]
+      location?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            location: elements.Reference
+            status?:
+              type: primitives.code
+              enum: [planned, active, reserved, completed]
+            period?: elements.Period
+      serviceProvider?: elements.Reference
+      partOf?: elements.Reference
+  Device:
+    description: An instance of a manufactured te that is used in the provision of healthcare
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      type: elements.CodeableConcept
+      note?: elements.Annotation[]
+      status?:
+        type: primitives.code
+        enum: [available, not-available, enetered-in-error]
+      manufacturer?: string
+      model?: string
+      version?: string
+      manufactureDate?: primitives.dateTime
+      expiry?: primitives.dateTime
+      udi?: string
+      lotNumber?: string
+      owner?: elements.Reference
+      location?: elements.Reference
+      patient?: elements.Reference
+      contact?: elements.ContactPoint[]
+      url?: primitives.uri
+  Medication:
+    type: DomainResource
+    properties:
+      code?: elements.CodeableConcept
+      isBrand?: boolean
+      manufacturer?: elements.Reference
+      product?:
+        type: elements.BackboneElement
+        properties:
+          form?: elements.CodeableConcept
+          ingredient?:
+            type: array
+            items:
+              type: elements.BackboneElement
+              properties:
+                item: elements.Reference
+                amount?: elements.Ratio
+          batch?:
+            type: array
+            items:
+              type: elements.BackboneElement
+              properties:
+                lotNumber?: string
+                expirationDate?: primitives.dateTime
+      package?:
+        type: elements.BackboneElement
+        properties:
+          container?: elements.CodeableConcept
+          content?:
+            type: elements.BackboneElement
+            properties:
+              item: elements.Reference
+              amount?: elements.SimpleQuantity
+  MedicationOrder:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      dateWritten?: primitives.dateTime
+      status?:
+        type: primitives.code
+        enum: [active, on-hold, completed, entered-in-error, stopped, draft]
+      dateEnded?: primitives.dateTime
+      reasonEnded?: elements.CodeableConcept
+      patient?: elements.Reference
+      prescriber?: elements.Reference
+      encounter?: elements.Reference
+      /^reason(CodeableConcept|Reference)$/?: elements.CodeableConcept | elements.Reference
+      note?: string
+      /^medication(CodeableConcept|String)$/: elements.CodeableConcept | string
+      dosageInstruction?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            text?:
+            additionalInstructions?: elements.CodeableConcept
+            timing?: elements.Timing
+            /^asNeeded(Boolean|CodeableConcept)$/?: boolean | elements.CodeableConcept
+            /^site(CodeableConcept|Reference)$/?: elements.CodeableConcept | elements.Reference
+            route?: elements.CodeableConcept
+            method?: elements.CodeableConcept
+            /^dose(Range|Quantity)$/?: elements.Range | elements.Quantity
+            /^rate(Ratio|Range)$/?: elements.Ratio | elements.Range
+            maxDosePerPeriod?: elements.Ratio
+      dispenseRequest?:
+        type: elements.BackboneElement
+        properties:
+          /^medication(CodeableConcept|Reference)$/: elements.CodeableConcept | elements.Reference
+          validityPeriod?: elements.Period
+          numberOfRepeatsAllowed?: primitives.positiveInt
+          quantity?: elements.SimpleQuantity
+          expectedSupplyDuration?: elements.Duration
+      substitution?:
+        type: elements.BackboneElement
+        properties:
+          type?: elements.CodeableConcept
+          reason?: elements.CodeableConcept
+      priorPrescription?: elements.Reference
+  Condition:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      patient: elements.Reference
+      encounter?: elements.Reference
+      asserter?: elements.Reference
+      dateRecorded?: primitives.date
+      code: elements.CodeableConcept
+      category?: elements.CodeableConcept
+      clinicalStatus?:
+        type: primitives.code
+        enum: [active, relapse, remission, resolved]
+      verificationStatus:
+        type: primitives.code
+        enum: [provisional, differential, confirmed, refuted, entered-in-error, unknown]
+      severity?: elements.CodeableConcept
+      /^onset(DateTime|Period|Range|String)$/?: primitives.dateTime | elements.Age | elements.Period | elements.Range | string
+      /^abatement(DateTime|Quantity|Boolean|Range|String)$/?: primitives.dateTime | elements.Age | boolean | elements.Range | string
+      stage?:
+        type: elements.BackboneElement
+        properties:
+          summary?: elements.CodeableConcept
+          asessment?: elements.Reference[]
+      evidence?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            code?: elements.CodeableConcept
+            detail?: elements.Reference[]
+      bodySite?: elements.CodeableConcept[]
+      notes?:
+  Observation:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      status: primitives.ObservationStatus
+      category?: elements.CodeableConcept
+      code: elements.CodeableConcept
+      subject?: elements.Reference
+      encounter?: elements.Reference
+      /^effective(DateTime|Period)$/?: primitives.dateTime | elements.Period
+      issued?: primitives.instant
+      performer?: elements.Reference[]
+      /^value(Quantity|CodeableConcept|String|Range|Ratio|SampledData|Attachment|Time|DateTime|Period)$/?: elements.Quantity | elements.CodeableConcept | string | elements.Range | elements.Ratio | elements.SampledData | elements.Attachment | primitives.time | primitives.dateTime | elements.Period
+      dataAbsentReason?: elements.CodeableConcept
+      interpretation?: elements.CodeableConcept
+      comments?: string
+      bodySite?: elements.CodeableConcept
+      method?: elements.CodeableConcept
+      specimen?: elements.Reference
+      device?: elements.Reference
+      referenceRange?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            low?: elements.SimpleQuantity
+            high?: elements.SimpleQuantity
+            meaning?: elements.CodeableConcept
+            age?: elements.Range
+            text?: string
+      related?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            type?: primitives.ObservationRelationshipType
+            target: elements.Reference
+      component?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            code: elements.CodeableConcept
+            /^value(Quantity|CodeableConcept|String|Range|Ratio|SampledData|Attachment|Time|DateTime|Period)$/?: elements.Quantity | elements.CodeableConcept | string | elements.Range | elements.Ratio | elements.SampledData | elements.Attachment | primitives.time | primitives.dateTime | elements.Period
+            dataAbsentReason?: elements.CodeableConcept
+            referenceRange?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  low?: elements.SimpleQuantity
+                  high?: elements.SimpleQuantity
+                  meaning?: elements.CodeableConcept
+                  age?: elements.Range
+                  text?: string
+  Patient:
+    description: Information about an individual or animal receiving health care services
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      active?:
+        type: boolean
+        description: Whether this patient's record is in active use
+      name?: elements.HumanName[]
+      telecom?: elements.ContactPoint[]
+      gender?: primitives.gender
+      birthDate?: primitives.date
+      /^deceased(Boolean|DateTime)$/?: boolean | primitives.dateTime
+      address?: elements.Address[]
+      maritalStatus?: elements.CodeableConcept
+      /^multipleBirth(Boolean|Integer)$/?: boolean | integer
+      photo?: elements.Attachment[]
+      contact?:
+        description: |
+          A contact party (e.g. guardian, partner, friend) for the patient
+          SHALL at least contain a contact's details or a reference to an organization
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            relationship?: elements.CodeableConcept[]
+            name?: elements.HumanName
+            telecom?: elements.ContactPoint[]
+            address?: elements.Address
+            gender?: primitives.gender
+            organization?: elements.Reference
+            period?:
+              description: |
+                The period during which this contact person or organization is valid to be contacted relating to this patient
+              type: elements.Period
+      animal?:
+        description: This patient is known to be an animal (non-human)
+        type: elements.BackboneElement
+        properties:
+          species: elements.CodeableConcept
+          breed?: elements.CodeableConcept
+          genderStatus?: elements.CodeableConcept
+      communication?:
+        description: |
+          A list of Languages which may be used to communicate with the patient about his or her health
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            language: elements.CodeableConcept
+            preferred?: boolean
+      careProvider?: elements.Reference[]
+      managingOrganization?:
+        description: Organization that is the custodian of the patient record
+        type: elements.Reference
+      link?:
+        description: Link to another patient resource that concerns the same actual person
+        type: elements.BackboneElement
+        properties:
+          other: elements.Reference
+          type:
+            type: primitives.code
+            enum: [replace, refer, seealso]
+  Slot:
+    description: |
+      A slot of time on a schedule that may be available for booking appointments
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      type?: elements.CodeableConcept
+      schedule: elements.Reference
+      freeBusyType:
+        type: primitives.code
+        enum: [busy, free, busy-unavailable, busy-tentative]
+      start: primitives.instant
+      end: primitives.instant
+      overbooked?: boolean
+      comment?: string
+  Practitioner:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      active?:
+        description: Whether this practitioner's record is in active use
+        type: boolean
+      name?: elements.HumanName[]
+      telecom?: elements.ContactPoint[]
+      address?: elements.Address[]
+      gender?: primitives.gender
+      birthDate?: primitives.date
+      photo?: elements.Attachment[]
+      practitionerRole?:
+        description: |
+          Roles/organizations the practitioner is associated with
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            managingOrganization?: elements.Reference
+            role?: elements.CodeableConcept
+            specialty?: elements.CodeableConcept[]
+            period?:
+              description: |
+                The period during which the practitioner is authorized to perform in these role(s)
+              type: elements.Period
+            location?: elements.Reference[]
+            healthcareService?: elements.Reference[]
+      qualification?:
+        description: |
+          Qualifications obtained by training and certification
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            identifier?: elements.Identifier[]
+            code: elements.CodeableConcept
+            period?:
+              description: |
+                Period during which the qualification is valid
+              type: elements.Period
+            issuer?: elements.Reference
+      communication?: elements.CodeableConcept[]
+  Schedule:
+    description: |
+      A container for slot(s) of time that may be available for booking appointments
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      type?: elements.CodeableConcept[]
+      actor: elements.Reference
+      planningHorizon?: elements.Period
+      comment?: string
+  AllergyIntolerance:
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      onset?: primitives.dateTime
+      recordedDate?: primitives.dateTime
+      recorder?: elements.Reference
+      patient: elements.Reference
+      reporter?: elements.Reference
+      substance: elements.CodeableConcept
+      status?:
+        type: primitives.code
+        enum: [active, unconfirmed, confirmed, inactive, resolved, refuted, entered-in-error]
+      criticality?:
+        type: primitives.code
+        enum: [CRITL, CRITH, CRITU]
+      type?:
+        type: primitives.code
+        enum: [allergy, intolerance]
+      category?:
+        type: primitives.code
+        enum: [food, medication, environment, other]
+      lastOccurence?: primitives.dateTime
+      note?: elements.Annotation
+      reaction?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            substance?: elements.CodeableConcept
+            certainty?:
+              type: primitives.code
+              enum: [unlikely, likely, confirmed]
+            manifestation:
+              type: array
+              minItems: 1
+              items:
+                type: elements.CodeableConcept
+            description?: string
+            onset?: primitives.dateTime
+            severity?:
+              type: primitives.code
+              enum: [mild, moderate, severe]
+            exposureRoute?: elements.CodeableConcept
+            note?: elements.Annotation
+  Conformance:
+    type: DomainResource
+    properties:
+      url?: primitives.uri
+      version?:
+      name?:
+      status?:
+        type: primitives.code
+        enum: [draft, active, retired]
+      experimental?: boolean
+      publisher?:
+      contact?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            name?:
+            telecom?: elements.ContactPoint[]
+      date: primitives.dateTime
+      description?:
+      requirements?:
+      copyright?:
+      kind:
+        type: primitives.code
+        enum: [instance, capability, requirements]
+      software?:
+        type: elements.BackboneElement
+        properties:
+          name:
+          version?:
+          releaseDate?: primitives.dateTime
+      implementation?:
+        type: elements.BackboneElement
+        properties:
+          description:
+          url?: primitives.uri
+      fhirVersion: primitives.id
+      acceptUnknown:
+        type: primitives.code
+        enum: [no, extensions, elements, both ]
+      format:
+        type: array
+        items:
+          type: primitives.code
+          enum: [xml, json, application/xml, application/json]
+      profile?: elements.Reference[]
+      rest?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            mode:
+              type: primitives.code
+              enum: [client, server]
+            documentation?:
+            security?:
+              type: elements.BackboneElement
+              properties:
+                cors?: boolean
+                service?: elements.CodeableConcept[]
+                description?:
+                certificate?:
+                  type: array
+                  items:
+                    type: elements.BackboneElement
+                    properties:
+                      type?: primitives.code
+                      blob?: primitives.base64Binary
+            resource:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  type:
+                    type: primitives.code
+                    enum: [] # Resource Type list TODO:
+                  profile?: elements.Reference
+                  interaction:
+                    type: array
+                    items:
+                      type: elements.BackboneElement
+                      properties:
+                        code:
+                          type: primitives.code
+                          enum: [read, vread, update, delete, history-instance, validate, history-type, create, search-type]
+                        documentation?:
+                  versioning?:
+                    type: primitives.code
+                    enum: [no-version, versioned, versioned-update]
+                  readHistory?: boolean
+                  updateCreate?: boolean
+                  conditionalCreate?: boolean
+                  conditionalUpdate?: boolean
+                  coditionalDelete?:
+                    type: primitives.code
+                    enum: [not-supported, single, multiple]
+                  searchInclude?:
+                  searchRevInclude?:
+                  searchParam?:
+                    type: array
+                    items:
+                      type: elements.BackboneElement
+                      properties:
+                        name:
+                        definition?:
+                        type:
+                          type: primitives.code
+                          enum: [number, date, string, token, reference, composite, quantity, uri]
+                        documentation?:
+                        target?:
+                          type: array
+                          items:
+                            type: primitives.code
+                            enum: [missing, exact, contains, not, text, in, not-in, below, above, type]
+                        chain?: string[]
+            interaction?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  code:
+                    type: primitives.code
+                    enum: [transaction, search-system, history-system]
+                  documentation?:
+            transactionMode?:
+              type: primitives.code
+              enum: [not-supported, batch, transaction, both]
+            searchParam?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  name:
+                  definition?:
+                  type:
+                    type: primitives.code
+                    enum: [number, date, string, token, reference, composite, quantity, uri]
+                  documentation?:
+                  target?:
+                    type: array
+                    items:
+                      type: primitives.code
+                      enum: [missing, exact, contains, not, text, in, not-in, below, above, type]
+                  chain?: string[]
+            operation?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  name:
+                  definition:
+            compartment?: primitives.uri[]
+      messaging?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            endpoint?:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  protocol: elements.Coding
+                  address: primitives.uri
+            reliableCache?: primitives.unsignedInt
+            documentation: string
+            event:
+              type: array
+              items:
+                type: elements.BackboneElement
+                properties:
+                  code: elements.Coding
+                  category?:
+                    type: primitives.code
+                    enum: [Consequence, Currency, Notification]
+                  mode:
+                    type: primitives.code
+                    enum: [sender, receiver]
+                  focus:
+                    type: primitives.code
+                    enum: [] #TODO: Resource Type
+                  request: elements.Reference
+                  response: elements.Reference
+                  documentation?:
+      document?:
+        type: array
+        items:
+          type: elements.BackboneElement
+          properties:
+            mode:
+              type: primitives.code
+              enum: [producer, consumer]
+            docuemntation?:
+            profile:
+  Appointment:
+    description: |
+      A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)
+      Only proposed or cancelled appointments can be missing start/end dates
+      Either start and end are specified, or neither
+    type: DomainResource
+    properties:
+      identifier?: elements.Identifier[]
+      status:
+        type: primitives.code
+        enum: [proposed, pending, booked, arrived, fulfilled, cancelled, noshow]
+      type?: elements.CodeableConcept
+      reason?: elements.CodeableConcept
+      priority?: primitives.unsignedInt
+      description?: string
+      start?: primitives.instant
+      end?: primitives.instant
+      minutesDuration?: primitives.positiveInt
+      slot?: elements.Reference[]
+      comment?: string
+      participant:
+        type: array
+        minItems: 1
+        items:
+          type: elements.BackboneElement
+          properties:
+            type?: elements.CodeableConcept
+            actor?: elements.Reference
+            required?:
+              type: primitives.code
+              enum: [required, optional, information-only]
+            status:
+              type: primitives.code
+              enum: [accepted, declined, tentative, needs-action]

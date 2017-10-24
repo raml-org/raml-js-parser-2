@@ -266,7 +266,7 @@
                     "displayName": "formParam",
                     "type": "boolean",
                     "required": false,
-                    "example": "false",
+                    "example": false,
                     "repeat": false,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -297,7 +297,7 @@
                 "displayName": "c",
                 "type": "number",
                 "required": false,
-                "example": "true",
+                "example": true,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -345,7 +345,7 @@
                 "displayName": "a",
                 "type": "boolean",
                 "required": false,
-                "example": "11",
+                "example": 11,
                 "repeat": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

@@ -1,0 +1,85 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "00170156",
+    "version": "1.0",
+    "resources": [
+      {
+        "relativeUri": "/policies",
+        "resources": [
+          {
+            "relativeUri": "/{id}",
+            "uriParameters": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": "string",
+                "required": true,
+                "example": "123456789-12",
+                "repeat": false,
+                "minLength": 12,
+                "maxLength": 12,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "methods": [
+              {
+                "method": "get",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "displayName": "/{id}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "relativeUriPathSegments": [
+              "{id}"
+            ],
+            "absoluteUri": "/policies/{id}"
+          }
+        ],
+        "displayName": "/policies",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "policies"
+        ],
+        "absoluteUri": "/policies"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

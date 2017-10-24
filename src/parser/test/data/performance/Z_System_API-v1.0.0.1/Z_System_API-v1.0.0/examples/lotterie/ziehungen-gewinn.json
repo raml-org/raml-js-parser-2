@@ -1,0 +1,25 @@
+[
+  {
+    "datum": "2016-12-20",
+    "ziehungen": [
+      {
+        "datum": "2016-12-20",
+        "ziehungsart": {
+          "key": "Geldziehung",
+          "name": "Geldziehung"
+        },
+        "ergebnisse": [
+          {
+            "nummern": [
+              "5925336"
+            ],
+            "ziehungsrang": "Rang 1",
+            "anzahlEndziffern": 7,
+            "gewinnMonatlich": 100000,
+            "gewinnEinmalig": 0
+          }
+        ]
+      }
+    ]
+  }
+]
