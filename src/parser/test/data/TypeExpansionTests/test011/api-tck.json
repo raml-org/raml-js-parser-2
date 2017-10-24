@@ -21,7 +21,7 @@
                 "properties": [
                   {
                     "type": [
-                      "T1"
+                      "any"
                     ],
                     "name": "p1",
                     "required": false
@@ -32,7 +32,7 @@
                     ],
                     "items": {
                       "type": [
-                        "T1"
+                        "any"
                       ]
                     },
                     "name": "p2",
@@ -53,7 +53,7 @@
                   "properties": [
                     {
                       "type": [
-                        "T1"
+                        "any"
                       ],
                       "name": "p1",
                       "required": false
@@ -64,7 +64,7 @@
                       ],
                       "items": {
                         "type": [
-                          "T1"
+                          "any"
                         ]
                       },
                       "name": "p2",
@@ -96,7 +96,7 @@
                   "properties": [
                     {
                       "type": [
-                        "T1"
+                        "any"
                       ],
                       "name": "p1",
                       "required": false
@@ -107,7 +107,7 @@
                       ],
                       "items": {
                         "type": [
-                          "T1"
+                          "any"
                         ]
                       },
                       "name": "p2",
@@ -128,7 +128,7 @@
                     "properties": [
                       {
                         "type": [
-                          "T1"
+                          "any"
                         ],
                         "name": "p1",
                         "required": false
@@ -139,7 +139,7 @@
                         ],
                         "items": {
                           "type": [
-                            "T1"
+                            "any"
                           ]
                         },
                         "name": "p2",
@@ -195,7 +195,7 @@
                             "properties": [
                               {
                                 "type": [
-                                  "T2"
+                                  "any"
                                 ],
                                 "name": "r1",
                                 "required": false
@@ -206,7 +206,7 @@
                                 ],
                                 "items": {
                                   "type": [
-                                    "T2"
+                                    "any"
                                   ]
                                 },
                                 "name": "r2",
@@ -236,7 +236,7 @@
                               "properties": [
                                 {
                                   "type": [
-                                    "T2"
+                                    "any"
                                   ],
                                   "name": "r1",
                                   "required": false
@@ -247,7 +247,7 @@
                                   ],
                                   "items": {
                                     "type": [
-                                      "T2"
+                                      "any"
                                     ]
                                   },
                                   "name": "r2",
@@ -297,7 +297,7 @@
                               "properties": [
                                 {
                                   "type": [
-                                    "T2"
+                                    "any"
                                   ],
                                   "name": "r1",
                                   "required": false
@@ -308,7 +308,7 @@
                                   ],
                                   "items": {
                                     "type": [
-                                      "T2"
+                                      "any"
                                     ]
                                   },
                                   "name": "r2",
@@ -338,7 +338,7 @@
                                 "properties": [
                                   {
                                     "type": [
-                                      "T2"
+                                      "any"
                                     ],
                                     "name": "r1",
                                     "required": false
@@ -349,7 +349,7 @@
                                     ],
                                     "items": {
                                       "type": [
-                                        "T2"
+                                        "any"
                                       ]
                                     },
                                     "name": "r2",

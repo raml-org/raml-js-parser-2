@@ -690,7 +690,7 @@ export function dump(te:TypeEntry):any{
         result.name = name;
         if(te.isRecursionPoint()){
             return {
-                type: [ name ]
+                type: [ "any" ]
             };
         }
     }

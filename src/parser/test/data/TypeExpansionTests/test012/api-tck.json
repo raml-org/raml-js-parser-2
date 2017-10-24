@@ -21,7 +21,7 @@
                 "properties": [
                   {
                     "type": [
-                      "T1"
+                      "any"
                     ],
                     "name": "p1",
                     "required": false
@@ -59,7 +59,7 @@
                 "properties": [
                   {
                     "type": [
-                      "T1"
+                      "any"
                     ],
                     "name": "p1",
                     "required": false
@@ -97,7 +97,7 @@
                 "properties": [
                   {
                     "type": [
-                      "T1"
+                      "any"
                     ],
                     "name": "p1",
                     "required": false
@@ -135,7 +135,7 @@
                 "properties": [
                   {
                     "type": [
-                      "T1"
+                      "any"
                     ],
                     "name": "p1",
                     "required": false
