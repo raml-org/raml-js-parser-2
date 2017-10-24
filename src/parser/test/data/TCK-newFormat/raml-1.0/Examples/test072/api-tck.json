@@ -3,10 +3,10 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -29,13 +29,24 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\n  \"prop1\": \"valu1\" }\n}\n"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -50,9 +61,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

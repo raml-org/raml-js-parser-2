@@ -8,8 +8,8 @@
         "resources": [
           {
             "relativeUri": "/{id}",
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": "string",
@@ -27,14 +27,48 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "methods": {
-              "get": {
-                "method": "get"
+            ],
+            "methods": [
+              {
+                "method": "get",
+                "parentUri": "/policies/{id}",
+                "absoluteParentUri": "/policies/{id}",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": "string",
+                    "required": true,
+                    "example": "123456789-12",
+                    "repeat": false,
+                    "minLength": 12,
+                    "maxLength": 12,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                ]
               }
-            },
+            ],
             "displayName": "/{id}",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -48,7 +82,11 @@
             ],
             "absoluteUri": "/policies/{id}",
             "completeRelativeUri": "/policies/{id}",
-            "parentUri": "/policies"
+            "parentUri": "/policies",
+            "absoluteParentUri": "/policies",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/policies",
@@ -64,9 +102,16 @@
         ],
         "absoluteUri": "/policies",
         "completeRelativeUri": "/policies",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

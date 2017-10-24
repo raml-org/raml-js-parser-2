@@ -4,10 +4,10 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "param1": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": "string",
@@ -36,9 +36,12 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
-              "param2": {
+              {
                 "name": "param2",
                 "displayName": "param2",
                 "type": "string",
@@ -67,9 +70,12 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
-              "param3": {
+              {
                 "name": "param3",
                 "displayName": "param3",
                 "type": "number",
@@ -89,9 +95,12 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
-              "param4": {
+              {
                 "name": "param4",
                 "displayName": "param4",
                 "type": "boolean",
@@ -111,12 +120,20 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -130,9 +147,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

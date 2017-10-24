@@ -1,19 +1,6 @@
-/// <reference path="../../typings/main.d.ts" />
-var universe = require("../parser/tools/universe");
-import coreApi = require("../parser/wrapped-ast/parserCoreApi");
-import core = require("../parser/wrapped-ast/parserCore");
-import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system");
-import hl = require("../parser/highLevelAST");
-import ll = require("../parser/lowLevelAST");
-import hlImpl = require("../parser/highLevelImpl");
 import builder = require("../parser/ast.core/builder");
-
 import typeSystem = def.rt;
-import nominals = typeSystem.nominalTypes;
-import universeHelpers = require("../parser/tools/universeHelpers")
-import universes = require("../parser/tools/universe")
-import util = require("../util/index")
 import _ = require("underscore");
 
 
