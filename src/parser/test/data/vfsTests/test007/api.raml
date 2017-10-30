@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  ErrorReport:
+    properties:
+      message:
+      screenshot: file
+    example:
+      message: some string value
+      screenshot: !include ./avatar.png

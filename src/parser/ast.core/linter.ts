@@ -4429,6 +4429,10 @@ function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolea
         }
     }
     let internalRange = internalPathUsed ? null : ve.internalRange;
+    if(ve.filePath && actualNode.lowLevel().unit().absolutePath()!= ve.filePath){
+        internalRange = null;
+        ve.filePath = null;
+    }
     let result = createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
     if(ve.filePath){
         let actualUnit = node.lowLevel().unit().project().unit(ve.filePath,true);
