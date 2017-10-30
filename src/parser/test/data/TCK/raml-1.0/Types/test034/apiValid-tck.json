@@ -210,6 +210,9 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
               }
             }
           },
@@ -231,6 +234,9 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
               }
             }
           },
@@ -260,6 +266,9 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
               }
             }
           },
@@ -281,6 +290,9 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
               }
             }
           },

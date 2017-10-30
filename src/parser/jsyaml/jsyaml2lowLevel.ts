@@ -2771,14 +2771,23 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         }
         if (this._node.kind==yaml.Kind.SCALAR){
             if(this._node['value']==="~" && this._node['valueObject']===null){
-                return toString ? "null" : null;
+                return null;
             }
             //TODO WHAT IS IT IS INCLUDE ACTUALLY
             if(!toString&&(""+this._node['valueObject']===this._node['value'])){
                 return this._node['valueObject'];
             }
 
-            var q= this._node['value'];
+            let q:any = null;
+            if(!this._node.hasOwnProperty("valueObject")){
+                q = this._node['value'];
+            }
+            else if(this._node['valueObject']==null){
+                q = this._node['valueObject'];
+            }
+            else{
+                q = this._node['value'];
+            }
             if (!toString) {
                 if ((<yaml.YAMLScalar>this._node).plainScalar) {
                     q=tryParseScalar(q);

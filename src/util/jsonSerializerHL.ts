@@ -1,6 +1,7 @@
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
+import yaml = require("yaml-ast-parser");
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import hlImpl = require("../parser/highLevelImpl");
@@ -482,7 +483,7 @@ export class JsonSerializer {
                     if(aNode.isAnnotatedScalar()){
                         llAttrNode = _.find(llAttrNode.children(),x=>x.key()=="value");
                     }
-                    if(llAttrNode) {
+                    if(llAttrNode&&llAttrNode.valueKind()!=yaml.Kind.SCALAR) {
                         val = aNode.lowLevel().dumpToObject();
                     }
                 }
