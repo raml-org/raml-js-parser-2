@@ -124,6 +124,7 @@ export function copyFileSync(sourcePath: string, targetPath : string) {
     var bufferLength = 16384;
     var buffer = new Buffer(bufferLength);
     var sourceDescriptor = fs.openSync(sourcePath, 'r');
+    mkdirp.sync(path.dirname(targetPath));
     var targetDescriptor = fs.openSync(targetPath, 'w');
 
     var numBytes = fs.readSync(sourceDescriptor, buffer, 0, bufferLength, 0);
