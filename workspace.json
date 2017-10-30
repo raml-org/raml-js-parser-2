@@ -7,13 +7,14 @@
   },
   "raml-definition-system" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/raml-org/raml-definition-system.git"
+    "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
+    "gitBranch" : "develop"
   },
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/raml-typesystem.git",
-    "gitBranch": "hotfix-1.1.34"
+    "gitBranch" : "develop"
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
@@ -25,16 +26,18 @@
   },
   "ts-structure-parser" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git"
+    "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git",
+    "gitBranch" : "develop"
   },
   "yaml-ast-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git",
-    "gitBranch": "hotfix-1.1.34"
+    "gitBranch" : "develop"
   },
   "ts-model" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/ts-model.git"
+    "gitUrl" : "https://github.com/mulesoft-labs/ts-model.git",
+    "gitBranch" : "develop"
   }
 }
 
