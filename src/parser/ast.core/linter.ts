@@ -2996,7 +2996,9 @@ class CompositeNodeValidator implements NodeValidator {
         }
 
         if (universeHelpers.isResourceTypeType(node.definition())){
-            if(node.value()==null&&node.lowLevel().value(true)==="null") {
+            if(node.value()==null && node.lowLevel().children().length==0
+                && node.definition().universe().version()=="RAML08"
+            && node.lowLevel().resolvedValueKind() == yaml.Kind.SCALAR) {
                 acceptor.accept(createIssue1(messageRegistry.RESOURCE_TYPE_NULL, {}, node))
             }
         }
