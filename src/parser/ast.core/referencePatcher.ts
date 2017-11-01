@@ -1101,16 +1101,24 @@ export function unescapeTemplateParameters(str:string,substitutions:{[key:string
 
 
 export function checkExpression(value:string) {
-    var gotExpression = false;
-    for (let i = 0; i < value.length; i++) {
-        let ch = value.charAt(i);
-        if (ch == "|" || ch == "(" || ch == "[") {
-            gotExpression = true;
-            break;
+    let gotExpression = false;
+    if(!value){
+        return false;
+    }
+    else if(value.charAt(value.length-1)=='?'){
+        gotExpression = true;
+    }
+    else {
+        for (let i = 0; i < value.length; i++) {
+            let ch = value.charAt(i);
+            if (ch == "|" || ch == "(" || ch == "[") {
+                gotExpression = true;
+                break;
+            }
         }
     }
     return gotExpression;
-};
+}
 
 function isFromResourceType(node: ll.ILowLevelASTNode): boolean {
     var parent = node.parent && node.parent();

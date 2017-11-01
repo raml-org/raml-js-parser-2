@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: test API
+
+uses:
+  Types: libraries/types.raml
+
+/resource:
+  put:
+    body:
+      application/json:
+       type: Types.Type1
+       example:
+         id: null
