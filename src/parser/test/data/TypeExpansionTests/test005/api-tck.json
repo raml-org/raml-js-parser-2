@@ -6,30 +6,33 @@
         "type": [
           "array"
         ],
-        "items": {
-          "type": [
-            "object"
-          ],
-          "properties": [
-            {
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ],
-              "name": "//",
-              "required": false
-            }
-          ],
-          "maxProperties": 15
-        },
+        "items": [
+          {
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  }
+                ],
+                "name": "//",
+                "required": false
+              }
+            ],
+            "maxProperties": 15,
+            "name": "items"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }
@@ -39,30 +42,33 @@
         "type": [
           "array"
         ],
-        "items": {
-          "type": [
-            "object"
-          ],
-          "properties": [
-            {
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p2",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ],
-              "name": "//",
-              "required": false
-            }
-          ],
-          "maxProperties": 10
-        },
+        "items": [
+          {
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p2",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  }
+                ],
+                "name": "//",
+                "required": false
+              }
+            ],
+            "maxProperties": 10,
+            "name": "items"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }
@@ -72,37 +78,40 @@
         "type": [
           "array"
         ],
-        "items": {
-          "type": [
-            "object"
-          ],
-          "properties": [
-            {
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                },
-                {
-                  "name": "p2",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ],
-              "name": "//",
-              "required": false
-            }
-          ],
-          "maxProperties": 10
-        },
+        "items": [
+          {
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  },
+                  {
+                    "name": "p2",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  }
+                ],
+                "name": "//",
+                "required": false
+              }
+            ],
+            "maxProperties": 10,
+            "name": "items"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }

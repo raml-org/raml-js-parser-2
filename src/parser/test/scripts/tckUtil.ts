@@ -569,7 +569,7 @@ function doTestAPI(o:TestOptions,callTests:boolean,doAssert:boolean):TestResult{
         success = true;
     }
     else{
-        serializeTestJSON(tckJsonPath, json);
+        //serializeTestJSON(tckJsonPath, json);
         console.warn("DIFFERENCE DETECTED FOR " + tckJsonPath);
         console.warn(diff.map(x=>x.message("actual","expected")).join("\n\n"));
         if(doAssert) {

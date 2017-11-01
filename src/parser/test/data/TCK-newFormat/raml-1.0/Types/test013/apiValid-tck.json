@@ -12,7 +12,7 @@
             "name": "someProperty",
             "displayName": "someProperty",
             "type": [
-              "SomeType?"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -27,6 +27,10 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "SomeType",
+              "nil"
+            ],
             "sourceMap": {
               "path": "apiValid.raml"
             }

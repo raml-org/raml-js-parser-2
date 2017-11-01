@@ -75,7 +75,13 @@ describe('Virtual File System Tests', function() {
         testAPI("./vfsTests/invalidIncludeTest003/api.raml").should.be.rejectedWith(
             /Scalar is expected here\nUnknown node: 'some'/).and.notify(done);
     });
+    it('Including PNG file', function (done) {
+        // process.once("uncaughtException", function (error) {
+        //     console.log("HEREHERE: " + error)
+        // })
+        testAPIHttpAsync("./vfsTests/test007/api.raml").should.be.fulfilled.and.notify(done);
 
+    });
 });
 
 

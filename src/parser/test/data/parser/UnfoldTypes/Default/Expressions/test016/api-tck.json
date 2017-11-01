@@ -1,0 +1,86 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "Types",
+        "value": "libraries/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "libraries/types.raml#/specification/types/Type1"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "id": null
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "simplifiedExamples": [
+                  "{\"id\":null}"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

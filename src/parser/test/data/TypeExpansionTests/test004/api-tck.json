@@ -49,20 +49,23 @@
         "type": [
           "array"
         ],
-        "items": {
-          "type": [
-            "object"
-          ],
-          "properties": [
-            {
-              "name": "p3",
-              "type": [
-                "string"
-              ],
-              "required": true
-            }
-          ]
-        },
+        "items": [
+          {
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p3",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              }
+            ],
+            "name": "items"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }
@@ -78,48 +81,53 @@
             "type": [
               "array"
             ],
-            "items": {
-              "name": "T2",
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p2",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                },
-                {
-                  "name": "p1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ]
-            }
+            "items": [
+              {
+                "name": "T2",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p2",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  },
+                  {
+                    "name": "p1",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  }
+                ]
+              }
+            ]
           },
           {
             "name": "T4",
             "type": [
               "array"
             ],
-            "items": {
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p3",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ]
-            }
+            "items": [
+              {
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p3",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true
+                  }
+                ],
+                "name": "items"
+              }
+            ]
           }
         ],
         "sourceMap": {
@@ -149,50 +157,53 @@
         "type": [
           "array"
         ],
-        "items": {
-          "type": [
-            "union"
-          ],
-          "anyOf": [
-            {
-              "name": "T2",
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p2",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                },
-                {
-                  "name": "p1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ]
-            },
-            {
-              "name": "T5",
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "name": "p5",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true
-                }
-              ]
-            }
-          ]
-        },
+        "items": [
+          {
+            "type": [
+              "union"
+            ],
+            "anyOf": [
+              {
+                "name": "T2",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "string"
+                    ],
+                    "name": "p2",
+                    "required": true
+                  },
+                  {
+                    "type": [
+                      "string"
+                    ],
+                    "name": "p1",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "name": "T5",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "string"
+                    ],
+                    "name": "p5",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "name": "items"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }

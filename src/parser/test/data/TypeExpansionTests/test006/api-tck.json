@@ -18,11 +18,14 @@
             "type": [
               "array"
             ],
-            "items": {
-              "type": [
-                "any"
-              ]
-            },
+            "items": [
+              {
+                "type": [
+                  "any"
+                ],
+                "name": "items"
+              }
+            ],
             "name": "p2",
             "required": true
           }
@@ -53,11 +56,14 @@
                 "type": [
                   "array"
                 ],
-                "items": {
-                  "type": [
-                    "any"
-                  ]
-                },
+                "items": [
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "name": "items"
+                  }
+                ],
                 "name": "r2",
                 "required": true
               }

@@ -1,0 +1,102 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "{\n  \"$ref\": \"schema.json\"\n}\n",
+                    "example": "[{\n\t\"email\": \"kfuchs@fuzzpro.com\"\n}, {\n\t\"email\": \"noah@fuzzpro.com\"\n}]",
+                    "schemaContent": "{\n  \"$ref\": \"schema.json\"\n}\n",
+                    "sourceMap": {
+                      "scalarsSources": {
+                        "example": [
+                          {
+                            "path": "example.json"
+                          }
+                        ]
+                      },
+                      "path": "api.raml"
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '}'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 12,
+          "position": 127
+        },
+        "end": {
+          "line": 10,
+          "column": 18,
+          "position": 133
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '}'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 12,
+          "position": 219
+        },
+        "end": {
+          "line": 14,
+          "column": 19,
+          "position": 226
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

@@ -2996,7 +2996,9 @@ class CompositeNodeValidator implements NodeValidator {
         }
 
         if (universeHelpers.isResourceTypeType(node.definition())){
-            if(node.value()==null&&node.lowLevel().value(true)==="null") {
+            if(node.value()==null && node.lowLevel().children().length==0
+                && node.definition().universe().version()=="RAML08"
+            && node.lowLevel().resolvedValueKind() == yaml.Kind.SCALAR) {
                 acceptor.accept(createIssue1(messageRegistry.RESOURCE_TYPE_NULL, {}, node))
             }
         }
@@ -4429,6 +4431,10 @@ function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolea
         }
     }
     let internalRange = internalPathUsed ? null : ve.internalRange;
+    if(ve.filePath && actualNode.lowLevel().unit().absolutePath()!= ve.filePath){
+        internalRange = null;
+        ve.filePath = null;
+    }
     let result = createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
     if(ve.filePath){
         let actualUnit = node.lowLevel().unit().project().unit(ve.filePath,true);

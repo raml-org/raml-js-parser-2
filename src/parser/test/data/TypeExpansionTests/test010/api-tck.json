@@ -24,11 +24,14 @@
                 "type": [
                   "array"
                 ],
-                "items": {
-                  "type": [
-                    "any"
-                  ]
-                },
+                "items": [
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "name": "items"
+                  }
+                ],
                 "name": "p2",
                 "required": true
               }
@@ -39,33 +42,38 @@
             "type": [
               "array"
             ],
-            "items": {
-              "name": "T1",
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "type": [
-                    "any"
-                  ],
-                  "name": "p1",
-                  "required": false
-                },
-                {
-                  "type": [
-                    "array"
-                  ],
-                  "items": {
+            "items": [
+              {
+                "name": "T1",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
                     "type": [
                       "any"
-                    ]
+                    ],
+                    "name": "p1",
+                    "required": false
                   },
-                  "name": "p2",
-                  "required": true
-                }
-              ]
-            },
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "name": "items"
+                      }
+                    ],
+                    "name": "p2",
+                    "required": true
+                  }
+                ]
+              }
+            ],
             "name": "p2",
             "required": true
           }
@@ -107,11 +115,14 @@
                         "type": [
                           "array"
                         ],
-                        "items": {
-                          "type": [
-                            "any"
-                          ]
-                        },
+                        "items": [
+                          {
+                            "type": [
+                              "any"
+                            ],
+                            "name": "items"
+                          }
+                        ],
                         "name": "r2",
                         "required": true
                       }
@@ -126,42 +137,47 @@
                 "type": [
                   "array"
                 ],
-                "items": {
-                  "name": "T2",
-                  "type": [
-                    "object"
-                  ],
-                  "properties": [
-                    {
-                      "type": [
-                        "object"
-                      ],
-                      "properties": [
-                        {
-                          "type": [
-                            "any"
-                          ],
-                          "name": "r1",
-                          "required": false
-                        },
-                        {
-                          "type": [
-                            "array"
-                          ],
-                          "items": {
+                "items": [
+                  {
+                    "name": "T2",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "object"
+                        ],
+                        "properties": [
+                          {
                             "type": [
                               "any"
-                            ]
+                            ],
+                            "name": "r1",
+                            "required": false
                           },
-                          "name": "r2",
-                          "required": true
-                        }
-                      ],
-                      "name": "q1",
-                      "required": true
-                    }
-                  ]
-                },
+                          {
+                            "type": [
+                              "array"
+                            ],
+                            "items": [
+                              {
+                                "type": [
+                                  "any"
+                                ],
+                                "name": "items"
+                              }
+                            ],
+                            "name": "r2",
+                            "required": true
+                          }
+                        ],
+                        "name": "q1",
+                        "required": true
+                      }
+                    ]
+                  }
+                ],
                 "name": "r2",
                 "required": true
               }

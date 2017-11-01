@@ -31,9 +31,12 @@
             ]
           }
         ],
-        "fixedFacets": {
-          "f1": "stringValue"
-        },
+        "fixedFacets": [
+          {
+            "name": "f1",
+            "value": "stringValue"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }
@@ -51,9 +54,12 @@
             ]
           }
         ],
-        "fixedFacets": {
-          "f1": "stringValue"
-        },
+        "fixedFacets": [
+          {
+            "name": "f1",
+            "value": "stringValue"
+          }
+        ],
         "sourceMap": {
           "path": "api.raml"
         }

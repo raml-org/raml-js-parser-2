@@ -589,6 +589,12 @@ export class JsonSerializer {
             else if(x.range.start==null){
                 return -1;
             }
+            if(y.range.start==null){
+                return 1;
+            }
+            else if(x.range.start==null){
+                return -1;
+            }
             if (x.range.start.position != y.range.start.position) {
                 return x.range.start.position - y.range.start.position;
             }

@@ -19,6 +19,12 @@
           "name": "rt1",
           "sourceMap": {
             "path": "api.raml"
+          },
+          "get": {
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -74,14 +80,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 14,
+          "line": 15,
           "column": 6,
-          "position": 107
+          "position": 118
         },
         "end": {
-          "line": 14,
+          "line": 15,
           "column": 11,
-          "position": 112
+          "position": 123
         }
       },
       "isWarning": true
@@ -92,14 +98,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 18,
+          "line": 19,
           "column": 10,
-          "position": 164
+          "position": 175
         },
         "end": {
-          "line": 18,
+          "line": 19,
           "column": 15,
-          "position": 169
+          "position": 180
         }
       },
       "isWarning": true

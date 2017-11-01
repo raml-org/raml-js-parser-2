@@ -1,0 +1,166 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "Types",
+        "value": "libraries/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "Types.SharedTypes",
+        "value": "libraries/SharedTypes.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "Types.SharedTypes.StandardInt64",
+        "displayName": "StandardInt64",
+        "type": [
+          "integer"
+        ],
+        "format": "int64",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libraries/SharedTypes.raml"
+        }
+      },
+      {
+        "name": "Types.Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "union"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "#/specification/types/StandardInt64",
+              "nil"
+            ],
+            "sourceMap": {
+              "path": "libraries/types.raml"
+            }
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libraries/types.raml"
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "#/specification/types/Type1"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "id": null
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "simplifiedExamples": [
+                  "{\"id\":null}"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
