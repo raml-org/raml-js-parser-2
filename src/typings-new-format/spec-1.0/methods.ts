@@ -40,7 +40,7 @@ export interface Operation10 extends common.Annotable {
     /**
      * Headers that allowed at this position
      */
-    headers?: datamodel.TypeReference10[]
+    headers?: datamodel.TypeDeclaration[]
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -48,7 +48,7 @@ export interface Operation10 extends common.Annotable {
      * by the use of query strings. If the resource or its method supports
      * a query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters?: datamodel.TypeReference10[]
+    queryParameters?: datamodel.TypeDeclaration[]
 
     queryString?: datamodel.ObjectTypeDeclaration
 
@@ -67,7 +67,7 @@ export interface Method10 extends MethodBase10 {
      */
     method: string
 
-    uriParameters: datamodel.TypeReference10[]
+    uriParameters?: datamodel.TypeDeclaration[]
 
     /**
      * Complete relative URI of the owner resource
@@ -113,7 +113,7 @@ export interface MethodBase10 extends Operation10 {
      * A method's body is defined in the body property as a hashmap, in which
      * the key MUST be a valid media type.
      */
-    body?:  datamodel.TypeReference10[]
+    body?:  datamodel.TypeDeclaration[]
 
     description?: string
 
@@ -138,10 +138,10 @@ export interface Response10 extends common.Annotable {
     /**
      * Detailed information about any response headers returned by this method
      */
-    headers?: datamodel.TypeReference10[]
+    headers?: datamodel.TypeDeclaration[]
 
     /**
      * The body of the response: a body declaration
      */
-    body?: datamodel.TypeReference10[]
+    body?: datamodel.TypeDeclaration[]
 }

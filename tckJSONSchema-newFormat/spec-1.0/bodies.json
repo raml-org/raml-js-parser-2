@@ -25,7 +25,7 @@
               "type": "array",
               "description": "The body of the response: a body declaration",
               "items": {
-                "$ref": "datamodel.json#/definitions/TypeReference10"
+                "$ref": "datamodel.json#/definitions/Type"
               }
             },
             "code": {

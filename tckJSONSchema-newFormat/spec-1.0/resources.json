@@ -7,10 +7,6 @@
                 {"$ref": "#/definitions/ResourceBase10"},
                 {
                     "properties": {
-                        "displayName": {
-                            "type": "string",
-                            "description": "Resource name"
-                        },
                         "resources": {
                             "type": "array",
                             "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
@@ -98,6 +94,10 @@
                         "type": {
                             "$ref": "methods.json#/definitions/TemplateReference"
                         },
+                        "displayName": {
+                          "type": [ "string", "null" ],
+                          "description": "User readable name of the component"
+                        },
                         "securedBy": {
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
@@ -123,7 +123,7 @@
                             "type": "array",
                             "description": "Detailed information about any URI parameters of this resource",
                             "items": {
-                                "$ref": "datamodel.json#/definitions/TypeReference10"
+                                "$ref": "datamodel.json#/definitions/Type"
                             }
                         }
                     }

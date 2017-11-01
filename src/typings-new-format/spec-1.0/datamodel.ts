@@ -146,7 +146,7 @@ export interface TypeDeclaration extends common.Annotable {
     /**
      * Lists available options for union types.
      */
-    oneOf?: TypeReference10[]
+    anyOf?: TypeReference10[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration {

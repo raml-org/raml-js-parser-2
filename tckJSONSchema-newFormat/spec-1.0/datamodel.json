@@ -347,7 +347,7 @@
                 }
               }
             },
-            "oneOf": {
+            "anyOf": {
               "type": "array",
               "description": "Lists available options for union types.",
               "items": {

@@ -46,7 +46,7 @@
               "type": "array",
               "description": "Named parameters used in the baseUri (template)",
               "items": {
-                "$ref": "datamodel.json#/definitions/TypeReference10"
+                "$ref": "datamodel.json#/definitions/TypeDeclaration"
               }
             },
             "resources": {
@@ -188,7 +188,7 @@
     "DocumentationItem": {
       "allOf": [
         {
-          "$ref": "common.json#/definitions/HasSource"
+          "$ref": "common.json#/definitions/Annotable"
         },
         {
           "type": "object",

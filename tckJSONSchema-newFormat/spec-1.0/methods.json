@@ -73,7 +73,7 @@
                         "uriParameters": {
                             "type": "array",
                             "items": {
-                                "$ref": "datamodel.json#/definitions/TypeReference10"
+                                "$ref": "datamodel.json#/definitions/Type"
                             }
                         },
                         "parentUri": {
@@ -132,7 +132,7 @@
                             "type": "array",
                             "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
                             "items": {
-                                "$ref": "datamodel.json#/definitions/TypeReference10"
+                                "$ref": "datamodel.json#/definitions/Type"
                             }
                         },
                         "description": {

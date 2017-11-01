@@ -47,7 +47,7 @@ export interface Annotable extends HasSource{
     scalarsAnnotations?: { [key: string]: AnnotationInstance[][] };
 }
 
-export interface AnnotationInstance {
+export interface AnnotationInstance extends Annotable {
 
     name: string
 

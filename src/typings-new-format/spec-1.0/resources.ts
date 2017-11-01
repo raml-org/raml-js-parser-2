@@ -71,12 +71,17 @@ export interface ResourceType10 extends ResourceBase10 {
     usage?: string
 
     /**
-     * Resource name
+     * Resource type name
      */
     displayName?: string
 }
 
 export interface ResourceBase10 extends common.Annotable {
+
+    /**
+     * User readable name of the component
+     */
+    displayName?: string
 
     /**
      * Resource description
@@ -106,6 +111,6 @@ export interface ResourceBase10 extends common.Annotable {
     /**
      * Detailed information about any URI parameters of this resource
      */
-    uriParameters?: datamodel.TypeReference10[]
+    uriParameters?: datamodel.TypeDeclaration[]
 
 }

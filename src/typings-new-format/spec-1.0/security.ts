@@ -64,7 +64,7 @@ export interface DigestSecuritySettings10 extends common.Annotable{}
 
 export interface CustomSecuritySettings10 extends common.Annotable{}
 
-export interface SecuritySchemeBase10 {
+export interface SecuritySchemeBase10 extends common.Annotable {
 
     /**
      * Name of the security scheme
@@ -83,6 +83,8 @@ export interface SecuritySchemeBase10 {
      * one authentication method is allowed if the API supports them
      */
     type: string
+
+    settings?: Object;
 }
 
 export interface OAuth10SecurityScheme10 extends SecuritySchemeBase10 {

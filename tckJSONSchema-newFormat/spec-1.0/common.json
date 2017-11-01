@@ -87,6 +87,7 @@
       "type": "object",
       "allOf": [
         {"$ref": "#/definitions/ParametrizedProperties"},
+        {"$ref": "#/definitions/Annotable"},
         {
           "type": "object",
           "properties": {

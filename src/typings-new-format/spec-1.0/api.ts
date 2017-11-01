@@ -40,7 +40,7 @@ export interface Api10 extends LibraryBase10{
     /**
      * Named parameters used in the baseUri (template)
      */
-    baseUriParameters?: datamodel.TypeReference10[]
+    baseUriParameters?: datamodel.TypeDeclaration[]
 
     /**
      * The resources of the API, identified as relative URIs that
@@ -148,7 +148,7 @@ export interface LibraryBase10 extends common.FragmentDeclaration {
 /**
  * API documentation
  */
-export interface DocumentationItem {
+export interface DocumentationItem extends common.Annotable {
 
     /**
      * Title of documentation section
