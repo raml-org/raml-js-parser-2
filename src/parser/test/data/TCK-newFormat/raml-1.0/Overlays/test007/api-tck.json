@@ -7,7 +7,7 @@
         "name": "testSchema",
         "displayName": "testSchema",
         "type": [
-          "{\n\n}\n"
+          "{\n\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

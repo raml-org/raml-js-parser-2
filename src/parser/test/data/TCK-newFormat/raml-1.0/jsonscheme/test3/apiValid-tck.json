@@ -5,7 +5,7 @@
         "name": "MyType",
         "displayName": "MyType",
         "type": [
-          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n      \"child\": {\"$ref\": \"scheme.json#\"}\n    },\n    \"required\": [ \"child\" ]\n  }\n"
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n      \"child\": {\"$ref\": \"scheme.json#\"}\n    },\n    \"required\": [ \"child\" ]\n  }"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

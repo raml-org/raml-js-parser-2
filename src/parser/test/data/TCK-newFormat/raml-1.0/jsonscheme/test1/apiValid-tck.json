@@ -5,8 +5,11 @@
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "scheme.json",
+        "sourceMap": {
+          "path": "scheme.json"
+        },
         "type": [
-          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n"
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "scheme.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "Api",

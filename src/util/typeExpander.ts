@@ -1,6 +1,8 @@
 import def = require("raml-definition-system");
 import builder = require("../parser/ast.core/builder");
 import typeSystem = def.rt;
+import ts=require("raml-typesystem-light")
+import ti = ts.tsInterfaces;
 import _ = require("underscore");
 
 
@@ -34,8 +36,11 @@ export interface Entry{
 
 export class PropertyEntry implements Entry{
 
-    constructor(protected _original:typeSystem.IPropertyInfo, protected _name:string,
-                protected _type:TypeEntry,protected isFacet=false, protected _required?:boolean){
+    constructor(protected _original:typeSystem.IPropertyInfo|ti.IPropertyInfo,
+                protected _name:string,
+                protected _type:TypeEntry,
+                protected isFacet=false,
+                protected _required?:boolean){
 
     }
 
@@ -72,7 +77,7 @@ export interface TypeEntry extends Entry{
 
     name():string;
 
-    original():typeSystem.IParsedType;
+    original():typeSystem.IParsedType|ti.IParsedType;
 
     isUnion():boolean;
 
@@ -94,19 +99,21 @@ export interface TypeEntry extends Entry{
 
     branchingRegistry(): BranchingRegistry;
 
-    allFacets(): typeSystem.ITypeFacet[];
+    allFacets():(typeSystem.ITypeFacet|ti.ITypeFacet)[];
+
+    declaredFacets():(typeSystem.ITypeFacet|ti.ITypeFacet)[];
 
     isRecursionPoint():boolean;
 
-    examples():typeSystem.IExample[]
+    examples():(typeSystem.IExample|ti.IExample)[]
 
-    meta():typeSystem.ITypeFacet[];
+    meta():(typeSystem.ITypeFacet|ti.ITypeFacet)[];
 }
 
 export class AbstractTypeEntry implements TypeEntry{
 
 
-    constructor(protected _original:typeSystem.IParsedType,protected _superTypes:TypeEntry[]){}
+    constructor(protected _original:typeSystem.IParsedType|ti.IParsedType,protected _superTypes:TypeEntry[]){}
 
     protected _branchingRegistry:BranchingRegistry;
 
@@ -144,7 +151,8 @@ export class AbstractTypeEntry implements TypeEntry{
 
     schema():string{
         if(this._original){
-            let et = _.find([this._original].concat(this._original.allSuperTypes()),x=>x.kind()=="external");
+            let et = _.find([this._original].concat(this._original.allSuperTypes()),x=>
+                (<typeSystem.IParsedType|ti.IParsedType>x).kind()=="external");
             if(et) {
                 return (<any>et).schema();
             }
@@ -172,7 +180,7 @@ export class AbstractTypeEntry implements TypeEntry{
         return this._superTypes;
     }
 
-    original():typeSystem.IParsedType{
+    original():typeSystem.IParsedType|ti.IParsedType{
         return this._original;
     }
 
@@ -190,6 +198,17 @@ export class AbstractTypeEntry implements TypeEntry{
         throw new Error("not implemented");
     }
 
+    declaredFacets() {
+        let result:(typeSystem.ITypeFacet|ti.ITypeFacet)[] = [];
+        if(this._original){
+            result = this._original.declaredFacets();
+            result = result.filter(x=>x.kind()!=def.tsInterfaces.MetaInformationKind.Example
+                && x.kind()!=def.tsInterfaces.MetaInformationKind.Examples);
+        }
+
+        return result;
+    }
+
     allFacets(){
         let meta = this.meta();
         let result = meta.filter(x=>x.kind()!=def.tsInterfaces.MetaInformationKind.FacetDeclaration);
@@ -200,12 +219,16 @@ export class AbstractTypeEntry implements TypeEntry{
         return false;
     }
 
-    examples():typeSystem.IExample[]{
-        return this._original != null ? this._original.examples() : [];
+    examples():(typeSystem.IExample|typeSystem.IExample)[]{
+        if(this._original){
+            const examples = <(typeSystem.IExample|typeSystem.IExample)[]>this._original.examples();
+            return examples;
+        }
+        return [];
     }
 
     meta(){
-        let result:typeSystem.ITypeFacet[] = [];
+        let result:(typeSystem.ITypeFacet|ti.ITypeFacet)[] = [];
         if(this._original){
             result = this._original.allFacets();
         }
@@ -225,7 +248,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
     protected facets:PropertyEntry[] = [];
 
     constructor(
-        _original:typeSystem.IParsedType,
+        _original:typeSystem.IParsedType|ti.IParsedType,
         _superTypes:TypeEntry[]=[],
         protected _componentType: TypeEntry,
         protected _properties: PropertyEntry[]=[],
@@ -394,7 +417,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
 
 export class BuiltInTypeEntry extends AbstractTypeEntry{
 
-    constructor(protected _original:typeSystem.IParsedType){
+    constructor(protected _original:typeSystem.IParsedType|ti.IParsedType){
         super(_original,[]);
     }
 
@@ -415,7 +438,7 @@ export class BuiltInTypeEntry extends AbstractTypeEntry{
 export class UnionTypeEntry extends AbstractTypeEntry{
 
     constructor(
-        original:typeSystem.IParsedType,
+        original:typeSystem.IParsedType|ti.IParsedType,
         protected _options:TypeEntry[],
         protected _branchId:number){
         super(original,[]);
@@ -479,7 +502,7 @@ export class IntersectionTypeEntry extends AbstractTypeEntry{
     }
 }
 
-function createHierarchyEntry(t:typeSystem.IParsedType,
+function createHierarchyEntry(t:typeSystem.IParsedType|ti.IParsedType,
                               typeExpansionRecursionDepth:number,
                               occured:{[key:string]:TypeEntry}={},
                               branchingRegistry?:BranchingRegistry):TypeEntry{
@@ -500,7 +523,7 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     }
     let d = 0;
     if(t.name() && occured[t.name()]){
-        if(typeExpansionRecursionDepth==0) {
+        if(typeExpansionRecursionDepth<=0) {
             return occured[t.name()];
         }
         else{
@@ -508,22 +531,47 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
             typeExpansionRecursionDepth--;
         }
     }
+    if(t.isUnion()&&t.superTypes().length==0){
+        let options = t.options();
+        let optionEntries:TypeEntry[] = [];
+        for(let o of options){
+            optionEntries.push(createHierarchyEntry(
+                o,typeExpansionRecursionDepth,occured,branchingRegistry));
+        }
+        let branchId = branchingRegistry.nextBranchId(optionEntries.length);
+        let unionSuperType = new UnionTypeEntry(t, optionEntries, branchId);
+        return unionSuperType;
+    }
     let result = new GeneralTypeEntry(t, [],null,[], [], t.name());
     result.setDepth(d);
-    if(!occured[t.name()]) {
+    if(t.name()!=null && !occured[t.name()]) {
         occured[t.name()] = result;
     }
-    let superTypes = t.allSuperTypes().filter(x=>!x.isUnion());
+
+
     let superTypeEntries:TypeEntry[] = [];
-    for(let st of superTypes){
-        if(st.isBuiltin()){
+    if(typeExpansionRecursionDepth==-1){
+        const allSuperTypes:(typeSystem.IParsedType|ti.IParsedType)[] = t.superTypes();
+        let superTypes = allSuperTypes.filter(x=>!x.isUnion());
+        for (let st of superTypes) {
             let ste = createHierarchyEntry(
-                st,typeExpansionRecursionDepth,occured,branchingRegistry);
+                st, typeExpansionRecursionDepth, occured, branchingRegistry);
             superTypeEntries.push(ste);
         }
     }
+    else {
+        const allSuperTypes:(typeSystem.IParsedType|ti.IParsedType)[] = t.allSuperTypes();
+        let superTypes = allSuperTypes.filter(x=>!x.isUnion());
+        for (let st of superTypes) {
+            if (st.isBuiltin()) {
+                let ste = createHierarchyEntry(
+                    st, typeExpansionRecursionDepth, occured, branchingRegistry);
+                superTypeEntries.push(ste);
+            }
+        }
+    }
     let options = t.allOptions();
-    let properties = t.properties();
+    let properties = typeExpansionRecursionDepth>=0 ? t.properties() : t.declaredProperties();
     if(options.length>1){
         let optionEntries:TypeEntry[] = [];
         for(let o of options){
@@ -558,7 +606,7 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     for(let pe of propertyEntries){
         result.addProperty(pe);
     }
-    let definedFacets = t.allDefinedFacets();
+    let definedFacets = typeExpansionRecursionDepth>=0 ? t.allDefinedFacets() : t.definedFacets();
     if(definedFacets.length>0){
         for(let p of definedFacets){
             let pt = p.range();
@@ -682,7 +730,7 @@ class BasicBranchingRegistry implements BranchingRegistry{
     }
 }
 
-export function dump(te:TypeEntry):any{
+export function dump(te:TypeEntry,expand:boolean):any{
 
     let result:any = {};
     let name = te.name();
@@ -700,9 +748,14 @@ export function dump(te:TypeEntry):any{
         }
     }
     else if(te.isExternal()) {
-        let sch = te.schema();
-        if(sch) {
-            result.type = [ sch ];
+        if(!expand && te.superTypes()[0].name() && te.original().allSuperTypes().length>3){
+            result.type = [ te.superTypes()[0].name() ];
+        }
+        else {
+            let sch = te.schema();
+            if (sch) {
+                result.type = [sch.trim()];
+            }
         }
     }
     else if(te.isUnion()){
@@ -713,15 +766,36 @@ export function dump(te:TypeEntry):any{
             let anyOf:any[] = [];
             result.anyOf = anyOf;
             for(let o of options){
-                let dumpedOption = dump(o);
-                anyOf.push(dumpedOption);
+                if(!expand && o.name()){
+                    anyOf.push(o.name());
+                }
+                else {
+                    let dumpedOption = dump(o, expand);
+                    anyOf.push(dumpedOption);
+                }
             }
         }
     }
     else {
         let gte = <GeneralTypeEntry>te;
-        let type = te.possibleBuiltInTypes();
-        if(type.length>0) {
+        if(expand) {
+            let type = te.possibleBuiltInTypes();
+            if (type.length > 0) {
+                result.type = type;
+            }
+        }
+        else{
+            let type: any[] = [];
+            for(let st of te.superTypes()){
+                if(st.name()){
+                    type.push(st.name());
+                }
+                else{
+                    const dumped = dump(st,expand);
+                    dumped.name = "type";
+                    type.push(dumped);
+                }
+            }
             result.type = type;
         }
         let properties = gte.properties();
@@ -729,7 +803,7 @@ export function dump(te:TypeEntry):any{
             let props: any[] = [];
             result.properties = props;
             for (let p of properties) {
-                let dumpedPropertyType = dump(p.type());
+                let dumpedPropertyType = dump(p.type(),expand);
                 dumpedPropertyType.name = p.name();
                 dumpedPropertyType.required = p.required();
                 props.push(dumpedPropertyType);
@@ -740,17 +814,25 @@ export function dump(te:TypeEntry):any{
             let facetArr: any[] = [];
             result.facets = facetArr;
             for (let f of facets) {
-                let dumpedFacetType = dump(f.type());
+                let dumpedFacetType = dump(f.type(),expand);
                 dumpedFacetType.name = f.name();
                 facetArr.push(dumpedFacetType);
             }
         }
         let ct = gte.componentType();
         if(ct){
-            let dumpedComponentType = dump(ct);
-            result.items = dumpedComponentType;
+            if(!expand && ct.name()){
+                result.items = [ ct.name() ];
+            }
+            else {
+                let dumpedComponentType = dump(ct, expand);
+                if (!dumpedComponentType.name) {
+                    dumpedComponentType.name = "items";
+                }
+                result.items = [dumpedComponentType];
+            }
         }
-        dumpFacets(te, result);
+        dumpFacets(te, result, expand);
     }
     let examples = te.examples();
     if(examples.length > 0){
@@ -788,11 +870,13 @@ export function dump(te:TypeEntry):any{
     }
     let annotations = te.original() && te.original().annotations();
     dumpAnnotations(annotations,result);
-    dumpMeta(te,result);
+    dumpMeta(te,result, expand);
     return result;
 }
 
-function dumpAnnotations(annotations:typeSystem.IAnnotation[], obj:any) {
+function dumpAnnotations(
+    annotations:(typeSystem.IAnnotation|ti.IAnnotation)[],
+    obj:any) {
     if (annotations && annotations.length > 0) {
         let aArr: any[] = [];
         obj.annotations = aArr;
@@ -805,10 +889,18 @@ function dumpAnnotations(annotations:typeSystem.IAnnotation[], obj:any) {
     }
 };
 
-export function dumpFacets(te: TypeEntry, result: any) {
-    let customFacets = te.original() && te.original().allCustomFacets();
+export function dumpFacets(te: TypeEntry, result: any, expand:boolean) {
+    let customFacets:(typeSystem.ITypeFacet|ti.ITypeFacet)[];
+    if(te.original()){
+        if(expand){
+            customFacets = te.original().allCustomFacets();
+        }
+        else{
+            customFacets = te.original().customFacets();
+        }
+    }
     if(customFacets && customFacets.length>0) {
-        let facetsObj:any = {};
+        let facetsObj:{ name: string, value: any}[] = [];
         result.fixedFacets = facetsObj;
         customFacets.forEach(x => {
             try {
@@ -816,7 +908,10 @@ export function dumpFacets(te: TypeEntry, result: any) {
                 if (typeof val == 'object') {
                     JSON.stringify(val);
                 }
-                facetsObj[x.facetName()] = val;
+                facetsObj.push({
+                    name: x.facetName(),
+                    value: val
+                });
             }
             catch (e) {
                 console.log('Error while dumping ' + x.facetName());
@@ -837,8 +932,14 @@ export function dumpFacets(te: TypeEntry, result: any) {
     types.forEach(x=>{
         x.properties().forEach(p=>propMap[p.nameId()]=true);
     });
-    let facetsMap:{[key:string]:typeSystem.ITypeFacet[]} = {};
-    for (let f of te.allFacets()) {
+    let facetsMap:{[key:string]:(typeSystem.ITypeFacet|ti.ITypeFacet)[]} = {};
+    const facets = expand ? te.allFacets() : te.declaredFacets();
+    for (let f of facets) {
+        if(f.kind()==ti.MetaInformationKind.DiscriminatorValue){
+            if(!(<any>f).isStrict()){
+                continue;
+            }
+        }
         let fn = f.facetName();
         if (propMap[fn]) {
             let fArr = facetsMap[fn];
@@ -865,15 +966,18 @@ export function dumpFacets(te: TypeEntry, result: any) {
 }
 
 
-export function dumpType(t:typeSystem.IParsedType,typeExpansionRecursionDepth=0){
+export function dumpType(t:typeSystem.IParsedType|ti.IParsedType,typeExpansionRecursionDepth=0){
     let he = createHierarchyEntry(t,typeExpansionRecursionDepth);
-    let ee = expandHierarchy(he,he.branchingRegistry());
-    let result = dump(ee);
+    const expand = typeExpansionRecursionDepth>=0;
+    if(expand) {
+        he = expandHierarchy(he, he.branchingRegistry());
+    }
+    let result = dump(he,expand);
     return result;
 }
 
 
-function mergeFacetValues(arr:typeSystem.ITypeFacet[]):any{
+function mergeFacetValues(arr:(typeSystem.ITypeFacet|ti.ITypeFacet)[]):any{
     if(arr.length==0){
         return null;
     }
@@ -898,9 +1002,10 @@ function mergeFacetValues(arr:typeSystem.ITypeFacet[]):any{
 
 }
 
-function dumpMeta(te:TypeEntry,result:any){
+function dumpMeta(te:TypeEntry,result:any,expand:boolean){
 
-    for(let m of te.meta()){
+    const meta = expand ? te.meta() : te.declaredFacets();
+    for(let m of meta){
         let name = m.facetName();
         if (MetaNamesProvider.getInstance().hasProperty(name)) {
             if (!result.hasOwnProperty(name)) {
@@ -928,10 +1033,16 @@ class MetaNamesProvider{
     private map:{[key:string]:boolean} = {};
 
     private init(){
-        let t = def.getUniverse("RAML10").type(def.universesInfo.Universe10.TypeDeclaration.name);
-        for(let p of t.properties()){
-            if(p.nameId()!=def.universesInfo.Universe10.TypeDeclaration.properties.schema.name) {
-                this.map[p.nameId()] = true;
+        let types = [
+            def.getUniverse("RAML10").type(def.universesInfo.Universe10.TypeDeclaration.name),
+            def.getUniverse("RAML10").type(def.universesInfo.Universe10.StringTypeDeclaration.name),
+            def.getUniverse("RAML10").type(def.universesInfo.Universe10.FileTypeDeclaration.name)
+        ];
+        for(let t of types) {
+            for (let p of t.properties()) {
+                if (p.nameId() != def.universesInfo.Universe10.TypeDeclaration.properties.schema.name) {
+                    this.map[p.nameId()] = true;
+                }
             }
         }
     }

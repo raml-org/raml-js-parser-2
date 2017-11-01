@@ -1,7 +1,7 @@
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");
-import def = require("raml-definition-system")
+import def = require("raml-definition-system");
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
@@ -529,7 +529,7 @@ export class JsonSerializer {
                     if(aNode.isAnnotatedScalar()){
                         llAttrNode = _.find(llAttrNode.children(),x=>x.key()=="value");
                     }
-                    if(llAttrNode) {
+                    if(llAttrNode&&llAttrNode.valueKind()!=yaml.Kind.SCALAR) {
                         val = aNode.lowLevel().dumpToObject();
                     }
                 }
@@ -582,6 +582,12 @@ export class JsonSerializer {
         }).sort((x, y)=> {
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);
+            }
+            if(y.range.start==null){
+                return 1;
+            }
+            else if(x.range.start==null){
+                return -1;
             }
             if (x.range.start.position != y.range.start.position) {
                 return x.range.start.position - y.range.start.position;
@@ -1369,6 +1375,15 @@ class TypeTransformer extends BasicTransformation{
                 else {
                     value.mediaType = "application/json";
                 }
+                if(_value.type && _value.type.length){
+                    let t = _value.type[0];
+                    if(typeof t == "string"){
+                        t = t.trim();
+                        if(t == sch){
+                            _value.type[0] = t;
+                        }
+                    }
+                }
             }
         }
         var prop = node.property();
@@ -2062,7 +2077,6 @@ class AllParametersTransformer extends MatcherBasedTransformation{
 
     private processResource(resource:any,uriParams:any[]){
 
-        this.appendSecurityData(resource);
         let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
         let params1 = this.extract(resource,pName);
         let newParams = uriParams.concat(resource[pName]||[]);

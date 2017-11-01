@@ -10072,37 +10072,7 @@
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments",
                     "sourceMap": {
                       "path": "api.raml"
-                    },
-                    "queryParameters": [
-                      {
-                        "name": "access_token",
-                        "displayName": "access_token",
-                        "type": [
-                          "string"
-                        ],
-                        "required": true,
-                        "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            },
-                            "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
-                            }
-                          },
-                          "calculated": true
-                        },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "sourceMap": {
-                          "path": "securitySchemes/oauth_2_0.raml"
-                        }
-                      }
-                    ]
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -10122,36 +10092,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -11046,36 +10986,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -11159,75 +11069,7 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/media",
             "sourceMap": {
               "path": "api.raml"
-            },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ]
+            }
           },
           {
             "methods": [
@@ -11952,74 +11794,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -12651,74 +12425,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -12776,74 +12482,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "version",
@@ -14131,74 +13769,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  },
-                  {
-                    "name": "client_id",
-                    "displayName": "client_id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "examples": [
-                      {
-                        "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "simplifiedExamples": [
-                      "9e0dbc0a3b8d436ca65ae2df9825c893"
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/clientId.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -14283,75 +13853,7 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/tags",
             "sourceMap": {
               "path": "api.raml"
-            },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ]
+            }
           },
           {
             "methods": [
@@ -14879,74 +14381,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -15004,74 +14438,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "version",
@@ -16188,36 +15554,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -16683,36 +16019,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -17592,74 +16898,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  },
-                  {
-                    "name": "client_id",
-                    "displayName": "client_id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "examples": [
-                      {
-                        "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "simplifiedExamples": [
-                      "9e0dbc0a3b8d436ca65ae2df9825c893"
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/clientId.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -18377,36 +17615,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -18490,75 +17698,7 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/users",
             "sourceMap": {
               "path": "api.raml"
-            },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ]
+            }
           },
           {
             "methods": [
@@ -18969,36 +18109,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -20103,74 +19213,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  },
-                  {
-                    "name": "client_id",
-                    "displayName": "client_id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "examples": [
-                      {
-                        "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "simplifiedExamples": [
-                      "9e0dbc0a3b8d436ca65ae2df9825c893"
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/clientId.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -20582,36 +19624,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -21369,74 +20381,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  },
-                  {
-                    "name": "client_id",
-                    "displayName": "client_id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "examples": [
-                      {
-                        "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "simplifiedExamples": [
-                      "9e0dbc0a3b8d436ca65ae2df9825c893"
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/clientId.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -21491,36 +20435,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -21578,74 +20492,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "version",
@@ -23166,74 +22012,6 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "queryParameters": [
-                  {
-                    "name": "access_token",
-                    "displayName": "access_token",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  },
-                  {
-                    "name": "client_id",
-                    "displayName": "client_id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "examples": [
-                      {
-                        "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "simplifiedExamples": [
-                      "9e0dbc0a3b8d436ca65ae2df9825c893"
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "securitySchemes/clientId.raml"
-                    }
-                  }
-                ],
                 "uriParameters": [
                   {
                     "name": "version",
@@ -23314,75 +22092,7 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/locations",
             "sourceMap": {
               "path": "api.raml"
-            },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ]
+            }
           },
           {
             "methods": [
@@ -24007,74 +22717,6 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              },
-              {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "examples": [
-                  {
-                    "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                    "strict": true,
-                    "name": null
-                  }
-                ],
-                "simplifiedExamples": [
-                  "9e0dbc0a3b8d436ca65ae2df9825c893"
-                ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "securitySchemes/clientId.raml"
-                }
-              }
-            ],
             "uriParameters": [
               {
                 "name": "version",
@@ -24132,74 +22774,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "version",
@@ -24832,75 +23406,7 @@
         "absoluteParentUri": "https://api.instagram.com/{version}/",
         "sourceMap": {
           "path": "api.raml"
-        },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ]
+        }
       },
       {
         "methods": [
@@ -26165,74 +24671,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          },
-          {
-            "name": "client_id",
-            "displayName": "client_id",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "examples": [
-              {
-                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "strict": true,
-                "name": null
-              }
-            ],
-            "simplifiedExamples": [
-              "9e0dbc0a3b8d436ca65ae2df9825c893"
-            ],
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "securitySchemes/clientId.raml"
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "version",

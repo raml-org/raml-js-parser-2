@@ -17,7 +17,7 @@
                   "path": "schemas/A.json"
                 },
                 "type": [
-                  "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
+                  "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -93,7 +93,7 @@
                           "path": "schemas/A.json"
                         },
                         "type": [
-                          "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
+                          "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}"
                         ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {

@@ -29,7 +29,7 @@
         "name": "Entry",
         "displayName": "Entry",
         "type": [
-          "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
+          "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -1503,54 +1503,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "environment",
@@ -2137,54 +2089,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "environment",
@@ -2897,7 +2801,7 @@
                           "path": "schemas/songs.xsd"
                         },
                         "type": [
-                          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
+                          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>"
                         ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -3309,55 +3213,7 @@
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
             "sourceMap": {
               "path": "api.raml"
-            },
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "sourceMap": {
-                  "path": "api.raml"
-                },
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "sourceMap": {
-                  "path": "api.raml"
-                },
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ]
+            }
           }
         ],
         "__METADATA__": {
@@ -3377,54 +3233,6 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
         "uriParameters": [
           {
             "name": "environment",

@@ -34,7 +34,7 @@
                   "\"DEBUG\""
                 ],
                 "type": [
-                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n"
+                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}"
                 ],
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"

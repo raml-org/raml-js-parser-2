@@ -38,7 +38,7 @@ function testRAMLToolbeltExample(apiPath:string,dataPath:string){
     let diff = testUtil.compare(toCompare,apiTypesObj);
     let filteredDiff = diff.filter(x=>{
         let p = x.path;
-        if(util.stringEndsWith(p,"/items/name")||p.match(/^.+anyOf\[\d+\]\/name$/)){
+        if(p.match(/\/items\[\d+\]\/name/)||p.match(/^.+anyOf\[\d+\]\/name$/)){
             return false;
         }
         return true;
@@ -69,6 +69,7 @@ function transformRamlToolbeltTypeObject(t:any,name:string):any {
     }
     else if(items){
         transformRamlToolbeltTypeObject(items,null);
+        t.items = [t.items];
     }
     let anyOf = t.anyOf;
     if(anyOf){

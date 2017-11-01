@@ -5,8 +5,11 @@
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "scheme.json",
+        "sourceMap": {
+          "path": "scheme.json"
+        },
         "type": [
-          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"required\":[\"name\"],\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"required\":[\"innerTypeName\"],\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            }\n        }\n    }\n}\n"
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"required\":[\"name\"],\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"required\":[\"innerTypeName\"],\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            }\n        }\n    }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "scheme.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "Api",

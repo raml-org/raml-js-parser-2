@@ -344,7 +344,7 @@
                           }
                         },
                         "type": [
-                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
+                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}"
                         ],
                         "mediaType": "application/json",
                         "typePropertyKind": "JSON",

@@ -34,7 +34,7 @@
                   "stringValue"
                 ],
                 "type": [
-                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n"
+                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}"
                 ],
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"
@@ -77,7 +77,7 @@
                   "\"stringValue\""
                 ],
                 "type": [
-                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n"
+                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}"
                 ],
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"

@@ -5,8 +5,11 @@
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test9/remoteScheme.json",
+        "sourceMap": {
+          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test9/remoteScheme.json"
+        },
         "type": [
-          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}\n"
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test9/remoteScheme.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "Api",

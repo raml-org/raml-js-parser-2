@@ -14,7 +14,7 @@
                   "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/TCK-newFormat/raml-1.0/jsonscheme/test16/schemas/schema1.json"
                 },
                 "type": [
-                  "{\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\n\t\"id\": \"schema1.json\",\n\t\"type\": \"object\",\n\t\"allOf\": [\n\t\t{\n\t\t\t\"$ref\": \"schema2.json\"\n\t\t},\n\t\t{\n\t\t\t\"properties\":\t{\n\t\t\t\t\"type\":\t{\n\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"required\":\t[\n\t\t\t\t\"type\"\n\t\t\t]\n\t\t}\n\t]\n}\n"
+                  "{\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\n\t\"id\": \"schema1.json\",\n\t\"type\": \"object\",\n\t\"allOf\": [\n\t\t{\n\t\t\t\"$ref\": \"schema2.json\"\n\t\t},\n\t\t{\n\t\t\t\"properties\":\t{\n\t\t\t\t\"type\":\t{\n\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"required\":\t[\n\t\t\t\t\"type\"\n\t\t\t]\n\t\t}\n\t]\n}"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {

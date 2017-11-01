@@ -5,8 +5,11 @@
         "name": "song",
         "displayName": "song",
         "schemaPath": "schema.json",
+        "sourceMap": {
+          "path": "schema.json"
+        },
         "type": [
-          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"properties\": {\n    \"songId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    },\n    \"songTitle\": {\n      \"type\": \"string\"\n    },\n    \"albumId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    }\n  },\n  \"required\": [\n    \"songId\",\n    \"songTitle\"\n  ]\n}\n"
+          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"properties\": {\n    \"songId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    },\n    \"songTitle\": {\n      \"type\": \"string\"\n    },\n    \"albumId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    }\n  },\n  \"required\": [\n    \"songId\",\n    \"songTitle\"\n  ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "schema.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "resourceTypes": [

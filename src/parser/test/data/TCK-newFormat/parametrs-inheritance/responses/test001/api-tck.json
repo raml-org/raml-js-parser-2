@@ -247,19 +247,7 @@
         "absoluteParentUri": "",
         "sourceMap": {
           "path": "api.raml"
-        },
-        "responses": [
-          {
-            "code": "401",
-            "description": "security response",
-            "sourceMap": {
-              "path": "api.raml"
-            },
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ]
+        }
       }
     ],
     "sourceMap": {

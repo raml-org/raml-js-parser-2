@@ -62,7 +62,7 @@
         "name": "invalidSchema",
         "displayName": "invalidSchema",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"properties\": {\n    \"id\": {\n        \"type\": \"string\",\n        \"required\": true\n    }\n  }\n}\n"
+          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"properties\": {\n    \"id\": {\n        \"type\": \"string\",\n        \"required\": true\n    }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
