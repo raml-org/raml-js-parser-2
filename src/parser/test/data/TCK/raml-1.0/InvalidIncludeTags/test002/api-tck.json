@@ -128,8 +128,8 @@
       }
     },
     {
-      "code": "OBJECT_EXPECTED",
-      "message": "object is expected",
+      "code": "TYPE_EXPECTED",
+      "message": "Expected type 'string' but got 'null'",
       "path": "api.raml",
       "range": {
         "start": {
