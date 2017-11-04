@@ -209,7 +209,8 @@
                   "anyOf": [
                     "lat-long",
                     "loc"
-                  ]
+                  ],
+                  "typePropertyKind": "TYPE_EXPRESSION"
                 }
               ],
               "examples": [

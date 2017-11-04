@@ -1591,6 +1591,9 @@ class TypeTransformer extends BasicTransformation{
                 };
             }
         }
+        if(typeof result === "object"){
+            result.typePropertyKind = "TYPE_EXPRESSION";
+        }
         return result;
     }
 

@@ -121,7 +121,8 @@
                       "#/specification/types/T2",
                       "#/specification/types/T3",
                       "#/specification/types/T4"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {

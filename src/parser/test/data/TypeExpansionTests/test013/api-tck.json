@@ -3,24 +3,28 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "union"
         ],
         "anyOf": [
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -33,6 +37,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -43,6 +48,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -53,6 +59,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -63,18 +70,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -87,6 +97,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -97,6 +108,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -107,6 +119,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -117,18 +130,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -141,6 +157,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -151,6 +168,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -161,6 +179,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -171,18 +190,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -195,6 +217,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -205,6 +228,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -215,6 +239,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -225,18 +250,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -249,6 +277,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -259,6 +288,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -269,6 +299,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -279,18 +310,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -303,6 +337,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -313,6 +348,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -323,6 +359,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -333,18 +370,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -357,6 +397,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -367,6 +408,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -377,6 +419,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -387,18 +430,21 @@
           },
           {
             "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -411,6 +457,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -421,6 +468,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -431,6 +479,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],

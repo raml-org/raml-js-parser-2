@@ -31,7 +31,8 @@
                       "lib.raml#/specification/types/T2",
                       "lib.raml#/specification/types/T3",
                       "lib.raml#/specification/types/T4"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {

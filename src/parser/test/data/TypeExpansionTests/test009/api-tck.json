@@ -3,11 +3,13 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -47,11 +49,13 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -72,6 +76,7 @@
             "required": true
           },
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -111,11 +116,13 @@
       },
       {
         "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -155,17 +162,20 @@
       },
       {
         "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "union"
         ],
         "anyOf": [
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -186,6 +196,7 @@
                 "required": true
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -206,6 +217,7 @@
                 "required": true
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -242,11 +254,13 @@
           },
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -267,6 +281,7 @@
                 "required": true
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -323,12 +338,14 @@
     "annotationTypes": [
       {
         "name": "MyObjectAnnotation",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "ap1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -336,6 +353,7 @@
           },
           {
             "name": "ap2",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "number"
             ],
@@ -348,6 +366,7 @@
       },
       {
         "name": "MyStringAnnotation",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

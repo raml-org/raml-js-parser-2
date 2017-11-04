@@ -3,12 +3,14 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -32,12 +34,14 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p2",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -45,6 +49,7 @@
           },
           {
             "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -79,12 +84,14 @@
       },
       {
         "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p3",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -97,18 +104,21 @@
       },
       {
         "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "union"
         ],
         "anyOf": [
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p4",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -116,6 +126,7 @@
               },
               {
                 "name": "p2",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -123,6 +134,7 @@
               },
               {
                 "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -154,12 +166,14 @@
           },
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p4",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -167,6 +181,7 @@
               },
               {
                 "name": "p3",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -204,12 +219,14 @@
       },
       {
         "name": "MyComplexType",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "union"
         ],
         "anyOf": [
           {
             "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -250,6 +267,7 @@
           },
           {
             "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "boolean"
             ],
@@ -290,6 +308,7 @@
           },
           {
             "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "number"
             ],
@@ -371,6 +390,7 @@
     "annotationTypes": [
       {
         "name": "myAnntoation",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

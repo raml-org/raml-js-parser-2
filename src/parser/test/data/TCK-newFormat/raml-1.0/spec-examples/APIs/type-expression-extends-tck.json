@@ -158,7 +158,8 @@
             "anyOf": [
               "Notebook",
               "Phone"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "sourceMap": {

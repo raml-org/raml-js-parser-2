@@ -5802,7 +5802,8 @@
                 "anyOf": [
                   "types.MediaSearchFirstType",
                   "types.MediaSearchSecondType"
-                ]
+                ],
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "sourceMap": {

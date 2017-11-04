@@ -108,6 +108,8 @@ export interface TypeEntry extends Entry{
     examples():(typeSystem.IExample|ti.IExample)[]
 
     meta():(typeSystem.ITypeFacet|ti.ITypeFacet)[];
+
+    schemaPath():string;
 }
 
 export class AbstractTypeEntry implements TypeEntry{
@@ -240,6 +242,19 @@ export class AbstractTypeEntry implements TypeEntry{
         result = result.filter(x=>x.kind()!=def.tsInterfaces.MetaInformationKind.Example
                                 && x.kind()!=def.tsInterfaces.MetaInformationKind.Examples);
         return result;
+    }
+
+    schemaPath():string{
+        let schPath = _.find(this.meta(),x=>x.kind()==def.tsInterfaces.MetaInformationKind.SchemaPath);
+        return schPath && schPath.value();
+    }
+
+    sourceMap():ti.ElementSourceInfo{
+        let sourceMap = _.find(this.declaredFacets(),x=>x.kind()==def.tsInterfaces.MetaInformationKind.SchemaPath);
+        if(sourceMap){
+            return sourceMap.value();
+        }
+        return null;
     }
 }
 
@@ -742,23 +757,37 @@ export function dump(te:TypeEntry,expand:boolean):any{
             };
         }
     }
+    const superTypes = te.superTypes();
     if(te.isBuiltIn()) {
         result = {
             type: [ name ]
         }
     }
     else if(te.isExternal()) {
-        if(!expand && te.superTypes()[0].name() && te.original().allSuperTypes().length>3){
-            result.type = [ te.superTypes()[0].name() ];
+        if(!expand && superTypes[0].name() && te.original().allSuperTypes().length>3){
+            result.type = [ superTypes[0].name() ];
         }
         else {
             let sch = te.schema();
             if (sch) {
-                result.type = [sch.trim()];
+                sch = sch.trim();
+                result.type = [sch];
+                if(te.schemaPath()){
+                    result.schemaPath = te.schemaPath();
+                }
+                var canBeJson = (sch[0] === "{" && sch[sch.length - 1] === "}");
+                var canBeXml= (sch[0] === "<" && sch[sch.length - 1] === ">");
+
+                if (canBeJson) {
+                    result.typePropertyKind = "JSON";
+                } else if (canBeXml) {
+                    result.typePropertyKind = "XML";
+                }
             }
         }
     }
     else if(te.isUnion()){
+        result.typePropertyKind = "TYPE_EXPRESSION";
         let ute = <UnionTypeEntry>te;
         let options = ute.options();
         if(options.length>0){
@@ -777,6 +806,12 @@ export function dump(te:TypeEntry,expand:boolean):any{
         }
     }
     else {
+        if(superTypes.length&&superTypes[0].name()){
+            result.typePropertyKind = "TYPE_EXPRESSION";
+        }
+        else{
+            result.typePropertyKind = "INPLACE";
+        }
         let gte = <GeneralTypeEntry>te;
         if(expand) {
             let type = te.possibleBuiltInTypes();
@@ -786,7 +821,7 @@ export function dump(te:TypeEntry,expand:boolean):any{
         }
         else{
             let type: any[] = [];
-            for(let st of te.superTypes()){
+            for(let st of superTypes){
                 if(st.name()){
                     type.push(st.name());
                 }
@@ -826,7 +861,7 @@ export function dump(te:TypeEntry,expand:boolean):any{
             }
             else {
                 let dumpedComponentType = dump(ct, expand);
-                if (!dumpedComponentType.name) {
+                if (!ct.isUnion()&&!dumpedComponentType.name) {
                     dumpedComponentType.name = "items";
                 }
                 result.items = [dumpedComponentType];
@@ -1045,6 +1080,8 @@ class MetaNamesProvider{
                 }
             }
         }
+        this.map["sourceMap"] = true;
+        this.map["__METADATA__"] = true;
     }
 
     public hasProperty(n:string):boolean{

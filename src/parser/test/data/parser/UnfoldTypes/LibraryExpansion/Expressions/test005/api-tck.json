@@ -111,9 +111,11 @@
                         "anyOf": [
                           "#/specification/types/T1",
                           "#/specification/types/T2"
-                        ]
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   {
                     "type": [
@@ -121,7 +123,8 @@
                     ],
                     "items": [
                       "#/specification/types/T3"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "sourceMap": {

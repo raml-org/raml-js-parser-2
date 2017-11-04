@@ -129,7 +129,8 @@
                     ],
                     "items": [
                       "#/specification/types/T3"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "sourceMap": {

@@ -72,7 +72,8 @@
                     ],
                     "items": [
                       "#/specification/types/T2"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {

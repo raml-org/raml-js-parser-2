@@ -6,6 +6,7 @@
         "type": [
           "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\n      \"type\": \"string\"\n    }\n  }\n}"
         ],
+        "typePropertyKind": "JSON",
         "sourceMap": {
           "path": "api.raml"
         }

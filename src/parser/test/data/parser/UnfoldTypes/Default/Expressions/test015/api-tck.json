@@ -122,7 +122,8 @@
                         "anyOf": [
                           "number",
                           "string"
-                        ]
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
                     "sourceMap": {

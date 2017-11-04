@@ -61,7 +61,7 @@ export interface ResourceTypeFragment extends ResourceType10, common.FragmentDec
 export interface ResourceType10 extends ResourceBase10 {
 
     /**
-     * Resource name
+     * Resource type name
      */
     name: string
 
@@ -71,7 +71,7 @@ export interface ResourceType10 extends ResourceBase10 {
     usage?: string
 
     /**
-     * Resource type name
+     * Human readable resource type name
      */
     displayName?: string
 }

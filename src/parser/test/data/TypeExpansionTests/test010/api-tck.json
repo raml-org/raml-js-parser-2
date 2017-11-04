@@ -3,12 +3,14 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -21,6 +23,7 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
@@ -39,12 +42,14 @@
             "required": false
           },
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "array"
             ],
             "items": [
               {
                 "name": "T1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -57,6 +62,7 @@
                     "required": false
                   },
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -84,22 +90,26 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "r1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -112,6 +122,7 @@
                         "required": false
                       },
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "array"
                         ],
@@ -134,17 +145,20 @@
                 "required": false
               },
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
                 "items": [
                   {
                     "name": "T2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
                     "properties": [
                       {
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -157,6 +171,7 @@
                             "required": false
                           },
                           {
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "array"
                             ],

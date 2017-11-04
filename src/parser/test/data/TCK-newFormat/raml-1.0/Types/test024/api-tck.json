@@ -744,7 +744,8 @@
                 "anyOf": [
                   "Team",
                   "User"
-                ]
+                ],
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "sourceMap": {

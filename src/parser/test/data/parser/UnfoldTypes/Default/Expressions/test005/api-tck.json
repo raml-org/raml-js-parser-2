@@ -43,9 +43,11 @@
                         "anyOf": [
                           "lib.raml#/specification/types/T1",
                           "lib.raml#/specification/types/T2"
-                        ]
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   {
                     "type": [
@@ -53,7 +55,8 @@
                     ],
                     "items": [
                       "lib.raml#/specification/types/T3"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "sourceMap": {

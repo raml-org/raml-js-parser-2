@@ -43,7 +43,8 @@
             "anyOf": [
               "Person",
               "string"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "sourceMap": {

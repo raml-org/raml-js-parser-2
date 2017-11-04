@@ -23,7 +23,8 @@
             ],
             "items": [
               "string"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "type": [
@@ -31,7 +32,8 @@
             ],
             "items": [
               "number"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "sourceMap": {

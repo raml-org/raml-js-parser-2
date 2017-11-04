@@ -70,14 +70,14 @@ export interface Method10 extends MethodBase10 {
     uriParameters?: datamodel.TypeDeclaration[]
 
     /**
-     * Complete relative URI of the owner resource
+     * Complete relative URI of the owner resource if any
      */
-    parentUri: string
+    parentUri?: string
 
     /**
-     * Absolute URI of the owner resource
+     * Absolute URI of the owner resource if any
      */
-    absoluteParentUri: string
+    absoluteParentUri?: string
 }
 
 export interface MethodBase10 extends Operation10 {

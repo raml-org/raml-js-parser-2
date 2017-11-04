@@ -39,13 +39,16 @@
                             "anyOf": [
                               "lib.raml#/specification/types/T1",
                               "lib.raml#/specification/types/T2"
-                            ]
+                            ],
+                            "typePropertyKind": "TYPE_EXPRESSION"
                           }
-                        ]
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "lib.raml#/specification/types/T3",
                       "lib.raml#/specification/types/T4"
-                    ]
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {

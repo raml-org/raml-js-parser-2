@@ -191,7 +191,8 @@
             "anyOf": [
               "Cat",
               "Dog"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {

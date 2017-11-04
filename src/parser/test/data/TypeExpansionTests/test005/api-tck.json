@@ -3,22 +3,26 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
         "items": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -39,22 +43,26 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
         "items": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -75,22 +83,26 @@
       },
       {
         "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
         "items": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -98,6 +110,7 @@
                   },
                   {
                     "name": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],

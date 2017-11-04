@@ -3,12 +3,14 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -21,12 +23,14 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p2",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -34,6 +38,7 @@
           },
           {
             "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -46,17 +51,20 @@
       },
       {
         "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
         "items": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
             "properties": [
               {
                 "name": "p3",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -72,24 +80,28 @@
       },
       {
         "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "union"
         ],
         "anyOf": [
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "array"
             ],
             "items": [
               {
                 "name": "T2",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -97,6 +109,7 @@
                   },
                   {
                     "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -108,17 +121,20 @@
           },
           {
             "name": "T4",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "array"
             ],
             "items": [
               {
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "properties": [
                   {
                     "name": "p3",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -136,12 +152,14 @@
       },
       {
         "name": "T5",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
         "properties": [
           {
             "name": "p5",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -154,17 +172,20 @@
       },
       {
         "name": "T6",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
         "items": [
           {
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "union"
             ],
             "anyOf": [
               {
                 "name": "T2",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -187,6 +208,7 @@
               },
               {
                 "name": "T5",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -200,8 +222,7 @@
                   }
                 ]
               }
-            ],
-            "name": "items"
+            ]
           }
         ],
         "sourceMap": {

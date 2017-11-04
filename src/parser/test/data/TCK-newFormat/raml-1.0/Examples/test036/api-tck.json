@@ -34,7 +34,8 @@
                 ],
                 "items": [
                   "string"
-                ]
+                ],
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "string"
             ],

@@ -46,7 +46,8 @@
             ],
             "items": [
               "AnotherType"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "type": [
@@ -54,7 +55,8 @@
             ],
             "items": [
               "OneMoreType"
-            ]
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "sourceMap": {

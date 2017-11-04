@@ -3,12 +3,14 @@
     "types": [
       {
         "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
         "facets": [
           {
             "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ]
@@ -20,12 +22,14 @@
       },
       {
         "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
         "facets": [
           {
             "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ]
@@ -43,12 +47,14 @@
       },
       {
         "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
         "facets": [
           {
             "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ]

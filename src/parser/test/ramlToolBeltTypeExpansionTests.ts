@@ -41,6 +41,9 @@ function testRAMLToolbeltExample(apiPath:string,dataPath:string){
         if(p.match(/\/items\[\d+\]\/name/)||p.match(/^.+anyOf\[\d+\]\/name$/)){
             return false;
         }
+        if(p.indexOf("typePropertyKind")>=0){
+            return false;
+        }
         return true;
     });
     if(filteredDiff.length!=0){
