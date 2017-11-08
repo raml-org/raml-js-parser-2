@@ -26,6 +26,10 @@
                     "type": [
                       "any"
                     ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p1",
                     "required": false
                   },
@@ -34,10 +38,18 @@
                     "type": [
                       "number"
                     ],
+                    "displayName": "utp",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "utp",
                     "required": true
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
                 "required": false
               },
               {
@@ -45,10 +57,18 @@
                 "type": [
                   "number"
                 ],
+                "displayName": "utp",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "utp",
                 "required": true
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1"
           },
           {
             "name": "T1",
@@ -68,6 +88,10 @@
                     "type": [
                       "any"
                     ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p1",
                     "required": false
                   },
@@ -76,10 +100,18 @@
                     "type": [
                       "number"
                     ],
+                    "displayName": "utp",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "utp",
                     "required": true
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
                 "required": false
               },
               {
@@ -87,10 +119,18 @@
                 "type": [
                   "object"
                 ],
+                "displayName": "utp",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "utp",
                 "required": true
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1"
           },
           {
             "name": "T1",
@@ -110,6 +150,10 @@
                     "type": [
                       "any"
                     ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p1",
                     "required": false
                   },
@@ -118,10 +162,18 @@
                     "type": [
                       "object"
                     ],
+                    "displayName": "utp",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "utp",
                     "required": true
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
                 "required": false
               },
               {
@@ -129,10 +181,18 @@
                 "type": [
                   "number"
                 ],
+                "displayName": "utp",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "utp",
                 "required": true
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1"
           },
           {
             "name": "T1",
@@ -152,6 +212,10 @@
                     "type": [
                       "any"
                     ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p1",
                     "required": false
                   },
@@ -160,10 +224,18 @@
                     "type": [
                       "object"
                     ],
+                    "displayName": "utp",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "utp",
                     "required": true
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
                 "required": false
               },
               {
@@ -171,15 +243,24 @@
                 "type": [
                   "object"
                 ],
+                "displayName": "utp",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "utp",
                 "required": true
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1"
           }
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       }
     ],
     "title": "test API",

@@ -74,7 +74,7 @@ export class JsonSerializer {
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
             new MethodsTransformer(),
-            new ResourcesTransformer(),
+            new ResourcesTransformer(this.options,this),
             new TypeTransformer(this.options,this),
             new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
@@ -1236,7 +1236,7 @@ class CompositeObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
 
 class ResourcesTransformer extends BasicTransformation{
 
-    constructor(){
+    constructor(private options:SerializeOptions = {},private owner:JsonSerializer){
         super(universes.Universe10.Resource.name,null,true);
     }
 
@@ -1259,7 +1259,8 @@ class ResourcesTransformer extends BasicTransformation{
             }
             else{
                 value.parentUri = "";
-                let baseUriAttr = node.parent().attr(universes.Universe10.Api.properties.baseUri.name);
+                const parent = this.owner.astRoot().asElement() || node.parent();
+                let baseUriAttr = parent.attr(universes.Universe10.Api.properties.baseUri.name);
                 let baseUri = (baseUriAttr && baseUriAttr.value())||"";
                 value.absoluteParentUri = baseUri;
             }
@@ -1576,7 +1577,7 @@ class TypeTransformer extends BasicTransformation{
                 let c1 = this.expressionToObject(c,escapeData,node);
                 result.anyOf.push(c1);
             }
-            result.anyOf = _.unique(result.anyOf).sort()
+            result.anyOf = _.unique(result.anyOf);
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
@@ -1925,7 +1926,10 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
 
     constructor(private enabled: boolean = false) {
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Api.name, null, true)
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Overlay.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Extension.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Library.name, null, true)
         ]));
     }
 

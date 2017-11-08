@@ -3814,8 +3814,8 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "anyOf": [
-                  "nil",
-                  "types.Location"
+                  "types.Location",
+                  "nil"
                 ],
                 "sourceMap": {
                   "path": "types.raml"
@@ -6793,8 +6793,8 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "anyOf": [
-                      "string",
-                      "types.OkStatus"
+                      "types.OkStatus",
+                      "string"
                     ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
@@ -6907,8 +6907,8 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "anyOf": [
-                      "string",
-                      "types.OkStatus"
+                      "types.OkStatus",
+                      "string"
                     ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
@@ -9341,8 +9341,8 @@
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
                             "anyOf": [
-                              "string",
-                              "types.OkStatus"
+                              "types.OkStatus",
+                              "string"
                             ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"
@@ -9689,8 +9689,8 @@
                                 "mediaType": "application/raml+yaml",
                                 "typePropertyKind": "TYPE_EXPRESSION",
                                 "anyOf": [
-                                  "string",
-                                  "types.OkStatus"
+                                  "types.OkStatus",
+                                  "string"
                                 ],
                                 "sourceMap": {
                                   "path": "resourceTypes/secured.raml"
@@ -10480,8 +10480,8 @@
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
                             "anyOf": [
-                              "string",
-                              "types.OkStatus"
+                              "types.OkStatus",
+                              "string"
                             ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"
@@ -10707,8 +10707,8 @@
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
                             "anyOf": [
-                              "string",
-                              "types.OkStatus"
+                              "types.OkStatus",
+                              "string"
                             ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"

@@ -80,8 +80,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "anyOf": [
-          "nil",
-          "t"
+          "t",
+          "nil"
         ],
         "sourceMap": {
           "path": "api.raml"

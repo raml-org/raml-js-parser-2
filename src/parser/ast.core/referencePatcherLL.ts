@@ -653,7 +653,7 @@ export class ReferencePatcher {
         var collectionName = "types";
 
         var llNode = <proxy.LowLevelProxyNode>node;
-        var value = node.value(true).toString();
+        var value = node.value(true).toString().trim();
         var ch0 = value[0];
         var ch1 = value[value.length - 1];
         if ((ch0 === "{" && ch1 == "}") || (ch0 === "<" && ch1 == ">")) {
@@ -1310,7 +1310,7 @@ export class ReferencePatcher {
             _.find(llApi.children(),x=>x.key()==name);
 
         if(llNode==null){
-            var n = jsyaml.createMapNode(name);
+            var n = jsyaml.createMapNode(name,llApi.unit());
             llNode = llApi.replaceChild(null,n);
         }
         let result = false;

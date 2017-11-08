@@ -26,10 +26,18 @@
         ],
         "securedBy": [
           {
-            "name": "lib.oauth"
+            "name": "lib.oauth",
+            "type": "OAuth 2.0",
+            "sourceMap": {
+              "path": "lib/lib.raml"
+            }
           },
           {
-            "name": "lib.number"
+            "name": "lib.number",
+            "type": "Basic Authentication",
+            "sourceMap": {
+              "path": "lib/lib.raml"
+            }
           }
         ],
         "name": "lib.number",

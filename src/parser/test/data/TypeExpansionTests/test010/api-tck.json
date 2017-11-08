@@ -19,6 +19,10 @@
                 "type": [
                   "any"
                 ],
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p1",
                 "required": false
               },
@@ -32,13 +36,24 @@
                     "type": [
                       "any"
                     ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "items"
                   }
                 ],
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p2",
                 "required": true
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p1",
             "required": false
           },
           {
@@ -58,6 +73,10 @@
                     "type": [
                       "any"
                     ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p1",
                     "required": false
                   },
@@ -71,22 +90,38 @@
                         "type": [
                           "any"
                         ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "name": "items"
                       }
                     ],
+                    "displayName": "p2",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "name": "p2",
                     "required": true
                   }
-                ]
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "T1"
               }
             ],
+            "displayName": "p2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "name": "p2",
             "required": true
           }
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       },
       {
         "name": "T2",
@@ -118,6 +153,10 @@
                         "type": [
                           "any"
                         ],
+                        "displayName": "r1",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "name": "r1",
                         "required": false
                       },
@@ -131,17 +170,32 @@
                             "type": [
                               "any"
                             ],
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
                             "name": "items"
                           }
                         ],
+                        "displayName": "r2",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "name": "r2",
                         "required": true
                       }
                     ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "q1",
                     "name": "q1",
                     "required": true
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "r1",
                 "required": false
               },
               {
@@ -167,6 +221,10 @@
                             "type": [
                               "any"
                             ],
+                            "displayName": "r1",
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
                             "name": "r1",
                             "required": false
                           },
@@ -180,30 +238,54 @@
                                 "type": [
                                   "any"
                                 ],
+                                "sourceMap": {
+                                  "path": "api.raml"
+                                },
                                 "name": "items"
                               }
                             ],
+                            "displayName": "r2",
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
                             "name": "r2",
                             "required": true
                           }
                         ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "q1",
                         "name": "q1",
                         "required": true
                       }
-                    ]
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "T2"
                   }
                 ],
+                "displayName": "r2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "r2",
                 "required": true
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "q1",
             "name": "q1",
             "required": true
           }
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T2"
       }
     ],
     "title": "test API",

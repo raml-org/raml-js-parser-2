@@ -189,8 +189,8 @@
               "union"
             ],
             "anyOf": [
-              "Cat",
-              "Dog"
+              "Dog",
+              "Cat"
             ],
             "typePropertyKind": "TYPE_EXPRESSION"
           }

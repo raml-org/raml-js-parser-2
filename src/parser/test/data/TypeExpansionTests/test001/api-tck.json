@@ -15,6 +15,9 @@
             ],
             "displayName": "Test Property 0",
             "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "name": "p1",
             "required": true
           }
@@ -39,6 +42,9 @@
             ],
             "displayName": "Test Property 1",
             "description": "test property 1",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "name": "p2",
             "required": true
           },
@@ -49,6 +55,9 @@
             ],
             "displayName": "Test Property 0",
             "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "name": "p1",
             "required": true
           }
@@ -73,6 +82,9 @@
             ],
             "displayName": "Test Property 2",
             "description": "test property 2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "name": "p3",
             "required": true
           }
@@ -104,6 +116,9 @@
                 ],
                 "displayName": "Test Property 3",
                 "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p4",
                 "required": true
               },
@@ -114,6 +129,9 @@
                 ],
                 "displayName": "Test Property 1",
                 "description": "test property 1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p2",
                 "required": true
               },
@@ -124,12 +142,18 @@
                 ],
                 "displayName": "Test Property 0",
                 "description": "test property 0",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p1",
                 "required": true
               }
             ],
             "displayName": "Test Type 1",
-            "description": "test type 1"
+            "description": "test type 1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "T4",
@@ -145,6 +169,9 @@
                 ],
                 "displayName": "Test Property 3",
                 "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p4",
                 "required": true
               },
@@ -155,12 +182,18 @@
                 ],
                 "displayName": "Test Property 2",
                 "description": "test property 2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "name": "p3",
                 "required": true
               }
             ],
             "displayName": "Test Type 2",
-            "description": "test type 2"
+            "description": "test type 2",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "Test Type 3",

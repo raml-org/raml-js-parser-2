@@ -68,6 +68,11 @@ describe('Type Expansion Tests',function(){
             this.timeout(20000);
             test("./TypeExpansionTests/test013/api.raml",2);
         });
+
+        it("Recursion by property types and array component types 2", function () {
+            this.timeout(20000);
+            test("./TypeExpansionTests/test014/api.raml");
+        });
     });
 });
 

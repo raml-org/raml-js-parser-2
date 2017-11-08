@@ -742,8 +742,8 @@
                   "union"
                 ],
                 "anyOf": [
-                  "Team",
-                  "User"
+                  "User",
+                  "Team"
                 ],
                 "typePropertyKind": "TYPE_EXPRESSION"
               }

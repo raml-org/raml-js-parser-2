@@ -26,7 +26,6 @@
                       "union"
                     ],
                     "anyOf": [
-                      "<<param2>>",
                       {
                         "type": [
                           "array"
@@ -37,15 +36,16 @@
                               "union"
                             ],
                             "anyOf": [
-                              "<<param1>>",
-                              "lib.raml#/specification/types/T1"
+                              "lib.raml#/specification/types/T1",
+                              "<<param1>>"
                             ],
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "lib.raml#/specification/types/T3"
+                      "lib.raml#/specification/types/T3",
+                      "<<param2>>"
                     ],
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

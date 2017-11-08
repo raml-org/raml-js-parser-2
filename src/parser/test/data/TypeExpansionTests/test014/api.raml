@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  T1:
+    properties:
+      p1?:
+       type: T1
+       properties:
+         a1:
+      p2:
+        type: array
+        items:
+          type: T1
+          properties:
+            a1:
+        minItems: 2
+

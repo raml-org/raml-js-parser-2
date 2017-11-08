@@ -9,7 +9,8 @@
         "typePropertyKind": "JSON",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       }
     ],
     "title": "test API",

@@ -26,6 +26,10 @@
                 "value": "T1.p1"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p1",
             "name": "p1",
             "required": true
           }
@@ -45,7 +49,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       },
       {
         "name": "T2",
@@ -72,6 +77,10 @@
                 "value": "T2.p2"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p2",
             "name": "p2",
             "required": true
           },
@@ -93,6 +102,10 @@
                 "value": "T1.p1"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p1",
             "name": "p1",
             "required": true
           }
@@ -112,7 +125,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T2"
       },
       {
         "name": "T3",
@@ -139,6 +153,10 @@
                 "value": "T3.p3"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p3",
             "name": "p3",
             "required": true
           }
@@ -158,7 +176,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T3"
       },
       {
         "name": "T4",
@@ -192,6 +211,10 @@
                     "value": "T4.p4"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p4",
                 "name": "p4",
                 "required": true
               },
@@ -213,6 +236,10 @@
                     "value": "T2.p2"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p2",
                 "name": "p2",
                 "required": true
               },
@@ -234,6 +261,10 @@
                     "value": "T1.p1"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
                 "name": "p1",
                 "required": true
               }
@@ -250,7 +281,11 @@
                 "name": "MyStringAnnotation",
                 "value": "T2"
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T4"
           },
           {
             "name": "T4",
@@ -277,6 +312,10 @@
                     "value": "T4.p4"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p4",
                 "name": "p4",
                 "required": true
               },
@@ -298,6 +337,10 @@
                     "value": "T3.p3"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p3",
                 "name": "p3",
                 "required": true
               }
@@ -314,7 +357,11 @@
                 "name": "MyStringAnnotation",
                 "value": "T3"
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T4"
           }
         ],
         "annotations": [
@@ -332,7 +379,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T4"
       }
     ],
     "annotationTypes": [
@@ -349,6 +397,10 @@
             "type": [
               "string"
             ],
+            "displayName": "ap1",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "required": true
           },
           {
@@ -357,12 +409,17 @@
             "type": [
               "number"
             ],
+            "displayName": "ap2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "required": true
           }
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "MyObjectAnnotation"
       },
       {
         "name": "MyStringAnnotation",
@@ -372,7 +429,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "MyStringAnnotation"
       }
     ],
     "title": "test API",

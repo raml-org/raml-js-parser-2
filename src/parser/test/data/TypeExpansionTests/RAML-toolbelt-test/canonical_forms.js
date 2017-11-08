@@ -34,6 +34,7 @@ module.exports = {
                 description: 'A list of songs inside an album.',
                 type: 'array',
                 items: {
+                    name: "Song",
                     properties: {
                         title: {
                             type: 'string',

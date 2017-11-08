@@ -42,7 +42,7 @@
             "annotations": [
               {
                 "name": "decls.important",
-                "structuredValue": null
+                "value": null
               }
             ],
             "protocols": [
@@ -118,7 +118,7 @@
         "absoluteUri": "http://myItems.com/elements",
         "completeRelativeUri": "/elements",
         "parentUri": "",
-        "absoluteParentUri": "",
+        "absoluteParentUri": "http://myItems.com",
         "sourceMap": {
           "path": "master.raml"
         }

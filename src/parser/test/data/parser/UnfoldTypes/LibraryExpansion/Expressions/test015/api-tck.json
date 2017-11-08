@@ -115,8 +115,8 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
                         "anyOf": [
-                          "#/specification/types/T1",
-                          "#/specification/types/T2"
+                          "#/specification/types/T2",
+                          "#/specification/types/T1"
                         ],
                         "sourceMap": {
                           "path": "body.raml"
@@ -166,8 +166,8 @@
                           "union"
                         ],
                         "anyOf": [
-                          "number",
-                          "string"
+                          "string",
+                          "number"
                         ],
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }

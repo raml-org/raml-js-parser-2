@@ -20,17 +20,26 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "required": true
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
             "name": "//",
-            "required": false
+            "required": true
           }
         ],
         "maxProperties": 15,
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       },
       {
         "name": "T2",
@@ -51,17 +60,26 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "required": true
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
             "name": "//",
-            "required": false
+            "required": true
           }
         ],
         "maxProperties": 10,
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T2"
       },
       {
         "name": "T3",
@@ -76,6 +94,10 @@
             "type": [
               "string"
             ],
+            "displayName": "t3Prop",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "required": true
           },
           {
@@ -90,6 +112,10 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "required": true
               },
               {
@@ -98,17 +124,26 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "required": true
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
             "name": "//",
-            "required": false
+            "required": true
           }
         ],
         "maxProperties": 10,
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T3"
       }
     ],
     "title": "test API",

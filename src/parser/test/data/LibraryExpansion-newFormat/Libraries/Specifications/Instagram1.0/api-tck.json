@@ -4354,8 +4354,8 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "anyOf": [
-                  "nil",
-                  "types.Location"
+                  "types.Location",
+                  "nil"
                 ],
                 "sourceMap": {
                   "path": "lib/types.raml"
@@ -6178,14 +6178,58 @@
             "securedBy": [
               {
                 "name": "oauth_2_0",
-                "parameters": [
-                  {
-                    "name": "scopes",
-                    "value": [
-                      "relationships"
-                    ]
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
                   }
-                ]
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
+                  "scopes": [
+                    "relationships"
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "method": "get",
@@ -6207,14 +6251,58 @@
         "securedBy": [
           {
             "name": "oauth_2_0",
-            "parameters": [
-              {
-                "name": "scopes",
-                "value": [
-                  "relationships"
-                ]
+            "type": "OAuth 2.0",
+            "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+            "describedBy": {
+              "queryParameters": [
+                {
+                  "name": "access_token",
+                  "displayName": "access_token",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                }
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
               }
-            ]
+            },
+            "settings": {
+              "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+              "authorizationUri": "https://api.instagram.com/oauth/authorize",
+              "authorizationGrants": [
+                "password"
+              ],
+              "scopes": [
+                "relationships"
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ],
         "name": "usersListing",
@@ -6412,8 +6500,8 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "anyOf": [
-                      "string",
-                      "types.OkStatus"
+                      "types.OkStatus",
+                      "string"
                     ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
@@ -6428,14 +6516,58 @@
             "securedBy": [
               {
                 "name": "oauth_2_0",
-                "parameters": [
-                  {
-                    "name": "scopes",
-                    "value": [
-                      "<<scope>>"
-                    ]
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
                   }
-                ]
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
+                  "scopes": [
+                    "<<scope>>"
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "method": "delete",
@@ -6482,8 +6614,8 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "anyOf": [
-                      "string",
-                      "types.OkStatus"
+                      "types.OkStatus",
+                      "string"
                     ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
@@ -6498,14 +6630,58 @@
             "securedBy": [
               {
                 "name": "oauth_2_0",
-                "parameters": [
-                  {
-                    "name": "scopes",
-                    "value": [
-                      "<<scope>>"
-                    ]
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
                   }
-                ]
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
+                  "scopes": [
+                    "<<scope>>"
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "method": "post",
@@ -6523,14 +6699,58 @@
         "securedBy": [
           {
             "name": "oauth_2_0",
-            "parameters": [
-              {
-                "name": "scopes",
-                "value": [
-                  "<<scope>>"
-                ]
+            "type": "OAuth 2.0",
+            "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+            "describedBy": {
+              "queryParameters": [
+                {
+                  "name": "access_token",
+                  "displayName": "access_token",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                }
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
               }
-            ]
+            },
+            "settings": {
+              "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+              "authorizationUri": "https://api.instagram.com/oauth/authorize",
+              "authorizationGrants": [
+                "password"
+              ],
+              "scopes": [
+                "<<scope>>"
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ],
         "name": "secured",

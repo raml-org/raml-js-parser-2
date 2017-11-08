@@ -13,12 +13,17 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
-            ]
+            ],
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T1"
       },
       {
         "name": "T2",
@@ -32,7 +37,11 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
-            ]
+            ],
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "fixedFacets": [
@@ -43,7 +52,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T2"
       },
       {
         "name": "T3",
@@ -57,7 +67,11 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
-            ]
+            ],
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "fixedFacets": [
@@ -68,7 +82,8 @@
         ],
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "displayName": "T3"
       }
     ],
     "title": "test API",

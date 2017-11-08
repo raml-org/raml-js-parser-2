@@ -56,6 +56,9 @@ function transformRamlToolbeltTypeObject(t:any,name:string):any {
     if(name) {
         t.name = name;
     }
+    if(t.displayName==null && t.name!=null){
+        t.displayName = t.name;
+    }
     let typePropertyValue = t.type;
     if (!Array.isArray(typePropertyValue)) {
         t.type = [typePropertyValue];
@@ -76,7 +79,12 @@ function transformRamlToolbeltTypeObject(t:any,name:string):any {
     }
     let anyOf = t.anyOf;
     if(anyOf){
-        anyOf.forEach(x=>transformRamlToolbeltTypeObject(x,null));
+        anyOf.forEach(x=>{
+            transformRamlToolbeltTypeObject(x,null)
+            if(x.displayName==null && t.displayName !=null){
+                x.displayName = t.displayName;
+            }
+        });
     }
     delete t.additionalProperties;
     return t;
@@ -126,5 +134,6 @@ function transformParserTypeObject(t:any):any{
             t.example = singleExample;
         }
     }
+    delete t.sourceMap;
     return t;
 }

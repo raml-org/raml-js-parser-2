@@ -1,0 +1,135 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "a1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "a1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              },
+              {
+                "type": [
+                  "any"
+                ],
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "p1",
+                "required": false
+              },
+              {
+                "type": [
+                  "any"
+                ],
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "p2",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p1",
+            "name": "p1",
+            "required": false
+          },
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "array"
+            ],
+            "items": [
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "a1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "displayName": "a1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "required": true
+                  },
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "displayName": "p1",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "p1",
+                    "required": false
+                  },
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "displayName": "p2",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "p2",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "items"
+              }
+            ],
+            "minItems": 2,
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p2",
+            "name": "p2",
+            "required": true
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1"
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -117,8 +117,6 @@
                       "union"
                     ],
                     "anyOf": [
-                      "#/specification/types/T3",
-                      "#/specification/types/T4",
                       {
                         "type": [
                           "array"
@@ -136,7 +134,9 @@
                           }
                         ],
                         "typePropertyKind": "TYPE_EXPRESSION"
-                      }
+                      },
+                      "#/specification/types/T3",
+                      "#/specification/types/T4"
                     ],
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

@@ -254,10 +254,10 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "anyOf": [
-          "amazon-apigateway-integration-HTTP",
-          "amazon-apigateway-integration-aws",
           "amazon-apigateway-integration-lambda",
-          "amazon-apigateway-integration-mock"
+          "amazon-apigateway-integration-HTTP",
+          "amazon-apigateway-integration-mock",
+          "amazon-apigateway-integration-aws"
         ],
         "sourceMap": {
           "path": "api.raml"

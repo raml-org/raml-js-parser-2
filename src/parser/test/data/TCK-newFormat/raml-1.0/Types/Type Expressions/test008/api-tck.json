@@ -156,8 +156,8 @@
               "union"
             ],
             "anyOf": [
-              "Notebook",
-              "Phone"
+              "Phone",
+              "Notebook"
             ],
             "typePropertyKind": "TYPE_EXPRESSION"
           }

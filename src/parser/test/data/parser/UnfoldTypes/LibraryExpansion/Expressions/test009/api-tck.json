@@ -117,10 +117,10 @@
                       "union"
                     ],
                     "anyOf": [
-                      "#/specification/types/T1",
                       "#/specification/types/T2",
-                      "#/specification/types/T3",
-                      "#/specification/types/T4"
+                      "#/specification/types/T4",
+                      "#/specification/types/T1",
+                      "#/specification/types/T3"
                     ],
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

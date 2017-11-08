@@ -1,0 +1,71 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "amazon-apigateway-integration1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
+      }
+    ],
+    "usage": "Data types and annotation types for AWS API Gateway",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": [
+    {
+      "code": "INHERITING_UNKNOWN_TYPE",
+      "message": "Inheriting from unknown type",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 4,
+          "position": 189
+        },
+        "end": {
+          "line": 7,
+          "column": 8,
+          "position": 193
+        }
+      }
+    }
+  ]
+}
