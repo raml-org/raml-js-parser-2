@@ -16,7 +16,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "example": "<<postRequestBodyExample>>",
                 "__METADATA__": {
@@ -62,7 +62,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "example": {
                   "subscriptionID": "8f19cb50-3f57-4d38",

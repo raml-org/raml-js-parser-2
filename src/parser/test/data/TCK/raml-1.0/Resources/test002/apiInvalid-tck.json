@@ -20,7 +20,7 @@
                     "displayName": "application/xml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "description": "some very useful resource",
                     "__METADATA__": {

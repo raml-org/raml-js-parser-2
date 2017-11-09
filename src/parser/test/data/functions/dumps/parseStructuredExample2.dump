@@ -3,7 +3,7 @@
 	"displayName": "example",
 	"typePropertyKind": "TYPE_EXPRESSION",
 	"type": [
-		"object"
+		"string"
 	],
 	"__METADATA__": {
 		"primitiveValuesMeta": {

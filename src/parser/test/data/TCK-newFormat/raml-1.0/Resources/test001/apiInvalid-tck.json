@@ -17,7 +17,7 @@
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "description": "some very useful resource",
                     "__METADATA__": {
@@ -60,7 +60,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "description": "another very useful resource",
                     "__METADATA__": {
