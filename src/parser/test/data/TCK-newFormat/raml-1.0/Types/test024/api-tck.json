@@ -1180,7 +1180,7 @@
                         "name": "text/plain",
                         "displayName": "text/plain",
                         "type": [
-                          "object"
+                          "any"
                         ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {

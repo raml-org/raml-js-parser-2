@@ -37,7 +37,7 @@
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "examples": [
                       {

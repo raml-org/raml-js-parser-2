@@ -16,7 +16,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -64,7 +64,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {

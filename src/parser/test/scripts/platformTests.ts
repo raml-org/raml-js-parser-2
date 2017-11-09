@@ -23,10 +23,10 @@ function operate(){
 
     testUtils.cloneRepository(
         wsDir,
-        "https://github.com/KonstantinSviridov/PlatformComparisonScript",
+        "https://github.com/KonstantinSviridov/RamlParserTestScript",
         {"--depth": "=1"});
 
-    let repoDir = path.resolve(wsDir, "PlatformComparisonScript");
+    let repoDir = path.resolve(wsDir, "RamlParserTestScript");
     testUtils.setSSHUrl(repoDir);
     testUtils.insertDummyChanges(repoDir);
 

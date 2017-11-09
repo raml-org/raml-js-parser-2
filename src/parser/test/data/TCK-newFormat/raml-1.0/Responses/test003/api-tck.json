@@ -13,7 +13,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -35,7 +35,7 @@
                     "name": "application/vnd.xara",
                     "displayName": "application/vnd.xara",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -57,7 +57,7 @@
                     "name": "audio/EVRCB",
                     "displayName": "audio/EVRCB",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -79,7 +79,7 @@
                     "name": "audio/vnd.dts",
                     "displayName": "audio/vnd.dts",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -101,7 +101,7 @@
                     "name": "image/tiff",
                     "displayName": "image/tiff",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -123,7 +123,7 @@
                     "name": "message/global",
                     "displayName": "message/global",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -145,7 +145,7 @@
                     "name": "model/vnd.moml+xml",
                     "displayName": "model/vnd.moml+xml",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -167,7 +167,7 @@
                     "name": "multipart/voice-message",
                     "displayName": "multipart/voice-message",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -189,7 +189,7 @@
                     "name": "text/turtle",
                     "displayName": "text/turtle",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -211,7 +211,7 @@
                     "name": "video/JPEG",
                     "displayName": "video/JPEG",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -233,7 +233,7 @@
                     "name": "mime/type",
                     "displayName": "mime/type",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {

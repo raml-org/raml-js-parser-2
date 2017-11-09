@@ -35,7 +35,7 @@
               "displayName": "application/json",
               "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
-                "object"
+                "any"
               ],
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -185,7 +185,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -260,7 +260,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {

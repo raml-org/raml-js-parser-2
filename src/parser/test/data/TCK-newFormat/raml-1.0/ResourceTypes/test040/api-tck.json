@@ -80,7 +80,7 @@
                     "name": "properties",
                     "displayName": "properties",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {

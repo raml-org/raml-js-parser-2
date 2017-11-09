@@ -1,0 +1,75 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "str",
+            "displayName": "str",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "title": "test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "Expected type 'string' but got 'null'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 8,
+          "position": 115
+        },
+        "end": {
+          "line": 8,
+          "column": 15,
+          "position": 122
+        }
+      }
+    }
+  ]
+}
