@@ -24,6 +24,7 @@
     "extractTypings": "node ./dist/devUtil/extractTypings.js"
   },
   "dependencies": {
+    "8fold-marked": "0.3.8",
     "base64url": "2.0.0",
     "change-case": "3.0.1",
     "concat-stream": "1.6.0",
@@ -34,7 +35,6 @@
     "loophole": "1.1.0",
     "lrucache": "1.0.3",
     "promise-polyfill": "6.0.2",
-    "marked": "0.3.6",
     "media-typer": "0.3.0",
     "mkdirp": "0.5.1",
     "pluralize": "7.0.0",

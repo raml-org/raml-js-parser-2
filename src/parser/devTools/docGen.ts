@@ -1,7 +1,7 @@
 import def=require("raml-definition-system")
 import _=require("underscore")
 import fs=require("fs")
-import marked = require('marked');
+import marked = require('8fold-marked');
 import services=def
 
 export function def2Doc(t:def.NodeClass,refPrefix:string=''):string{
@@ -567,4 +567,3 @@ export function table(d:ITableDataProvider<any>,isInRefSection:boolean=false,ref
     result.push("</table>")
     return result.join("\n")
 }
-
