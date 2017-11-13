@@ -14,6 +14,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "p1",
             "sourceMap": {
               "path": "api.raml"
@@ -32,6 +45,16 @@
         "simplifiedExamples": [
           "{\"p1\":\"stringValue1\"}"
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -50,6 +73,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "p2",
             "sourceMap": {
               "path": "api.raml"
@@ -62,6 +98,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "p1",
             "sourceMap": {
               "path": "api.raml"
@@ -94,7 +143,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T2"
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       },
       {
         "name": "T3",
@@ -109,6 +165,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "p3",
             "sourceMap": {
               "path": "api.raml"
@@ -116,6 +185,16 @@
             "required": true
           }
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -141,6 +220,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p4",
                 "sourceMap": {
                   "path": "api.raml"
@@ -153,6 +245,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p2",
                 "sourceMap": {
                   "path": "api.raml"
@@ -165,6 +270,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p1",
                 "sourceMap": {
                   "path": "api.raml"
@@ -197,7 +315,14 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4"
+            "displayName": "T4",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           },
           {
             "name": "T4",
@@ -212,6 +337,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p4",
                 "sourceMap": {
                   "path": "api.raml"
@@ -224,6 +362,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p3",
                 "sourceMap": {
                   "path": "api.raml"
@@ -231,6 +382,16 @@
                 "required": true
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -263,7 +424,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T4"
+        "displayName": "T4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       },
       {
         "name": "MyComplexType",
@@ -315,7 +483,14 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "MyComplexType"
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           },
           {
             "name": "MyComplexType",
@@ -360,7 +535,14 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "MyComplexType"
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           },
           {
             "name": "MyComplexType",
@@ -405,7 +587,14 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "MyComplexType"
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           }
         ],
         "examples": [
@@ -445,7 +634,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "MyComplexType"
+        "displayName": "MyComplexType",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       }
     ],
     "annotationTypes": [
@@ -455,6 +651,16 @@
         "type": [
           "string"
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },

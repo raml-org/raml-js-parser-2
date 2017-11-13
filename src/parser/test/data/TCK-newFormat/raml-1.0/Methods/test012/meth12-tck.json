@@ -27,9 +27,6 @@
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -80,9 +77,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -90,6 +84,7 @@
                   "account"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "meth12.raml"
                 }

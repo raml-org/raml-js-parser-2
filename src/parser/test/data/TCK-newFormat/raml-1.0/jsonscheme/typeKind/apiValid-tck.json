@@ -54,6 +54,7 @@
                   "{\"name\":\"somename\"}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiValid.raml"
                 }

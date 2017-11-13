@@ -26,9 +26,19 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p1",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p1",
                     "required": false
@@ -39,6 +49,16 @@
                       "number"
                     ],
                     "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
                     "sourceMap": {
                       "path": "api.raml"
                     },
@@ -50,6 +70,16 @@
                   "path": "api.raml"
                 },
                 "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "required": false
               },
               {
@@ -58,6 +88,16 @@
                   "number"
                 ],
                 "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -68,7 +108,17 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T1"
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           },
           {
             "name": "T1",
@@ -88,9 +138,19 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p1",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p1",
                     "required": false
@@ -101,6 +161,16 @@
                       "number"
                     ],
                     "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
                     "sourceMap": {
                       "path": "api.raml"
                     },
@@ -112,6 +182,16 @@
                   "path": "api.raml"
                 },
                 "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "required": false
               },
               {
@@ -120,6 +200,16 @@
                   "object"
                 ],
                 "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -130,7 +220,17 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T1"
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           },
           {
             "name": "T1",
@@ -150,9 +250,19 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p1",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p1",
                     "required": false
@@ -163,6 +273,16 @@
                       "object"
                     ],
                     "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
                     "sourceMap": {
                       "path": "api.raml"
                     },
@@ -174,6 +294,16 @@
                   "path": "api.raml"
                 },
                 "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "required": false
               },
               {
@@ -182,6 +312,16 @@
                   "number"
                 ],
                 "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -192,7 +332,17 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T1"
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           },
           {
             "name": "T1",
@@ -212,9 +362,19 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p1",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p1",
                     "required": false
@@ -225,6 +385,16 @@
                       "object"
                     ],
                     "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
                     "sourceMap": {
                       "path": "api.raml"
                     },
@@ -236,6 +406,16 @@
                   "path": "api.raml"
                 },
                 "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "required": false
               },
               {
@@ -244,6 +424,16 @@
                   "object"
                 ],
                 "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -254,13 +444,33 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T1"
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           }
         ],
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

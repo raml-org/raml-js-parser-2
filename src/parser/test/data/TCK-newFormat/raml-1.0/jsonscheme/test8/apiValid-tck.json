@@ -57,6 +57,7 @@
                   "{\"parentName\":\"somename\",\"child\":{\"childName\":\"anothernames\"}}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiValid.raml"
                 }

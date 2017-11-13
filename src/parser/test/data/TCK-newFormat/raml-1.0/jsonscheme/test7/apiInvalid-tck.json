@@ -54,6 +54,7 @@
                   "{\"innerTypeName1\":\"somenam\"}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiInvalid.raml"
                 }

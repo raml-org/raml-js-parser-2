@@ -114,7 +114,21 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              "lib1.ComponentType"
+              {
+                "type": [
+                  "lib1.ComponentType"
+                ],
+                "name": "items",
+                "displayName": "items",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
             ],
             "sourceMap": {
               "path": "lib/lib1.raml"

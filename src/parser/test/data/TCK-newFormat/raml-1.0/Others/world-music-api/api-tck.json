@@ -59,6 +59,7 @@
           }
         },
         "mediaType": "application/json",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
         }
@@ -265,9 +266,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -972,9 +970,6 @@
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   },
@@ -995,9 +990,6 @@
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   },
@@ -1590,6 +1582,7 @@
                       }
                     },
                     "mediaType": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
                     }
@@ -1799,9 +1792,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1809,6 +1799,7 @@
                       "Entry"
                     ],
                     "mediaType": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
                     }

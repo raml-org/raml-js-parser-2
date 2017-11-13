@@ -26,6 +26,19 @@
                 "value": "T1.p1"
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -47,6 +60,16 @@
             "value": "T1"
           }
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -77,6 +100,19 @@
                 "value": "T2.p2"
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -102,6 +138,19 @@
                 "value": "T1.p1"
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -126,7 +175,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T2"
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       },
       {
         "name": "T3",
@@ -153,6 +209,19 @@
                 "value": "T3.p3"
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -174,6 +243,16 @@
             "value": "T3"
           }
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -211,6 +290,19 @@
                     "value": "T4.p4"
                   }
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -236,6 +328,19 @@
                     "value": "T2.p2"
                   }
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -261,6 +366,19 @@
                     "value": "T1.p1"
                   }
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -285,7 +403,14 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4"
+            "displayName": "T4",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           },
           {
             "name": "T4",
@@ -312,6 +437,19 @@
                     "value": "T4.p4"
                   }
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -337,6 +475,19 @@
                     "value": "T3.p3"
                   }
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -358,6 +509,16 @@
                 "value": "T3"
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -380,7 +541,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T4"
+        "displayName": "T4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       }
     ],
     "annotationTypes": [
@@ -397,6 +565,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "ap1",
             "sourceMap": {
               "path": "api.raml"
@@ -409,6 +590,19 @@
             "type": [
               "number"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "ap2",
             "sourceMap": {
               "path": "api.raml"
@@ -416,6 +610,16 @@
             "required": true
           }
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -427,6 +631,16 @@
         "type": [
           "string"
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },

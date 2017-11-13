@@ -136,7 +136,21 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      "NewLibrary.Pet"
+                      {
+                        "type": [
+                          "NewLibrary.Pet"
+                        ],
+                        "name": "items",
+                        "displayName": "items",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "sourceMap": {
                       "path": "api.raml"
@@ -425,7 +439,21 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      "Bird"
+                      {
+                        "type": [
+                          "Bird"
+                        ],
+                        "name": "items",
+                        "displayName": "items",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "sourceMap": {
                       "path": "api.raml"
@@ -714,7 +742,21 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      "Mammal"
+                      {
+                        "type": [
+                          "Mammal"
+                        ],
+                        "name": "items",
+                        "displayName": "items",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "sourceMap": {
                       "path": "api.raml"

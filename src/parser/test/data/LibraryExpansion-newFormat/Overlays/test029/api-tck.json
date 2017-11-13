@@ -144,9 +144,6 @@
           "API",
           "Overlay"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {}
-        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
@@ -164,9 +161,6 @@
           "API",
           "Overlay"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {}
-        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
@@ -184,9 +178,6 @@
           "API",
           "Overlay"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {}
-        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
@@ -204,9 +195,6 @@
           "API",
           "Overlay"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {}
-        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
@@ -233,7 +221,21 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
-          "library.apiResource"
+          {
+            "type": [
+              "library.apiResource"
+            ],
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
         ],
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"

@@ -230,6 +230,7 @@ export class JsonSerializer {
             let map:{[key:string]:PropertyValue} = {};
             let eNode = _node.asElement();
             let definition = eNode.definition();
+            let eNodeProperty = nodeProperty || eNode.property();
 
             if(universeHelpers.isExampleSpecType(definition)){
                 if(eNode.parent()!=null){
@@ -291,10 +292,6 @@ export class JsonSerializer {
                             let isNull = (pVal == null);
                             if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
                                 isNull = (pVal.arr[0].asAttr().value()==null);
-                            }
-                            if(isNull) {
-                                meta = meta || new core.NodeMetadataImpl();
-                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
                             }
                             continue;
                         }
@@ -501,7 +498,7 @@ export class JsonSerializer {
                         result["fixedFacets"] = fixedFacets;
                     }
                 }
-                result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
+                result = applyTransformersMap(eNode, eNodeProperty, result, this.nodeTransformersMap);
             }
             if(this.options.sourceMap && typeof result == "object") {
                 let unitPath = hlImpl.actualPath(eNode);
@@ -1311,6 +1308,17 @@ class TypeTransformer extends BasicTransformation{
             return _value;
         }
         var value = isArray ? _value[0] : _value;
+        let prop = node.property();
+        // if(universeHelpers.isItemsProperty(prop)||universeHelpers.isTypeProperty(prop)){
+        //     if(value.name == prop.nameId()){
+        //         delete value.name;
+        //     }
+        // }
+        // else if(universeHelpers.isBodyProperty(prop)){
+        //     if(node.lowLevel().key()==prop.nameId()){
+        //         delete value.name;
+        //     }
+        // }
         var exampleObj = helpersLL.typeExample(
             node.asElement(),this.options.dumpXMLRepresentationOfExamples);
         if(exampleObj){
@@ -1393,7 +1401,6 @@ class TypeTransformer extends BasicTransformation{
                 }
             }
         }
-        var prop = node.property();
         if (prop && !(universeHelpers.isHeadersProperty(prop)
             || universeHelpers.isQueryParametersProperty(prop)
             || universeHelpers.isUriParametersProperty(prop)
@@ -1401,11 +1408,17 @@ class TypeTransformer extends BasicTransformation{
             || universeHelpers.isBaseUriParametersProperty(prop))) {
 
             delete value["required"];
-            var metaObj = value["__METADATA__"]
+            let metaObj = value["__METADATA__"]
             if (metaObj) {
-                var pMetaObj = metaObj["primitiveValuesMeta"];
+                let pMetaObj = metaObj["primitiveValuesMeta"];
                 if (pMetaObj) {
                     delete pMetaObj["required"];
+                    if(!Object.keys(pMetaObj).length){
+                        delete metaObj["primitiveValuesMeta"]
+                    }
+                }
+                if(!Object.keys(metaObj).length){
+                    delete value["__METADATA__"]
                 }
             }
         }
@@ -1424,6 +1437,8 @@ class TypeTransformer extends BasicTransformation{
                     value["typePropertyKind"] = "JSON";
                 } else if (canBeXml) {
                     value["typePropertyKind"] = "XML";
+                } else {
+                    value["typePropertyKind"] = "TYPE_EXPRESSION";
                 }
             } else {
                 value["typePropertyKind"] = "TYPE_EXPRESSION";
@@ -1452,11 +1467,49 @@ class TypeTransformer extends BasicTransformation{
         if(isSingleString){
             let newTypeValue = obj.type[0];
             if(newTypeValue && typeof newTypeValue == "object"){
-                Object.keys(newTypeValue).forEach(x=>{
-                   obj[x] = newTypeValue[x];
-                });
+                let t = node.asElement().parsedType();
+                if(!this.isEmptyUnion(t)) {
+                    Object.keys(newTypeValue).forEach(x => {
+                        obj[x] = newTypeValue[x];
+                    });
+                }
+                else if(!obj.type[0].name) {
+                    obj.type[0].name = "type"
+                    obj.type[0].displayName = "type"
+                    obj.type[0].typePropertyKind = "TYPE_EXPRESSION"
+                    this.appendMeta(obj.type[0],"displayName","calculated");
+                }
             }
         }
+    }
+
+    appendMeta(obj:any,field:string,kind:string){
+        if(!this.options.serializeMetadata){
+            return;
+        }
+        let metaObj = obj.__METADATA__;
+        if(!metaObj){
+            metaObj = {};
+            obj.__METADATA__ = metaObj;
+        }
+        let scalarsObj = metaObj.primitiveValuesMeta;
+        if(!scalarsObj){
+            scalarsObj = {};
+            metaObj.primitiveValuesMeta = scalarsObj;
+        }
+        let fObj = scalarsObj[field];
+        if(!fObj){
+            fObj = {};
+            scalarsObj[field] = fObj;
+        }
+        fObj[kind] = true;
+    }
+
+    isEmptyUnion(t:typeSystem.IParsedType){
+        if(!t.isUnion()){
+            return false;
+        }
+        return !t.isEmpty();
     }
 
     private parseExpressionsForProperty(obj:any, prop:string,node:hl.IParseResult){
@@ -1584,12 +1637,27 @@ class TypeTransformer extends BasicTransformation{
             arr = parens.arr;
             result = this.expressionToObject(parens.expr,escapeData,node);
         }
-        if(result!=null) {
+        if(result!=null && arr>0) {
+            if (typeof result === "string"){
+                result = {
+                    type: [ result ],
+                    name: "items",
+                    displayName: "items",
+                    typePropertyKind: "TYPE_EXPRESSION"
+                };
+                this.appendMeta(result,"displayName","calculated");
+            }
             while (arr-- > 0) {
                 result = {
                     type: ["array"],
                     items: [ result ]
                 };
+                if(arr>0){
+                    result.name = "items";
+                    result.displayName = "items";
+                    result.typePropertyKind = "TYPE_EXPRESSION";
+                    this.appendMeta(result,"displayName","calculated");
+                }
             }
         }
         if(typeof result === "object"){

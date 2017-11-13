@@ -134,7 +134,7 @@ export class AttributeDefaultsCalculator {
         for(var i = 0 ; i < this.valueCalculators.length; i++){
             var calculator = this.valueCalculators[i];
             if(calculator.matches(attributeProperty,node)){
-                return calculator.kind();
+                return calculator.kind(node,attributeProperty);
             }
         }
 
@@ -157,7 +157,7 @@ export interface ValueCalculator{
 
     matches(attributeProperty: hl.IProperty, node:hl.IHighLevelNode):boolean;
 
-    kind():InsertionKind;
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind;
 
 }
 
@@ -217,7 +217,7 @@ class MediaTypeCalculator implements ValueCalculator{
         return true;
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.CALCULATED;
     }
 }
@@ -255,7 +255,7 @@ class DisplayNamePropertyCalculator implements ValueCalculator{
             &&universeHelpers.isDisplayNameProperty(attributeProperty);
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.CALCULATED;
     }
 }
@@ -282,7 +282,7 @@ class TypePropertyCalculator implements ValueCalculator{
             && universeHelpers.isObjectTypeDeclarationSibling(node.definition());
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.BY_DEFAULT;
     }
 }
@@ -341,7 +341,20 @@ class RequiredPropertyCalculator implements ValueCalculator{
         return universeHelpers.isRequiredProperty(attributeProperty);
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
+        if(universeHelpers.isRequiredProperty(attributeProperty)){
+            let nodeProp = node.property();
+            if(universeHelpers.isPropertiesProperty(nodeProp)
+                ||universeHelpers.isHeadersProperty(nodeProp)
+                ||universeHelpers.isBaseUriParametersProperty(nodeProp)
+                ||universeHelpers.isUriParametersProperty(nodeProp)
+                ||universeHelpers.isQueryParametersProperty(nodeProp)
+            ){
+                if(node.lowLevel().optional()){
+                    return null;
+                }
+            }
+        }
         return InsertionKind.BY_DEFAULT;
     }
 
@@ -398,7 +411,7 @@ class SecuredByPropertyCalculator implements ValueCalculator{
         return universeHelpers.isSecuredByProperty(attributeProperty);
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.CALCULATED;
     }
 }
@@ -448,7 +461,7 @@ class ProtocolsPropertyCalculator implements ValueCalculator{
         return hasAppropriateLocation;
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.CALCULATED;
     }
 }
@@ -492,7 +505,7 @@ class VersionParamEnumCalculator implements ValueCalculator{
         return true;
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.CALCULATED;
     }
 }
@@ -528,7 +541,7 @@ class UnconditionalRequiredPropertyCalculator implements ValueCalculator{
         return universeHelpers.isRequiredProperty(attributeProperty);
     }
 
-    kind():InsertionKind{
+    kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
         return InsertionKind.BY_DEFAULT;
     }
 

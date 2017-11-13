@@ -14,6 +14,9 @@
         "name": "primitives.ExtLocale",
         "displayName": "ExtLocale",
         "schemaPath": "schemas/locale.xsd",
+        "sourceMap": {
+          "path": "schemas/locale.xsd"
+        },
         "type": [
           "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"language\": {\"type\": \"string\", \"minLength\": 2},\n    \"country\": {\"type\": \"string\", \"minLength\": 2}\n  },\n  \"required\": [\"language\"]\n}"
         ],
@@ -25,10 +28,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "schemas/locale.xsd"
-        }
+        "typePropertyKind": "JSON"
       },
       {
         "name": "primitives.Locale",
@@ -44,6 +44,7 @@
           }
         },
         "mediaType": "application/json",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "library.raml"
         }
@@ -69,6 +70,7 @@
                   }
                 },
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
                 }

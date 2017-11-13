@@ -55,6 +55,7 @@
                   "{\"child\":{\"name1\":\"somename\"}}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiInvalid.raml"
                 }

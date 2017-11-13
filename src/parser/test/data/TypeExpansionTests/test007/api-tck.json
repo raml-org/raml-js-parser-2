@@ -10,7 +10,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

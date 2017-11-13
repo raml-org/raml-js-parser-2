@@ -135,5 +135,6 @@ function transformParserTypeObject(t:any):any{
         }
     }
     delete t.sourceMap;
+    delete t.__METADATA__;
     return t;
 }

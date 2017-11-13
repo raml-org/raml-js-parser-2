@@ -12,9 +12,19 @@
             "type": [
               "any"
             ],
-            "displayName": "p1",
             "sourceMap": {
               "path": "api.raml"
+            },
+            "displayName": "p1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
             },
             "name": "p1",
             "required": false
@@ -32,10 +42,28 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "name": "items"
+                "name": "items",
+                "displayName": "items",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
               }
             ],
             "displayName": "p2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -46,7 +74,17 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "T2",
@@ -65,9 +103,19 @@
                 "type": [
                   "any"
                 ],
-                "displayName": "r1",
                 "sourceMap": {
                   "path": "api.raml"
+                },
+                "displayName": "r1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
                 },
                 "name": "r1",
                 "required": false
@@ -85,10 +133,28 @@
                     "sourceMap": {
                       "path": "api.raml"
                     },
-                    "name": "items"
+                    "name": "items",
+                    "displayName": "items",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
                   }
                 ],
                 "displayName": "r2",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -99,6 +165,19 @@
             "sourceMap": {
               "path": "api.raml"
             },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "q1",
             "name": "q1",
             "required": true
@@ -107,7 +186,17 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T2"
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

@@ -122,7 +122,21 @@
                       "array"
                     ],
                     "items": [
-                      "#/specification/types/T3"
+                      {
+                        "type": [
+                          "#/specification/types/T3"
+                        ],
+                        "name": "items",
+                        "displayName": "items",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

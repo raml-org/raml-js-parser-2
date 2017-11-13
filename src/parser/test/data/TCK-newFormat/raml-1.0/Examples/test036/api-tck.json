@@ -33,7 +33,21 @@
                   "array"
                 ],
                 "items": [
-                  "string"
+                  {
+                    "type": [
+                      "string"
+                    ],
+                    "name": "items",
+                    "displayName": "items",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
                 ],
                 "typePropertyKind": "TYPE_EXPRESSION"
               },

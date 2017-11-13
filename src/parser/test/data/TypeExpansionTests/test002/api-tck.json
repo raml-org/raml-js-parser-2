@@ -20,6 +20,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p1",
                 "sourceMap": {
                   "path": "api.raml"
@@ -27,6 +40,19 @@
                 "required": true
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -36,6 +62,16 @@
           }
         ],
         "maxProperties": 15,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -60,6 +96,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p2",
                 "sourceMap": {
                   "path": "api.raml"
@@ -67,6 +116,19 @@
                 "required": true
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -76,6 +138,16 @@
           }
         ],
         "maxProperties": 10,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -94,6 +166,19 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "displayName": "t3Prop",
             "sourceMap": {
               "path": "api.raml"
@@ -112,6 +197,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p1",
                 "sourceMap": {
                   "path": "api.raml"
@@ -124,6 +222,19 @@
                 "type": [
                   "string"
                 ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "displayName": "p2",
                 "sourceMap": {
                   "path": "api.raml"
@@ -131,6 +242,19 @@
                 "required": true
               }
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "sourceMap": {
               "path": "api.raml"
             },
@@ -143,7 +267,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T3"
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

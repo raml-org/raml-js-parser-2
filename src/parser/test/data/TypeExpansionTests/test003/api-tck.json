@@ -14,12 +14,32 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "displayName": "f1",
             "sourceMap": {
               "path": "api.raml"
             }
           }
         ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
         "sourceMap": {
           "path": "api.raml"
         },
@@ -38,6 +58,16 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "displayName": "f1",
             "sourceMap": {
               "path": "api.raml"
@@ -53,7 +83,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T2"
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       },
       {
         "name": "T3",
@@ -68,6 +105,16 @@
             "type": [
               "string"
             ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "displayName": "f1",
             "sourceMap": {
               "path": "api.raml"
@@ -83,7 +130,14 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T3"
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

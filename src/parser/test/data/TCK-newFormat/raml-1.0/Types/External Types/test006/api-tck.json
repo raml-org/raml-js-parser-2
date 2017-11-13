@@ -46,6 +46,7 @@
           "{\"id\":\"4\"}"
         ],
         "mediaType": "application/json",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
         }

@@ -21,6 +21,19 @@
                   "string"
                 ],
                 "displayName": "a1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -30,9 +43,19 @@
                 "type": [
                   "any"
                 ],
-                "displayName": "p1",
                 "sourceMap": {
                   "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
                 },
                 "name": "p1",
                 "required": false
@@ -41,9 +64,22 @@
                 "type": [
                   "any"
                 ],
-                "displayName": "p2",
                 "sourceMap": {
                   "path": "api.raml"
+                },
+                "displayName": "p2",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
                 },
                 "name": "p2",
                 "required": true
@@ -53,6 +89,13 @@
               "path": "api.raml"
             },
             "displayName": "p1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
             "name": "p1",
             "required": false
           },
@@ -75,6 +118,19 @@
                       "string"
                     ],
                     "displayName": "a1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
                     "sourceMap": {
                       "path": "api.raml"
                     },
@@ -84,9 +140,19 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p1",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p1",
                     "required": false
@@ -95,9 +161,22 @@
                     "type": [
                       "any"
                     ],
-                    "displayName": "p2",
                     "sourceMap": {
                       "path": "api.raml"
+                    },
+                    "displayName": "p2",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     },
                     "name": "p2",
                     "required": true
@@ -106,7 +185,15 @@
                 "sourceMap": {
                   "path": "api.raml"
                 },
-                "name": "items"
+                "name": "items",
+                "displayName": "items",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
               }
             ],
             "minItems": 2,
@@ -114,6 +201,16 @@
               "path": "api.raml"
             },
             "displayName": "p2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
             "name": "p2",
             "required": true
           }
@@ -121,7 +218,17 @@
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

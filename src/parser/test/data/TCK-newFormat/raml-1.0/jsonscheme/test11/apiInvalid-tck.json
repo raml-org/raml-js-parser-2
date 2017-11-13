@@ -5,6 +5,9 @@
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json",
+        "sourceMap": {
+          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json"
+        },
         "type": [
           "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            },\n            \"required\" : [ \"innerTypeName\" ]\n        }\n    },\n    \"required\" : [ \"name\" ]\n}"
         ],
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "Api",
@@ -57,6 +57,7 @@
                   "{\"name\":\"somename\",\"child\":{\"innerTypeName1\":\"anothername\"}}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiInvalid.raml"
                 }

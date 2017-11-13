@@ -47,8 +47,9 @@ export class PropertyEntry implements Entry{
     constructor(protected _original:IPropertyInfo,
                 protected _name:string,
                 protected _type:TypeEntry,
+                protected _required:boolean,
                 protected isFacet=false,
-                protected _required?:boolean){
+                protected _metadata:any){
 
     }
 
@@ -59,7 +60,7 @@ export class PropertyEntry implements Entry{
     append(te:GeneralTypeEntry,bd:BranchingData):void{
         let etp = new GeneralTypeEntry(this._type.original(),[],null,[], [], this._type.name());
         this._type.append(etp,bd);
-        let newPropEntry = new PropertyEntry(this._original,this._name,etp,this.isFacet,this.required());
+        let newPropEntry = new PropertyEntry(this._original,this._name,etp,this.required(),this.isFacet,this.metadata());
         if(this.isFacet){
             te.addFacet(newPropEntry);
         }
@@ -77,6 +78,10 @@ export class PropertyEntry implements Entry{
             return this._required;
         }
         return this._original.required();
+    }
+
+    metadata():any{
+        return this._metadata;
     }
 }
 
@@ -113,7 +118,7 @@ export interface TypeEntry extends Entry{
 
     isRecursionPoint():boolean;
 
-    examples():IExample[]
+    examples(expand:boolean):IExample[]
 
     meta():ITypeFacet[];
 
@@ -239,12 +244,23 @@ export class AbstractTypeEntry implements TypeEntry{
         return false;
     }
 
-    examples():IExample[]{
+    examples(expand:boolean):IExample[]{
         if(this._original){
-            const examples = <IExample[]>this._original.examples();
+            let examples = <IExample[]>this._original.examples();
             return examples;
         }
         return [];
+    }
+
+    declaredExampleFacets() {
+        let result:ITypeFacet[] = [];
+        if(this._original){
+            result = this._original.declaredFacets();
+            result = result.filter(x=>x.kind()==tsInterfaces.MetaInformationKind.Example
+                || x.kind()==tsInterfaces.MetaInformationKind.Examples);
+        }
+
+        return result;
     }
 
     meta(){
@@ -425,7 +441,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
                             pType.addSuperType(x.type());
                             required = required || x.required();
                         });
-                        let mergedProp = new PropertyEntry(null,pName,pType,false,required);
+                        let mergedProp = new PropertyEntry(null,pName,pType,required,false,null);
                         mergedProp.append(te, bd);
                     }
                 }
@@ -560,15 +576,26 @@ export class IntersectionTypeEntry extends AbstractTypeEntry{
 function createHierarchyEntry(t:IParsedType,
                               typeExpansionRecursionDepth:number,
                               isAnnotationType=false,
-                              occured:{[key:string]:TypeEntry}={},
-                              branchingRegistry?:BranchingRegistry,
-                              path?:string):TypeEntry{
+                              occured:{[key:string]:AbstractTypeEntry}={},
+                              branchingRegistry?:BranchingRegistry):AbstractTypeEntry{
 
     let isNewTree = false;
     if(!branchingRegistry){
         isNewTree = true;
         branchingRegistry = new BasicBranchingRegistry();
     }
+    let result = doCreateHierarchyEntry(t, typeExpansionRecursionDepth,isAnnotationType, occured, branchingRegistry);
+    if(isNewTree){
+        result.setBranchingRegistry(branchingRegistry);
+    }
+    return result;
+}
+
+function doCreateHierarchyEntry(t:IParsedType,
+                                typeExpansionRecursionDepth:number,
+                                isAnnotationType=false,
+                                occured:{[key:string]:AbstractTypeEntry}={},
+                                branchingRegistry:BranchingRegistry):AbstractTypeEntry{
 
     if(t.isBuiltin()){
         let result = occured[t.name()];
@@ -592,8 +619,8 @@ function createHierarchyEntry(t:IParsedType,
         let options = t.options();
         let optionEntries:TypeEntry[] = [];
         for(let o of options){
-            optionEntries.push(createHierarchyEntry(
-                o,typeExpansionRecursionDepth,false,occured,branchingRegistry));
+            optionEntries.push(
+                createHierarchyEntry(o,typeExpansionRecursionDepth,false,occured,branchingRegistry));
         }
         let branchId = branchingRegistry.nextBranchId(optionEntries.length);
         let unionSuperType = new UnionTypeEntry(t, optionEntries, branchId);
@@ -609,7 +636,7 @@ function createHierarchyEntry(t:IParsedType,
     let superTypeEntries:TypeEntry[] = [];
     if(typeExpansionRecursionDepth==-1){
         const allSuperTypes:IParsedType[] = t.superTypes();
-        let superTypes = allSuperTypes.filter(x=>!x.isUnion());
+        let superTypes = allSuperTypes;//.filter(x=>!x.isUnion());
         for (let st of superTypes) {
             let ste = createHierarchyEntry(
                 st, typeExpansionRecursionDepth, false,occured, branchingRegistry);
@@ -629,7 +656,7 @@ function createHierarchyEntry(t:IParsedType,
     }
     let options = t.allOptions();
     let properties = typeExpansionRecursionDepth>=0 ? t.properties() : t.declaredProperties();
-    if(options.length>1){
+    if(typeExpansionRecursionDepth>=0&&options.length>1){
         let optionEntries:TypeEntry[] = [];
         for(let o of options){
             optionEntries.push(createHierarchyEntry(
@@ -642,6 +669,9 @@ function createHierarchyEntry(t:IParsedType,
     if(t.isArray()){
         let ct = t.componentType();
         if(ct) {
+            if(isEmpty(ct)){
+                ct = ct.superTypes()[0];
+            }
             let componentTypeEntry = createHierarchyEntry(
                 ct,typeExpansionRecursionDepth, false,occured);
             result.setComponentType(componentTypeEntry);
@@ -650,23 +680,7 @@ function createHierarchyEntry(t:IParsedType,
     let propertyEntries:PropertyEntry[] = [];
     if(properties.length>0){
         for(let p of properties){
-            let pt = p.range();
-            let owner = p.declaredAt();
-            let pte:TypeEntry;
-            let d = typeExpansionRecursionDepth;
-            if(owner.name() && (!t.name()||owner.name() != t.name()) && occured[owner.name()]){
-                if(typeExpansionRecursionDepth<=0) {
-                    pte = occured[owner.name()];
-                }
-                else{
-                    d--;
-                }
-            }
-            if(!pte) {
-                pte = createHierarchyEntry(
-                    pt, d, false, occured, branchingRegistry);
-            }
-            let pe = new PropertyEntry(p,null,pte);
+            let pe = processPropertyHierarchy(p, typeExpansionRecursionDepth, t, occured, branchingRegistry);
             propertyEntries.push(pe);
         }
     }
@@ -679,30 +693,75 @@ function createHierarchyEntry(t:IParsedType,
     let definedFacets = typeExpansionRecursionDepth>=0 ? t.allDefinedFacets() : t.definedFacets();
     if(definedFacets.length>0){
         for(let p of definedFacets){
-            let pt = p.range();
-            let owner = p.declaredAt();
-            let pte:TypeEntry;
-            let d = typeExpansionRecursionDepth;
-            if(owner.name() && (!t.name()||owner.name() != t.name()) && occured[owner.name()]){
-                if(typeExpansionRecursionDepth<=0) {
-                    pte = occured[owner.name()];
-                }
-                else{
-                    d--;
-                }
-            }
-            if(!pte) {
-                pte = createHierarchyEntry(
-                    pt, d, false, occured, branchingRegistry);
-            }
-            let fe = new PropertyEntry(p,null,pte,true);
+            let fe = processPropertyHierarchy(p, typeExpansionRecursionDepth, t, occured, branchingRegistry,true);
             result.addFacet(fe);
         }
     }
-    if(isNewTree){
-        result.setBranchingRegistry(branchingRegistry);
-    }
     return result;
+}
+
+let extractParserMetadata = function (pt: IParsedType) {
+    let meta: any;
+    let metaArr = pt.declaredFacets().filter(x => x.facetName() == "__METADATA__");
+    if (metaArr.length) {
+        meta = metaArr[0].value();
+    }
+    return meta;
+};
+
+function processPropertyHierarchy(
+    p:tsInterfaces.IPropertyInfo,
+    typeExpansionRecursionDepth: number,
+    t: IParsedType,
+    occured: { [p: string]: AbstractTypeEntry },
+    branchingRegistry: BranchingRegistry,
+    isFacet=false)
+{
+    let pt = p.range();
+    let meta = extractParserMetadata(pt);
+    let owner = p.declaredAt();
+    let pte: TypeEntry;
+    let d = typeExpansionRecursionDepth;
+    if (owner.name() && (!t.name() || owner.name() != t.name()) && occured[owner.name()]) {
+        if (typeExpansionRecursionDepth <= 0) {
+            pte = occured[owner.name()];
+        }
+        else {
+            d--;
+        }
+    }
+    if (!pte) {
+        if (isEmpty(pt)) {
+            pt = pt.superTypes()[0];
+            //mergeMeta(meta,extractParserMetadata(pt));
+        }
+        pte = createHierarchyEntry(
+            pt, d, false, occured, branchingRegistry);
+    }
+    let pe = new PropertyEntry(p, null, pte, p.required(),isFacet,meta);
+    return pe;
+}
+
+function mergeMeta(to,from){
+    if(!from){
+        return;
+    }
+    else if(!to){
+        return from;
+    }
+    for(let key of Object.keys(from)){
+        if(!to.hasOwnProperty(key)){
+            to[key] = from[key];
+        }
+        else if(key=="primitiveValuesMeta"){
+            for(let key1 of Object.keys(from.primitiveValuesMeta)){
+                if(!to.primitiveValuesMeta.hasOwnProperty(key1)) {
+                    to.primitiveValuesMeta[key1] = from.primitiveValuesMeta[key1];
+                }
+            }
+        }
+    }
+
 }
 
 function expandHierarchy(e:TypeEntry,reg:BranchingRegistry,typeMap?:TypeMap):TypeEntry{
@@ -815,7 +874,7 @@ class BasicBranchingRegistry implements BranchingRegistry{
 
 let appendSourceFromExtras = function (result: any, te: TypeEntry) {
     if (!result.sourceMap) {
-        let src = te.original().getExtra("SOURCE");
+        let src = te.original() && te.original().getExtra("SOURCE");
         if (src) {
             let llSrc: ll.ILowLevelASTNode;
             if (hlImpl.LowLevelWrapperForTypeSystem.isInstance(src)) {
@@ -836,7 +895,8 @@ let appendSourceFromExtras = function (result: any, te: TypeEntry) {
     }
 };
 
-export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSource?:any):any{
+
+export function dump(te:TypeEntry,expand:boolean):any{
 
     let result:any = {};
     let name = te.name();
@@ -846,9 +906,6 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
             result = {
                 type: [ "any" ]
             };
-            if(displayName!=null){
-                result.displayName = displayName;
-            }
             appendSourceFromExtras(result, te);
             return result;
         }
@@ -863,6 +920,7 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
     else if(te.isExternal()) {
         if(!expand && superTypes[0].name() && te.original().allSuperTypes().length>3){
             result.type = [ superTypes[0].name() ];
+            result.typePropertyKind = "TYPE_EXPRESSION";
         }
         else {
             let sch = te.schema();
@@ -879,6 +937,8 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
                     result.typePropertyKind = "JSON";
                 } else if (canBeXml) {
                     result.typePropertyKind = "XML";
+                } else {
+                    result.typePropertyKind = "TYPE_EXPRESSION";
                 }
             }
         }
@@ -904,10 +964,10 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
         }
     }
     else {
-        if(superTypes.length&&superTypes[0].name()){
+        if(superTypes.length&&(superTypes[0].name()||superTypes[0].isUnion())){
             result.typePropertyKind = "TYPE_EXPRESSION";
         }
-        else{
+        else {
             result.typePropertyKind = "INPLACE";
         }
         let gte = <GeneralTypeEntry>te;
@@ -926,6 +986,8 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
                 else{
                     const dumped = dump(st,expand);
                     dumped.name = "type";
+                    dumped.displayName = "type";
+                    appendMeta(dumped,"displayName","calculated");
                     type.push(dumped);
                 }
             }
@@ -936,10 +998,7 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
             let props: any[] = [];
             result.properties = props;
             for (let p of properties) {
-                let dumpedPropertyType = dump(p.type(),expand,p.name());
-                appendSourceFromExtras(dumpedPropertyType, gte);
-                dumpedPropertyType.name = p.name();
-                dumpedPropertyType.required = p.required();
+                const dumpedPropertyType = dumpProperty(p, gte,expand);
                 props.push(dumpedPropertyType);
             }
         }
@@ -948,29 +1007,35 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
             let facetArr: any[] = [];
             result.facets = facetArr;
             for (let f of facets) {
-                let dumpedFacetType = dump(f.type(),expand,f.name());
-                appendSourceFromExtras(dumpedFacetType, gte);
-                dumpedFacetType.name = f.name();
+                const dumpedFacetType = dumpProperty(f, gte,expand, true);
                 facetArr.push(dumpedFacetType);
             }
         }
         let ct = gte.componentType();
         if(ct){
             if(!expand && ct.name()){
-                result.items = [ ct.name() ];
+                result.items = [ {
+                    type: [ ct.name() ],
+                    name: "items",
+                    displayName: "items",
+                    typePropertyKind: "TYPE_EXPRESSION"
+                } ];
+                appendMeta(result.items[0],"displayName","calculated");
             }
             else {
                 let dumpedComponentType = dump(ct, expand);
                 appendSourceFromExtras(dumpedComponentType, gte);
                 if (!ct.isUnion()&&!dumpedComponentType.name) {
                     dumpedComponentType.name = "items";
+                    dumpedComponentType.displayName = "items";
+                    appendMeta(dumpedComponentType,"displayName","calculated");
                 }
                 result.items = [dumpedComponentType];
             }
         }
         dumpFacets(te, result, expand);
     }
-    let examples = te.examples();
+    let examples = te.examples(expand);
     if(examples.length > 0){
         let simplified:any[] = [];
         let examplesArr:any[] = [];
@@ -1014,10 +1079,79 @@ export function dump(te:TypeEntry,expand:boolean,displayName?:string,defaultSour
     dumpAnnotations(annotations,result);
     dumpMeta(te,result, expand);
     appendSourceFromExtras(result, te);
-    if(result.displayName==null){
-        result.displayName = displayName||result.name;
+    if(!result.displayName && result.name){
+        result.displayName = result.name;
+        appendMeta(result,"displayName","calculated");
     }
+    checkIfTypePropertyIsDefault(te,result);
     return result;
+}
+
+
+let checkIfTypePropertyIsDefault = function (te: TypeEntry, result: any) {
+    if(te.isBuiltIn()){
+        return;
+    }
+    if(te.original() && te.original().isUnion()){
+        return;
+    }
+    if (!sourceHasKey(te, "type")) {
+        let byDefault = false;
+        if(!Array.isArray(result.type)||!result.type.length) {
+            byDefault = true;
+        }
+        else{
+            byDefault = result.type[0]!="array";
+        }
+        if(byDefault){
+            appendMeta(result, "type", "insertedAsDefault");
+        }
+    }
+};
+
+function dumpProperty(
+    p:PropertyEntry,
+    gte: GeneralTypeEntry,
+    expand: boolean,
+    isFacet=false) {
+
+    let dumpedPropertyType: any;
+    const propType = p.type();
+    if (!expand && propType.name()) {
+        dumpedPropertyType = {
+            type: [propType.name()],
+            displayName: p.name(),
+            typePropertyKind: "TYPE_EXPRESSION"
+        };
+        appendMeta(dumpedPropertyType, "displayName", "calculated");
+    }
+    else {
+        dumpedPropertyType = dump(propType, expand);
+        if (dumpedPropertyType.displayName == null || propType.name()) {
+            dumpedPropertyType.displayName = p.name();
+            appendMeta(dumpedPropertyType, "displayName", "calculated");
+        }
+    }
+    appendSourceFromExtras(dumpedPropertyType, gte);
+    dumpedPropertyType.name = p.name();
+    if(!isFacet) {
+        dumpedPropertyType.required = p.required();
+    }
+    if(p.metadata()){
+        dumpedPropertyType.__METADATA__ = p.metadata();
+    }
+    else if(!isFacet) {
+        if(p.required()) {
+            if (propType.name() || propType.isBuiltIn()) {
+                appendMeta(dumpedPropertyType, "required", "insertedAsDefault");
+            }
+            else if (!sourceHasKey(propType, "required")) {
+                appendMeta(dumpedPropertyType, "required", "insertedAsDefault");
+            }
+        }
+    }
+    checkIfTypePropertyIsDefault(propType, dumpedPropertyType);
+    return dumpedPropertyType;
 }
 
 function dumpAnnotations(
@@ -1066,18 +1200,7 @@ export function dumpFacets(te: TypeEntry, result: any, expand:boolean) {
         });
     }
     let builtInTypes = te.possibleBuiltInTypes({});
-    let types:def.ITypeDefinition[] = [];
-    for(let tn of builtInTypes){
-        let t = typeSystem.builtInTypes().get(tn);
-        if(t) {
-            let ts = builder.mapType(t);
-            ts.forEach(x => types.push(x));
-        }
-    }
-    let propMap:any = {};
-    types.forEach(x=>{
-        x.properties().forEach(p=>propMap[p.nameId()]=true);
-    });
+    let propMap = propertiesForBuiltinTypes(builtInTypes);
     let facetsMap:{[key:string]:ITypeFacet[]} = {};
     const facets = expand ? te.allFacets() : te.declaredFacets();
     for (let f of facets) {
@@ -1113,7 +1236,7 @@ export function dumpFacets(te: TypeEntry, result: any, expand:boolean) {
 
 
 export function dumpType(t:IParsedType,typeExpansionRecursionDepth=0,isAnnotationType=false){
-    let he = createHierarchyEntry(t,typeExpansionRecursionDepth,isAnnotationType);
+    let he:TypeEntry = createHierarchyEntry(t,typeExpansionRecursionDepth,isAnnotationType);
     const expand = typeExpansionRecursionDepth>=0;
     if(expand) {
         he = expandHierarchy(he, he.branchingRegistry());
@@ -1164,6 +1287,39 @@ function dumpMeta(te:TypeEntry,result:any,expand:boolean){
     }
 }
 
+function sourceHasKey(te: TypeEntry,key:string) {
+    let src = te.original() && te.original().getExtra("SOURCE");
+    let result:boolean = null;
+    if (src) {
+        if (hlImpl.LowLevelWrapperForTypeSystem.isInstance(src)) {
+            result = src.childWithKey(key)!=null;
+        }
+        else if (hlImpl.ASTNodeImpl.isInstance(src)) {
+            result = src.attr(key)!=null;
+        }
+        else if (src.obj) {
+            result = src.obj.hasOwnProperty(key);
+        }
+    }
+    return result;
+}
+
+function propertiesForBuiltinTypes(builtInTypes: string[]):{[key:string]:boolean} {
+    let types: def.ITypeDefinition[] = [];
+    for (let tn of builtInTypes) {
+        let t = typeSystem.builtInTypes().get(tn);
+        if (t) {
+            let ts = builder.mapType(t);
+            ts.forEach(x => types.push(x));
+        }
+    }
+    let propMap: any = {};
+    types.forEach(x => {
+        x.properties().forEach(p => propMap[p.nameId()] = true);
+    });
+    return propMap;
+};
+
 class MetaNamesProvider{
 
     private static instance:MetaNamesProvider = new MetaNamesProvider();
@@ -1201,4 +1357,61 @@ class MetaNamesProvider{
     public hasProperty(n:string):boolean{
         return this.map.hasOwnProperty(n);
     }
+}
+
+function appendMeta(obj:any,field:string,kind:string){
+    // if(!this.options.serializeMetadata){
+    //     return;
+    // }
+    let metaObj = obj.__METADATA__;
+    if(!metaObj){
+        metaObj = {};
+        obj.__METADATA__ = metaObj;
+    }
+    let scalarsObj = metaObj.primitiveValuesMeta;
+    if(!scalarsObj){
+        scalarsObj = {};
+        metaObj.primitiveValuesMeta = scalarsObj;
+    }
+    let fObj = scalarsObj[field];
+    if(!fObj){
+        fObj = {};
+        scalarsObj[field] = fObj;
+    }
+    fObj[kind] = true;
+}
+
+const filterOut = [ "typePropertyKind","sourceMap", "required","__METADATA__", "notScalar" ];
+
+function isEmpty(t:tsInterfaces.IParsedType):boolean{
+
+    if(t.isUnion()||t.isBuiltin()||t.name()||t.superTypes().length!=1){
+        return false;
+    }
+    let meta = t.declaredFacets().filter(x=>{
+        const fn = x.facetName();
+        if(filterOut.indexOf(fn)>=0){
+            return false;
+        }
+        if(fn=="discriminatorValue"){
+            const strict = x['isStrict'];
+            return (typeof strict != "function") || strict.call(x);
+        }
+        else if(fn=="__METADATA__"){
+            const meta = x.value();
+            let pMeta = meta.primitiveValuesMeta;
+            if(!pMeta && Object.keys(meta).length==0){
+                return false;
+            }
+            else if(pMeta){
+                if(!Object.keys(pMeta).filter(y=>y!="displayName"&&y!="required").length){
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return true;
+    });
+    return meta.length==0;
 }

@@ -79,7 +79,7 @@ describe('Type Expansion Tests',function(){
 function test(apiPath:string,depth=0) {
     tckUtil.testAPIScript({
         "apiPath": apiPath,
-        "serializeMetadata": false,
+        "serializeMetadata": true,
         expandLib: true,
         "newFormat": true,
         expandTypes: true,

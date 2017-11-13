@@ -1490,9 +1490,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1512,14 +1509,28 @@
                       "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "type": [
-                      "union"
+                      {
+                        "type": [
+                          "union"
+                        ],
+                        "anyOf": [
+                          "types.OkStatus",
+                          "string"
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "name": "type",
+                        "displayName": "type",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "anyOf": [
-                      "types.OkStatus",
-                      "string"
-                    ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
                     }
@@ -1604,7 +1615,25 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "union"
+                      {
+                        "type": [
+                          "union"
+                        ],
+                        "anyOf": [
+                          "types.OkStatus",
+                          "string"
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "name": "type",
+                        "displayName": "type",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1630,10 +1659,6 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "anyOf": [
-                      "types.OkStatus",
-                      "string"
-                    ],
                     "sourceMap": {
                       "path": "resourceTypes/secured.raml"
                     }
@@ -4038,7 +4063,25 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "union"
+                              {
+                                "type": [
+                                  "union"
+                                ],
+                                "anyOf": [
+                                  "types.OkStatus",
+                                  "string"
+                                ],
+                                "typePropertyKind": "TYPE_EXPRESSION",
+                                "name": "type",
+                                "displayName": "type",
+                                "__METADATA__": {
+                                  "primitiveValuesMeta": {
+                                    "displayName": {
+                                      "calculated": true
+                                    }
+                                  }
+                                }
+                              }
                             ],
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -4064,10 +4107,6 @@
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "anyOf": [
-                              "types.OkStatus",
-                              "string"
-                            ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"
                             }
@@ -4386,9 +4425,6 @@
                                   "primitiveValuesMeta": {
                                     "displayName": {
                                       "calculated": true
-                                    },
-                                    "type": {
-                                      "insertedAsDefault": true
                                     }
                                   }
                                 },
@@ -4408,14 +4444,28 @@
                                   "{\"meta\":{\"code\":200},\"data\":null}"
                                 ],
                                 "type": [
-                                  "union"
+                                  {
+                                    "type": [
+                                      "union"
+                                    ],
+                                    "anyOf": [
+                                      "types.OkStatus",
+                                      "string"
+                                    ],
+                                    "typePropertyKind": "TYPE_EXPRESSION",
+                                    "name": "type",
+                                    "displayName": "type",
+                                    "__METADATA__": {
+                                      "primitiveValuesMeta": {
+                                        "displayName": {
+                                          "calculated": true
+                                        }
+                                      }
+                                    }
+                                  }
                                 ],
                                 "mediaType": "application/raml+yaml",
                                 "typePropertyKind": "TYPE_EXPRESSION",
-                                "anyOf": [
-                                  "types.OkStatus",
-                                  "string"
-                                ],
                                 "sourceMap": {
                                   "path": "resourceTypes/secured.raml"
                                 }
@@ -5177,7 +5227,25 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "union"
+                              {
+                                "type": [
+                                  "union"
+                                ],
+                                "anyOf": [
+                                  "types.OkStatus",
+                                  "string"
+                                ],
+                                "typePropertyKind": "TYPE_EXPRESSION",
+                                "name": "type",
+                                "displayName": "type",
+                                "__METADATA__": {
+                                  "primitiveValuesMeta": {
+                                    "displayName": {
+                                      "calculated": true
+                                    }
+                                  }
+                                }
+                              }
                             ],
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -5203,10 +5271,6 @@
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "anyOf": [
-                              "types.OkStatus",
-                              "string"
-                            ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"
                             }
@@ -5404,9 +5468,6 @@
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "type": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -5426,14 +5487,28 @@
                               "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "type": [
-                              "union"
+                              {
+                                "type": [
+                                  "union"
+                                ],
+                                "anyOf": [
+                                  "types.OkStatus",
+                                  "string"
+                                ],
+                                "typePropertyKind": "TYPE_EXPRESSION",
+                                "name": "type",
+                                "displayName": "type",
+                                "__METADATA__": {
+                                  "primitiveValuesMeta": {
+                                    "displayName": {
+                                      "calculated": true
+                                    }
+                                  }
+                                }
+                              }
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "anyOf": [
-                              "types.OkStatus",
-                              "string"
-                            ],
                             "sourceMap": {
                               "path": "resourceTypes/secured.raml"
                             }

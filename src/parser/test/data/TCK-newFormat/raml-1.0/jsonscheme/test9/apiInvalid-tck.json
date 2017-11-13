@@ -60,6 +60,7 @@
                   "{\"rootName\":\"rootname\",\"parent\":{\"parentName\":\"somename\",\"child\":{\"childName1\":\"anothername\"}}}"
                 ],
                 "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "apiInvalid.raml"
                 }
