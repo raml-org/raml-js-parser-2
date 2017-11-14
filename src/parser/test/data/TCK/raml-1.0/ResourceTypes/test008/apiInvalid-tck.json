@@ -299,7 +299,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "example": {
                   "propertyFromResourceType1": "stringValue1",

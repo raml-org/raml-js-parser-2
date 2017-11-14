@@ -71,7 +71,7 @@
                       }
                     },
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {

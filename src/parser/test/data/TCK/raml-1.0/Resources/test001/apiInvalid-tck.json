@@ -20,7 +20,7 @@
                     "displayName": "application/xml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "description": "some very useful resource",
                     "__METADATA__": {
@@ -71,7 +71,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "description": "another very useful resource",
                     "__METADATA__": {

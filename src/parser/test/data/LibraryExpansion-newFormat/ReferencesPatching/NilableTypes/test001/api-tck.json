@@ -29,7 +29,7 @@
             "name": "id",
             "displayName": "id",
             "type": [
-              "Types.SharedTypes.StandardInt64?"
+              "Types.SharedTypes.StandardInt64 | nil"
             ],
             "required": true,
             "__METADATA__": {

@@ -3,7 +3,7 @@
 	"displayName": "SomeType",
 	"typePropertyKind": "TYPE_EXPRESSION",
 	"type": [
-		"object"
+		"string"
 	],
 	"required": true,
 	"__METADATA__": {

@@ -13,7 +13,7 @@
                 "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "object"
+                  "any"
                 ],
                 "example": "{\n  \"prop1\": \"valu1\" }\n}\n",
                 "__METADATA__": {

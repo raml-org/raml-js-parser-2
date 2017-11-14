@@ -263,7 +263,17 @@ class DisplayNamePropertyCalculator implements ValueCalculator{
 class TypePropertyCalculator implements ValueCalculator{
 
     calculate(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):any {
-        return "object";
+
+        if(node.attr("schema")){
+            return node.attr("schema").value();
+        }
+        else if(node.lowLevel().children().filter(x=>x.key()=="properties").length) {
+            return "object";
+        }
+        else if(node.property() && node.property().nameId()=="body"){
+            return "any";
+        }
+        return "string";
     }
 
     matches(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):boolean{

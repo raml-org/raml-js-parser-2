@@ -19,7 +19,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "example": "<<param1>>",
                     "__METADATA__": {
@@ -87,7 +87,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "example": {
                       "id": "987",
@@ -173,7 +173,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "example": {
                       "id": "987",

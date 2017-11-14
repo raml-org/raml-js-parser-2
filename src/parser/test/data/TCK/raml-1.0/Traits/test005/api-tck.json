@@ -42,7 +42,7 @@
                     "displayName": "application/xml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "object"
+                      "any"
                     ],
                     "examples": [
                       {
