@@ -1300,7 +1300,7 @@ class TypeTransformer extends BasicTransformation{
                 return {};
             }
             let pt = node.asElement().parsedType();
-            return typeExpander.dumpType(pt,this.options.typeExpansionRecursionDepth);
+            return new typeExpander.TypeExpander().serializeType(pt,this.options.typeExpansionRecursionDepth);
         }
 
         var isArray = Array.isArray(_value);
