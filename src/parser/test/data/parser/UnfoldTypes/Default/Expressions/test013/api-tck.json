@@ -22,6 +22,9 @@
               "lib.raml#/specification/types/T1",
               "lib.raml#/specification/types/T2"
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "typePropertyKind": "TYPE_EXPRESSION",
             "name": "type",
             "displayName": "type",
@@ -52,11 +55,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "p2",
@@ -75,11 +78,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -89,11 +92,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T4",
@@ -111,11 +114,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",

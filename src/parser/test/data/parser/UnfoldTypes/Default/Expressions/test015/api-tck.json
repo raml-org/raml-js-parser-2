@@ -43,11 +43,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "body.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       {
                         "name": "p2",
@@ -66,15 +66,15 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "body.raml"
+                        },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
                         "anyOf": [
                           "lib.raml#/specification/types/T2",
                           "lib.raml#/specification/types/T1"
-                        ],
-                        "sourceMap": {
-                          "path": "body.raml"
-                        }
+                        ]
                       }
                     ],
                     "__METADATA__": {
@@ -87,11 +87,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "body.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "properties": [
@@ -112,6 +112,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -123,12 +126,12 @@
                           "string",
                           "number"
                         ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -138,11 +141,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             ],
             "method": "post",

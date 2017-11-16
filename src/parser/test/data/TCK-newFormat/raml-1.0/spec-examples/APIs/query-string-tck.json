@@ -25,11 +25,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "query-string.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "long",
@@ -48,11 +48,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "query-string.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -65,11 +65,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "query-string.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "loc",
@@ -98,11 +98,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "query-string.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -115,11 +115,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "query-string.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "paging",
@@ -142,11 +142,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "query-string.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "page-size",
@@ -162,11 +162,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "query-string.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -179,11 +179,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "query-string.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Illustrate query parameter variations",
@@ -204,6 +204,9 @@
                     "lat-long",
                     "loc"
                   ],
+                  "sourceMap": {
+                    "path": "query-string.raml"
+                  },
                   "typePropertyKind": "TYPE_EXPRESSION"
                 }
               ],
@@ -242,16 +245,16 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "query-string.raml"
+              },
               "simplifiedExamples": [
                 "{\"start\":2,\"lat\":12,\"long\":13}",
                 "{\"start\":2,\"page-size\":20,\"location\":\"1,2\"}",
                 "{\"lat\":12,\"location\":2}"
               ],
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "sourceMap": {
-                "path": "query-string.raml"
-              }
+              "typePropertyKind": "TYPE_EXPRESSION"
             },
             "method": "get",
             "parentUri": "/locations",

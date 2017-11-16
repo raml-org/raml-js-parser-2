@@ -39,6 +39,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "examples": [
                       {
                         "value": [
@@ -96,12 +99,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "sourceMap": {

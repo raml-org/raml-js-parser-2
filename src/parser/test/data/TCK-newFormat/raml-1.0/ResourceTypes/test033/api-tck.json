@@ -45,6 +45,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -61,12 +64,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -79,11 +82,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",
@@ -125,6 +128,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -141,12 +147,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -159,11 +165,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "delete",
@@ -220,6 +226,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -236,12 +245,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -254,11 +263,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "delete",
@@ -294,6 +303,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -310,12 +322,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -328,11 +340,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",

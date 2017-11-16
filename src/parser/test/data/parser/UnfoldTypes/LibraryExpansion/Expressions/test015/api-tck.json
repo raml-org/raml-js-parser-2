@@ -26,11 +26,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T2",
@@ -48,11 +48,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",
@@ -89,11 +89,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "body.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       {
                         "name": "p2",
@@ -112,15 +112,15 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "body.raml"
+                        },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
                         "anyOf": [
                           "#/specification/types/T2",
                           "#/specification/types/T1"
-                        ],
-                        "sourceMap": {
-                          "path": "body.raml"
-                        }
+                        ]
                       }
                     ],
                     "__METADATA__": {
@@ -133,11 +133,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "body.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "properties": [
@@ -158,6 +158,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -169,12 +172,12 @@
                           "string",
                           "number"
                         ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
+                    ]
                   }
                 ],
                 "__METADATA__": {
@@ -184,11 +187,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             ],
             "method": "post",

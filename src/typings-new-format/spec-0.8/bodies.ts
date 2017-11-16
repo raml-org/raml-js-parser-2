@@ -23,7 +23,7 @@ export interface Response08 extends common.HasSource{
      * This is particularly useful for APIs that allow HTTP headers that
      * conform to some naming convention to send arbitrary, custom data.
      */
-    headers?: { [key: string]: parameters.Parameter08 }
+    headers?: parameters.Parameter08[]
 
     /**
      * Each response MAY contain a body property, which conforms to
@@ -93,7 +93,7 @@ export interface BodyLike08 extends common.HasSource{
      * parameter, and the value is itself a map the specifies the web
      * form parameter's attributes.
      */
-    formParameters?: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    formParameters?: parameters.Parameter08[]
 
     /**
      * Returns schema content for the cases when schema is inlined,

@@ -25,11 +25,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "apiValid.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "property2",
@@ -48,11 +48,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "apiValid.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -65,11 +65,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "apiValid.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "SimpleType2",
@@ -95,11 +95,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "apiValid.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "property2",
@@ -118,11 +118,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "apiValid.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -135,11 +135,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "apiValid.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "SimpleUnion",
@@ -154,15 +154,15 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "anyOf": [
           "SimpleType1",
           "SimpleType2"
-        ],
-        "sourceMap": {
-          "path": "apiValid.raml"
-        }
+        ]
       },
       {
         "name": "TypeWithUnionProps",
@@ -188,6 +188,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
@@ -204,12 +207,12 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
-            ],
-            "sourceMap": {
-              "path": "apiValid.raml"
-            }
+            ]
           }
         ],
         "__METADATA__": {
@@ -218,6 +221,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiValid.raml"
         },
         "examples": [
           {
@@ -241,10 +247,7 @@
           "{\"unionArray\":[{\"property1\":\"val1\",\"property2\":\"val2\"},{\"property1\":1,\"property2\":2}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "apiValid.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "API",

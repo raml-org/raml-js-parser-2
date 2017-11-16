@@ -68,7 +68,7 @@ export interface Api08 extends common.HasSource {
     /**
      * Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.
      */
-    resources?: resources.ResourceType08[]
+    resources?: resources.Resource08[]
 
     /**
      * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.
@@ -79,14 +79,14 @@ export interface Api08 extends common.HasSource {
 /**
  * Content of the schema
  */
-export interface GlobalSchema{
+export interface GlobalSchema extends common.HasSource {
 
     name: string
 
     value: string
 }
 
-export interface DocumentationItem08 {
+export interface DocumentationItem08 extends common.HasSource{
 
     /**
      * title of documentation section

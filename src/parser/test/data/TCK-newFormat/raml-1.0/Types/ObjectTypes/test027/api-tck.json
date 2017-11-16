@@ -25,11 +25,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "kind",
@@ -48,11 +48,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "discriminator": "kind",
@@ -66,11 +66,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "ChildType1",
@@ -86,11 +86,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "ChildType2",
@@ -117,11 +117,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "discriminatorValue": "k2",
@@ -132,11 +132,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "ArrayType1",
@@ -150,6 +150,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
@@ -167,12 +170,12 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
-        ],
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        ]
       },
       {
         "name": "ArrayType2",
@@ -186,6 +189,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
@@ -203,12 +209,12 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
-        ],
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        ]
       },
       {
         "name": "ArrayType",
@@ -222,6 +228,9 @@
               "ArrayType1",
               "ArrayType2"
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "typePropertyKind": "TYPE_EXPRESSION",
             "name": "type",
             "displayName": "type",
@@ -271,15 +280,15 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "simplifiedExamples": [
           "[{\"stringProperty\":\"ab\",\"kind\":\"k1\"},{\"stringProperty\":\"ab\",\"kind\":\"k1\"}]",
           "[{\"stringProperty\":\"abс\",\"kind\":\"k2\"},{\"stringProperty\":\"abс\",\"kind\":\"k2\"}]"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "test API",

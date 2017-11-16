@@ -30,6 +30,14 @@ export interface TypeMap{
     removeType(t:TypeEntry):void;
 
     hasType(t:TypeEntry):boolean;
+
+    hasTypeByName(name:string):boolean;
+
+    typeByName(name:string):TypeEntry;
+
+    addProperty(typeName:string,propName:string,prop:Entry);
+
+    property(typeName:string,propName:string):Entry;
 }
 
 export interface BranchingRegistry{
@@ -73,6 +81,10 @@ export class PropertyEntry implements Entry{
         }
     }
 
+    setType(t:TypeEntry){
+        this._type = t;
+    }
+
     type():TypeEntry{
         return this._type;
     }
@@ -94,6 +106,8 @@ export interface TypeEntry extends Entry{
 
     name():string;
 
+    displayName():string;
+
     original():IParsedType;
 
     isUnion():boolean;
@@ -101,6 +115,8 @@ export interface TypeEntry extends Entry{
     isBuiltIn():boolean;
 
     isExternal():boolean;
+
+    isUnknown():boolean;
 
     schema():string;
 
@@ -174,6 +190,13 @@ export class AbstractTypeEntry implements TypeEntry{
             if(st.isExternal()){
                 return true;
             }
+        }
+        return false;
+    }
+
+    isUnknown():boolean{
+        if(this._original){
+            return this._original.isUnknown();
         }
         return false;
     }
@@ -288,7 +311,15 @@ export class AbstractTypeEntry implements TypeEntry{
     }
 
     sourceMap():ElementSourceInfo{
-        let sourceMap = _.find(this.declaredFacets(),x=>x.kind()==tsInterfaces.MetaInformationKind.SchemaPath);
+        return this.getOneMetaValue(tsInterfaces.MetaInformationKind.SchemaPath);
+    }
+
+    displayName():string{
+        return this.getOneMetaValue(tsInterfaces.MetaInformationKind.DisplayName);
+    }
+
+    private getOneMetaValue(kind:tsInterfaces.MetaInformationKind){
+        let sourceMap = _.find(this.declaredFacets(),x=>x.kind()==kind);
         if(sourceMap){
             return sourceMap.value();
         }
@@ -599,27 +630,56 @@ function mergeMeta(to,from){
 
 }
 
-class BasicTypeMap implements TypeMap{
+export class BasicTypeMap implements TypeMap{
 
-    private map:{[key:string]:TypeEntry} = {};
+    private typeMapById:{[key:string]:AbstractTypeEntry} = {};
 
-    addType(t:TypeEntry):void{
+    private typeMapByName:{[key:string]:AbstractTypeEntry} = {};
+
+    private propertiesMap:{[key:string]:PropertyEntry} = {};
+
+    addType(t:AbstractTypeEntry):void{
         let n = t.id();
         if(n){
-            this.map[n] = t;
+            this.typeMapById[n] = t;
+        }
+        if(t.name()){
+            this.typeMapByName[t.name()] = t;
         }
     }
 
-    removeType(t:TypeEntry):void{
+    removeType(t:AbstractTypeEntry):void{
         let n = t.id();
         if(n){
-            delete this.map[n];
+            delete this.typeMapById[n];
         }
     }
 
-    hasType(t:TypeEntry):boolean{
+    hasType(t:AbstractTypeEntry):boolean{
         let n = t.id();
-        return this.map[n] !== undefined;
+        return this.typeMapById[n] !== undefined;
+    }
+
+    hasTypeByName(name:string):boolean{
+        return this.typeMapByName[name] !== undefined;
+    }
+
+    typeByName(name:string):AbstractTypeEntry{
+        return this.typeMapByName[name];
+    }
+
+    addProperty(typeName:string,propName:string,prop:PropertyEntry){
+        const propKey = this.propKey(typeName, propName);
+        this.propertiesMap[propKey] = prop;
+    }
+
+    property(typeName:string,propName:string):PropertyEntry{
+        const propKey = this.propKey(typeName, propName);
+        return this.propertiesMap[propKey];
+    }
+
+    private propKey(typeName:string, propName:string) {
+        return `${typeName}/${propName}`;
     }
 }
 
@@ -701,15 +761,32 @@ class BasicBranchingRegistry implements BranchingRegistry{
     }
 }
 
+export interface Options{
+
+    typeExpansionRecursionDepth?: number;
+
+    serializeMetadata?: boolean;
+
+    sourceMap?: boolean;
+}
+
 export class TypeExpander {
+
+    constructor(protected options:Options={}){
+        if(typeof(this.options.typeExpansionRecursionDepth) !== "number"){
+            this.options.typeExpansionRecursionDepth = -1;
+        }
+        if(typeof(this.options.serializeMetadata) !== "boolean"){
+            this.options.serializeMetadata = false;
+        }
+    }
 
     serializeType(
         t: IParsedType,
-        typeExpansionRecursionDepth = 0,
         isAnnotationType = false) {
 
-        let he: TypeEntry = this.createHierarchyEntry(t, typeExpansionRecursionDepth, isAnnotationType);
-        const expand = typeExpansionRecursionDepth >= 0;
+        let he: TypeEntry = this.createHierarchyEntry(t, this.options.typeExpansionRecursionDepth, isAnnotationType);
+        const expand = this.options.typeExpansionRecursionDepth >= 0;
         if (expand) {
             he = this.expandHierarchy(he, he.branchingRegistry());
         }
@@ -717,12 +794,11 @@ export class TypeExpander {
         return result;
     }
 
-
     protected createHierarchyEntry(
         t:IParsedType,
         typeExpansionRecursionDepth:number,
         isAnnotationType=false,
-        occured:{[key:string]:AbstractTypeEntry}={},
+        occured:BasicTypeMap=new BasicTypeMap(),
         branchingRegistry?:BranchingRegistry):AbstractTypeEntry{
 
         let isNewTree = false;
@@ -741,21 +817,21 @@ export class TypeExpander {
         t:IParsedType,
         typeExpansionRecursionDepth:number,
         isAnnotationType=false,
-        occured:{[key:string]:AbstractTypeEntry}={},
+        occured:BasicTypeMap=new BasicTypeMap(),
         branchingRegistry:BranchingRegistry):AbstractTypeEntry{
 
         if(t.isBuiltin()){
-            let result = occured[t.name()];
+            let result = occured.typeByName(t.name());
             if(!result){
                 result = new BuiltInTypeEntry(t);
-                occured[t.name()] = result;
+                occured.addType(result);
             }
             return result;
         }
         let d = 0;
-        if(t.name() && occured[t.name()]){
+        if(t.name() && occured.hasTypeByName(t.name())){
             if(typeExpansionRecursionDepth<=0) {
-                return occured[t.name()];
+                return occured.typeByName(t.name());
             }
             else{
                 d = typeExpansionRecursionDepth;
@@ -775,8 +851,8 @@ export class TypeExpander {
         }
         let result = new GeneralTypeEntry(t, [],null,[], [], t.name());
         result.setDepth(d);
-        if(t.name()!=null && !occured[t.name()]) {
-            occured[t.name()] = result;
+        if(t.name()!=null && !occured.hasTypeByName(t.name())) {
+            occured.addType(result);
         }
 
 
@@ -860,32 +936,36 @@ export class TypeExpander {
         p:tsInterfaces.IPropertyInfo,
         typeExpansionRecursionDepth: number,
         t: IParsedType,
-        occured: { [p: string]: AbstractTypeEntry },
+        occured:BasicTypeMap,
         branchingRegistry: BranchingRegistry,
         isFacet=false)
     {
         let pt = p.range();
         let meta = this.extractParserMetadata(pt);
         let owner = p.declaredAt();
-        let pte: TypeEntry;
         let d = typeExpansionRecursionDepth;
-        if (owner.name() && (!t.name() || owner.name() != t.name()) && occured[owner.name()]) {
+        if (owner.name() && (!t.name() || owner.name() != t.name()) && occured.hasTypeByName(owner.name())) {
             if (typeExpansionRecursionDepth <= 0) {
-                pte = occured[owner.name()];
-            }
-            else {
-                d--;
+                const e = occured.property(owner.name(),p.name());
+                if(e) {
+                    return e;
+                }
+                 d--;
             }
         }
-        if (!pte) {
-            if (isEmpty(pt)) {
-                pt = pt.superTypes()[0];
-                //mergeMeta(meta,extractParserMetadata(pt));
+        if (isEmpty(pt)) {
+            pt = pt.superTypes()[0];
+            if(typeExpansionRecursionDepth>=0) {
+                mergeMeta(meta, this.extractParserMetadata(pt));
             }
-            pte = this.createHierarchyEntry(
-                pt, d, false, occured, branchingRegistry);
         }
-        let pe = new PropertyEntry(p, null, pte, p.required(),isFacet,meta);
+        let pe = new PropertyEntry(p, null, null, p.required(),isFacet,meta);
+        if(owner.name()) {
+            occured.addProperty(owner.name(), p.name(), pe);
+        }
+        let pte: TypeEntry = this.createHierarchyEntry(
+            pt, d, false, occured, branchingRegistry);
+        pe.setType(pte);
         return pe;
     }
 
@@ -909,6 +989,9 @@ export class TypeExpander {
     }
 
     protected appendSourceFromExtras(result: any, te: TypeEntry) {
+        if(!this.options.sourceMap){
+            return;
+        }
         if (!result.sourceMap) {
             let src = te.original() && te.original().getExtra("SOURCE");
             if (src) {
@@ -1022,8 +1105,11 @@ export class TypeExpander {
                     else {
                         const dumped = this.dump(st, expand);
                         dumped.name = "type";
-                        dumped.displayName = "type";
-                        this.appendMeta(dumped, "displayName", "calculated");
+                        const stDisplayName = st.displayName();
+                        dumped.displayName = stDisplayName||"type";
+                        if(!stDisplayName) {
+                            this.appendMeta(dumped, "displayName", "calculated");
+                        }
                         type.push(dumped);
                     }
                 }
@@ -1057,6 +1143,7 @@ export class TypeExpander {
                         typePropertyKind: "TYPE_EXPRESSION"
                     }];
                     this.appendMeta(result.items[0], "displayName", "calculated");
+                    this.appendSourceFromExtras(result.items[0], gte);
                 }
                 else {
                     let dumpedComponentType = this.dump(ct, expand);
@@ -1131,7 +1218,7 @@ export class TypeExpander {
         if (te.original() && te.original().isUnion()) {
             return;
         }
-        if (!this.sourceHasKey(te, "type")) {
+        if (!te.isUnknown()&&!this.sourceHasKey(te, "type")) {
             let byDefault = false;
             if (!Array.isArray(result.type) || !result.type.length) {
                 byDefault = true;
@@ -1327,9 +1414,9 @@ export class TypeExpander {
     }
 
     protected appendMeta(obj:any,field:string,kind:string){
-        // if(!this.options.serializeMetadata){
-        //     return;
-        // }
+        if(!this.options.serializeMetadata){
+            return;
+        }
         let metaObj = obj.__METADATA__;
         if(!metaObj){
             metaObj = {};

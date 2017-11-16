@@ -36,6 +36,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
@@ -52,12 +55,12 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
-            ],
-            "sourceMap": {
-              "path": "apiInvalid.raml"
-            }
+            ]
           }
         ],
         "__METADATA__": {
@@ -70,11 +73,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "apiInvalid.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "WebOfMe",

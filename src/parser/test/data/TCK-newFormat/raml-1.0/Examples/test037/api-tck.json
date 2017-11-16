@@ -14,6 +14,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": 100,
@@ -25,10 +28,7 @@
           100
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "GeoPoints",
@@ -42,6 +42,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "examples": [
           {
@@ -72,12 +75,12 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
-        ],
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        ]
       },
       {
         "name": "Bool",
@@ -92,6 +95,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": true,
@@ -103,10 +109,7 @@
           true
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "sourceMap": {

@@ -14,11 +14,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "Persons",
@@ -33,6 +33,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
@@ -44,12 +47,12 @@
               "Person",
               "string"
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        ]
       }
     ],
     "title": "Dropbox API",

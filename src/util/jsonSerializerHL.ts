@@ -49,6 +49,18 @@ var getRootPath = function (node:hl.IParseResult) {
     }
     return rootPath;
 };
+let appendSourcePath = function (eNode: hl.IParseResult, result: any) {
+    let unitPath = hlImpl.actualPath(eNode);
+    let sourceMap = result.sourceMap;
+    if (!sourceMap) {
+        sourceMap = {};
+        result.sourceMap = sourceMap;
+    }
+    if (!sourceMap.path) {
+        sourceMap.path = unitPath;
+    }
+};
+
 export class JsonSerializer {
 
     constructor(private options?:SerializeOptions) {
@@ -70,6 +82,11 @@ export class JsonSerializer {
         }
         if (this.options.expandTypes == null) {
             //this.options.expandTypes = true;
+        }
+        else if(this.options.expandTypes){
+            if(!this.options.typeExpansionRecursionDepth){
+                this.options.typeExpansionRecursionDepth = 0;
+            }
         }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
@@ -501,15 +518,7 @@ export class JsonSerializer {
                 result = applyTransformersMap(eNode, eNodeProperty, result, this.nodeTransformersMap);
             }
             if(this.options.sourceMap && typeof result == "object") {
-                let unitPath = hlImpl.actualPath(eNode);
-                let sourceMap = result.sourceMap;
-                if(!sourceMap){
-                    sourceMap = {};
-                    result.sourceMap = sourceMap;
-                }
-                if(!sourceMap.path) {
-                    sourceMap.path = unitPath;
-                }
+                appendSourcePath(eNode, result);
             }
         }
         else if (_node.isAttr()) {
@@ -1300,7 +1309,11 @@ class TypeTransformer extends BasicTransformation{
                 return {};
             }
             let pt = node.asElement().parsedType();
-            return new typeExpander.TypeExpander().serializeType(pt,this.options.typeExpansionRecursionDepth);
+            return new typeExpander.TypeExpander({
+                typeExpansionRecursionDepth: this.options.typeExpansionRecursionDepth,
+                serializeMetadata: this.options.serializeMetadata,
+                sourceMap: this.options.sourceMap
+            }).serializeType(pt);
         }
 
         var isArray = Array.isArray(_value);
@@ -1308,6 +1321,9 @@ class TypeTransformer extends BasicTransformation{
             return _value;
         }
         var value = isArray ? _value[0] : _value;
+        if(this.options.sourceMap) {
+            appendSourcePath(node, value);
+        }
         let prop = node.property();
         // if(universeHelpers.isItemsProperty(prop)||universeHelpers.isTypeProperty(prop)){
         //     if(value.name == prop.nameId()){
@@ -1483,6 +1499,13 @@ class TypeTransformer extends BasicTransformation{
         }
     }
 
+    appendSource(obj:any,sourceMap:any){
+        if(!this.options.sourceMap||!sourceMap){
+            return;
+        }
+        obj.sourceMap = sourceMap;
+    }
+
     appendMeta(obj:any,field:string,kind:string){
         if(!this.options.serializeMetadata){
             return;
@@ -1586,7 +1609,7 @@ class TypeTransformer extends BasicTransformation{
                 resultingArray.push(expr);
                 continue;
             }
-            let exprObj = this.expressionToObject(parsedExpression,escapeData,node);
+            let exprObj = this.expressionToObject(parsedExpression,escapeData,node,obj.sourceMap);
             if(exprObj!=null){
                 resultingArray.push(exprObj);
             }
@@ -1597,7 +1620,8 @@ class TypeTransformer extends BasicTransformation{
     private expressionToObject(
         expr:typeExpressions.BaseNode,
         escapeData:referencePatcher.EscapeData,
-        node:hl.IParseResult):any{
+        node:hl.IParseResult,
+        sourceMap:any):any{
 
         let result:any;
         let arr = 0;
@@ -1627,15 +1651,16 @@ class TypeTransformer extends BasicTransformation{
                     result = null;
                     break;
                 }
-                let c1 = this.expressionToObject(c,escapeData,node);
+                let c1 = this.expressionToObject(c,escapeData,node,sourceMap);
                 result.anyOf.push(c1);
             }
             result.anyOf = _.unique(result.anyOf);
+            this.appendSource(result,sourceMap);
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
             arr = parens.arr;
-            result = this.expressionToObject(parens.expr,escapeData,node);
+            result = this.expressionToObject(parens.expr,escapeData,node,sourceMap);
         }
         if(result!=null && arr>0) {
             if (typeof result === "string"){
@@ -1646,6 +1671,7 @@ class TypeTransformer extends BasicTransformation{
                     typePropertyKind: "TYPE_EXPRESSION"
                 };
                 this.appendMeta(result,"displayName","calculated");
+                this.appendSource(result,sourceMap);
             }
             while (arr-- > 0) {
                 result = {
@@ -1657,6 +1683,7 @@ class TypeTransformer extends BasicTransformation{
                     result.displayName = "items";
                     result.typePropertyKind = "TYPE_EXPRESSION";
                     this.appendMeta(result,"displayName","calculated");
+                    this.appendSource(result,sourceMap);
                 }
             }
         }

@@ -23,11 +23,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "Bird",
@@ -53,11 +53,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -67,11 +67,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "traits": [
@@ -91,11 +91,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "NewLibrary.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "priceMoreThen",
@@ -111,11 +111,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "NewLibrary.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "name": "NewLibrary.FilterableByPrice",
@@ -148,6 +148,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -164,12 +167,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "NewLibrary.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "NewLibrary.raml"
-                    }
+                    ]
                   }
                 ],
                 "sourceMap": {
@@ -197,11 +200,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",
@@ -249,11 +252,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",
@@ -306,11 +309,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               {
                 "name": "priceLessThen",
@@ -326,11 +329,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               {
                 "name": "priceMoreThen",
@@ -346,11 +349,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "responses": [
@@ -370,6 +373,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -386,12 +392,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "NewLibrary.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "NewLibrary.raml"
-                    }
+                    ]
                   }
                 ],
                 "sourceMap": {
@@ -436,11 +442,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "protocols": [
@@ -522,11 +528,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               },
@@ -545,11 +551,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "NewLibrary.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "protocols": [
@@ -590,11 +596,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -630,11 +636,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "relativeUri": "/{id}",
@@ -694,11 +700,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               {
                 "name": "priceMoreThen",
@@ -714,11 +720,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "responses": [
@@ -738,6 +744,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -754,12 +763,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "NewLibrary.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "NewLibrary.raml"
-                    }
+                    ]
                   }
                 ],
                 "sourceMap": {
@@ -804,11 +813,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "protocols": [
@@ -890,11 +899,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               },
@@ -913,11 +922,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "NewLibrary.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "protocols": [
@@ -958,11 +967,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -998,11 +1007,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "relativeUri": "/{id}",
@@ -1062,11 +1071,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               {
                 "name": "priceMoreThen",
@@ -1082,11 +1091,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "responses": [
@@ -1106,6 +1115,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
@@ -1122,12 +1134,12 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "NewLibrary.raml"
                         }
                       }
-                    ],
-                    "sourceMap": {
-                      "path": "NewLibrary.raml"
-                    }
+                    ]
                   }
                 ],
                 "sourceMap": {
@@ -1172,11 +1184,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "NewLibrary.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "protocols": [
@@ -1258,11 +1270,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               },
@@ -1281,11 +1293,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "NewLibrary.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "protocols": [
@@ -1326,11 +1338,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -1366,11 +1378,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "relativeUri": "/{id}",

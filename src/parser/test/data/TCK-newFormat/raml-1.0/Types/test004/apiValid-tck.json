@@ -14,6 +14,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "examples": [
           {
             "value": [
@@ -43,12 +46,12 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
-        ],
-        "sourceMap": {
-          "path": "apiValid.raml"
-        }
+        ]
       }
     ],
     "title": "API",

@@ -39,6 +39,9 @@
                               "lib.raml#/specification/types/T1",
                               "<<param1>>"
                             ],
+                            "sourceMap": {
+                              "path": "lib.raml"
+                            },
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
@@ -47,6 +50,9 @@
                       "lib.raml#/specification/types/T3",
                       "<<param2>>"
                     ],
+                    "sourceMap": {
+                      "path": "lib.raml"
+                    },
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
@@ -57,11 +63,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "lib.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",
@@ -110,6 +116,9 @@
                               "lib.raml#/specification/types/T1",
                               "lib.raml#/specification/types/T2"
                             ],
+                            "sourceMap": {
+                              "path": "lib.raml"
+                            },
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
@@ -118,6 +127,9 @@
                       "lib.raml#/specification/types/T3",
                       "lib.raml#/specification/types/T4"
                     ],
+                    "sourceMap": {
+                      "path": "lib.raml"
+                    },
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
@@ -128,11 +140,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "lib.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",

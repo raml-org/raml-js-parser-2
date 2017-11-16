@@ -62,11 +62,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "type",
@@ -85,11 +85,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "uri",
@@ -108,11 +108,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -125,11 +125,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "annotationTypes": [
@@ -144,11 +144,11 @@
           "API",
           "Overlay"
         ],
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "library.apiLogo",
@@ -161,11 +161,11 @@
           "API",
           "Overlay"
         ],
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "library.specAuthor",
@@ -178,11 +178,11 @@
           "API",
           "Overlay"
         ],
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "library.devPortal",
@@ -195,11 +195,11 @@
           "API",
           "Overlay"
         ],
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "library.extraResources",
@@ -218,6 +218,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
@@ -234,12 +237,12 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
             }
           }
-        ],
-        "sourceMap": {
-          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
-        }
+        ]
       }
     ],
     "title": "Api",

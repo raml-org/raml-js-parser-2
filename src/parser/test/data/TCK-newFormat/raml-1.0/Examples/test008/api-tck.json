@@ -26,6 +26,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
@@ -42,12 +45,12 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            ],
-            "sourceMap": {
-              "path": "api.raml"
-            }
+            ]
           },
           {
             "name": "items2",
@@ -67,6 +70,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
@@ -83,12 +89,12 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            ],
-            "sourceMap": {
-              "path": "api.raml"
-            }
+            ]
           },
           {
             "name": "items3",
@@ -108,6 +114,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
@@ -124,12 +133,12 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            ],
-            "sourceMap": {
-              "path": "api.raml"
-            }
+            ]
           }
         ],
         "__METADATA__": {
@@ -141,6 +150,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "examples": [
           {
@@ -170,10 +182,7 @@
           "{\"items\":[1,2,3],\"items2\":[3,1,4,5],\"items3\":[1,2,1]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",
