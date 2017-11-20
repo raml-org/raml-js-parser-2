@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "External": {
+    "types": [
+      {
         "name": "External",
         "displayName": "External",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": { \"type\": \"string\" }\n  }\n}\n"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": { \"type\": \"string\" }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -14,10 +14,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "T1": {
+      {
         "name": "T1",
         "displayName": "T1",
         "type": [
@@ -30,11 +33,33 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "External"
+        "items": [
+          {
+            "type": [
+              "External"
+            ],
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ]
       },
-      "T2": {
+      {
         "name": "T2",
         "displayName": "T2",
         "type": [
@@ -50,17 +75,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "T3": {
+      {
         "name": "T3",
         "displayName": "T3",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -77,11 +105,33 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "External"
+            "items": [
+              {
+                "type": [
+                  "External"
+                ],
+                "name": "items",
+                "displayName": "items",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ]
           },
-          "p2": {
+          {
             "name": "p2",
             "displayName": "p2",
             "type": [
@@ -101,10 +151,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -115,11 +168,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "api"
+    ],
+    "title": "api",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
