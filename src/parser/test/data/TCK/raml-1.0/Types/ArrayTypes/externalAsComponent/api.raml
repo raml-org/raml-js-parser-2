@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: api
+
+types:
+  External: |
+    {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" }
+      }
+    }
+  T1: External[]
+  T2:
+    type: array
+    items: External
+  T3:
+    properties:
+      p1: External[]
+      p2:
+        type: array
+        items: External

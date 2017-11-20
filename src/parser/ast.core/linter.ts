@@ -2489,8 +2489,8 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 r=r.arrayInHierarchy().componentType();
             }
             if (r.hasValueTypeInHierarchy()) {
-                var nm = node.attr(x.nameId());
-                var gotValue = false;
+                let nm = node.attr(x.nameId());
+                let gotValue = false;
                 if (nm!=null){
                     if(nm.lowLevel().kind()==yaml.Kind.SCALAR||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR){
                         if(nm.value()!=null){
@@ -2502,12 +2502,17 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     }
                 }
                 if(!gotValue){
-                    var parameters = { propName: x.nameId() };
-                    var messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
+                    let parameters = { propName: x.nameId() };
+                    let messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
+                    let issueNode:hl.IParseResult = node;
                     if (isInlinedTemplate){
                         messageEntry = messageRegistry.VALUE_NOT_PROVIDED;
                     }
-                    var i = createIssue1(messageEntry, parameters, node);
+                    else if(nm){
+                        messageEntry = messageRegistry.VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED
+                        issueNode = nm;
+                    }
+                    let i = createIssue1(messageEntry, parameters, issueNode);
                     v.accept(i);
                 }
             }

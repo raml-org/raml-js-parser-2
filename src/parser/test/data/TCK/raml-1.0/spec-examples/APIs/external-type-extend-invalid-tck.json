@@ -82,7 +82,7 @@
   "errors": [
     {
       "code": "EXTERNAL_AS_COMPONENT",
-      "message": "It is not allowed to use external types in component type definitions",
+      "message": "It is not allowed to use external types as array component types in types and type properties declarations",
       "path": "external-type-extend-invalid.raml",
       "range": {
         "start": {

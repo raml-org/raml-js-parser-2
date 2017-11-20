@@ -259,6 +259,10 @@
     "code" : "MISSING_REQUIRED_PROPERTY",
     "message" : "Missing required property '{{propName}}'"
   },
+  "VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED" : {
+    "code" : "VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED",
+    "message" : "Value is not provided for required property '{{propName}}'"
+  },
   "VALUE_NOT_PROVIDED" : {
     "code" : "VALUE_NOT_PROVIDED",
     "message" : "Value is not provided for parameter: '{{propName}}'"
