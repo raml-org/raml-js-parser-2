@@ -230,24 +230,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.Location"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.Location"
             ]
           }
         ],
@@ -1202,24 +1185,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.SubscriptionData"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.SubscriptionData"
             ]
           }
         ],
@@ -1516,24 +1482,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.SerachTagItem"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.SerachTagItem"
             ]
           }
         ],
@@ -1713,24 +1662,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.MediaLike"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.MediaLike"
             ]
           }
         ],
@@ -1938,24 +1870,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.Comment"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.Comment"
             ]
           }
         ],
@@ -2281,24 +2196,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.UsersItem"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.UsersItem"
             ]
           }
         ],
@@ -2461,24 +2359,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.User"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.User"
             ]
           }
         ],
@@ -2750,24 +2631,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.TagsRecentMediaItem"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.TagsRecentMediaItem"
             ]
           }
         ],
@@ -2888,24 +2752,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.UsersInPhoto"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.UsersInPhoto"
             ]
           },
           {
@@ -2948,24 +2795,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "string"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "string"
             ]
           },
           {
@@ -2996,24 +2826,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "types.Comment"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "types.Comment"
                 ]
               },
               {
@@ -3458,24 +3271,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "types.UsersInPhoto"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "types.UsersInPhoto"
                 ]
               },
               {
@@ -3521,24 +3317,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "string"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "string"
                 ]
               },
               {
@@ -3569,24 +3348,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "types.Comment"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "types.raml"
-                        }
-                      }
+                      "types.Comment"
                     ]
                   },
                   {
@@ -3995,24 +3757,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "types.UsersInPhoto"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "types.UsersInPhoto"
             ]
           },
           {
@@ -4061,24 +3806,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "string"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "types.raml"
-                }
-              }
+              "string"
             ]
           },
           {
@@ -4109,24 +3837,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "types.Comment"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "types.Comment"
                 ]
               },
               {
@@ -4705,24 +4416,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "types.UsersInPhoto"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "types.UsersInPhoto"
                 ]
               },
               {
@@ -4791,24 +4485,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
-                  {
-                    "type": [
-                      "string"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "types.raml"
-                    }
-                  }
+                  "string"
                 ]
               },
               {
@@ -4839,24 +4516,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "types.Comment"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "types.raml"
-                        }
-                      }
+                      "types.Comment"
                     ]
                   },
                   {

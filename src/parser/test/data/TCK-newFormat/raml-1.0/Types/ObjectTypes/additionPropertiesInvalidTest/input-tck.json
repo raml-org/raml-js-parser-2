@@ -7,9 +7,7 @@
         "type": [
           "object"
         ],
-        "additionalProperties": {
-          "type": "string"
-        },
+        "additionalProperties": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

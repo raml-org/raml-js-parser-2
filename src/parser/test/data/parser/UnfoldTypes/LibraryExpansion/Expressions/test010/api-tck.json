@@ -136,7 +136,10 @@
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       "#/specification/types/T3",
                       "#/specification/types/T4"

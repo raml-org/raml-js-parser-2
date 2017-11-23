@@ -195,7 +195,16 @@
             "sourceMap": {
               "path": "union-type-multiple-inheritance.raml"
             },
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "name": "type",
+            "displayName": "type",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
           }
         ],
         "__METADATA__": {

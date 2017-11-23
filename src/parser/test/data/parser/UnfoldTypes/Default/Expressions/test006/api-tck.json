@@ -19,7 +19,96 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "union"
+                  {
+                    "type": [
+                      "union"
+                    ],
+                    "anyOf": [
+                      {
+                        "type": [
+                          "array"
+                        ],
+                        "items": [
+                          {
+                            "type": [
+                              "union"
+                            ],
+                            "anyOf": [
+                              "lib.raml#/specification/types/T1",
+                              "lib.raml#/specification/types/T2"
+                            ],
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
+                            "typePropertyKind": "TYPE_EXPRESSION"
+                          }
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
+                      },
+                      {
+                        "type": [
+                          "array"
+                        ],
+                        "items": [
+                          "lib.raml#/specification/types/T3"
+                        ],
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "name": "type",
+                    "displayName": "type",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": [
+                      {
+                        "type": [
+                          "union"
+                        ],
+                        "anyOf": [
+                          "lib.raml#/specification/types/T4",
+                          "lib.raml#/specification/types/T1",
+                          "lib.raml#/specification/types/T3"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    ],
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "type",
+                    "displayName": "type",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -32,56 +121,7 @@
                   "path": "api.raml"
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "anyOf": [
-                  {
-                    "type": [
-                      "array"
-                    ],
-                    "items": [
-                      {
-                        "type": [
-                          "union"
-                        ],
-                        "anyOf": [
-                          "lib.raml#/specification/types/T1",
-                          "lib.raml#/specification/types/T2"
-                        ],
-                        "sourceMap": {
-                          "path": "api.raml"
-                        },
-                        "typePropertyKind": "TYPE_EXPRESSION"
-                      }
-                    ],
-                    "typePropertyKind": "TYPE_EXPRESSION"
-                  },
-                  {
-                    "type": [
-                      "array"
-                    ],
-                    "items": [
-                      {
-                        "type": [
-                          "lib.raml#/specification/types/T3"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "api.raml"
-                        }
-                      }
-                    ],
-                    "typePropertyKind": "TYPE_EXPRESSION"
-                  }
-                ]
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",

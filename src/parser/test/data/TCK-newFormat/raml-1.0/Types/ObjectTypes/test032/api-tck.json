@@ -17,26 +17,80 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "type": [
                   {
-                    "schema": {
-                      "type": "object",
-                      "properties": {
-                        "size": {
-                          "type": "string"
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "name": "size",
+                        "displayName": "size",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
                         },
-                        "length": {
-                          "type": "string"
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      },
+                      {
+                        "name": "length",
+                        "displayName": "length",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
                         }
                       }
-                    }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "INPLACE"
               },
               {
                 "name": "application/xml",
@@ -66,11 +120,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "api.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       {
                         "name": "length",
@@ -89,11 +143,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "api.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
                     "__METADATA__": {
@@ -103,11 +157,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {
@@ -117,11 +171,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             ],
             "method": "post",

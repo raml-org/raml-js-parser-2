@@ -45,7 +45,10 @@
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "lib.raml"
+                        }
                       },
                       "lib.raml#/specification/types/T3",
                       "<<param2>>"
@@ -122,7 +125,10 @@
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
                         ],
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "lib.raml"
+                        }
                       },
                       "lib.raml#/specification/types/T3",
                       "lib.raml#/specification/types/T4"

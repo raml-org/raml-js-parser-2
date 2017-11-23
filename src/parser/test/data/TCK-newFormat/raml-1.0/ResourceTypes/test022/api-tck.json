@@ -36,24 +36,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "<<resourcePathName|!singularize>>.<<resourcePathName|!singularize|!uppercamelcase>>"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "api.raml"
-                        }
-                      }
+                      "<<resourcePathName|!singularize>>.<<resourcePathName|!singularize|!uppercamelcase>>"
                     ]
                   }
                 ],
@@ -161,24 +144,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "app.App"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "api.raml"
-                        }
-                      }
+                      "app.App"
                     ]
                   }
                 ],

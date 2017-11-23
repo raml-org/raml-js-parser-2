@@ -3,7 +3,6 @@
     "type": [
       "object"
     ],
-    "required": true,
     "properties": [
       {
         "name": "prop1",
@@ -22,11 +21,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "fragment.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "prop2",
@@ -45,11 +44,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "fragment.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "uses": [
@@ -65,17 +64,14 @@
       "primitiveValuesMeta": {
         "type": {
           "insertedAsDefault": true
-        },
-        "required": {
-          "insertedAsDefault": true
         }
       }
     },
-    "mediaType": "application/raml+yaml",
-    "typePropertyKind": "TYPE_EXPRESSION",
     "sourceMap": {
       "path": "fragment.raml"
-    }
+    },
+    "mediaType": "application/raml+yaml",
+    "typePropertyKind": "TYPE_EXPRESSION"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

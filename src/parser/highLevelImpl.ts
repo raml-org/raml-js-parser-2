@@ -727,7 +727,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
             let prop = this.property();
             let rangeType = prop.range();
-            let propName = prop.nameId();
+            let isTypeProp = universeHelpers.isTypeProperty(prop)||universeHelpers.isSchemaProperty(prop);
             if (rangeType.isAssignableFrom("Reference")) {
                 let key = Object.keys(val)[0];
                 let name = sVal.valueName();
@@ -740,7 +740,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                     value: refVal
                 }
             }
-            else if (propName == "type") {
+            else if (isTypeProp) {
                 let llNode = this.lowLevel();
                 let tdl = null;
                 let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
@@ -749,7 +749,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 tNode.patchType(builder.doDescrimination(tNode));
                 val = tNode;
             }
-            else if (propName == "items" && typeof val === "object") {
+            else if (universeHelpers.isItemsProperty(prop) && typeof val === "object") {
                 let isArr = Array.isArray(val);
                 let isObj = !isArr;
                 if (isArr) {

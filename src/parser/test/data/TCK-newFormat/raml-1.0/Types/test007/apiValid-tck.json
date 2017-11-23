@@ -25,52 +25,24 @@
               "array"
             ],
             "items": [
-              {
-                "type": [
-                  "string"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "apiValid.raml"
-                }
-              }
+              "string"
             ],
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           {
             "type": [
               "array"
             ],
             "items": [
-              {
-                "type": [
-                  "number"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "apiValid.raml"
-                }
-              }
+              "number"
             ],
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ]
       },

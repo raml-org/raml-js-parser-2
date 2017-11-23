@@ -40,24 +40,7 @@
             "required": false,
             "description": "An array of boundaries",
             "items": [
-              {
-                "type": [
-                  "object"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
-                }
-              }
+              "object"
             ],
             "__METADATA__": {
               "primitiveValuesMeta": {

@@ -36,26 +36,12 @@
                   "array"
                 ],
                 "items": [
-                  {
-                    "type": [
-                      "string"
-                    ],
-                    "name": "items",
-                    "displayName": "items",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "sourceMap": {
-                      "path": "api.raml"
-                    }
-                  }
+                  "string"
                 ],
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               "string"
             ]

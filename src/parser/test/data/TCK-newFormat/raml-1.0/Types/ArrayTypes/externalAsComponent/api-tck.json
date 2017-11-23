@@ -39,24 +39,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
-          {
-            "type": [
-              "External"
-            ],
-            "name": "items",
-            "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          }
+          "External"
         ]
       },
       {
@@ -111,24 +94,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              {
-                "type": [
-                  "External"
-                ],
-                "name": "items",
-                "displayName": "items",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
-                }
-              }
+              "External"
             ]
           },
           {

@@ -154,24 +154,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "<<item>>"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "NewLibrary.raml"
-                        }
-                      }
+                      "<<item>>"
                     ]
                   }
                 ],
@@ -379,24 +362,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "NewLibrary.Pet"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "NewLibrary.raml"
-                        }
-                      }
+                      "NewLibrary.Pet"
                     ]
                   }
                 ],
@@ -750,24 +716,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "Bird"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "NewLibrary.raml"
-                        }
-                      }
+                      "Bird"
                     ]
                   }
                 ],
@@ -1121,24 +1070,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
-                      {
-                        "type": [
-                          "Mammal"
-                        ],
-                        "name": "items",
-                        "displayName": "items",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            }
-                          }
-                        },
-                        "sourceMap": {
-                          "path": "NewLibrary.raml"
-                        }
-                      }
+                      "Mammal"
                     ]
                   }
                 ],

@@ -108,24 +108,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
-          {
-            "type": [
-              "Email"
-            ],
-            "name": "items",
-            "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
-            "sourceMap": {
-              "path": "array-type.raml"
-            }
-          }
+          "Email"
         ]
       }
     ],

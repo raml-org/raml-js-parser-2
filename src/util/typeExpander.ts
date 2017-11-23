@@ -99,6 +99,10 @@ export class PropertyEntry implements Entry{
     metadata():any{
         return this._metadata;
     }
+
+    annotations(){
+        return this._original ? this._original.annotations() : [];
+    }
 }
 
 
@@ -145,6 +149,8 @@ export interface TypeEntry extends Entry{
     schemaPath():string;
 
     id():string;
+
+    typeAttributeValue():any;
 }
 
 export class AbstractTypeEntry implements TypeEntry{
@@ -300,8 +306,10 @@ export class AbstractTypeEntry implements TypeEntry{
                 st.allFacets().forEach(x=>result.push(x));
             }
         }
-        result = result.filter(x=>x.kind()!=tsInterfaces.MetaInformationKind.Example
-                                && x.kind()!=tsInterfaces.MetaInformationKind.Examples);
+        result = result.filter(x=>
+            x.kind()!=tsInterfaces.MetaInformationKind.Example
+            && x.kind()!=tsInterfaces.MetaInformationKind.Examples
+            && x.kind()!=tsInterfaces.MetaInformationKind.FacetDeclaration);
         return result;
     }
 
@@ -322,6 +330,17 @@ export class AbstractTypeEntry implements TypeEntry{
         let sourceMap = _.find(this.declaredFacets(),x=>x.kind()==kind);
         if(sourceMap){
             return sourceMap.value();
+        }
+        return null;
+    }
+
+    typeAttributeValue():any{
+        if(!this._original){
+            return null;
+        }
+        let tAttr = _.find(this._original.declaredFacets(),x=>x.kind()==tsInterfaces.MetaInformationKind.TypeAttributeValue);
+        if(tAttr){
+            return tAttr.value();
         }
         return null;
     }
@@ -768,6 +787,10 @@ export interface Options{
     serializeMetadata?: boolean;
 
     sourceMap?: boolean;
+
+    isInsideTemplate?:boolean
+
+    isAnnotationType?:boolean
 }
 
 export class TypeExpander {
@@ -781,11 +804,9 @@ export class TypeExpander {
         }
     }
 
-    serializeType(
-        t: IParsedType,
-        isAnnotationType = false) {
+    serializeType(t: IParsedType) {
 
-        let he: TypeEntry = this.createHierarchyEntry(t, this.options.typeExpansionRecursionDepth, isAnnotationType);
+        let he: TypeEntry = this.createHierarchyEntry(t, this.options.typeExpansionRecursionDepth);
         const expand = this.options.typeExpansionRecursionDepth >= 0;
         if (expand) {
             he = this.expandHierarchy(he, he.branchingRegistry());
@@ -797,7 +818,6 @@ export class TypeExpander {
     protected createHierarchyEntry(
         t:IParsedType,
         typeExpansionRecursionDepth:number,
-        isAnnotationType=false,
         occured:BasicTypeMap=new BasicTypeMap(),
         branchingRegistry?:BranchingRegistry):AbstractTypeEntry{
 
@@ -806,7 +826,7 @@ export class TypeExpander {
             isNewTree = true;
             branchingRegistry = new BasicBranchingRegistry(this);
         }
-        let result = this.doCreateHierarchyEntry(t, typeExpansionRecursionDepth,isAnnotationType, occured, branchingRegistry);
+        let result = this.doCreateHierarchyEntry(t, typeExpansionRecursionDepth, occured, branchingRegistry);
         if(isNewTree){
             result.setBranchingRegistry(branchingRegistry);
         }
@@ -816,7 +836,6 @@ export class TypeExpander {
     protected doCreateHierarchyEntry(
         t:IParsedType,
         typeExpansionRecursionDepth:number,
-        isAnnotationType=false,
         occured:BasicTypeMap=new BasicTypeMap(),
         branchingRegistry:BranchingRegistry):AbstractTypeEntry{
 
@@ -843,7 +862,7 @@ export class TypeExpander {
             let optionEntries:TypeEntry[] = [];
             for(let o of options){
                 optionEntries.push(
-                    this.createHierarchyEntry(o,typeExpansionRecursionDepth,false,occured,branchingRegistry));
+                    this.createHierarchyEntry(o,typeExpansionRecursionDepth,occured,branchingRegistry));
             }
             let branchId = branchingRegistry.nextBranchId(optionEntries.length);
             let unionSuperType = new UnionTypeEntry(t, optionEntries, branchId);
@@ -862,7 +881,7 @@ export class TypeExpander {
             let superTypes = allSuperTypes;//.filter(x=>!x.isUnion());
             for (let st of superTypes) {
                 let ste = this.createHierarchyEntry(
-                    st, typeExpansionRecursionDepth, false,occured, branchingRegistry);
+                    st, typeExpansionRecursionDepth, occured, branchingRegistry);
                 superTypeEntries.push(ste);
             }
         }
@@ -872,7 +891,7 @@ export class TypeExpander {
             for (let st of superTypes) {
                 if (st.isBuiltin()) {
                     let ste = this.createHierarchyEntry(
-                        st, typeExpansionRecursionDepth, false,occured, branchingRegistry);
+                        st, typeExpansionRecursionDepth, occured, branchingRegistry);
                     superTypeEntries.push(ste);
                 }
             }
@@ -883,7 +902,7 @@ export class TypeExpander {
             let optionEntries:TypeEntry[] = [];
             for(let o of options){
                 optionEntries.push(this.createHierarchyEntry(
-                    o,typeExpansionRecursionDepth,false,occured,branchingRegistry));
+                    o,typeExpansionRecursionDepth,occured,branchingRegistry));
             }
             let branchId = branchingRegistry.nextBranchId(optionEntries.length);
             let unionSuperType = new UnionTypeEntry(t, optionEntries, branchId);
@@ -896,7 +915,7 @@ export class TypeExpander {
                     ct = ct.superTypes()[0];
                 }
                 let componentTypeEntry = this.createHierarchyEntry(
-                    ct,typeExpansionRecursionDepth, false,occured);
+                    ct,typeExpansionRecursionDepth, occured);
                 result.setComponentType(componentTypeEntry);
             }
         }
@@ -964,7 +983,7 @@ export class TypeExpander {
             occured.addProperty(owner.name(), p.name(), pe);
         }
         let pte: TypeEntry = this.createHierarchyEntry(
-            pt, d, false, occured, branchingRegistry);
+            pt, d,  occured, branchingRegistry);
         pe.setType(pte);
         return pe;
     }
@@ -1090,7 +1109,11 @@ export class TypeExpander {
                 result.typePropertyKind = "INPLACE";
             }
             let gte = <GeneralTypeEntry>te;
-            if (expand) {
+            if(this.options.isInsideTemplate && te.typeAttributeValue()) {
+                result.type = te.typeAttributeValue();
+                result.typePropertyKind = "TYPE_EXPRESSION";
+            }
+            else if (expand) {
                 let type = gte.possibleBuiltInTypes();
                 if (type.length > 0) {
                     result.type = type;
@@ -1135,26 +1158,27 @@ export class TypeExpander {
             }
             let ct = gte.componentType();
             if (ct) {
-                if (!expand && ct.name()) {
-                    result.items = [{
-                        type: [ct.name()],
-                        name: "items",
-                        displayName: "items",
-                        typePropertyKind: "TYPE_EXPRESSION"
-                    }];
-                    this.appendMeta(result.items[0], "displayName", "calculated");
-                    this.appendSourceFromExtras(result.items[0], gte);
+                let ctArr = [ct];
+                if(!expand && isEmpty(ct.original(),true)&&ct.superTypes().length>1){
+                    ctArr = ct.superTypes();
                 }
-                else {
-                    let dumpedComponentType = this.dump(ct, expand);
-                    this.appendSourceFromExtras(dumpedComponentType, gte);
-                    if (!ct.isUnion() && !dumpedComponentType.name) {
-                        dumpedComponentType.name = "items";
-                        dumpedComponentType.displayName = "items";
-                        this.appendMeta(dumpedComponentType, "displayName", "calculated");
+                result.items = ctArr.map(x=> {
+                    if (!expand && x.name()) {
+                        return x.name();
+                        //this.appendMeta(result.items[0], "displayName", "calculated");
+                        //this.appendSourceFromExtras(result.items[0], gte);
                     }
-                    result.items = [dumpedComponentType];
-                }
+                    else {
+                        let dumpedComponentType = this.dump(ct, expand);
+                        this.appendSourceFromExtras(dumpedComponentType, gte);
+                        if (!ct.isUnion() && !dumpedComponentType.name) {
+                            dumpedComponentType.name = "items";
+                            dumpedComponentType.displayName = "items";
+                            this.appendMeta(dumpedComponentType, "displayName", "calculated");
+                        }
+                        return dumpedComponentType;
+                    }
+                });
             }
             this.dumpFacets(te, result, expand);
         }
@@ -1165,41 +1189,12 @@ export class TypeExpander {
             result.examples = examplesArr;
             result.simplifiedExamples = simplified;
             for (let e of examples) {
-                let val = e.value();
-                let needStringify = false;
-                if (Array.isArray(val)) {
-                    for (let c of val) {
-                        if (Array.isArray(c) || (typeof val == "object")) {
-                            needStringify = true;
-                            break;
-                        }
-                    }
-                }
-                else if (typeof val == "object") {
-                    needStringify = true;
-                }
-                let simpleValue = needStringify ? JSON.stringify(val) : val;
-                simplified.push(simpleValue);
-                let eObj: any = {
-                    strict: e.strict(),
-                    value: val
-                };
-                if (e.name()) {
-                    eObj.name = e.name();
-                }
-                if (e.displayName() != null) {
-                    eObj.displayName = e.displayName();
-                }
-                if (e.description()) {
-                    eObj.description = e.description();
-                }
-                let annotations = e.annotations();
-                let aArr = this.dumpAnnotations(annotations, eObj);
-                examplesArr.push(eObj);
+                this.processExample(e, simplified, examplesArr);
             }
         }
         let annotations = te.original() && te.original().annotations();
         this.dumpAnnotations(annotations, result);
+        this.dumpScalarsAnnotations(te, result, expand);
         this.dumpMeta(te, result, expand);
         this.appendSourceFromExtras(result, te);
         if (!result.displayName && result.name) {
@@ -1208,6 +1203,78 @@ export class TypeExpander {
         }
         this.checkIfTypePropertyIsDefault(te, result);
         return result;
+    }
+
+    private dumpScalarsAnnotations(te, result,expand){
+        const sAnnotations = te.original()&&(
+            expand ? te.original().scalarsAnnotations():te.original().declaredScalarsAnnotations());
+        if(sAnnotations){
+            const keys = Object.keys(sAnnotations);
+            if(keys.length) {
+                let sAObj: any = {};
+                result.scalarsAnnotations = sAObj;
+                for (let pName of keys) {
+                    sAObj[pName] = sAnnotations[pName].map(x=>x.map(y=>{
+                        return {
+                            name: y.name(),
+                            value: y.value()
+                        };
+                    }));
+                }
+            }
+        }
+    }
+
+    private processExample(e, simplified: any[], examplesArr: any[]) {
+        let val = e.value();
+        let needStringify = false;
+        if (Array.isArray(val)) {
+            for (let c of val) {
+                if (Array.isArray(c) || (typeof val == "object")) {
+                    needStringify = true;
+                    break;
+                }
+            }
+        }
+        else if (typeof val == "object" && val != null) {
+            needStringify = true;
+        }
+        let simpleValue = needStringify ? JSON.stringify(val) : val;
+        simplified.push(simpleValue);
+        let eObj: any = {
+            strict: e.strict(),
+            value: val
+        };
+        if (e.name()) {
+            eObj.name = e.name();
+        }
+        if (e.displayName() != null) {
+            eObj.displayName = e.displayName();
+        }
+        if (e.description()) {
+            eObj.description = e.description();
+        }
+        let annotations = e.annotations();
+        this.dumpAnnotations(annotations, eObj);
+        if(e.hasScalarAnnotations()){
+            let sAnnotations = e.scalarsAnnotations();
+            let resSAnnotations:any = {};
+            for(let fName of Object.keys(sAnnotations)){
+                if(sAnnotations[fName]){
+                    resSAnnotations[fName] = [[]];
+                    for(let aName of Object.keys(sAnnotations[fName])){
+                        resSAnnotations[fName][0].push({
+                            name:aName,
+                            value: sAnnotations[fName][aName].value()
+                        });
+                    }
+                }
+            }
+            if(Object.keys(resSAnnotations).length){
+                eObj.scalarsAnnotations = resSAnnotations;
+            }
+        }
+        examplesArr.push(eObj);
     }
 
 
@@ -1274,6 +1341,20 @@ export class TypeExpander {
             }
         }
         this.checkIfTypePropertyIsDefault(propType, dumpedPropertyType);
+        if(p.annotations() && p.annotations().length){
+            let scalarsAnnotations = dumpedPropertyType.scalarsAnnotations;
+            if(!scalarsAnnotations){
+                scalarsAnnotations = {};
+                dumpedPropertyType.scalarsAnnotations =scalarsAnnotations;
+            }
+            scalarsAnnotations['required'] = [[]];
+            for(let a of p.annotations()){
+                scalarsAnnotations['required'][0].push({
+                   name: a.name(),
+                   value: a.value()
+                });
+            }
+        }
         return dumpedPropertyType;
     }
 
@@ -1291,13 +1372,26 @@ export class TypeExpander {
     };
 
     protected dumpFacets(te: TypeEntry, result: any, expand: boolean) {
-        let customFacets: ITypeFacet[];
+        let customFacets: ITypeFacet[]=[];
         if (te.original()) {
             if (expand) {
-                customFacets = te.original().allCustomFacets();
+                customFacets = te.original().allCustomFacets()||[];
             }
             else {
-                customFacets = te.original().customFacets();
+                customFacets = te.original().customFacets()||[];
+            }
+        }
+        if(this.options.isInsideTemplate){
+            let parametrized:tsInterfaces.ITypeFacet[] = [];
+            customFacets = customFacets.filter(x=>{
+                if(x.facetName().indexOf("<<")>=0){
+                    parametrized.push(x);
+                    return false;
+                }
+                return true;
+            });
+            for(let p of parametrized){
+                result[p.facetName()] = p.value();
             }
         }
         if (customFacets && customFacets.length > 0) {
@@ -1391,7 +1485,8 @@ export class TypeExpander {
                 }
             }
             else if (name == "closed") {
-                result["additionalProperties"] = m.value();
+                const val = m.value();
+                result["additionalProperties"] = val;
             }
         }
     }
@@ -1494,9 +1589,12 @@ class MetaNamesProvider{
 
 const filterOut = [ "typePropertyKind","sourceMap", "required","__METADATA__", "notScalar" ];
 
-function isEmpty(t:tsInterfaces.IParsedType):boolean{
+function isEmpty(t:tsInterfaces.IParsedType,ignoreSupertypesCount=false):boolean{
 
-    if(t.isUnion()||t.isBuiltin()||t.name()||t.superTypes().length!=1){
+    if(t.isUnion()||t.isBuiltin()||t.name()){
+        return false;
+    }
+    if(!ignoreSupertypesCount&&t.superTypes().length!=1){
         return false;
     }
     let meta = t.declaredFacets().filter(x=>{
