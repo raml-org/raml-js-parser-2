@@ -305,33 +305,8 @@ export class JsonSerializer {
                     }
                     let pVal = map[pName];
                     if(universeHelpers.isTypeProperty(p)){
-                        if (map["schema"]) {
-                            let isNull = (pVal == null);
-                            if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
-                                isNull = (pVal.arr[0].asAttr().value()==null);
-                            }
-                            continue;
-                        }
-                        if(universeHelpers.isStringTypeDeclarationDescendant(definition)){
-                            if(pVal==null){
-                                result["type"] = "string";
-                                meta = meta || new core.NodeMetadataImpl();
-                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
-                                continue;
-                            }
-                            else if (pVal.arr.length == 1 && pVal.arr[0].isAttr()) {
-                                var tVal = pVal.arr[0].asAttr().value()
-                                if (tVal == null){
-                                    result["type"] = "string";
-                                    meta = meta || new core.NodeMetadataImpl();
-                                    (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
-                                    continue;
-                                }
-                                else if(tVal === "NULL" || tVal === "Null"){
-                                    result["type"] = "string";
-                                    continue;
-                                }
-                            }
+                        if(pVal && pVal.arr.length==1 && pVal.arr[0].isAttr()&&(pVal.arr[0].asAttr().value()==null)){
+                            pVal = undefined;
                         }
                     }
                     pVal = this.applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
@@ -405,7 +380,7 @@ export class JsonSerializer {
                                     return x;
                                 });
                             }
-                            else if (hlImpl.isASTPropImpl(defVal)) {
+                            else if (hlImpl.BasicASTNode.isInstance(defVal)) {
                                 defVal = this.dumpInternal(<hl.IParseResult>defVal, p, rp);
                             }
                             aVal = defVal;
@@ -1384,11 +1359,12 @@ class TypeTransformer extends BasicTransformation{
                 }
                 var schemaValue = value["schema"];
                 if(Array.isArray(schemaValue)){
-                    schemaValue.forEach(x=>typeValue.push(x));
+                    schemaValue.filter(x=>x!=null&&typeValue.indexOf(x)<0).forEach(x=>typeValue.push(x));
                 }
-                else{
+                else if(schemaValue!=null){
                     typeValue.push(schemaValue);
                 }
+                value["type"] = _.unique(typeValue);
             }
             delete value["schema"];
         }

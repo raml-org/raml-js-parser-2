@@ -51,7 +51,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "string"
+                      "any"
                     ],
                     "example": null,
                     "__METADATA__": {

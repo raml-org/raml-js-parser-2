@@ -30,7 +30,7 @@
                   "",
                   ""
                 ],
-                "absoluteUri": "//api.test.com//common//users/groups/",
+                "absoluteUri": "//api.test.com//common//users//groups//",
                 "completeRelativeUri": "//users//groups//",
                 "parentUri": "//users/",
                 "absoluteParentUri": "//api.test.com//common//users/",
@@ -53,7 +53,7 @@
             "absoluteUri": "//api.test.com//common//users/",
             "completeRelativeUri": "//users/",
             "parentUri": "/",
-            "absoluteParentUri": "//api.test.com//common//",
+            "absoluteParentUri": "//api.test.com//common/",
             "sourceMap": {
               "path": "trailing-slashes.raml"
             }
@@ -67,7 +67,7 @@
           }
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "//api.test.com//common//",
+        "absoluteUri": "//api.test.com//common/",
         "completeRelativeUri": "/",
         "parentUri": "",
         "absoluteParentUri": "//api.test.com//common//",

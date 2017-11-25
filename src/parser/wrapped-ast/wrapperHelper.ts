@@ -122,12 +122,11 @@ export function absoluteUri(res:RamlWrapper.Resource):string{
     }
     while (parent.definition().key().name==universes.Universe10.Resource.name);
     parent = getParent(res);
-    uri = uri.replace(/\/\//g,'/');
     var buri=(<RamlWrapper.Api>parent).baseUri();
     var base =buri?buri.value():"";
     base = base ? base : '';
-    if(util.stringEndsWith(base,'/')){
-        uri = uri.substring(1);
+    if(res){
+        base = base.replace(/\/+$/,"");
     }
     uri = base + uri;
     return uri;
@@ -835,67 +834,68 @@ export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.Type
  * __$meta__={"name":"type","override":true}
  */
 export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
-
-    var attrs
-        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
-
-    var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
-    if(structuredAttrs.length==0){
-        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original().map(x=>{
-            if(x===null||x==="NULL"||x==="Null"){
-                return "string";
-            }
-            return x;
-        });
-    }
-    var nullify=false;
-    var values:string[] = attrs.map(x=>{
-        var val = x.value();
-        if(val==null){
-            return null;
-        }
-        if(typeof(val)=="string"){
-            return val;
-        }
-        else if(hlimpl.StructuredValue.isInstance(val)){
-            nullify=true;
-        }
-        return val.toString();
-    });
-    if (nullify){
-        return null;
-    }
-    return values;
+    return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original();
+//     var attrs
+//         =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
+//
+//     var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
+//     if(structuredAttrs.length==0){
+//         return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original().map(x=>{
+//             if(x===null||x==="NULL"||x==="Null"){
+//                 return "string";
+//             }
+//             return x;
+//         });
+//     }
+//     var nullify=false;
+//     var values:string[] = attrs.map(x=>{
+//         var val = x.value();
+//         if(val==null){
+//             return null;
+//         }
+//         if(typeof(val)=="string"){
+//             return val;
+//         }
+//         else if(hlimpl.StructuredValue.isInstance(val)){
+//             nullify=true;
+//         }
+//         return val.toString();
+//     });
+//     if (nullify){
+//         return null;
+//     }
+//     return values;
 }
 /**
  * __$helperMethod__ A base type which the current type extends, or more generally a type expression.
  * __$meta__={"name":"schema","override":true}
  */
 export function schemaValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
-    var nullify=false;
-    var attrs
-        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.schema.name);
-    if (nullify){
-        return null;
-    }
-    var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
-    if(structuredAttrs.length==0){
-        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).schema_original();
-    }
-    var values:string[] = attrs.map(x=>{
-        var val = x.value();
-        if(typeof(val)=="string"){
-            return val;
-        }
-        else if(hlimpl.StructuredValue.isInstance(val)){
-            nullify=true;
-        }
-        return val.toString();
-    });
-    if (nullify){
-        return null;
-    }
-    return values;
+    return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).schema_original()
+    // var nullify=false;
+    // var attrs
+    //     =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.schema.name);
+    // if (nullify){
+    //     return null;
+    // }
+    // var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
+    // if(structuredAttrs.length==0){
+    //     return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).schema_original();
+    // }
+    // var values:string[] = attrs.map(x=>{
+    //     var val = x.value();
+    //     if(typeof(val)=="string"){
+    //         return val;
+    //     }
+    //     else if(hlimpl.StructuredValue.isInstance(val)){
+    //         nullify=true;
+    //     }
+    //     return val.toString();
+    // });
+    // if (nullify){
+    //     return null;
+    // }
+    // return values;
 }
 
 /**

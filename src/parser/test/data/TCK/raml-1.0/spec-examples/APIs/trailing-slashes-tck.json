@@ -35,7 +35,7 @@
                   "",
                   ""
                 ],
-                "absoluteUri": "//api.test.com//common//users/groups/"
+                "absoluteUri": "//api.test.com//common//users//groups//"
               }
             ],
             "__METADATA__": {
@@ -66,7 +66,7 @@
           "path": "trailing-slashes.raml"
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "//api.test.com//common//"
+        "absoluteUri": "//api.test.com//common/"
       }
     ],
     "__METADATA__": {

@@ -34,7 +34,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Foo"
                 ],

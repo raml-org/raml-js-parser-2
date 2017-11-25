@@ -76,12 +76,11 @@ export function absoluteUri(res:RamlWrapper.Resource):string{
         parent = res.parent();
     }
     while (parent.definition().key().name==universes.Universe08.Resource.name);
-    uri = uri.replace(/\/\//g,'/');
     var buri=(<RamlWrapper.Api>parent).baseUri();
     var base =buri?buri.value():"";
     base = base ? base : '';
-    if(util.stringEndsWith(base,'/')){
-        uri = uri.substring(1);
+    if(res){
+        base = base.replace(/\/+$/,"");
     }
     uri = base + uri;
     return uri;

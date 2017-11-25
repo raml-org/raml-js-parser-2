@@ -116,6 +116,11 @@ export class AttributeDefaultsCalculator {
                 }
             }
         }
+        if(universeHelpers.isTypeProperty(attributeProperty)
+            && node.attr("schema")
+            && node.attr("schema").value()!=null){
+            return null;
+        }
 
         //static values defined in definition system via defaultValue, defaultIntegerValue
         // and defaultBooleanValue annotations.
@@ -264,8 +269,8 @@ class TypePropertyCalculator implements ValueCalculator{
 
     calculate(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):any {
 
-        if(node.attr("schema")){
-            return node.attr("schema").value();
+        if(node.attr("schema")&&node.attr("schema").value()!=null){
+            return null;//node.attr("schema").plainValue();
         }
         else if(node.lowLevel().children().filter(x=>x.key()=="properties").length) {
             return "object";
@@ -279,10 +284,14 @@ class TypePropertyCalculator implements ValueCalculator{
     matches(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):boolean{
         return universeHelpers.isTypeProperty(attributeProperty)
             && node.definition() != null
-            && universeHelpers.isObjectTypeDeclarationSibling(node.definition());
+            && universeHelpers.isTypeDeclarationSibling(node.definition());
     }
 
     kind(node : hl.IHighLevelNode, attributeProperty : hl.IProperty):InsertionKind{
+        const schemaAttr = node.attr("schema");
+        if(schemaAttr && schemaAttr.value()){
+            return null;
+        }
         return InsertionKind.BY_DEFAULT;
     }
 }

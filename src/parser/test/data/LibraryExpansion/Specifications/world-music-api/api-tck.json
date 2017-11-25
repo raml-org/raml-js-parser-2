@@ -35,7 +35,7 @@
         "AnotherEntry": {
           "name": "AnotherEntry",
           "displayName": "AnotherEntry",
-          "typePropertyKind": "INPLACE",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Entry"
           ],
@@ -267,31 +267,6 @@
               "name": "extIdeas",
               "displayName": "extIdeas",
               "typePropertyKind": "INPLACE",
-              "required": true,
-              "properties": {
-                "createdBy": {
-                  "name": "createdBy",
-                  "displayName": "createdBy",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "sourceMap": {
-                    "path": "libraries/api-library.raml"
-                  }
-                }
-              },
               "type": {
                 "name": "type",
                 "displayName": "type",
@@ -335,6 +310,31 @@
                 },
                 "sourceMap": {
                   "path": "schemas/idea.raml"
+                }
+              },
+              "required": true,
+              "properties": {
+                "createdBy": {
+                  "name": "createdBy",
+                  "displayName": "createdBy",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "libraries/api-library.raml"
+                  }
                 }
               },
               "__METADATA__": {
@@ -1038,9 +1038,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1694,7 +1691,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "INPLACE",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "AnotherEntry"
                     ],
@@ -1744,6 +1741,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "Entry"
                     ],
@@ -1751,9 +1749,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

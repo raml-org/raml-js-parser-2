@@ -51,7 +51,7 @@
         "AnotherEntry": {
           "name": "AnotherEntry",
           "displayName": "AnotherEntry",
-          "typePropertyKind": "INPLACE",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Entry"
           ],
@@ -237,9 +237,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -893,7 +890,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "INPLACE",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "AnotherEntry"
                     ],
@@ -943,6 +940,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "Entry"
                     ],
@@ -950,9 +948,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

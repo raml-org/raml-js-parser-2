@@ -41,6 +41,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "examples": [
                   {
                     "value": {
@@ -54,10 +57,7 @@
                   "{\"innerTypeName1\":\"somenam\"}"
                 ],
                 "mediaType": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "apiInvalid.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "get",

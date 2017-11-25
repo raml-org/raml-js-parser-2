@@ -788,6 +788,7 @@
                   }
                 },
                 "type": [
+                  "string",
                   "number"
                 ],
                 "mediaType": "application/raml+yaml",
