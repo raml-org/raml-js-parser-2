@@ -74,5 +74,23 @@
   },
   "ramlVersion": "RAML10",
   "type": "Api",
-  "errors": []
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '}'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 10,
+          "position": 152
+        },
+        "end": {
+          "line": 9,
+          "column": 11,
+          "position": 153
+        }
+      }
+    }
+  ]
 }

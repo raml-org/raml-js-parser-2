@@ -139,7 +139,43 @@
       "path": "api.raml"
     }
   },
-  "errors": [
+  "errors":  [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Cannot tokenize symbol 'C'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 16,
+          "position": 173
+        },
+        "end": {
+          "line": 11,
+          "column": 17,
+          "position": 174
+        }
+      },
+      "trace": [
+        {
+          "code": "CAN_NOT_PARSE_JSON",
+          "message": "Can not parse JSON example: Cannot tokenize symbol 'C'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 13,
+              "column": 0,
+              "position": 195
+            },
+            "end": {
+              "line": 13,
+              "column": 6,
+              "position": 201
+            }
+          }
+        }
+      ]
+    },
     {
       "code": "INCLUDE_ERROR",
       "message": "Can not resolve unexisting-file.txt",

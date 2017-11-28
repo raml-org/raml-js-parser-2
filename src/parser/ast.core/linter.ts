@@ -2731,6 +2731,50 @@ class TypeDeclarationValidator implements NodeValidator{
             }
         }
 
+        if(node.property() && universeHelpers.isBodyProperty(node.property())){
+            if(rof.superTypes().length==1&&rof.superTypes()[0]==def.rt.builtInTypes().get("any")){
+                let examples = rof.examples();
+                let mediaType = getMediaType(node.attr(def.universesInfo.Universe10.TypeDeclaration.properties.name.name));
+                let isJSON = isJson(mediaType);
+                let isXml = isXML(mediaType);
+
+                if(examples.length && (isJSON||isXml)){
+                    for(let e of examples){
+                        let eVal = e.value();
+                        if(typeof eVal === "object"){
+                            continue;
+                        }
+                        else if(typeof eVal === "string"){
+                            let eNode:hl.IParseResult;
+                            if(examples.length==1){
+                                if(e.name()==null){
+                                    eNode = node.element("example");
+                                }
+                            }
+                            if(!eNode){
+                                for(let exNode of node.elementsOfKind("examples")){
+                                    if(exNode.name()==null && e.name()==null){
+                                        if(exNode.attr("value").value()==eVal){
+                                            eNode = exNode;
+                                            break;
+                                        }
+                                    }
+                                    else if(exNode.name()==e.name()){
+                                        eNode = exNode;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(!eNode){
+                                eNode = node;
+                            }
+                            parseJsonOrXml(mediaType,eVal,v,eNode,false);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private checkAnnotationTarget(attr:hl.IAttribute,v:hl.ValidationAcceptor){
@@ -3799,33 +3843,11 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         else{
             if (mediaType){
-                if (isJson(mediaType)){
-                    try{
-                        def.rt.getSchemaUtils().tryParseJSON(vl,true);
-                        pObj=JSON.parse(vl);
-                    }catch (e){
-                        if(ValidationError.isInstance(e)){
-                            if(!checkIfIncludeTagIsMissing(node, cb, (<ValidationError>e).messageEntry.code, !strictValidation)){
-                                cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
-                            }
-                        }
-                        else {
-                            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
-                                {msg: e.message}, node, !strictValidation));
-                        }
-                        return;
-                    }
+                let parsed = parseJsonOrXml(mediaType,vl,cb,node,!strictValidation);
+                if(!parsed.status){
+                    return;
                 }
-                if (isXML(mediaType)){
-                    try {
-                        pObj = xmlutil.parseXML(vl);
-                    }
-                    catch (e){
-                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
-                            {msg:e.message},node,!strictValidation));
-                        return;
-                    }
-                }
+                pObj = parsed.result;
             }
             else{
                 try{
@@ -4117,10 +4139,10 @@ class TemplateCyclesDetector implements NodeValidator {
 }
 
 export function isJson(s:string){
-    return s.indexOf("json")!=-1;
+    return s!=null && s.indexOf("json")!=-1;
 }
 export function isXML(s:string){
-    return s.indexOf("xml")!=-1;
+    return s!=null && s.indexOf("xml")!=-1;
 }
 export function getMediaType(node:hl.IAttribute){
     var vl=getMediaType2(node);
@@ -4865,4 +4887,71 @@ class KeyErrorsRegistry{
         return this.codesMap[code]||false;
     }
 
+}
+
+
+function parseJsonOrXml(
+    mediaType:string,
+    vl:string,
+    cb:hl.ValidationAcceptor,
+    node:hl.IParseResult,
+    isWarning:boolean):{
+    result: any,
+    status: boolean
+}{
+
+    let pObj:any;
+    if (isJson(mediaType)){
+        try{
+            def.rt.getSchemaUtils().tryParseJSON(vl,true);
+            pObj=JSON.parse(vl);
+        }catch (e){
+            if(e.message.indexOf("Cannot tokenize symbol '<'")<0||!typeOfContainingTemplate(node)) {
+                if (ValidationError.isInstance(e)) {
+                    if (!checkIfIncludeTagIsMissing(node, cb, (<ValidationError>e).messageEntry.code, isWarning)) {
+                        cb.accept(createIssue2(<ValidationError>e, node, isWarning));
+                    }
+                }
+                else {
+                    cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
+                        {msg: e.message}, node, isWarning));
+                }
+                return {
+                    result: null,
+                    status: false
+                };
+            }
+        }
+    }
+    if (isXML(mediaType)){
+        try {
+            let warnings:any[] = [];
+            let errors:any[] = [];
+            pObj = xmlutil.parseXML(vl,{
+                warning: (x) => { warnings.push(x)},
+                error: (x) => { errors.push(x) },
+                fatalError: (x) => { errors.push(x) }
+            });
+            if(warnings.length){
+                warnings.forEach(x=>cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                    {msg:x},node,isWarning)));
+            }
+            else if(errors.length){
+                errors.forEach(x=>cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                    {msg:x},node,isWarning)));
+            }
+        }
+        catch (e){
+            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                {msg:e.message},node,isWarning));
+            return {
+                result: null,
+                status: false
+            };
+        }
+    }
+    return {
+        result: pObj,
+        status: true
+    };
 }
