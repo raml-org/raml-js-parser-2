@@ -26,6 +26,9 @@
                 "value": "T1.p1"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -38,9 +41,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "displayName": "p1",
             "name": "p1",
@@ -60,20 +60,20 @@
             "value": "T1"
           }
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "T2",
@@ -100,6 +100,9 @@
                 "value": "T2.p2"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -112,9 +115,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "displayName": "p2",
             "name": "p2",
@@ -138,6 +138,9 @@
                 "value": "T1.p1"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -150,9 +153,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "displayName": "p1",
             "name": "p1",
@@ -209,6 +209,9 @@
                 "value": "T3.p3"
               }
             ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -221,9 +224,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "displayName": "p3",
             "name": "p3",
@@ -243,20 +243,20 @@
             "value": "T3"
           }
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T3"
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "T4",
@@ -266,7 +266,7 @@
         ],
         "anyOf": [
           {
-            "name": "T4",
+            "name": "T2",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -290,6 +290,9 @@
                     "value": "T4.p4"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -302,9 +305,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "displayName": "p4",
                 "name": "p4",
@@ -328,6 +328,9 @@
                     "value": "T2.p2"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -340,9 +343,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "displayName": "p2",
                 "name": "p2",
@@ -366,6 +366,9 @@
                     "value": "T1.p1"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -378,9 +381,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "displayName": "p1",
                 "name": "p1",
@@ -403,7 +403,7 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4",
+            "displayName": "T2",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -413,7 +413,7 @@
             }
           },
           {
-            "name": "T4",
+            "name": "T3",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -437,6 +437,9 @@
                     "value": "T4.p4"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -449,9 +452,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "displayName": "p4",
                 "name": "p4",
@@ -475,6 +475,9 @@
                     "value": "T3.p3"
                   }
                 ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -487,9 +490,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "displayName": "p3",
                 "name": "p3",
@@ -509,20 +509,20 @@
                 "value": "T3"
               }
             ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4"
+            "displayName": "T3",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           }
         ],
         "annotations": [
@@ -565,20 +565,20 @@
             "type": [
               "string"
             ],
+            "displayName": "ap1",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "ap1",
             "sourceMap": {
               "path": "api.raml"
             },
@@ -590,40 +590,40 @@
             "type": [
               "number"
             ],
+            "displayName": "ap2",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "ap2",
             "sourceMap": {
               "path": "api.raml"
             },
             "required": true
           }
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "MyObjectAnnotation"
+        "displayName": "MyObjectAnnotation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "MyStringAnnotation",
@@ -631,20 +631,20 @@
         "type": [
           "string"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "MyStringAnnotation"
+        "displayName": "MyStringAnnotation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

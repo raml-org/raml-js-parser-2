@@ -195,7 +195,6 @@
         ],
         "anyOf": [
           {
-            "name": "T4",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "array"
@@ -272,20 +271,12 @@
                 }
               }
             ],
-            "displayName": "T4",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
             "sourceMap": {
               "path": "api.raml"
             }
           },
           {
-            "name": "T4",
+            "name": "T3",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "array"
@@ -343,7 +334,7 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4",
+            "displayName": "T3",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {

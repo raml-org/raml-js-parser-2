@@ -65,13 +65,13 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "#/specification/types/T1",
+                  "#/specification/types/lib.T1",
                   {
                     "type": [
                       "array"
                     ],
                     "items": [
-                      "#/specification/types/T2"
+                      "#/specification/types/lib.T2"
                     ],
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {

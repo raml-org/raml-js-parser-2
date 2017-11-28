@@ -31,11 +31,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "libraries/SharedTypes.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "Types.Type1",
@@ -61,15 +61,15 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "libraries/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "anyOf": [
-              "#/specification/types/StandardInt64",
+              "#/specification/types/Types.SharedTypes.StandardInt64",
               "nil"
-            ],
-            "sourceMap": {
-              "path": "libraries/types.raml"
-            }
+            ]
           }
         ],
         "__METADATA__": {
@@ -82,11 +82,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "libraries/types.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "test API",
@@ -99,7 +99,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "#/specification/types/Type1"
+                  "#/specification/types/Types.Type1"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -107,6 +107,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "examples": [
                   {
@@ -121,10 +124,7 @@
                   "{\"id\":null}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",

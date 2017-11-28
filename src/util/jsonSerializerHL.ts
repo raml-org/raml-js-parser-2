@@ -49,7 +49,7 @@ var getRootPath = function (node:hl.IParseResult) {
     }
     return rootPath;
 };
-let appendSourcePath = function (eNode: hl.IParseResult, result: any) {
+export function appendSourcePath(eNode: hl.IParseResult, result: any) {
     let unitPath = hlImpl.actualPath(eNode);
     let sourceMap = result.sourceMap;
     if (!sourceMap) {
@@ -174,6 +174,9 @@ export class JsonSerializer {
             if(universeHelpers.isApiSibling(definition)) {
                 this.helpersMap["traits"] = new TemplatesHandler(helpersLL.allTraits(eNode, false));
                 this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
+            }
+            else if(!universeHelpers.isLibraryType(definition)){
+                delete this.options.expandTypes;
             }
         }
     }
@@ -406,39 +409,8 @@ export class JsonSerializer {
                             let canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
 
                             if (canBeJson || canBeXml) {
-                                let include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
-                                if(!include){
-                                    let typeAttr = eNode.attr("type");
-                                    if(!typeAttr){
-                                        typeAttr = eNode.attr("schema");
-                                    }
-                                    if(typeAttr){
-                                        include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
-                                    }
-                                }
-
-                                if(include) {
-
-                                    let ind = include.indexOf("#");
-                                    let postfix = "";
-                                    if(ind>=0){
-                                        postfix = include.substring(ind);
-                                        include = include.substring(0,ind);
-                                    }
-
-                                    let aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
-
-                                    let relativePath;
-
-                                    if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
-                                        relativePath = aPath;
-                                    } else {
-                                        relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
-                                    }
-
-                                    relativePath = relativePath.replace(/\\/g, '/');
-
-                                    let schemaPath = relativePath + postfix;
+                                let schemaPath = getSchemaPath(eNode);
+                                if(schemaPath){
                                     result["schemaPath"] = schemaPath;
                                     let sourceMap = result.sourceMap;
                                     if(!sourceMap){
@@ -1278,6 +1250,7 @@ class TypeTransformer extends BasicTransformation{
 
     transform(_value:any,node:hl.IParseResult,valueProp?:hl.IProperty){
 
+        const nodeProperty = node.property();
         if(this.options.expandTypes && node&&node.isElement()){
             let parent = node.parent();
             if(parent && universeHelpers.isTypeDeclarationDescendant(parent.definition())){
@@ -1285,14 +1258,46 @@ class TypeTransformer extends BasicTransformation{
             }
             let pt = node.asElement().parsedType();
             let isInsideTemplate = linter.typeOfContainingTemplate(node)!=null;
-            let isAnnotationType = node.property() && universeHelpers.isAnnotationTypesProperty(node.property());
+            let isAnnotationType = nodeProperty && universeHelpers.isAnnotationTypesProperty(nodeProperty);
             let result = new typeExpander.TypeExpander({
+                typeCollection: (<hlImpl.ASTNodeImpl>node).types(),
                 typeExpansionRecursionDepth: this.options.typeExpansionRecursionDepth,
                 serializeMetadata: this.options.serializeMetadata,
                 sourceMap: this.options.sourceMap,
                 isInsideTemplate: isInsideTemplate,
                 isAnnotationType: isAnnotationType
             }).serializeType(pt);
+            if(nodeProperty&&universeHelpers.isParametersProperty(nodeProperty)){
+                if(result.name && util.stringEndsWith(result.name,"?")){
+                    result.name = result.name.substring(0,result.name.length-1);
+                    if(!result.hasOwnProperty("required")){
+                        result.required = false;
+                    }
+                }
+                else if(!result.hasOwnProperty("required")){
+                    result.required = true;
+                    this.appendMeta(result,"required","insertedAsDefault");
+                }
+                if(result.displayName && util.stringEndsWith(result.displayName,"?")){
+                    result.displayName = result.displayName.substring(0,result.displayName.length-1);
+                }
+                if(_value.hasOwnProperty("enum")&&!result.hasOwnProperty("enum")){
+                    result.enum = _value.enum;
+                    this.appendMeta(result,"enum","calculated");
+                }
+                if(_value.__METADATA__ && _value.__METADATA__.calculated===true){
+                    this.appendMeta(result,null,"calculated");
+                }
+            }
+            if(nodeProperty&&universeHelpers.isBodyProperty(nodeProperty)){
+                if(result.name != _value.name){
+                    result.name = _value.name;
+                    result.displayName = _value.displayName;
+                }
+            }
+            if(_value && typeof _value === "object" && _value.hasOwnProperty("parametrizedProperties")){
+                result.parametrizedProperties = _value.parametrizedProperties;
+            }
             return result;
         }
 
@@ -1306,9 +1311,9 @@ class TypeTransformer extends BasicTransformation{
         }
         const aPropsVal = value[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.additionalProperties.name];
         if(typeof aPropsVal !== "boolean" && aPropsVal){
-            value[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.additionalProperties.name] = true;
+            delete value[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.additionalProperties.name];
         }
-        let prop = node.property();
+        let prop = nodeProperty;
         // if(universeHelpers.isItemsProperty(prop)||universeHelpers.isTypeProperty(prop)){
         //     if(value.name == prop.nameId()){
         //         delete value.name;
@@ -1357,13 +1362,6 @@ class TypeTransformer extends BasicTransformation{
                     typeValue = [ typeValue ];
                     value["type"] = typeValue;
                 }
-                var schemaValue = value["schema"];
-                if(Array.isArray(schemaValue)){
-                    schemaValue.filter(x=>x!=null&&typeValue.indexOf(x)<0).forEach(x=>typeValue.push(x));
-                }
-                else if(schemaValue!=null){
-                    typeValue.push(schemaValue);
-                }
                 value["type"] = _.unique(typeValue);
             }
             delete value["schema"];
@@ -1377,6 +1375,27 @@ class TypeTransformer extends BasicTransformation{
         //this.refineTypeValue(value,node.asElement());
         if(!Array.isArray(value.type)){
             value.type = [value.type];
+        }
+        let tp = node.isElement()&&node.asElement().parsedType();
+        if(tp&&tp.isUnion()){
+
+            const reg = node.root().types().getTypeRegistry();
+            tp.declaredFacets().filter(x=>{
+
+                if(value.hasOwnProperty(x.facetName())){
+                    return false;
+                }
+                if(!x.validateSelf(reg).isOk()){
+                    return false;
+                }
+                if(!this.facetsToExtract[x.facetName()]){
+                    return false;
+                }
+                if(x.facetName()=="discriminatorValue"){
+                    return (<any>x).isStrict();
+                }
+                return true;
+            }).forEach(x=>value[x.facetName()]=x.value());
         }
         value.mediaType = RAML_MEDIATYPE;
         if(node && node.isElement()) {
@@ -1459,6 +1478,21 @@ class TypeTransformer extends BasicTransformation{
         return _value;
     }
 
+    private facetsToExtract = {
+        "maxItems" : true,
+        "minItems" : true,
+        "discriminatorValue" : true,
+        "discriminator" : true,
+        "pattern" : true,
+        "minLength" : true,
+        "maxLength" : true,
+        "enum" : true,
+        "minimum" : true,
+        "maximum" : true,
+        "format" : true,
+        "fileTypes" : true
+    }
+
     private processExpressions(value:any,node:hl.IParseResult):any{
         this.parseExpressions(value,node);
     }
@@ -1479,7 +1513,16 @@ class TypeTransformer extends BasicTransformation{
                 }
                 let newTypeValue = obj.type[i];
                 if (newTypeValue && typeof newTypeValue == "object") {
-                    if (!this.isEmptyUnion(t)&&obj.type.length==1) {
+                    let copy = false;
+                    if(!this.isEmptyUnion(t)&&obj.type.length==1){
+                        copy = Object.keys(newTypeValue).filter(x=>{
+                            if(x=="type"){
+                                return false;
+                            }
+                            return !obj.hasOwnProperty(x);
+                        }).length>0;
+                    }
+                    if (copy) {
                         Object.keys(newTypeValue).forEach(x => {
                             obj[x] = newTypeValue[x];
                         });
@@ -1510,6 +1553,10 @@ class TypeTransformer extends BasicTransformation{
         if(!metaObj){
             metaObj = {};
             obj.__METADATA__ = metaObj;
+        }
+        if(field==null){
+            metaObj[kind] = true;
+            return;
         }
         let scalarsObj = metaObj.primitiveValuesMeta;
         if(!scalarsObj){
@@ -1641,7 +1688,7 @@ class TypeTransformer extends BasicTransformation{
                 type: ["union"],
                 anyOf: []
             };
-            let components = this.toOptionsArray(union);
+            let components = toOptionsArray(union);
             for(var c of components){
                 if(c==null){
                     result = null;
@@ -1689,32 +1736,6 @@ class TypeTransformer extends BasicTransformation{
         }
         return result;
     }
-
-    private toOptionsArray(union:typeExpressions.Union):typeExpressions.BaseNode[]{
-        let result:typeExpressions.BaseNode[];
-        let e1 = union.first;
-        let e2 = union.rest;
-        while(e1.type=="parens" && (<typeExpressions.Parens>e1).arr == 0){
-            e1 = (<typeExpressions.Parens>e1).expr;
-        }
-        while(e2.type=="parens" && (<typeExpressions.Parens>e2).arr == 0){
-            e2 = (<typeExpressions.Parens>e2).expr;
-        }
-        if(e1.type=="union"){
-            result = this.toOptionsArray(<typeExpressions.Union>e1);
-        }
-        else{
-            result = [ e1 ];
-        }
-        if(e2.type=="union"){
-            result = result.concat(this.toOptionsArray(<typeExpressions.Union>e2));
-        }
-        else{
-            result.push(e2);
-        }
-        return result;
-    }
-
 
     private typeReference(node: hl.IParseResult, result: string) {
         if(!result){
@@ -2426,3 +2447,66 @@ function mergeObjects(o1:Object,o2:Object):Object{
     return o1;
 }
 
+export function toOptionsArray(union:typeExpressions.Union):typeExpressions.BaseNode[]{
+    let result:typeExpressions.BaseNode[];
+    let e1 = union.first;
+    let e2 = union.rest;
+    while(e1.type=="parens" && (<typeExpressions.Parens>e1).arr == 0){
+        e1 = (<typeExpressions.Parens>e1).expr;
+    }
+    while(e2.type=="parens" && (<typeExpressions.Parens>e2).arr == 0){
+        e2 = (<typeExpressions.Parens>e2).expr;
+    }
+    if(e1.type=="union"){
+        result = toOptionsArray(<typeExpressions.Union>e1);
+    }
+    else{
+        result = [ e1 ];
+    }
+    if(e2.type=="union"){
+        result = result.concat(toOptionsArray(<typeExpressions.Union>e2));
+    }
+    else{
+        result.push(e2);
+    }
+    return result;
+}
+
+export function getSchemaPath(eNode:hl.IHighLevelNode){
+    let include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
+    if(!include){
+        let typeAttr = eNode.attr("type");
+        if(!typeAttr){
+            typeAttr = eNode.attr("schema");
+        }
+        if(typeAttr){
+            include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
+        }
+    }
+
+    let schemaPath:string;
+    if(include) {
+
+        let ind = include.indexOf("#");
+        let postfix = "";
+        if(ind>=0){
+            postfix = include.substring(ind);
+            include = include.substring(0,ind);
+        }
+
+        let aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
+
+        let relativePath;
+
+        if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
+            relativePath = aPath;
+        } else {
+            relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
+        }
+
+        relativePath = relativePath.replace(/\\/g, '/');
+
+        schemaPath = relativePath + postfix;
+    }
+    return schemaPath;
+}

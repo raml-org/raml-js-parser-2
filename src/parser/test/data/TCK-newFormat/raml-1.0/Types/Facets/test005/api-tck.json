@@ -28,11 +28,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "api.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "type": [
@@ -45,11 +45,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "annotationTypes": [
@@ -66,11 +66,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "writer",
@@ -85,11 +85,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "A",
@@ -120,11 +120,11 @@
                     "value": "YYYY"
                   }
                 ],
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",
@@ -137,26 +137,23 @@
           {
             "body": [
               {
-                "name": "format",
-                "displayName": "format",
+                "name": "application/json",
+                "displayName": "application/json",
                 "type": [
-                  "any"
+                  "year"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",
@@ -196,36 +193,19 @@
   "type": "Api",
   "errors": [
     {
-      "code": "MEDIATYPE_EXCEPTION",
-      "message": "invalid media type",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 22,
-          "column": 6,
-          "position": 325
-        },
-        "end": {
-          "line": 22,
-          "column": 12,
-          "position": 331
-        }
-      }
-    },
-    {
       "code": "INHERITING_UNKNOWN_TYPE",
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 22,
+          "line": 21,
           "column": 6,
-          "position": 325
+          "position": 308
         },
         "end": {
-          "line": 22,
-          "column": 12,
-          "position": 331
+          "line": 21,
+          "column": 10,
+          "position": 312
         }
       }
     }

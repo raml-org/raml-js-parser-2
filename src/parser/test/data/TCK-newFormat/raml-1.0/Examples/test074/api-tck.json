@@ -1,0 +1,181 @@
+{
+  "specification": {
+    "title": "test API",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "any"
+                    ],
+                    "examples": [
+                      {
+                        "value": "{\n   d\" : 5,\n  \"r\" : 2\n}\n",
+                        "strict": true,
+                        "name": "e1"
+                      },
+                      {
+                        "value": "{\n  \"d\" : 5,\n  \"r\"   2\n}\n",
+                        "strict": true,
+                        "name": "e2"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "simplifiedExamples": [
+                      "{\n   d\" : 5,\n  \"r\" : 2\n}\n",
+                      "{\n  \"d\" : 5,\n  \"r\"   2\n}\n"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "examples": [
+                  {
+                    "value": "{\n   d\" : 5,\n  \"r\" : 2\n}\n",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "simplifiedExamples": [
+                  "{\n   d\" : 5,\n  \"r\" : 2\n}\n"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/hello",
+            "absoluteParentUri": "/hello",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/hello",
+        "displayName": "/hello",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello"
+        ],
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Cannot tokenize symbol 'd'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 11,
+          "position": 118
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 119
+        }
+      }
+    },
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Cannot tokenize symbol 'd'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 19,
+          "position": 301
+        },
+        "end": {
+          "line": 18,
+          "column": 20,
+          "position": 302
+        }
+      }
+    },
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '2'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 24,
+          "column": 24,
+          "position": 442
+        },
+        "end": {
+          "line": 24,
+          "column": 25,
+          "position": 443
+        }
+      }
+    }
+  ]
+}

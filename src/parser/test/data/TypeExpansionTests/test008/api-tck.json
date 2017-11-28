@@ -14,20 +14,20 @@
             "type": [
               "string"
             ],
+            "displayName": "p1",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "p1",
             "sourceMap": {
               "path": "api.raml"
             },
@@ -45,20 +45,20 @@
         "simplifiedExamples": [
           "{\"p1\":\"stringValue1\"}"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T1"
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "T2",
@@ -73,20 +73,20 @@
             "type": [
               "string"
             ],
+            "displayName": "p2",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "p2",
             "sourceMap": {
               "path": "api.raml"
             },
@@ -98,20 +98,20 @@
             "type": [
               "string"
             ],
+            "displayName": "p1",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "p1",
             "sourceMap": {
               "path": "api.raml"
             },
@@ -165,40 +165,40 @@
             "type": [
               "string"
             ],
+            "displayName": "p3",
             "__METADATA__": {
               "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
                 "displayName": {
                   "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 },
                 "required": {
                   "insertedAsDefault": true
                 }
               }
             },
-            "displayName": "p3",
             "sourceMap": {
               "path": "api.raml"
             },
             "required": true
           }
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "T3"
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       },
       {
         "name": "T4",
@@ -208,7 +208,7 @@
         ],
         "anyOf": [
           {
-            "name": "T4",
+            "name": "T2",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -220,20 +220,20 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p4",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
-                    "type": {
-                      "insertedAsDefault": true
-                    },
                     "displayName": {
                       "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
                     }
                   }
                 },
-                "displayName": "p4",
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -245,20 +245,20 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p2",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
-                    "type": {
-                      "insertedAsDefault": true
-                    },
                     "displayName": {
                       "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
                     }
                   }
                 },
-                "displayName": "p2",
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -270,20 +270,20 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p1",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
-                    "type": {
-                      "insertedAsDefault": true
-                    },
                     "displayName": {
                       "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
                     }
                   }
                 },
-                "displayName": "p1",
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -315,7 +315,7 @@
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4",
+            "displayName": "T2",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -325,7 +325,7 @@
             }
           },
           {
-            "name": "T4",
+            "name": "T3",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -337,20 +337,20 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p4",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
-                    "type": {
-                      "insertedAsDefault": true
-                    },
                     "displayName": {
                       "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
                     }
                   }
                 },
-                "displayName": "p4",
                 "sourceMap": {
                   "path": "api.raml"
                 },
@@ -362,40 +362,40 @@
                 "type": [
                   "string"
                 ],
+                "displayName": "p3",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
-                    "type": {
-                      "insertedAsDefault": true
-                    },
                     "displayName": {
                       "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
                     }
                   }
                 },
-                "displayName": "p3",
                 "sourceMap": {
                   "path": "api.raml"
                 },
                 "required": true
               }
             ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
             "sourceMap": {
               "path": "api.raml"
             },
-            "displayName": "T4"
+            "displayName": "T3",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           }
         ],
         "examples": [
@@ -651,20 +651,20 @@
         "type": [
           "string"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "type": {
-              "insertedAsDefault": true
-            },
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
         "sourceMap": {
           "path": "api.raml"
         },
-        "displayName": "myAnntoation"
+        "displayName": "myAnntoation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
       }
     ],
     "title": "test API",

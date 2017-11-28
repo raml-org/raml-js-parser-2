@@ -141,23 +141,6 @@
       }
     },
     {
-      "code": "TYPE_EXPECTED",
-      "message": "Expected type 'string' but got 'null'",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 14,
-          "column": 12,
-          "position": 290
-        },
-        "end": {
-          "line": 14,
-          "column": 19,
-          "position": 297
-        }
-      }
-    },
-    {
       "code": "YAML_ERROR",
       "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 15, column 22",
       "path": "api.raml",

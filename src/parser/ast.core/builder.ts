@@ -722,6 +722,13 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                             }
                                                         })
                                                         var ap = node.definition().allProperties();
+                                                        if(node.localType().isAssignableFrom("unknown")){
+                                                            for(let sut of node.definition().allSuperTypes().filter(x=>!x.isUserDefined())) {
+                                                                for (let st of sut.allSubTypes()) {
+                                                                    st.properties().forEach(x => ap.push(x));
+                                                                }
+                                                            }
+                                                        }
                                                         ap.forEach(p=> {
                                                             if (p.getAdapter(services.RAMLPropertyService).isKey()) {
                                                                 return;

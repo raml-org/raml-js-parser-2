@@ -126,7 +126,7 @@
                               "union"
                             ],
                             "anyOf": [
-                              "#/specification/types/T1",
+                              "#/specification/types/lib.T1",
                               "<<param1>>"
                             ],
                             "sourceMap": {
@@ -140,7 +140,7 @@
                           "path": "lib.raml"
                         }
                       },
-                      "#/specification/types/T3",
+                      "#/specification/types/lib.T3",
                       "<<param2>>"
                     ],
                     "sourceMap": {
@@ -203,8 +203,8 @@
                               "union"
                             ],
                             "anyOf": [
-                              "#/specification/types/T1",
-                              "#/specification/types/T2"
+                              "#/specification/types/lib.T1",
+                              "#/specification/types/lib.T2"
                             ],
                             "sourceMap": {
                               "path": "lib.raml"
@@ -217,8 +217,8 @@
                           "path": "lib.raml"
                         }
                       },
-                      "#/specification/types/T3",
-                      "#/specification/types/T4"
+                      "#/specification/types/lib.T3",
+                      "#/specification/types/lib.T4"
                     ],
                     "sourceMap": {
                       "path": "lib.raml"

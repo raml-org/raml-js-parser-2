@@ -14,7 +14,7 @@
         "name": "T3",
         "displayName": "T3",
         "type": [
-          "#/specification/types/T1"
+          "#/specification/types/lib.T1"
         ],
         "properties": [
           {
@@ -34,15 +34,15 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "anyOf": [
               "#/specification/types/T4",
               "boolean"
-            ],
-            "sourceMap": {
-              "path": "api.raml"
-            }
+            ]
           },
           {
             "name": "p2",
@@ -61,15 +61,15 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "anyOf": [
               "number",
-              "#/specification/types/T2"
-            ],
-            "sourceMap": {
-              "path": "api.raml"
-            }
+              "#/specification/types/lib.T2"
+            ]
           }
         ],
         "__METADATA__": {
@@ -79,11 +79,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T4",
@@ -101,11 +101,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T1",
@@ -120,11 +120,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T2",
@@ -139,11 +139,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",

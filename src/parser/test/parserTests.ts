@@ -632,7 +632,7 @@ describe('Parser regression tests', function () {
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
     })
     it ("naming rules" ,function(){
-        testErrors(util.data("parser/custom/naming1.raml"),["object is expected","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists"]);
+        testErrors(util.data("parser/custom/naming1.raml"),["Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists"]);
     })
     it ("resource types test with types" ,function(){
         testErrors(util.data("parser/custom/rtypes.raml"));//Ok for now lets improve later

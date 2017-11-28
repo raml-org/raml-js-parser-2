@@ -26,11 +26,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T2",
@@ -48,11 +48,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T3",
@@ -70,11 +70,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "lib.T4",
@@ -92,11 +92,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "lib.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",
@@ -118,17 +118,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "anyOf": [
-                  "#/specification/types/T1",
-                  "#/specification/types/T2",
-                  "#/specification/types/T3",
-                  "#/specification/types/T4"
-                ],
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                  "#/specification/types/lib.T1",
+                  "#/specification/types/lib.T2",
+                  "#/specification/types/lib.T3",
+                  "#/specification/types/lib.T4"
+                ]
               }
             ],
             "method": "post",

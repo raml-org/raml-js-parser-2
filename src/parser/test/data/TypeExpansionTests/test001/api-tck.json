@@ -15,6 +15,9 @@
             ],
             "displayName": "Test Property 0",
             "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -25,24 +28,21 @@
                 }
               }
             },
-            "sourceMap": {
-              "path": "api.raml"
-            },
             "name": "p1",
             "required": true
           }
         ],
         "displayName": "Test Type 0",
         "description": "test type 0",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "type": {
               "insertedAsDefault": true
             }
           }
-        },
-        "sourceMap": {
-          "path": "api.raml"
         }
       },
       {
@@ -59,6 +59,9 @@
             ],
             "displayName": "Test Property 1",
             "description": "test property 1",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -68,9 +71,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "name": "p2",
             "required": true
@@ -82,6 +82,9 @@
             ],
             "displayName": "Test Property 0",
             "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -91,9 +94,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             },
             "name": "p1",
             "required": true
@@ -119,6 +119,9 @@
             ],
             "displayName": "Test Property 2",
             "description": "test property 2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
@@ -129,24 +132,21 @@
                 }
               }
             },
-            "sourceMap": {
-              "path": "api.raml"
-            },
             "name": "p3",
             "required": true
           }
         ],
         "displayName": "Test Type 2",
         "description": "test type 2",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "type": {
               "insertedAsDefault": true
             }
           }
-        },
-        "sourceMap": {
-          "path": "api.raml"
         }
       },
       {
@@ -157,7 +157,7 @@
         ],
         "anyOf": [
           {
-            "name": "T4",
+            "name": "T2",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -170,6 +170,9 @@
                 ],
                 "displayName": "Test Property 3",
                 "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -179,9 +182,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "name": "p4",
                 "required": true
@@ -193,6 +193,9 @@
                 ],
                 "displayName": "Test Property 1",
                 "description": "test property 1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -202,9 +205,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "name": "p2",
                 "required": true
@@ -216,6 +216,9 @@
                 ],
                 "displayName": "Test Property 0",
                 "description": "test property 0",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -225,9 +228,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "name": "p1",
                 "required": true
@@ -240,7 +240,7 @@
             }
           },
           {
-            "name": "T4",
+            "name": "T3",
             "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
@@ -253,6 +253,9 @@
                 ],
                 "displayName": "Test Property 3",
                 "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -262,9 +265,6 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "sourceMap": {
-                  "path": "api.raml"
                 },
                 "name": "p4",
                 "required": true
@@ -276,6 +276,9 @@
                 ],
                 "displayName": "Test Property 2",
                 "description": "test property 2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "type": {
@@ -286,24 +289,21 @@
                     }
                   }
                 },
-                "sourceMap": {
-                  "path": "api.raml"
-                },
                 "name": "p3",
                 "required": true
               }
             ],
             "displayName": "Test Type 2",
             "description": "test type 2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "type": {
                   "insertedAsDefault": true
                 }
               }
-            },
-            "sourceMap": {
-              "path": "api.raml"
             }
           }
         ],

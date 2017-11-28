@@ -132,20 +132,17 @@
           },
           {
             "body": {
-              "format": {
-                "name": "format",
-                "displayName": "format",
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
-                  "any"
+                  "year"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -184,36 +181,19 @@
   },
   "errors": [
     {
-      "code": "MEDIATYPE_EXCEPTION",
-      "message": "invalid media type",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 22,
-          "column": 6,
-          "position": 325
-        },
-        "end": {
-          "line": 22,
-          "column": 12,
-          "position": 331
-        }
-      }
-    },
-    {
       "code": "INHERITING_UNKNOWN_TYPE",
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 22,
+          "line": 21,
           "column": 6,
-          "position": 325
+          "position": 308
         },
         "end": {
-          "line": 22,
-          "column": 12,
-          "position": 331
+          "line": 21,
+          "column": 10,
+          "position": 312
         }
       }
     }

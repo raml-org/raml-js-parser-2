@@ -1,0 +1,198 @@
+{
+  "specification": {
+    "title": "test API",
+    "mediaType": [
+      "application/xml"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "type": [
+                      "any"
+                    ],
+                    "examples": [
+                      {
+                        "value": "<root>\n  <p1>5< p1>\n  <p2>7</p2>\n</root>\n",
+                        "strict": true,
+                        "name": "e1"
+                      },
+                      {
+                        "value": "<root>\n  <p1>5</p1>\n  <p2>7\n</root>\n",
+                        "strict": true,
+                        "name": "e2"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "simplifiedExamples": [
+                      "<root>\n  <p1>5< p1>\n  <p2>7</p2>\n</root>\n",
+                      "<root>\n  <p1>5</p1>\n  <p2>7\n</root>\n"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "body": [
+              {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "examples": [
+                  {
+                    "value": "<roo\n  <p1>5< p1>\n  <p2>7</p2>\n</root>\n",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "simplifiedExamples": [
+                  "<roo\n  <p1>5< p1>\n  <p2>7</p2>\n</root>\n"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/hello",
+            "absoluteParentUri": "/hello",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/hello",
+        "displayName": "/hello",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello"
+        ],
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_XML",
+      "message": "Can not parse XML: [xmldom warning]\tattribute \"<p1\" missed value!! \"<p1\" instead!!\n@#[line:undefined,col:undefined]",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 85
+        },
+        "end": {
+          "line": 6,
+          "column": 13,
+          "position": 92
+        }
+      }
+    },
+    {
+      "code": "CAN_NOT_PARSE_XML",
+      "message": "Can not parse XML: [xmldom warning]\tunclosed xml attribute\n@#[line:undefined,col:undefined]",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 85
+        },
+        "end": {
+          "line": 6,
+          "column": 13,
+          "position": 92
+        }
+      }
+    },
+    {
+      "code": "CAN_NOT_PARSE_XML",
+      "message": "Can not parse XML: [xmldom warning]\tunclosed xml attribute\n@#[line:undefined,col:undefined]",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 14,
+          "position": 270
+        },
+        "end": {
+          "line": 16,
+          "column": 16,
+          "position": 272
+        }
+      }
+    },
+    {
+      "code": "CAN_NOT_PARSE_XML",
+      "message": "Can not parse XML: [xmldom warning]\tunclosed xml attribute\n@#[line:undefined,col:undefined]",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 21,
+          "column": 14,
+          "position": 395
+        },
+        "end": {
+          "line": 21,
+          "column": 16,
+          "position": 397
+        }
+      }
+    }
+  ]
+}

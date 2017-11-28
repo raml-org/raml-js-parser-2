@@ -666,3 +666,7 @@ export function isRAML10Node(node : hl.IHighLevelNode ) : boolean {
 export function isRAML10Attribute(node : hl.IAttribute ) : boolean {
     return isRAML10Type(node.definition());
 }
+
+export function isParametersProperty(p:hl.IProperty){
+    return isQueryParametersProperty(p)||isHeadersProperty(p)||isUriParametersProperty(p)||isBaseUriParametersProperty(p);
+}

@@ -727,7 +727,9 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
             let prop = this.property();
             let rangeType = prop.range();
-            let isTypeProp = universeHelpers.isTypeProperty(prop)||universeHelpers.isSchemaProperty(prop);
+            let isTypeProp = universeHelpers.isTypeProperty(prop)
+                ||universeHelpers.isSchemaProperty(prop)
+                ||universeHelpers.isItemsProperty(prop);
             if (rangeType.isAssignableFrom("Reference")) {
                 let key = Object.keys(val)[0];
                 let name = sVal.valueName();
@@ -1388,6 +1390,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                         // }
                     });
                 }
+                if(this.lowLevel().actual().libExpanded){
+                    (<any>this._types)["uses"] = {};
+                }
                 c.types=this._types;
             }
 
@@ -1450,6 +1455,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private isParametrizedType():boolean {
         var isParametrizedType:boolean = false;
         var typeAttr = this.attr(universes.Universe10.TypeDeclaration.properties.type.name);
+        if(!typeAttr){
+            typeAttr = this.attr(universes.Universe10.TypeDeclaration.properties.schema.name);
+        }
         if (typeAttr) {
             var typeAttrValue = typeAttr.value();
             if (typeof typeAttrValue == "string") {
@@ -1906,7 +1914,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             var defClass = this.definition();
             var ramlVersion = defClass.universe().version();
             if(defClass&&ramlVersion=="RAML10"&&(<ASTPropImpl>ka).isFromKey()) {
-                var key = this._node.key();
+                var key = this._computedKey||this._node.key();
                 c = this._node.optional() ? key + "?" : key;
             }
             else{
