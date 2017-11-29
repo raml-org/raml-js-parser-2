@@ -1,0 +1,132 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "displayName": "T1",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "examples": [
+          {
+            "value": 5,
+            "strict": false,
+            "name": null
+          }
+        ],
+        "simplifiedExamples": [
+          5
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "T2",
+        "displayName": "T2",
+        "type": [
+          "number"
+        ],
+        "examples": [
+          {
+            "value": 5,
+            "strict": false,
+            "name": "e1"
+          },
+          {
+            "value": 5,
+            "strict": false,
+            "name": "e2"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "simplifiedExamples": [
+          5,
+          5
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "testAPI",
+    "mediaType": [
+      "application/json"
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 118
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 124
+        }
+      }
+    },
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 8,
+          "position": 198
+        },
+        "end": {
+          "line": 14,
+          "column": 14,
+          "position": 204
+        }
+      }
+    },
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 8,
+          "position": 241
+        },
+        "end": {
+          "line": 17,
+          "column": 14,
+          "position": 247
+        }
+      }
+    }
+  ]
+}
