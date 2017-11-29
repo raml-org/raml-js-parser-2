@@ -4007,7 +4007,7 @@ export function createMapNode(key:string,unit:lowlevel.ICompilationUnit=null){
     return new ASTNode(node,unit,null,null,null);
 }
 
-export function createMapping(key:string,v:string){
+export function createMapping(key:string,v:string|number|boolean){
     //console.log('create mapping: ' + key);
     var node:yaml.YAMLNode=yaml.newMapping(yaml.newScalar(key),yaml.newScalar(v));
     return new ASTNode(node,null,null,null,null);

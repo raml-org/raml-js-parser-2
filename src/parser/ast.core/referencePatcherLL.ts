@@ -1269,6 +1269,16 @@ export class ReferencePatcher {
                                 }
                             }
                         }
+                        const dValPropName = def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminatorValue.name;
+                        let discriminatorValue = chNode.children().filter(x=> x.key() == dValPropName);
+                        if(!discriminatorValue.length){
+                            let dValNode = jsyaml.createMapNode(dValPropName,chNode.unit());
+                            let strictProp = jsyaml.createMapping("strict",false);
+                            let valueProp = jsyaml.createMapping("value",chNode.key());
+                            dValNode.addChild(valueProp);
+                            dValNode.addChild(strictProp);
+                            chNode.replaceChild(null,dValNode);
+                        }
                     }
                 }
                 this.process(chNode, api, typeName, true, true);
