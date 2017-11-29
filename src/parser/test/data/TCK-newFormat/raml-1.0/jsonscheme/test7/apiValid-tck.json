@@ -9,7 +9,7 @@
           "path": "scheme.json#/definitions/InnerType"
         },
         "type": [
-          "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"innerTypeName\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"innerTypeName\"\n  ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

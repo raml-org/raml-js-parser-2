@@ -1260,6 +1260,7 @@ class TypeTransformer extends BasicTransformation{
             let isInsideTemplate = linter.typeOfContainingTemplate(node)!=null;
             let isAnnotationType = nodeProperty && universeHelpers.isAnnotationTypesProperty(nodeProperty);
             let result = new typeExpander.TypeExpander({
+                node: node.asElement(),
                 typeCollection: (<hlImpl.ASTNodeImpl>node).types(),
                 typeExpansionRecursionDepth: this.options.typeExpansionRecursionDepth,
                 serializeMetadata: this.options.serializeMetadata,

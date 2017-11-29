@@ -5,6 +5,7 @@ import tsInterfaces = typeSystem.tsInterfaces;
 import _ = require("underscore");
 import ll = require("../parser/lowLevelAST");
 import hlImpl = require("../parser/highLevelImpl");
+import hl = require("../parser/highLevelAST");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
 import typeExpressions = def.rt.typeExpressions;
 import jsonSerializerHL = require("./jsonSerializerHL");
@@ -846,6 +847,8 @@ export interface Options{
 
     typeCollection?: tsInterfaces.IParsedTypeCollection;
 
+    node?: hl.IHighLevelNode
+
     typeExpansionRecursionDepth?: number;
 
     serializeMetadata?: boolean;
@@ -1305,6 +1308,10 @@ export class TypeExpander {
                 let sch = te.schema();
                 if (sch) {
                     sch = sch.trim();
+                    let resolved = resolveSchemaFragment(this.options.node,sch);
+                    if(resolved){
+                        sch = resolved;
+                    }
                     result.type = [sch];
                     if (te.schemaPath()) {
                         result.schemaPath = te.schemaPath();
@@ -1953,4 +1960,12 @@ function typeAttributeValue(t:tsInterfaces.IParsedType):any{
         return tAttr.value();
     }
     return null;
+}
+
+function resolveSchemaFragment(node:hl.IHighLevelNode,value:string):string{
+    if(!node){
+        return null;
+    }
+    let n:hl.IParseResult = node.attr("type")||node.attr("schema") || node;
+    return hlImpl.resolveSchemaFragment(n,value);
 }

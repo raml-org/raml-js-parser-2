@@ -9,7 +9,7 @@
           "path": "schema.json#Foo"
         },
         "type": [
-          "{\n  \"$ref\": \"./schema.json#/Foo\"\n}"
+          "{\n  \"type\": \"object\",\n  \"description\": \"Foo details\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"integer\"\n    },\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"ownerName\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"id\",\n    \"name\"\n  ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

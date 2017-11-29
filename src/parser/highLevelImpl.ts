@@ -26,6 +26,7 @@ import universeHelpers = require("./tools/universeHelpers")
 import resourceRegistry = require("./jsyaml/resourceRegistry")
 import rTypes=defs.rt;
 import path=require("path");
+import jsonPath = require("json-path");
 type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
@@ -840,6 +841,15 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             &&this.property()&&(universeHelpers.isTypeOrSchemaProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
             &&this.parent()&&universeHelpers.isTypeDeclarationDescendant(this.parent().definition())){
             return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
+        }
+        if (this.property()&&(universeHelpers.isTypeOrSchemaProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
+            &&this.parent()&&universeHelpers.isTypeDeclarationDescendant(this.parent().definition())){
+            if(typeof(actualValue)==="string"&&this.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF){
+                let resolvedSchema = resolveSchemaFragment(this,actualValue);
+                if(resolvedSchema){
+                    actualValue = resolvedSchema;
+                }
+            }
         }
         return actualValue;
     }
@@ -2850,4 +2860,34 @@ export function actualUnit(llNode:ll.ILowLevelASTNode) {
         }
     }
     return unit;
+}
+
+export function resolveSchemaFragment(node:hl.IParseResult,value:string):string{
+    let result:string=null;
+    try{
+        let schemaObj = JSON.parse(value);
+        if(schemaObj && typeof schemaObj==="object" && Object.keys(schemaObj).length==1 && schemaObj.hasOwnProperty("$ref")){
+            let ref = schemaObj["$ref"];
+            if(typeof ref === "string"){
+                let ind = ref.indexOf("#");
+                if(ind>=0){
+                    let unitPath = ref.substring(0,ind);
+                    let fragment = ref.substring(ind);
+                    if(fragment.length>1) {
+                        let unit = node.lowLevel().unit().resolve(unitPath);
+                        if (unit) {
+                            let schemaContent = unit.contents();
+                            let fullSchemaObj = JSON.parse(schemaContent);
+                            let jPath = jsonPath.create(fragment);
+                            let res = jPath.resolve(fullSchemaObj,()=>null);
+                            if (Array.isArray(res) && res.length) {
+                                result = JSON.stringify(res[0], null, 2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }catch(e){}
+    return result;
 }
