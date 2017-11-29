@@ -428,7 +428,8 @@ export interface TestOptions{
     newFormat?:boolean,
     serializeMetadata?:boolean,
     expandTypes?: boolean,
-    recursionDepth?: number
+    recursionDepth?: number,
+    unfoldTypes?:boolean
 }
 
 export function testAPIScript(o:TestOptions){
