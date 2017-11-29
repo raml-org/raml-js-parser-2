@@ -1,0 +1,98 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "facets": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            "p2": {
+              "name": "p2",
+              "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "FACETS_MAP",
+      "message": "'facets' should be a map",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 4,
+          "position": 40
+        },
+        "end": {
+          "line": 4,
+          "column": 10,
+          "position": 46
+        }
+      }
+    }
+  ]
+}
