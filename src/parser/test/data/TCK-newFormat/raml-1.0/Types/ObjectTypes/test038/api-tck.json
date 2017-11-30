@@ -1,0 +1,147 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "Foo",
+        "displayName": "Foo",
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": {
+              "id": "12345gr",
+              "name": "Bar-Bar-Bar",
+              "age": 12
+            },
+            "strict": true,
+            "name": "e1"
+          }
+        ],
+        "properties": [
+          {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "enum": [
+          {
+            "id": "12345fr",
+            "name": "Foo",
+            "age": 23
+          },
+          {
+            "id": "12345gr",
+            "name": "Bar",
+            "age": 12
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "simplifiedExamples": [
+          "{\"id\":\"12345gr\",\"name\":\"Bar-Bar-Bar\",\"age\":12}"
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "myApi",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "ENUM_RESTRICTION",
+      "message": "value should be one of: {\n  \"id\": \"12345fr\",\n  \"name\": \"Foo\",\n  \"age\": 23\n}, {\n  \"id\": \"12345gr\",\n  \"name\": \"Bar\",\n  \"age\": 12\n}",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 19,
+          "column": 6,
+          "position": 292
+        },
+        "end": {
+          "line": 19,
+          "column": 8,
+          "position": 294
+        }
+      }
+    }
+  ]
+}
