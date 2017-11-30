@@ -492,13 +492,14 @@ export class JsonSerializer {
                     val = '' + val;
                 }
             }
-            else {
-                if (hlImpl.isStructuredValue(val)) {
-                    val = aNode.plainValue();
-                    if(hlImpl.BasicASTNode.isInstance(val)){
-                        val = this.dumpInternal(val, nodeProperty || aNode.property(),rp, null,true);
-                    }
+            else if (hlImpl.isStructuredValue(val)) {
+                val = aNode.plainValue();
+                if (hlImpl.BasicASTNode.isInstance(val)) {
+                    val = this.dumpInternal(val, nodeProperty || aNode.property(), rp, null, true);
                 }
+            }
+            else if(jsyaml.ASTNode.isInstance(val)||proxy.LowLevelProxyNode.isInstance(val)){
+                val = (<ll.ILowLevelASTNode>val).dumpToObject();
             }
             val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
             result = val;

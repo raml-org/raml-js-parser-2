@@ -1256,8 +1256,8 @@ class CompositePropertyValidator implements PropertyValidator{
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
                             if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((nodeProperty.isRequired()||universeHelpers.isMediaTypeProperty(nodeProperty))&&(vk==null||vk===undefined))) {
                                 if (!nodeProperty.domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
-                                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED,
-                                        {propName: node.name()}, node));
+                                    v.accept(createIssue1(messageRegistry.INVALID_PROPERTY_RANGE,
+                                        {propName: node.name(),range: "string"}, node));
                                 }
                             }
                         }
@@ -1316,8 +1316,8 @@ class CompositePropertyValidator implements PropertyValidator{
             //     var llv=node.lowLevel().value();
             //     if (node.lowLevel().children().length>0){
             //         var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
-            //         v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
-            //             {propName: valName},node,false));
+            //         v.accept(createIssue1(messageRegistry.INVALID_PROPERTY_RANGE,
+            //             {propName: valName,range: "string"},node,false));
             //     }
             // }
             new ExampleAndDefaultValueValidator().validate(node, v);
@@ -1621,11 +1621,11 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 //actually valid, but not reporting this for now.
                 if (h && p) {
                     var highLevelProperty = h.attr(p.nameId());
-                    if (highLevelProperty) {
+                    if (highLevelProperty && !highLevelProperty.isAnnotatedScalar()) {
                         var lowLevelChildren = highLevelProperty.lowLevel().children();
                         if (lowLevelChildren && lowLevelChildren.length > 0) {
-                            return new ValidationError(messageRegistry.STRING_EXPECTED_3,
-                                {propName:p.nameId()});
+                            return new ValidationError(messageRegistry.INVALID_PROPERTY_RANGE,
+                                {propName:p.nameId(),range:"string"});
                         }
                     }
                 }

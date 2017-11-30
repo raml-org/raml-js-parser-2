@@ -472,42 +472,47 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                             aNode.setComputed(p.nameId(), x.value());
                         }
                         var attrNode=new hlimpl.ASTPropImpl(x, aNode, range, p);
-                        if ((seq||x.valueKind()==yaml.Kind.MAP)){
-                            var rng = p.range().nameId();
+                        let actualValueNode = x;
+                        if(x.isAnnotatedScalar()){
+                            actualValueNode = _.find(x.children(),c=>c.key()=="value");
+                        }
+                        if ((actualValueNode.valueKind()==yaml.Kind.SEQ
+                                ||actualValueNode.valueKind()==yaml.Kind.MAP)){
+                            let rng = p.range().nameId();
                             if (!p.getAdapter(services.RAMLPropertyService).isExampleProperty()) {
-                                if (rng == 'StringType') {
+                                if (rng == 'MarkdownString') {
                                     rng = "string"
                                 }
-                                if (rng == 'NumberType') {
+                                else if (rng == 'StringType') {
+                                    rng = "string"
+                                }
+                                else if (rng == 'NumberType') {
                                     rng = "number"
                                 }
-                                if (rng == 'BooleanType') {
+                                else if (rng == 'BooleanType') {
                                     rng = "boolean"
                                 }
 
                                 if (rng == "string" || rng == "number" || rng == "boolean") {
-                                    if (!x.isAnnotatedScalar()){
-                                        attrNode.errorMessage = {
-                                            entry: messageRegistry.INVALID_PROPERTY_RANGE,
-                                            parameters: {
-                                                propName: p.groupName(),
-                                                range: rng
-                                            }
+                                    attrNode.errorMessage = {
+                                        entry: messageRegistry.INVALID_PROPERTY_RANGE,
+                                        parameters: {
+                                            propName: p.groupName(),
+                                            range: rng
                                         }
+                                    }
 
-                                        if (xChildren.length==0&&p.groupName()=="enum"){
+                                    if (xChildren.length == 0 && p.groupName() == "enum") {
+                                        attrNode.errorMessage = {
+                                            entry: messageRegistry.ENUM_IS_EMPTY,
+                                            parameters: {}
+                                        };
+                                        if (x.valueKind() == yaml.Kind.MAP) {
                                             attrNode.errorMessage = {
-                                                entry: messageRegistry.ENUM_IS_EMPTY,
+                                                entry: messageRegistry.ENUM_MUST_BE_AN_ARRAY,
                                                 parameters: {}
                                             };
-                                            if (x.valueKind()==yaml.Kind.MAP){
-                                                attrNode.errorMessage = {
-                                                    entry: messageRegistry.ENUM_MUST_BE_AN_ARRAY,
-                                                    parameters: {}
-                                                };
-                                            }
                                         }
-
                                     }
                                 }
                             }

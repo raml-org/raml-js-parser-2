@@ -119,17 +119,9 @@
     "code" : "SCALAR_EXPECTED",
     "message" : "Scalar is expected here"
   },
-  "STRING_EXPECTED" : {
-    "code" : "STRING_EXPECTED",
-    "message" : "Property '{{propName}}' must be a string"
-  },
   "UNKNOWN_ANNOTATION" : {
     "code" : "UNKNOWN_ANNOTATION",
     "message" : "Unknown annotation: '{{aName}}'"
-  },
-  "STRING_EXPECTED_2" : {
-    "code" : "STRING_EXPECTED_2",
-    "message" : "{{propName}} value should be a string"
   },
   "SECUREDBY_LIST_08" : {
     "code" : "SECUREDBY_LIST_08",
@@ -146,10 +138,6 @@
   "NUMBER_EXPECTED" : {
     "code" : "NUMBER_EXPECTED",
     "message" : "Value of '{{propName}}' must be a number"
-  },
-  "STRING_EXPECTED_3" : {
-    "code" : "STRING_EXPECTED_3",
-    "message" :  "'{{propName}}' must be a string"
   },
   "STATUS_MUST_BE_3NUMBER" : {
     "code" : "STATUS_MUST_BE_3NUMBER",

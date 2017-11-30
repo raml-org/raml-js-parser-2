@@ -1,0 +1,64 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "description": {
+          "prop1": null
+        },
+        "relativeUri": "/resource",
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_PROPERTY_RANGE",
+      "message": "Property 'description' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 2,
+          "position": 36
+        },
+        "end": {
+          "line": 3,
+          "column": 13,
+          "position": 47
+        }
+      }
+    },
+    {
+      "code": "INVALID_PROPERTY_RANGE",
+      "message": "Property 'displayName' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 2,
+          "position": 62
+        },
+        "end": {
+          "line": 5,
+          "column": 13,
+          "position": 73
+        }
+      }
+    }
+  ]
+}
