@@ -1,15 +1,12 @@
 {
   "specification": {
-    "types": {
-      "Employee": {
+    "types": [
+      {
         "name": "Employee",
         "displayName": "Employee",
         "type": [
           "object"
         ],
-        "additionalProperties": {
-          "type": "string"
-        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -18,10 +15,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "input.raml"
+        }
       }
-    },
-    "title": "TestRAML"
+    ],
+    "title": "TestRAML",
+    "sourceMap": {
+      "path": "input.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "profile": {
+    "types": [
+      {
         "name": "profile",
         "displayName": "profile",
         "type": [
           "object"
         ],
-        "properties": {
-          "preference?": {
+        "properties": [
+          {
             "name": "preference?",
             "displayName": "preference?",
             "type": [
@@ -26,9 +26,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
-          "foto?": {
+          {
             "name": "foto?",
             "displayName": "foto?",
             "type": [
@@ -46,9 +49,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
-          "description?": {
+          {
             "name": "description?",
             "displayName": "description?",
             "type": [
@@ -62,16 +68,16 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
-          "link": {
+          {
             "name": "link",
             "displayName": "link",
             "type": [
@@ -85,16 +91,16 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -106,11 +112,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "type-names-question-mark.raml"
+        }
       }
-    },
+    ],
     "title": "My API With Types",
-    "description": "This RAML illustrates a type properties that includes a question mark in its\nname. The expections here is that the question mark is part of the\nproperty name if either required is explicitly applied to the\nproperty or someone uses ??. Otherwise, the question mark indicates an optional\nproperty.\n"
+    "description": "This RAML illustrates a type properties that includes a question mark in its\nname. The expections here is that the question mark is part of the\nproperty name if either required is explicitly applied to the\nproperty or someone uses ??. Otherwise, the question mark indicates an optional\nproperty.\n",
+    "sourceMap": {
+      "path": "type-names-question-mark.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

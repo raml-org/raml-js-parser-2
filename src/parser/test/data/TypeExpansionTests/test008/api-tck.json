@@ -1,0 +1,678 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "p1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue1"
+            }
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p1\":\"stringValue1\"}"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "p2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          },
+          {
+            "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "p1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue11",
+              "p2": "stringValue21"
+            },
+            "name": "e1"
+          },
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue12",
+              "p2": "stringValue22"
+            },
+            "name": "e2"
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p1\":\"stringValue11\",\"p2\":\"stringValue21\"}",
+          "{\"p1\":\"stringValue12\",\"p2\":\"stringValue22\"}"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p3",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "p3",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "union"
+        ],
+        "anyOf": [
+          {
+            "name": "T2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p4",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "p4",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              },
+              {
+                "name": "p2",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "p2",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              },
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              }
+            ],
+            "examples": [
+              {
+                "strict": true,
+                "value": {
+                  "p1": "stringValue11",
+                  "p2": "stringValue21"
+                },
+                "name": "e1"
+              },
+              {
+                "strict": true,
+                "value": {
+                  "p1": "stringValue12",
+                  "p2": "stringValue22"
+                },
+                "name": "e2"
+              }
+            ],
+            "simplifiedExamples": [
+              "{\"p1\":\"stringValue11\",\"p2\":\"stringValue21\"}",
+              "{\"p1\":\"stringValue12\",\"p2\":\"stringValue22\"}"
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T3",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p4",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "p4",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              },
+              {
+                "name": "p3",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "p3",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T3",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p3": "stringValue3",
+              "p4": "stringValue4"
+            },
+            "name": "e1"
+          },
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue13",
+              "p2": "stringValue23",
+              "p4": "stringValue4"
+            },
+            "name": "e2"
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p3\":\"stringValue3\",\"p4\":\"stringValue4\"}",
+          "{\"p1\":\"stringValue13\",\"p2\":\"stringValue23\",\"p4\":\"stringValue4\"}"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      {
+        "name": "MyComplexType",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "union"
+        ],
+        "anyOf": [
+          {
+            "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "boolean"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "name": "MyComplexType",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "number"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "MyComplexType",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "examples": [
+          {
+            "strict": false,
+            "value": "stringExampleValue",
+            "name": "stringExample",
+            "annotations": [
+              {
+                "name": "myAnntoation",
+                "value": "annotationValue"
+              }
+            ]
+          },
+          {
+            "strict": true,
+            "value": true,
+            "name": "trueBooleanExample"
+          },
+          {
+            "strict": true,
+            "value": false,
+            "name": "falseBooleanExample"
+          },
+          {
+            "strict": true,
+            "value": 15,
+            "name": "numberExample"
+          }
+        ],
+        "simplifiedExamples": [
+          "stringExampleValue",
+          true,
+          false,
+          15
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "MyComplexType",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "myAnntoation",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "myAnntoation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

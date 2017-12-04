@@ -3,10 +3,10 @@
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -16,8 +16,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -35,9 +35,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -55,9 +58,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       }
-                    },
+                    ],
                     "additionalProperties": false,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -70,7 +76,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -94,13 +103,24 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue2\"},\"rootLibProperty\":{\"integerProperty\":8}}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -115,9 +135,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

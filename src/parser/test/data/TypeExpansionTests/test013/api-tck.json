@@ -1,0 +1,1300 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "union"
+        ],
+        "anyOf": [
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "number"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "number"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "number"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "number"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "number"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "number"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "object"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "number"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "object"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "number"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "object"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "name": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "p1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "p1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "object"
+                        ],
+                        "displayName": "utp",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "utp",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "displayName": "utp",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "displayName": "utp",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "utp",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

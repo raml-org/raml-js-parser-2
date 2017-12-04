@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "MyType": {
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -26,9 +26,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -40,11 +43,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "meta": {
+    ],
+    "annotationTypes": [
+      {
         "name": "meta",
         "displayName": "Resource metadata",
         "type": [
@@ -54,22 +60,22 @@
         "allowedTargets": [
           "Resource"
         ],
-        "__METADATA__": {
-          "primitiveValuesMeta": {}
-        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
+    ],
     "title": "Annotations 14",
     "resources": [
       {
-        "annotations": {
-          "meta": {
+        "annotations": [
+          {
             "name": "meta",
-            "structuredValue": "users.gif"
+            "value": "users.gif"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -84,9 +90,16 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
           "object"
         ],
-        "properties": {
-          "selfReference": {
+        "properties": [
+          {
             "name": "selfReference",
             "displayName": "selfReference",
             "type": [
@@ -25,11 +25,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "SomeType"
+            "items": [
+              "SomeType"
+            ]
           },
-          "someProperty": {
+          {
             "name": "someProperty",
             "displayName": "someProperty",
             "type": [
@@ -46,10 +51,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "additionalProperties": false,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -57,6 +65,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiValid.raml"
         },
         "examples": [
           {
@@ -78,11 +89,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"selfReference\":[{\"selfReference\":[{\"selfReference\":[],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

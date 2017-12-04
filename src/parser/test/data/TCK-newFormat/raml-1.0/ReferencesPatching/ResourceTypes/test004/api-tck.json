@@ -3,17 +3,23 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "lib1.raml"
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "traits": {
-      "lib1.lib2.myTrait": {
-        "queryParameters": {
-          "q": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "q",
             "displayName": "<<paramName>>",
             "type": [
@@ -31,11 +37,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib2.raml"
+            }
           }
-        },
-        "body": {
-          "application/json": {
+        ],
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -49,30 +58,43 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib2.raml"
+            }
           }
-        },
+        ],
         "name": "lib1.lib2.myTrait",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib2.raml"
         }
       }
-    },
-    "resourceTypes": {
-      "lib1.rt": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           {
-            "lib1.lib2.myTrait": {
-              "paramName": "QParam"
-            }
+            "name": "lib1.lib2.myTrait",
+            "parameters": [
+              {
+                "name": "paramName",
+                "value": "QParam"
+              }
+            ]
           }
         ],
         "name": "lib1.rt",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib1.raml"
         }
       }
-    },
+    ],
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -81,10 +103,10 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
-            "queryParameters": {
-              "q": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "q",
                 "displayName": "QParam",
                 "type": [
@@ -102,11 +124,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "lib2.raml"
+                }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -120,9 +145,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "lib2.raml"
+                }
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],
@@ -133,17 +161,28 @@
                   "calculated": true
                 }
               }
-            }
-          }
-        },
-        "is": [
-          {
-            "lib1.lib2.myTrait": {
-              "paramName": "QParam"
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "https://example.com/raml/resource",
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
-        "type": "lib1.rt",
+        "is": [
+          {
+            "name": "lib1.lib2.myTrait",
+            "parameters": [
+              {
+                "name": "paramName",
+                "value": "QParam"
+              }
+            ]
+          }
+        ],
+        "type": {
+          "name": "lib1.rt"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -158,7 +197,11 @@
         ],
         "absoluteUri": "https://example.com/raml/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://example.com/raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -167,6 +210,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

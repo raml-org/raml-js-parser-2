@@ -62,7 +62,7 @@ export interface Options{
 }
 
 
-export interface Options2 {
+export interface LoadOptions {
 
     /**
      * Whether to expand libraries
@@ -72,7 +72,7 @@ export interface Options2 {
     /**
      * Whether to unfold types
      */
-    unfoldTypes?:boolean
+    expandExpressions?:boolean
 
     /**
      * Whether to replace type names by references
@@ -94,6 +94,29 @@ export interface Options2 {
      * @default false
      */
     serializeMetadata?:boolean
+
+    /**
+     * Whether to expand types
+     */
+    expandTypes?: boolean
+
+    /**
+     * Types may have recursion points in their definition graphs, i.e.
+     *
+     *  MyType:
+     *  properties:
+     *    p1?: MyType
+     *    p2: MyType[]
+     *
+     * If the option is undefined or equals zero, the type expansion process does not expand recursion points.
+     * In other case it expands them with 'typeExpansionRecursionDepth' option decremented by one.
+     */
+    typeExpansionRecursionDepth?:number
+
+    /**
+     * Whether to serialize source maps
+     */
+    sourceMap?: boolean
 
     /**
      * Absolute path of the RAML file. May be used for paths resolving when root

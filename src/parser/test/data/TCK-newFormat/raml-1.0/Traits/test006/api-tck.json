@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "trait1": {
-        "queryParameters": {
-          "param1": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "param1",
             "displayName": "param1",
             "type": [
@@ -21,12 +21,18 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "trait1"
+        ],
+        "name": "trait1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "TCK test. Trait 002",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -35,10 +41,10 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "param1": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": [
@@ -56,11 +62,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -85,23 +94,36 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"prop\":\"value\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
             "is": [
               {
-                "trait1": {
-                  "type1": "number",
-                  "body1": {
-                    "application/json": {
-                      "example": "{\n  \"prop\": \"value\"\n}\n"
+                "name": "trait1",
+                "parameters": [
+                  {
+                    "name": "type1",
+                    "value": "number"
+                  },
+                  {
+                    "name": "body1",
+                    "value": {
+                      "application/json": {
+                        "example": "{\n  \"prop\": \"value\"\n}\n"
+                      }
                     }
                   }
-                }
+                ]
               }
             ],
             "method": "get",
@@ -111,9 +133,14 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "http://api.samplehost.com/resource",
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -128,7 +155,11 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -137,6 +168,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

@@ -5,7 +5,10 @@
     "protocols": [
       "HTTP",
       "https"
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

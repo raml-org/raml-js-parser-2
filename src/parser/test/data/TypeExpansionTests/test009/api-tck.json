@@ -1,0 +1,658 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T1.p1",
+                  "ap2": 1
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T1.p1"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "p1",
+            "name": "p1",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T1",
+              "ap2": 0
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T1"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T2.p2",
+                  "ap2": 3
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T2.p2"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "p2",
+            "name": "p2",
+            "required": true
+          },
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T1.p1",
+                  "ap2": 1
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T1.p1"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "p1",
+            "name": "p1",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T2",
+              "ap2": 2
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T2"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T3.p3",
+                  "ap2": 5
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T3.p3"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "p3",
+            "name": "p3",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T3",
+              "ap2": 4
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T3"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "union"
+        ],
+        "anyOf": [
+          {
+            "name": "T2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T4.p4",
+                      "ap2": 7
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T4.p4"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p4",
+                "name": "p4",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T2.p2",
+                      "ap2": 3
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T2.p2"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p2",
+                "name": "p2",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T1.p1",
+                      "ap2": 1
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T1.p1"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p1",
+                "name": "p1",
+                "required": true
+              }
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T2",
+                  "ap2": 2
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T2"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "name": "T3",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T4.p4",
+                      "ap2": 7
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T4.p4"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p4",
+                "name": "p4",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T3.p3",
+                      "ap2": 5
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T3.p3"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p3",
+                "name": "p3",
+                "required": true
+              }
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T3",
+                  "ap2": 4
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T3"
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "T3",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T4",
+              "ap2": 6
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T4"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "MyObjectAnnotation",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "ap1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "ap1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          },
+          {
+            "name": "ap2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "number"
+            ],
+            "displayName": "ap2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "MyObjectAnnotation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "MyStringAnnotation",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "MyStringAnnotation",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

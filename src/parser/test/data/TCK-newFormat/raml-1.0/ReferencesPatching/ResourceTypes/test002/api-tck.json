@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "myTrait": {
-        "queryParameters": {
-          "<<param>>": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "<<param>>",
             "displayName": "<<param>>",
             "type": [
@@ -21,11 +21,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "myTrait.raml"
+            }
           }
-        },
-        "body": {
-          "application/json": {
+        ],
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -42,14 +45,20 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "myTrait.raml"
+            }
           }
-        },
-        "name": "myTrait"
+        ],
+        "name": "myTrait",
+        "sourceMap": {
+          "path": "myTrait.raml"
+        }
       },
-      "simpleTrait": {
-        "queryParameters": {
-          "stringParam": {
+      {
+        "queryParameters": [
+          {
             "name": "stringParam",
             "displayName": "stringParam",
             "type": [
@@ -67,187 +76,250 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "simpleTrait"
+        ],
+        "name": "simpleTrait",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "rt1": {
+    ],
+    "resourceTypes": [
+      {
         "type": {
-          "rt2": {
-            "param": "<<param>>"
-          }
+          "name": "rt2",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "<<param>>"
+            }
+          ]
         },
-        "name": "rt1"
+        "name": "rt1",
+        "sourceMap": {
+          "path": "rt1.raml"
+        }
       },
-      "rt2": {
-        "methods": {
-          "post": {
-            "method": "post"
+      {
+        "methods": [
+          {
+            "method": "post",
+            "sourceMap": {
+              "path": "rt2.raml"
+            }
           }
-        },
+        ],
         "is": [
           {
-            "myTrait": {
-              "param": "<<param>>"
-            }
+            "name": "myTrait",
+            "parameters": [
+              {
+                "name": "param",
+                "value": "<<param>>"
+              }
+            ]
           },
-          "simpleTrait"
+          {
+            "name": "simpleTrait"
+          }
         ],
-        "name": "rt2"
+        "name": "rt2",
+        "sourceMap": {
+          "path": "rt2.raml"
+        }
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "qParam": {
-                "name": "qParam",
-                "displayName": "qParam",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              },
-              "stringParam": {
-                "name": "stringParam",
-                "displayName": "stringParam",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              }
-            },
-            "body": {
-              "application/json": {
-                "name": "application/json",
-                "displayName": "application/json",
-                "type": [
-                  "any"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              }
-            },
-            "method": "get"
-          },
-          "post": {
-            "queryParameters": {
-              "qParam": {
-                "name": "qParam",
-                "displayName": "qParam",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              },
-              "stringParam": {
-                "name": "stringParam",
-                "displayName": "stringParam",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              }
-            },
-            "body": {
-              "application/json": {
-                "name": "application/json",
-                "displayName": "application/json",
-                "type": [
-                  "any"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              }
-            },
-            "method": "post"
-          }
-        },
-        "is": [
+        "methods": [
           {
-            "myTrait": {
-              "param": "qParam"
+            "queryParameters": [
+              {
+                "name": "qParam",
+                "displayName": "qParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "myTrait.raml"
+                }
+              },
+              {
+                "name": "stringParam",
+                "displayName": "stringParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "myTrait.raml"
+                }
+              }
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "myTrait.raml"
             }
           },
-          "simpleTrait"
+          {
+            "queryParameters": [
+              {
+                "name": "qParam",
+                "displayName": "qParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "myTrait.raml"
+                }
+              },
+              {
+                "name": "stringParam",
+                "displayName": "stringParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "myTrait.raml"
+                }
+              }
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "myTrait.raml"
+            }
+          }
+        ],
+        "is": [
+          {
+            "name": "myTrait",
+            "parameters": [
+              {
+                "name": "param",
+                "value": "qParam"
+              }
+            ]
+          },
+          {
+            "name": "simpleTrait"
+          }
         ],
         "type": {
-          "rt1": {
-            "param": "qParam"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "qParam"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -263,9 +335,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

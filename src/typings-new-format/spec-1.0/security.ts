@@ -1,32 +1,30 @@
 import common = require("./common");
 import methods = require("./methods");
 
-export type SecuritySchemeRef10 = string | Object;
-
 export interface OAuth10SecuritySettings10 extends common.Annotable {
 
     /**
      * List of the signature methods used by the server.
      * Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT
      */
-    signatures: string[]
+    signatures?: string[]
 
     /**
      * The URI of the Temporary Credential Request endpoint
      * as defined in RFC5849 Section 2.1
      */
-    requestTokenUri: string
+    requestTokenUri?: string
 
     /**
      * The URI of the Resource Owner Authorization endpoint
      * as defined in RFC5849 Section 2.2
      */
-    authorizationUri: string
+    authorizationUri?: string
 
     /**
      * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
      */
-    tokenCredentialsUri: string
+    tokenCredentialsUri?: string
 }
 
 export interface OAuth20SecuritySettings10 extends common.Annotable {
@@ -35,25 +33,25 @@ export interface OAuth20SecuritySettings10 extends common.Annotable {
      * The URI of the Token Endpoint as defined in RFC6749 Section 3.2.
      * Not required forby implicit grant type.
      */
-    accessTokenUri: string
+    accessTokenUri?: string
 
     /**
      * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1.
      * Required forby authorization_code and implicit grant types.
      */
-    authorizationUri: string
+    authorizationUri?: string
 
     /**
      * A list of the Authorization grants supported by the API as defined in
      * RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code,
      * password, client_credentials, implicit, or any absolute url.
      */
-    authorizationGrants: string[]
+    authorizationGrants?: string[]
 
     /**
      * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
      */
-    scopes: string[]
+    scopes?: string[]
 }
 
 
@@ -66,7 +64,7 @@ export interface DigestSecuritySettings10 extends common.Annotable{}
 
 export interface CustomSecuritySettings10 extends common.Annotable{}
 
-export interface SecuritySchemeBase10 {
+export interface SecuritySchemeBase10 extends common.Annotable {
 
     /**
      * Name of the security scheme
@@ -76,15 +74,17 @@ export interface SecuritySchemeBase10 {
     /**
      * The description attribute MAY be used to describe a security schemes property
      */
-    description:string
+    description?:string
 
-    describedBy: SecuritySchemePart10
+    describedBy?: SecuritySchemePart10
     /**
      * The securitySchemes property MUST be used to specify an API's security mechanisms,
      * including the required settings and the authentication methods that the API supports.
      * one authentication method is allowed if the API supports them
      */
     type: string
+
+    settings?: Object;
 }
 
 export interface OAuth10SecurityScheme10 extends SecuritySchemeBase10 {
@@ -97,7 +97,7 @@ export interface OAuth10SecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: OAuth10SecuritySettings10
+    settings?: OAuth10SecuritySettings10
 }
 
 export interface OAuth20SecurityScheme10 extends SecuritySchemeBase10 {
@@ -110,7 +110,7 @@ export interface OAuth20SecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: OAuth20SecuritySettings10
+    settings?: OAuth20SecuritySettings10
 }
 
 export interface PassThroughSecurityScheme10 extends SecuritySchemeBase10 {
@@ -123,7 +123,7 @@ export interface PassThroughSecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: PassThroughSecuritySettings10
+    settings?: PassThroughSecuritySettings10
 }
 
 export interface BasicSecurityScheme10 extends SecuritySchemeBase10 {
@@ -136,7 +136,7 @@ export interface BasicSecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: BasicSecuritySettings10
+    settings?: BasicSecuritySettings10
 }
 
 export interface DigestSecurityScheme10 extends SecuritySchemeBase10 {
@@ -149,7 +149,7 @@ export interface DigestSecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: DigestSecuritySettings10
+    settings?: DigestSecuritySettings10
 }
 
 export interface CustomSecurityScheme10 extends SecuritySchemeBase10 {
@@ -162,15 +162,11 @@ export interface CustomSecurityScheme10 extends SecuritySchemeBase10 {
      * Processing applications MAY choose to recognize other properties for things such as
      * token lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: CustomSecuritySettings10
+    settings?: CustomSecuritySettings10
 }
 
 export interface SecuritySchemePart10 extends methods.Operation10 {
 
-    /**
-     * Information about the expected responses to a request
-     */
-    responses: methods.Response10[]
 }
 
 export type SecuritySchemeFragment = OAuth10SecuritySchemeFragment

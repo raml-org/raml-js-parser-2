@@ -1,12 +1,15 @@
 {
   "specification": {
-    "types": {
-      "MyType": {
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
+        "sourceMap": {
+          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType"
+        },
         "type": [
-          "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"innerTypeName\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"innerTypeName\"\n  ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,14 +21,14 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "Api",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -38,6 +41,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "examples": [
                   {
                     "value": {
@@ -47,12 +53,21 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/json"
+                "simplifiedExamples": [
+                  "{\"innerTypeName1\":\"somename\"}"
+                ],
+                "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -67,9 +82,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

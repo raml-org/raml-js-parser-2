@@ -22,15 +22,19 @@
         ],
         "absoluteUri": "https://api.github.com/user",
         "completeRelativeUri": "/user",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com",
+        "sourceMap": {
+          "path": "uri-parameters-1.raml"
+        }
       },
       {
         "relativeUri": "/users",
         "displayName": "/users",
         "resources": [
           {
-            "uriParameters": {
-              "userId": {
+            "uriParameters": [
+              {
                 "name": "userId",
                 "displayName": "userId",
                 "type": [
@@ -48,9 +52,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                }
               }
-            },
+            ],
             "relativeUri": "/{userId}",
             "displayName": "/{userId}",
             "resources": [
@@ -69,7 +76,37 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/followers",
                 "completeRelativeUri": "/users/{userId}/followers",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                },
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "uri-parameters-1.raml"
+                    }
+                  }
+                ]
               },
               {
                 "relativeUri": "/following",
@@ -86,15 +123,69 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/following",
                 "completeRelativeUri": "/users/{userId}/following",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                },
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "uri-parameters-1.raml"
+                    }
+                  }
+                ]
               },
               {
                 "relativeUri": "/keys",
                 "displayName": "/keys",
                 "resources": [
                   {
-                    "uriParameters": {
-                      "keyId": {
+                    "uriParameters": [
+                      {
+                        "name": "userId",
+                        "displayName": "userId",
+                        "type": [
+                          "integer"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          },
+                          "calculated": true
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "uri-parameters-1.raml"
+                        }
+                      },
+                      {
                         "name": "keyId",
                         "displayName": "keyId",
                         "type": [
@@ -112,9 +203,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "uri-parameters-1.raml"
+                        }
                       }
-                    },
+                    ],
                     "relativeUri": "/{keyId}",
                     "displayName": "/{keyId}",
                     "__METADATA__": {
@@ -129,7 +223,11 @@
                     ],
                     "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}",
                     "completeRelativeUri": "/users/{userId}/keys/{keyId}",
-                    "parentUri": "/users/{userId}/keys"
+                    "parentUri": "/users/{userId}/keys",
+                    "absoluteParentUri": "https://api.github.com/users/{userId}/keys",
+                    "sourceMap": {
+                      "path": "uri-parameters-1.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -144,7 +242,37 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/keys",
                 "completeRelativeUri": "/users/{userId}/keys",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "sourceMap": {
+                  "path": "uri-parameters-1.raml"
+                },
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "uri-parameters-1.raml"
+                    }
+                  }
+                ]
               }
             ],
             "__METADATA__": {
@@ -159,7 +287,11 @@
             ],
             "absoluteUri": "https://api.github.com/users/{userId}",
             "completeRelativeUri": "/users/{userId}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.github.com/users",
+            "sourceMap": {
+              "path": "uri-parameters-1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -174,7 +306,11 @@
         ],
         "absoluteUri": "https://api.github.com/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com",
+        "sourceMap": {
+          "path": "uri-parameters-1.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -183,6 +319,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "uri-parameters-1.raml"
     }
   },
   "ramlVersion": "RAML10",

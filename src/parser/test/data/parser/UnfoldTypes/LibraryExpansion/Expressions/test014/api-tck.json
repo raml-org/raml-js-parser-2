@@ -1,8 +1,17 @@
 {
   "specification": {
-    "types": {
-      "lib.T1": {
-        "name": "T1",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.T1",
         "displayName": "T1",
         "type": [
           "string"
@@ -17,30 +26,14 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "lib.T1",
-          "displayName": "lib.T1",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.T2": {
-        "name": "T2",
+      {
+        "name": "lib.T2",
         "displayName": "T2",
         "type": [
           "string"
@@ -55,36 +48,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "lib.T2",
-          "displayName": "lib.T2",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -94,8 +71,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "p1": {
+                    "properties": [
+                      {
                         "name": "p1",
                         "displayName": "p1",
                         "type": [
@@ -112,34 +89,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "body.raml"
+                        },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "unfolded": {
-                          "name": "p1",
-                          "displayName": "p1",
-                          "type": [
-                            "string"
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        }
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "p2": {
+                      {
                         "name": "p2",
                         "displayName": "p2",
                         "type": [
-                          "lib.T2 | lib.T1"
+                          "union"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -152,38 +112,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "body.raml"
+                        },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "unfolded": {
-                          "name": "p2",
-                          "displayName": "p2",
-                          "type": [
-                            {
-                              "type": [
-                                "union"
-                              ],
-                              "options": [
-                                "#/specification/types/lib.T2",
-                                "#/specification/types/lib.T1"
-                              ]
-                            }
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        }
+                        "anyOf": [
+                          "#/specification/types/lib.T2",
+                          "#/specification/types/lib.T1"
+                        ]
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -194,77 +133,11 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "body.raml"
+                    },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "unfolded": {
-                      "name": "type",
-                      "displayName": "type",
-                      "type": [
-                        "object"
-                      ],
-                      "properties": {
-                        "p1": {
-                          "name": "p1",
-                          "displayName": "p1",
-                          "type": [
-                            "string"
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        },
-                        "p2": {
-                          "name": "p2",
-                          "displayName": "p2",
-                          "type": [
-                            {
-                              "type": [
-                                "union"
-                              ],
-                              "options": [
-                                "#/specification/types/lib.T2",
-                                "#/specification/types/lib.T1"
-                              ]
-                            }
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        }
-                      },
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "type": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION"
-                    }
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {
@@ -274,97 +147,21 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE",
-                "unfolded": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    {
-                      "name": "type",
-                      "displayName": "type",
-                      "type": [
-                        "object"
-                      ],
-                      "properties": {
-                        "p1": {
-                          "name": "p1",
-                          "displayName": "p1",
-                          "type": [
-                            "string"
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        },
-                        "p2": {
-                          "name": "p2",
-                          "displayName": "p2",
-                          "type": [
-                            {
-                              "type": [
-                                "union"
-                              ],
-                              "options": [
-                                "#/specification/types/lib.T2",
-                                "#/specification/types/lib.T1"
-                              ]
-                            }
-                          ],
-                          "required": true,
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION"
-                        }
-                      },
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "type": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION"
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "INPLACE"
-                }
+                "typePropertyKind": "INPLACE"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -379,9 +176,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

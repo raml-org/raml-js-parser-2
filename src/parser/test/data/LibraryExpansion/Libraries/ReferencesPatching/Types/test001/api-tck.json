@@ -28,7 +28,7 @@
         "primitives.Locale": {
           "name": "Locale",
           "displayName": "Locale",
-          "typePropertyKind": "INPLACE",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "primitives.ExtLocale"
           ],
@@ -57,7 +57,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "primitives.Locale"
                 ],

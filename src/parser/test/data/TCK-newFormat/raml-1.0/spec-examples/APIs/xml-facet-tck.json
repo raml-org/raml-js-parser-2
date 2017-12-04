@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -17,7 +17,10 @@
             "required": true,
             "xml": {
               "attribute": true,
-              "name": "fullname"
+              "name": "fullname",
+              "sourceMap": {
+                "path": "xml-facet.raml"
+              }
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -29,10 +32,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "xml-facet.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "addresses": {
+          {
             "name": "addresses",
             "displayName": "addresses",
             "type": [
@@ -40,7 +46,10 @@
             ],
             "required": true,
             "xml": {
-              "wrapped": true
+              "wrapped": true,
+              "sourceMap": {
+                "path": "xml-facet.raml"
+              }
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -52,11 +61,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "xml-facet.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Address"
+            "items": [
+              "Address"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -67,17 +81,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "xml-facet.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Address": {
+      {
         "name": "Address",
         "displayName": "Address",
         "type": [
           "object"
         ],
-        "properties": {
-          "street": {
+        "properties": [
+          {
             "name": "street",
             "displayName": "street",
             "type": [
@@ -94,10 +111,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "xml-facet.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "city": {
+          {
             "name": "city",
             "displayName": "city",
             "type": [
@@ -114,10 +134,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "xml-facet.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -128,11 +151,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "xml-facet.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "XML facet"
+    ],
+    "title": "XML facet",
+    "sourceMap": {
+      "path": "xml-facet.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

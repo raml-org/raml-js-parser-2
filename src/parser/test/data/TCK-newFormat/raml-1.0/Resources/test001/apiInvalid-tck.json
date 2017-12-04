@@ -7,13 +7,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/xml": {
+                "body": [
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -31,11 +31,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -46,17 +52,22 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/someChildUri",
+            "absoluteParentUri": "/some/base/uri/someChildUri",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
-        },
+        ],
         "relativeUri": "/someChildUri",
         "displayName": "/someChildUri",
         "resources": [
           {
-            "methods": {
-              "put": {
-                "body": {
-                  "application/json": {
+            "methods": [
+              {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -74,9 +85,12 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -87,9 +101,14 @@
                       "calculated": true
                     }
                   }
+                },
+                "parentUri": "/someChildUri/anotherChild",
+                "absoluteParentUri": "/some/base/uri/someChildUri/anotherChild",
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
-            },
+            ],
             "relativeUri": "/anotherChild",
             "displayName": "/anotherChild",
             "__METADATA__": {
@@ -104,7 +123,11 @@
             ],
             "absoluteUri": "/some/base/uri/someChildUri/anotherChild",
             "completeRelativeUri": "/someChildUri/anotherChild",
-            "parentUri": "/someChildUri"
+            "parentUri": "/someChildUri",
+            "absoluteParentUri": "/some/base/uri/someChildUri",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -119,7 +142,11 @@
         ],
         "absoluteUri": "/some/base/uri/someChildUri",
         "completeRelativeUri": "/someChildUri",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/some/base/uri",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "relativeUri": "/someChildUri/anotherChild",
@@ -137,7 +164,11 @@
         ],
         "absoluteUri": "/some/base/uri/someChildUri/anotherChild",
         "completeRelativeUri": "/someChildUri/anotherChild",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/some/base/uri",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -146,6 +177,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "ramlVersion": "RAML10",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Point": {
+    "types": [
+      {
         "name": "Point",
         "displayName": "Point",
         "type": [
           "object"
         ],
-        "properties": {
-          "x": {
+        "properties": [
+          {
             "name": "x",
             "displayName": "x",
             "type": [
@@ -25,10 +25,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "y": {
+          {
             "name": "y",
             "displayName": "y",
             "type": [
@@ -45,10 +48,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "additionalProperties": false,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -57,19 +63,22 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "Label": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Label",
         "displayName": "Label",
         "type": [
           "object"
         ],
-        "properties": {
-          "point": {
+        "properties": [
+          {
             "name": "point",
             "displayName": "point",
             "type": [
@@ -86,11 +95,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiValid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Point"
+            "items": [
+              "Point"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -101,10 +115,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "New API",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -113,10 +130,10 @@
     ],
     "resources": [
       {
-        "annotations": {
-          "Label": {
+        "annotations": [
+          {
             "name": "Label",
-            "structuredValue": {
+            "value": {
               "point": [
                 {
                   "x": 4,
@@ -129,7 +146,7 @@
               ]
             }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -144,7 +161,11 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -153,6 +174,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiValid.raml"
     }
   },
   "ramlVersion": "RAML10",

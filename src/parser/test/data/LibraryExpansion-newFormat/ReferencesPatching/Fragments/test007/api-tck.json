@@ -1,14 +1,37 @@
 {
   "specification": {
-    "types": {
-      "lib0.MyType": {
-        "name": "MyType",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libs/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "types2",
+        "value": "libs/types2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "lib0",
+        "value": "libs/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "lib0.MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
@@ -26,9 +49,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libs/lib.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -40,10 +66,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libs/lib.raml"
+        }
       },
-      "lib.MyType": {
-        "name": "MyType",
+      {
+        "name": "lib.MyType",
         "displayName": "MyType",
         "type": [
           "string"
@@ -56,16 +85,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libs/types.raml"
+        }
       },
-      "types2.MyObjectType": {
-        "name": "MyObjectType",
+      {
+        "name": "types2.MyObjectType",
         "displayName": "MyObjectType",
         "type": [
           "object"
         ],
-        "properties": {
-          "integerProperty": {
+        "properties": [
+          {
             "name": "integerProperty",
             "displayName": "integerProperty",
             "type": [
@@ -83,9 +115,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libs/types2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -97,15 +132,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libs/types2.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "rt": {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -115,8 +153,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -134,9 +172,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -154,9 +195,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -168,7 +212,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "fragments/type.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -192,23 +239,35 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue\"},\"rootLibProperty\":{\"integerProperty\":5}}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
-        },
-        "name": "rt"
+        ],
+        "name": "rt",
+        "sourceMap": {
+          "path": "fragments/rt.raml"
+        }
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -218,8 +277,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -237,9 +296,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -257,9 +319,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -271,7 +336,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "fragments/type.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -295,15 +363,26 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue2\"},\"rootLibProperty\":{\"integerProperty\":8}}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "put": {
-            "body": {
-              "application/json": {
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -323,14 +402,27 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "stringValue"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
+        ],
+        "type": {
+          "name": "rt"
         },
-        "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -345,9 +437,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

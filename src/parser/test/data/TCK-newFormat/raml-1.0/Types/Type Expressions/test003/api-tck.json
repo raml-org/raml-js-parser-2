@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Persons": {
+    "types": [
+      {
         "name": "Persons",
         "displayName": "Persons",
         "type": [
@@ -14,12 +14,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "string"
+        "items": [
+          "string"
+        ]
       }
-    },
-    "title": "Dropbox API"
+    ],
+    "title": "Dropbox API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,17 +1,40 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "description": "resource type response"
+                "description": "resource type response",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "securedBy": [
-              "s1"
+              {
+                "name": "s1",
+                "type": "x-custom",
+                "describedBy": {
+                  "responses": [
+                    {
+                      "code": "401",
+                      "description": "security response",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -20,11 +43,34 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
-        },
+        ],
         "securedBy": [
-          "s1"
+          {
+            "name": "s1",
+            "type": "x-custom",
+            "describedBy": {
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "security response",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              ],
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
         ],
         "name": "rt",
         "__METADATA__": {
@@ -33,43 +79,111 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
-    "securitySchemes": {
-      "s1": {
+    ],
+    "securitySchemes": [
+      {
         "name": "s1",
         "type": "x-custom",
         "describedBy": {
           "responses": [
             {
               "code": "401",
-              "description": "security response"
+              "description": "security response",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
-          ]
+          ],
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "title": "test API",
     "securedBy": [
-      "s1"
+      {
+        "name": "s1",
+        "type": "x-custom",
+        "describedBy": {
+          "responses": [
+            {
+              "code": "401",
+              "description": "security response",
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          ],
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "description": "resource type response"
+                "description": "resource type response",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "202": {
+              {
                 "code": "202",
-                "description": "method response"
+                "description": "method response",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              {
+                "code": "401",
+                "description": "security response",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "calculated": true
+                }
               }
-            },
+            ],
             "securedBy": [
-              "s1"
+              {
+                "name": "s1",
+                "type": "x-custom",
+                "describedBy": {
+                  "responses": [
+                    {
+                      "code": "401",
+                      "description": "security response",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -78,12 +192,39 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
+        ],
+        "type": {
+          "name": "rt"
         },
-        "type": "rt",
         "securedBy": [
-          "s1"
+          {
+            "name": "s1",
+            "type": "x-custom",
+            "describedBy": {
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "security response",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              ],
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -102,9 +243,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

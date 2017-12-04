@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "User": {
+    "types": [
+      {
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,9 +26,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
-          "lastname": {
+          {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -46,9 +49,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -66,17 +72,23 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Bob\",\"lastname\":\"Marley\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       },
-      "Org": {
+      {
         "name": "Org",
         "displayName": "Org",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -94,9 +106,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
-          "address": {
+          {
             "name": "address",
             "displayName": "address",
             "type": [
@@ -107,16 +122,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
-          "value": {
+          {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -127,16 +142,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -145,16 +160,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       }
-    },
+    ],
     "title": "API with Examples",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "headers": {
-              "UserID": {
+        "methods": [
+          {
+            "headers": [
+              {
                 "name": "UserID",
                 "displayName": "UserID",
                 "type": [
@@ -179,12 +197,18 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "SWED-123"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "complex-examples.raml"
+                }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -207,18 +231,29 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"name\":\"Doe Enterprise\",\"value\":\"Silver\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "complex-examples.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/organization",
+            "absoluteParentUri": "/organization",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
-          "get": {
-            "responses": {
-              "201": {
+          {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -249,16 +284,31 @@
                         }
                       }
                     },
+                    "simplifiedExamples": [
+                      "{\"name\":\"Acme\"}",
+                      "{\"name\":\"Software Corp\",\"address\":\"35 Central Street\",\"value\":\"Gold\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "complex-examples.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "complex-examples.raml"
                 }
               }
-            },
+            ],
             "description": "Returns an organization entity.",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/organization",
+            "absoluteParentUri": "/organization",
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/organization",
         "displayName": "/organization",
         "__METADATA__": {
@@ -273,9 +323,16 @@
         ],
         "absoluteUri": "/organization",
         "completeRelativeUri": "/organization",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "complex-examples.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

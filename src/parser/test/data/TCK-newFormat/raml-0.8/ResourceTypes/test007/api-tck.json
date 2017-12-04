@@ -1,33 +1,45 @@
 {
   "specification": {
     "title": "test API",
-    "resourceTypes": {
-      "myResourceType": {
+    "resourceTypes": [
+      {
         "name": "myResourceType",
-        "methods": {
-          "post": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "<<param5>>": "<<param5value>>"
-              },
-              "<<param4>>": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "<<param4>>",
-                "body": {
-                  "application/json": {
-                    "name": "application/json"
+                "body": [
+                  {
+                    "name": "application/json",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              {
+                "code": "200",
+                "<<param5>>": "<<param5value>>",
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
-                "<<param3>>": "<<param3value>>"
+                "<<param3>>": "<<param3value>>",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "queryParameters": {
-              "<<qParam>>": {
+            ],
+            "queryParameters": [
+              {
                 "name": "<<qParam>>",
                 "displayName": "<<qParam>>",
                 "type": "string",
@@ -48,9 +60,12 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
-              "param1": {
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": "string",
@@ -72,15 +87,27 @@
                     }
                   }
                 },
-                "<<prop1>>": "<<prop1Value>>"
+                "<<prop1>>": "<<prop1Value>>",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "method": "post",
-            "<<param2>>": "<<param2value>>"
+            "<<param2>>": "<<param2value>>",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "<<param1>>": "<<param1value>>"
+        ],
+        "<<param1>>": "<<param1value>>",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML08",

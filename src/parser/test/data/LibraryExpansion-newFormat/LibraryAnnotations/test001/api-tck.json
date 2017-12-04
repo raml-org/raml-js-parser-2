@@ -1,8 +1,34 @@
 {
   "specification": {
-    "types": {
-      "lib.T1": {
-        "name": "T1",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "usage": "string value 1",
+        "annotations": [
+          {
+            "name": "lib.lib1.MyAnnotationType",
+            "value": {
+              "p1": "str"
+            }
+          }
+        ]
+      },
+      {
+        "key": "lib.lib1",
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "usage": "string value 2"
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.T1",
         "displayName": "T1",
         "type": [
           "string"
@@ -15,10 +41,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
-      "lib.lib1.StrType": {
-        "name": "StrType",
+      {
+        "name": "lib.lib1.StrType",
         "displayName": "StrType",
         "type": [
           "string"
@@ -36,18 +65,21 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib1.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "lib.lib1.MyAnnotationType": {
-        "name": "MyAnnotationType",
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.lib1.MyAnnotationType",
         "displayName": "MyAnnotationType",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -65,9 +97,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib1.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -79,19 +114,22 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib1.raml"
+        }
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -105,14 +143,25 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -127,9 +176,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

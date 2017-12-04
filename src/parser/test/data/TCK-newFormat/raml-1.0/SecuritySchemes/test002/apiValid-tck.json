@@ -1,13 +1,13 @@
 {
   "specification": {
-    "securitySchemes": {
-      "oauth_2_0": {
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -26,11 +26,14 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "sourceMap": {
+                "path": "apiValid.raml"
+              }
             }
-          },
-          "headers": {
-            "Authorization": {
+          ],
+          "headers": [
+            {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": [
@@ -49,27 +52,45 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "sourceMap": {
+                "path": "apiValid.raml"
+              }
             }
-          },
+          ],
           "responses": [
             {
               "code": "401",
-              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+              "sourceMap": {
+                "path": "apiValid.raml"
+              }
             }
-          ]
+          ],
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
           "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
           "authorizationGrants": [
             "client_credentials"
-          ]
+          ],
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "apiValid.raml"
         }
       }
-    },
+    ],
     "title": "New API",
-    "version": "v1"
+    "version": "v1",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

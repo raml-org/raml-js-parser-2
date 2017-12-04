@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "items": {
+        "properties": [
+          {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -26,11 +26,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "number"
+            "items": [
+              "number"
+            ]
           },
-          "items2": {
+          {
             "name": "items2",
             "displayName": "items2",
             "type": [
@@ -48,11 +53,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "number"
+            "items": [
+              "number"
+            ]
           },
-          "items3": {
+          {
             "name": "items3",
             "displayName": "items3",
             "type": [
@@ -70,11 +80,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "number"
+            "items": [
+              "number"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -84,6 +99,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "examples": [
           {
@@ -108,11 +126,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"items\":[1,2,3],\"items2\":[3,1,4],\"items3\":[1,2,3]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "Test API"
+    ],
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -3,10 +3,10 @@
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "param1": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": [
@@ -30,10 +30,16 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  true
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "param2": {
+              {
                 "name": "param2",
                 "displayName": "param2",
                 "type": [
@@ -57,13 +63,24 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "stringValue"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -78,9 +95,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

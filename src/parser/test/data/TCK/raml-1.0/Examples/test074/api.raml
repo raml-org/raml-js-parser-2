@@ -1,0 +1,26 @@
+#%RAML 1.0
+title: test API
+mediaType: application/json
+/hello:
+  get:
+    body:
+      example: |
+        {
+           d" : 5,
+          "r" : 2
+        }
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              e1: |
+                {
+                   d" : 5,
+                  "r" : 2
+                }
+              e2: |
+                {
+                  "d" : 5,
+                  "r"   2
+                }

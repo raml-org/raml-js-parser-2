@@ -1,14 +1,14 @@
 {
   "specification": {
-    "annotationTypes": {
-      "suborg": {
+    "annotationTypes": [
+      {
         "name": "suborg",
         "displayName": "suborg",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop1": {
+        "properties": [
+          {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
@@ -19,16 +19,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           },
-          "/.*/": {
+          {
             "name": "/.*/",
             "displayName": "/.*/",
             "type": [
@@ -46,9 +46,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -57,16 +60,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
-    },
+    ],
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
-        "annotations": {
-          "suborg": {
+        "annotations": [
+          {
             "name": "suborg",
-            "structuredValue": {
+            "value": {
               "manager": {
                 "name": "Tom"
               },
@@ -75,7 +81,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/assets",
         "displayName": "/assets",
         "__METADATA__": {
@@ -90,9 +96,16 @@
         ],
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

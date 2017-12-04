@@ -30,20 +30,20 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../parser/definition-system/universeProvider")
 
-export function load(ramlPathOrContent:string,options?:parserCoreApi.Options2):Promise<jsonTypings.RAMLParseResult>{
+export function load(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):Promise<jsonTypings.RAMLParseResult>{
     let serializeOptions = toNewFormatSerializeOptions(options);
     return parse(ramlPathOrContent,options).then(expanded=>{
         return jsonSerializerHL.dump(expanded,serializeOptions);
     });
 }
 
-export function loadSync(ramlPathOrContent:string,options?:parserCoreApi.Options2):jsonTypings.RAMLParseResult{
+export function loadSync(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):jsonTypings.RAMLParseResult{
     let serializeOptions = toNewFormatSerializeOptions(options);
     let expanded = parseSync(ramlPathOrContent,options);
     return jsonSerializerHL.dump(expanded,serializeOptions);
 }
 
-export function parse(ramlPathOrContent:string,options?:parserCoreApi.Options2):Promise<hl.IHighLevelNode>{
+export function parse(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):Promise<hl.IHighLevelNode>{
     options = options || {};
     let filePath = ramlPathOrContent;
     if(consideredAsRamlContent(ramlPathOrContent)){
@@ -63,7 +63,7 @@ export function parse(ramlPathOrContent:string,options?:parserCoreApi.Options2):
     });
 }
 
-export function parseSync(ramlPathOrContent:string,options?:parserCoreApi.Options2):hl.IHighLevelNode{
+export function parseSync(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):hl.IHighLevelNode{
     options = options || {};
     let filePath = ramlPathOrContent;
     if(consideredAsRamlContent(ramlPathOrContent)){
@@ -545,7 +545,7 @@ export function optionsForContent(
     }
 }
 
-function toOldStyleOptions(options:parserCoreApi.Options2):parserCoreApi.Options{
+function toOldStyleOptions(options:parserCoreApi.LoadOptions):parserCoreApi.Options{
 
     if(!options){
         return {};
@@ -560,12 +560,12 @@ function toOldStyleOptions(options:parserCoreApi.Options2):parserCoreApi.Options
 
 export function loadOptionsForContent(
     content:string,
-    arg2?:parserCoreApi.Options2,
-    _filePath?:string):parserCoreApi.Options2{
+    arg2?:parserCoreApi.LoadOptions,
+    _filePath?:string):parserCoreApi.LoadOptions{
 
     let filePath = _filePath || virtualFilePath(arg2);
     let fsResolver = virtualFSResolver(filePath,content,arg2&&arg2.fsResolver);
-    let result:parserCoreApi.Options2 = {
+    let result:parserCoreApi.LoadOptions = {
         fsResolver: fsResolver
     };
     if(!arg2){
@@ -593,14 +593,17 @@ function consideredAsRamlContent(str:string):boolean{
     return str.indexOf("\n")>=0;
 }
 
-function toNewFormatSerializeOptions(options: parserCoreApi.Options2) {
+function toNewFormatSerializeOptions(options: parserCoreApi.LoadOptions) {
     options = options || {};
     return {
         rootNodeDetails: true,
         attributeDefaults: true,
-        serializeMetadata: true,
-        unfoldTypes: options.unfoldTypes,
-        typeReferences: options.typeReferences
+        serializeMetadata: options.serializeMetadata || false,
+        expandExpressions: options.expandExpressions,
+        typeReferences: options.typeReferences,
+        expandTypes: options.expandTypes,
+        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth,
+        sourceMap: options.sourceMap
     };
 }
 
@@ -633,7 +636,7 @@ export function virtualFSResolver(
     };
 }
 
-export function virtualFilePath(opt:parserCoreApi.Options|parserCoreApi.Options2):string{
+export function virtualFilePath(opt:parserCoreApi.Options|parserCoreApi.LoadOptions):string{
     let filePath = (opt && opt.filePath)||path.resolve("/#local.raml");
     return filePath.replace(/\\/g,"/");
 }

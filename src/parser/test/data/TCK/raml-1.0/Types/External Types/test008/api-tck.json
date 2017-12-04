@@ -40,7 +40,7 @@
             "c": {
               "name": "c",
               "displayName": "c",
-              "typePropertyKind": "INPLACE",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "mySchema"
               ],

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Account": {
+    "types": [
+      {
         "name": "Account",
         "displayName": "Account",
         "type": [
@@ -15,10 +15,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "My API With Types"
+    ],
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

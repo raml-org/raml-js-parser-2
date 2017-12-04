@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -14,17 +14,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Data": {
+      {
         "name": "Data",
         "displayName": "Data",
         "type": [
           "object"
         ],
-        "properties": {
-          "reports": {
+        "properties": [
+          {
             "name": "reports",
             "displayName": "reports",
             "type": [
@@ -41,17 +44,25 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Person"
+            "items": [
+              "Person"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "examples": [
           {
@@ -64,11 +75,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"reports\":[null]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "Test API"
+    ],
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

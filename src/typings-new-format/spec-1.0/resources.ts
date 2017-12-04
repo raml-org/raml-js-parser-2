@@ -3,8 +3,6 @@ import datamodel = require("./datamodel");
 import security = require("./security");
 import methods = require("./methods");
 
-export type ResourceTypeRef10 = string | { [key: string]: any };
-
 /**
  * Web resource
  */
@@ -31,11 +29,27 @@ export interface Resource10 extends ResourceBase10 {
      */
     relativeUriPathSegments: string[]
 
+    /**
+     * Absolute URI of the resource
+     */
     absoluteUri: string
 
+    /**
+     * URI relative to base URI of the Api
+     */
     completeRelativeUri: string
 
-    parentUri: string
+    /**
+     * For nested resources, URI of the parent resource relative to base URI of the Api.
+     * For top level resources it is empty string
+     */
+    parentUri?: string
+
+    /**
+     * For nested resources, absolute URI of the parent resource.
+     * For top level resources it is base URI of the Api or empty string if base Uri is undefined.
+     */
+    absoluteParentUri?: string
 
 }
 
@@ -47,7 +61,7 @@ export interface ResourceTypeFragment extends ResourceType10, common.FragmentDec
 export interface ResourceType10 extends ResourceBase10 {
 
     /**
-     * Resource name
+     * Resource type name
      */
     name: string
 
@@ -57,12 +71,17 @@ export interface ResourceType10 extends ResourceBase10 {
     usage?: string
 
     /**
-     * Resource name
+     * Human readable resource type name
      */
     displayName?: string
 }
 
 export interface ResourceBase10 extends common.Annotable {
+
+    /**
+     * User readable name of the component
+     */
+    displayName?: string
 
     /**
      * Resource description
@@ -74,24 +93,24 @@ export interface ResourceBase10 extends common.Annotable {
      * (implicitly or explicitly) for this resource.
      * Individual methods may override this declaration
      */
-    is?: methods.TraitRef10[]
+    is?: methods.TemplateReference[]
 
-    type?: ResourceTypeRef10
+    type?: methods.TemplateReference
 
     /**
      * The security schemes that apply to all methods declared
      * (implicitly or explicitly) for this resource.
      */
-    securedBy?: security.SecuritySchemeRef10
+    securedBy?: security.SecuritySchemeBase10[]
 
     /**
      * Methods that are part of this resource type definition
      */
-    methods?: { [key: string]: methods.Method10 }
+    methods?: methods.Method10[]
 
     /**
      * Detailed information about any URI parameters of this resource
      */
-    uriParameters?: { [key: string]: datamodel.TypeReference10 }
+    uriParameters?: datamodel.TypeDeclaration[]
 
 }

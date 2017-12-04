@@ -10,6 +10,54 @@
           "type": ["string","number","boolean","object","array","null"]
         }
       }
+    },
+    "SourceInfo": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to file which contains definition"
+        },
+        "namespace": {
+          "type": "array",
+          "description": "Namespace of defining library if any"
+        }
+      }
+    },
+    "ElementSourceInfo": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SourceInfo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "scalarsSources": {
+              "description": "Source information for fields which are defined in another file rather then their owning component. If all scalar fields of the component are defined in the same file, the 'scalarsSources' field is undefined.",
+              "type": "object",
+              "patternProperties": {
+                ".+": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SourceInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "HasSource": {
+      "type": "object",
+      "properties": {
+        "sourceMap": {
+          "$ref": "#/definitions/ElementSourceInfo"
+        },
+        "__METADATA__": {
+          "type": "object"
+        }
+      }
     }
   }
 }

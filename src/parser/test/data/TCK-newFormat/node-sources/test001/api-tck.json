@@ -3,12 +3,23 @@
     "title": "test API",
     "schemas": [
       {
-        "sch1": "{\n  \"type\": \"object\"\n\n\n}\n"
+        "value": "{\n  \"type\": \"object\"\n\n\n}\n",
+        "name": "sch1",
+        "sourceMap": {
+          "path": "schema1.json"
+        }
       },
       {
-        "sch2": "{\n  \"type\": \"object\"\n\n\n}\n"
+        "value": "{\n  \"type\": \"object\"\n\n\n}\n",
+        "name": "sch2",
+        "sourceMap": {
+          "path": "schema2.json"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

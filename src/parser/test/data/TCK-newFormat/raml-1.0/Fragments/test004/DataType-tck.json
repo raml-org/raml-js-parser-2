@@ -3,9 +3,8 @@
     "type": [
       "object"
     ],
-    "required": true,
-    "properties": {
-      "first": {
+    "properties": [
+      {
         "name": "first",
         "displayName": "first",
         "type": [
@@ -22,10 +21,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "DataType.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "second": {
+      {
         "name": "second",
         "displayName": "second",
         "type": [
@@ -42,19 +44,22 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "DataType.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "__METADATA__": {
       "primitiveValuesMeta": {
         "type": {
           "insertedAsDefault": true
-        },
-        "required": {
-          "insertedAsDefault": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "DataType.raml"
     },
     "mediaType": "application/raml+yaml",
     "typePropertyKind": "TYPE_EXPRESSION"

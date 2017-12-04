@@ -1,0 +1,288 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
+            "name": "//",
+            "required": true
+          }
+        ],
+        "maxProperties": 15,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1"
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p2",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
+            "name": "//",
+            "required": true
+          }
+        ],
+        "maxProperties": 10,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T2"
+      },
+      {
+        "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "t3Prop",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "t3Prop",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "required": true
+          },
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              },
+              {
+                "name": "p2",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "displayName": "p2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "required": true
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "//",
+            "name": "//",
+            "required": true
+          }
+        ],
+        "maxProperties": 10,
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

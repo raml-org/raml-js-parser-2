@@ -1,0 +1,325 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "Test Property 0",
+            "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "name": "p1",
+            "required": true
+          }
+        ],
+        "displayName": "Test Type 0",
+        "description": "test type 0",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "Test Property 1",
+            "description": "test property 1",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "name": "p2",
+            "required": true
+          },
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "Test Property 0",
+            "description": "test property 0",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "name": "p1",
+            "required": true
+          }
+        ],
+        "displayName": "Test Type 1",
+        "description": "test type 1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "displayName": "Test Property 2",
+            "description": "test property 2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "name": "p3",
+            "required": true
+          }
+        ],
+        "displayName": "Test Type 2",
+        "description": "test type 2",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T4",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "union"
+        ],
+        "anyOf": [
+          {
+            "name": "T2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 3",
+                "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p4",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 1",
+                "description": "test property 1",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p2",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 0",
+                "description": "test property 0",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p1",
+                "required": true
+              }
+            ],
+            "displayName": "Test Type 1",
+            "description": "test type 1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          {
+            "name": "T3",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 3",
+                "description": "test property 3",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p4",
+                "required": true
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 2",
+                "description": "test property 2",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p3",
+                "required": true
+              }
+            ],
+            "displayName": "Test Type 2",
+            "description": "test type 2",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        ],
+        "displayName": "Test Type 3",
+        "description": "test type 3",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

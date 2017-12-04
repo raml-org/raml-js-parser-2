@@ -1,18 +1,21 @@
 {
   "specification": {
-    "resourceTypes": {
-      "myResourceType": {
-        "methods": {
-          "post": {
-            "responses": {
-              "200": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "<<param5>>": "<<param5value>>"
+                "<<param5>>": "<<param5value>>",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "<<param4>>": {
+              {
                 "code": "<<param4>>",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -29,13 +32,19 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -53,18 +62,30 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "<<param3>>": "<<param3value>>"
+                "<<param3>>": "<<param3value>>",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "method": "post",
-            "<<param2>>": "<<param2value>>"
+            "<<param2>>": "<<param2value>>",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "name": "myResourceType",
-        "<<param1>>": "<<param1value>>"
+        "<<param1>>": "<<param1value>>",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

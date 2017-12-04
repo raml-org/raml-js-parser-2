@@ -9,8 +9,8 @@
         "resources": [
           {
             "description": "A specific user",
-            "uriParameters": {
-              "userIds": {
+            "uriParameters": [
+              {
                 "name": "userIds",
                 "displayName": "userIds",
                 "type": [
@@ -35,7 +35,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "array-uri-parameter.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -49,9 +52,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "array-uri-parameter.raml"
+                }
               }
-            },
+            ],
             "relativeUri": "/{userIds}",
             "displayName": "/{userIds}",
             "__METADATA__": {
@@ -66,7 +72,11 @@
             ],
             "absoluteUri": "/users/{userIds}",
             "completeRelativeUri": "/users/{userIds}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "sourceMap": {
+              "path": "array-uri-parameter.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -81,9 +91,16 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "array-uri-parameter.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "array-uri-parameter.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,44 +1,69 @@
 {
   "specification": {
-    "traits": {
-      "lib.libTrait1": {
-        "annotations": {
-          "lib.MyAnnotation": {
-            "name": "lib.MyAnnotation",
-            "structuredValue": "stringValueFromLibTrait1"
-          }
-        },
-        "name": "libTrait1"
-      },
-      "lib.libTrait2": {
-        "annotations": {
-          "lib.MyAnnotation": {
-            "name": "lib.MyAnnotation",
-            "structuredValue": "stringValueFromLibTrait2"
-          }
-        },
-        "name": "libTrait2"
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "lib.libResourceType": {
-        "methods": {
-          "post": {
-            "is": [
-              "lib.libTrait1"
-            ],
-            "method": "post"
+    ],
+    "traits": [
+      {
+        "annotations": [
+          {
+            "name": "lib.MyAnnotation",
+            "value": "stringValueFromLibTrait1"
           }
-        },
-        "is": [
-          "lib.libTrait2"
         ],
-        "name": "libResourceType"
+        "name": "lib.libTrait1",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "name": "lib.MyAnnotation",
+            "value": "stringValueFromLibTrait2"
+          }
+        ],
+        "name": "lib.libTrait2",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "lib.MyAnnotation": {
-        "name": "MyAnnotation",
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "is": [
+              {
+                "name": "lib.libTrait1"
+              }
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/lib.raml"
+            }
+          }
+        ],
+        "is": [
+          {
+            "name": "lib.libTrait2"
+          }
+        ],
+        "name": "lib.libResourceType",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
           "string"
@@ -51,8 +76,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

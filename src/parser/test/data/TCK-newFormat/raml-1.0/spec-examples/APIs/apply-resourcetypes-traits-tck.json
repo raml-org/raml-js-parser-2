@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "secured": {
-        "headers": {
-          "access_token": {
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "access_token",
             "displayName": "access_token",
             "type": [
@@ -28,17 +28,26 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "5757gh76"
+            ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "traits/secured.raml"
+            }
           }
-        },
+        ],
         "description": "Some requests require authentication.",
         "name": "secured",
-        "usage": "Apply this to any method that needs to be secured"
+        "usage": "Apply this to any method that needs to be secured",
+        "sourceMap": {
+          "path": "traits/secured.raml"
+        }
       },
-      "paged": {
-        "headers": {
-          "page": {
+      {
+        "headers": [
+          {
             "name": "page",
             "displayName": "page",
             "type": [
@@ -60,17 +69,26 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              2
+            ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "traits/paged.raml"
+            }
           }
-        },
+        ],
         "description": "Some responses require paging.",
         "name": "paged",
-        "usage": "Apply this to any method that needs to be paged"
+        "usage": "Apply this to any method that needs to be paged",
+        "sourceMap": {
+          "path": "traits/paged.raml"
+        }
       },
-      "rateLimited": {
-        "headers": {
-          "limit": {
+      {
+        "headers": [
+          {
             "name": "limit",
             "displayName": "limit",
             "type": [
@@ -92,25 +110,37 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              5000
+            ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "traits/rate-limited.raml"
+            }
           }
-        },
+        ],
         "description": "Some requests require rate limiting.",
         "name": "rateLimited",
-        "usage": "Apply this to any method that needs to be rate limited"
+        "usage": "Apply this to any method that needs to be rate limited",
+        "sourceMap": {
+          "path": "traits/rate-limited.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "collection": {
-        "methods": {
-          "get": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
-          "post": {
-            "responses": {
-              "201": {
+          {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -134,39 +164,57 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
-                ]
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
-            },
+            ],
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
-        },
+        ],
         "description": "A collection resource",
         "name": "collection",
-        "usage": "Use this to describe a resource that lists items"
+        "usage": "Use this to describe a resource that lists items",
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       },
-      "member": {
-        "methods": {
-          "get": {
+      {
+        "methods": [
+          {
             "description": "Get a <<resourcePathName | !singularize>>",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/member.raml"
+            }
           }
-        },
+        ],
         "description": "A single <<resourcePathName | !singularize>>",
         "name": "member",
-        "usage": "This resourceType should be used for any specific member of a collection"
+        "usage": "This resourceType should be used for any specific member of a collection",
+        "sourceMap": {
+          "path": "resourceTypes/member.raml"
+        }
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "headers": {
-              "page": {
+        "methods": [
+          {
+            "headers": [
+              {
                 "name": "page",
                 "displayName": "page",
                 "type": [
@@ -188,10 +236,16 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  2
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "traits/paged.raml"
+                }
               },
-              "limit": {
+              {
                 "name": "limit",
                 "displayName": "limit",
                 "type": [
@@ -213,10 +267,16 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  5000
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "traits/rate-limited.raml"
+                }
               },
-              "access_token": {
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -241,20 +301,35 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "5757gh76"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "traits/secured.raml"
+                }
               }
-            },
+            ],
             "is": [
-              "paged",
-              "rateLimited"
+              {
+                "name": "paged"
+              },
+              {
+                "name": "rateLimited"
+              }
             ],
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "sourceMap": {
+              "path": "apply-resourcetypes-traits.raml"
+            }
           },
-          "post": {
-            "headers": {
-              "access_token": {
+          {
+            "headers": [
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -279,12 +354,18 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "5757gh76"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "traits/secured.raml"
+                }
               }
-            },
-            "responses": {
-              "201": {
+            ],
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -308,19 +389,34 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
-                ]
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
-            },
+            ],
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "sourceMap": {
+              "path": "apply-resourcetypes-traits.raml"
+            }
           }
-        },
-        "is": [
-          "secured"
         ],
-        "type": "collection",
+        "is": [
+          {
+            "name": "secured"
+          }
+        ],
+        "type": {
+          "name": "collection"
+        },
         "description": "A collection resource",
         "relativeUri": "/users",
         "displayName": "/users",
@@ -336,9 +432,16 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apply-resourcetypes-traits.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-resourcetypes-traits.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

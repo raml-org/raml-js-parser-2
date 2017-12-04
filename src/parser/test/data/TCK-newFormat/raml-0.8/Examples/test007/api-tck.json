@@ -4,16 +4,14 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "email": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "email",
                 "displayName": "email",
                 "type": "string",
                 "required": false,
-                "default": null,
-                "example": null,
                 "repeat": false,
                 "enum": [
                   null,
@@ -34,12 +32,20 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -53,9 +59,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

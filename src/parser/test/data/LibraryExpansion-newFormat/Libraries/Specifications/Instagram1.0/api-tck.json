@@ -1,14 +1,23 @@
 {
   "specification": {
-    "types": {
-      "types.Location": {
-        "name": "Location",
+    "uses": [
+      {
+        "key": "types",
+        "value": "./lib/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "types.Location",
         "displayName": "Location",
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -19,16 +28,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -39,16 +48,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "latitude": {
+          {
             "name": "latitude",
             "displayName": "latitude",
             "type": [
@@ -59,16 +68,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "longitude": {
+          {
             "name": "longitude",
             "displayName": "longitude",
             "type": [
@@ -79,16 +88,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "street_address": {
+          {
             "name": "street_address",
             "displayName": "street_address",
             "type": [
@@ -99,22 +108,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -129,17 +141,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"id\":\"1\",\"name\":\"John\",\"latitude\":34.016242,\"longitude\":-95.800781,\"street_address\":\"\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Meta": {
-        "name": "Meta",
+      {
+        "name": "types.Meta",
         "displayName": "Meta",
         "type": [
           "object"
         ],
-        "properties": {
-          "code": {
+        "properties": [
+          {
             "name": "code",
             "displayName": "code",
             "type": [
@@ -156,16 +171,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -176,17 +197,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"code\":200}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Locations": {
-        "name": "Locations",
+      {
+        "name": "types.Locations",
         "displayName": "Locations",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -197,23 +221,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.Location"
+            "items": [
+              "types.Location"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -234,17 +263,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":[{\"id\":\"1\",\"name\":\"John\",\"latitude\":34.016242,\"longitude\":-95.800781}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Counts": {
-        "name": "Counts",
+      {
+        "name": "types.Counts",
         "displayName": "Counts",
         "type": [
           "object"
         ],
-        "properties": {
-          "media": {
+        "properties": [
+          {
             "name": "media",
             "displayName": "media",
             "type": [
@@ -255,16 +287,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "follows": {
+          {
             "name": "follows",
             "displayName": "follows",
             "type": [
@@ -275,16 +307,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "followed_by": {
+          {
             "name": "followed_by",
             "displayName": "followed_by",
             "type": [
@@ -295,22 +327,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -323,25 +358,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"media\":2,\"follows\":3,\"followed_by\":5}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UserAccount": {
-        "name": "UserAccount",
+      {
+        "name": "types.UserAccount",
         "displayName": "UserAccount",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "id": {
+            "properties": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -352,16 +390,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "username": {
+              {
                 "name": "username",
                 "displayName": "username",
                 "type": [
@@ -372,16 +410,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "full_name": {
+              {
                 "name": "full_name",
                 "displayName": "full_name",
                 "type": [
@@ -392,16 +430,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "profile_picture": {
+              {
                 "name": "profile_picture",
                 "displayName": "profile_picture",
                 "type": [
@@ -412,16 +450,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "bio": {
+              {
                 "name": "bio",
                 "displayName": "bio",
                 "type": [
@@ -432,16 +470,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "website": {
+              {
                 "name": "website",
                 "displayName": "website",
                 "type": [
@@ -452,16 +490,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": [
@@ -472,16 +510,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -492,16 +530,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -523,17 +567,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.User": {
-        "name": "User",
+      {
+        "name": "types.User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -544,16 +591,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "username": {
+          {
             "name": "username",
             "displayName": "username",
             "type": [
@@ -564,16 +611,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "full_name": {
+          {
             "name": "full_name",
             "displayName": "full_name",
             "type": [
@@ -584,16 +631,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "profile_picture": {
+          {
             "name": "profile_picture",
             "displayName": "profile_picture",
             "type": [
@@ -607,16 +654,16 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "bio": {
+          {
             "name": "bio",
             "displayName": "bio",
             "type": [
@@ -627,16 +674,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "website": {
+          {
             "name": "website",
             "displayName": "website",
             "type": [
@@ -647,16 +694,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "count": {
+          {
             "name": "count",
             "displayName": "count",
             "type": [
@@ -667,22 +714,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -702,25 +752,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionPost": {
-        "name": "SubscriptionPost",
+      {
+        "name": "types.SubscriptionPost",
         "displayName": "SubscriptionPost",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "object": {
+            "properties": [
+              {
                 "name": "object",
                 "displayName": "object",
                 "type": [
@@ -731,16 +784,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "object_id": {
+              {
                 "name": "object_id",
                 "displayName": "object_id",
                 "type": [
@@ -751,16 +804,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "aspect": {
+              {
                 "name": "aspect",
                 "displayName": "aspect",
                 "type": [
@@ -771,16 +824,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "callback_url": {
+              {
                 "name": "callback_url",
                 "displayName": "callback_url",
                 "type": [
@@ -791,16 +844,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "type": {
+              {
                 "name": "type",
                 "displayName": "type",
                 "type": [
@@ -811,16 +864,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -831,16 +884,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "lat": {
+              {
                 "name": "lat",
                 "displayName": "lat",
                 "type": [
@@ -851,16 +904,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "lng": {
+              {
                 "name": "lng",
                 "displayName": "lng",
                 "type": [
@@ -871,16 +924,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "radius": {
+              {
                 "name": "radius",
                 "displayName": "radius",
                 "type": [
@@ -891,36 +944,39 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -941,17 +997,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\",\"lat\":34.016242,\"lng\":-95.800781,\"radius\":20}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionData": {
-        "name": "SubscriptionData",
+      {
+        "name": "types.SubscriptionData",
         "displayName": "SubscriptionData",
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -962,16 +1021,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -982,16 +1041,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "object": {
+          {
             "name": "object",
             "displayName": "object",
             "type": [
@@ -1002,16 +1061,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "aspect": {
+          {
             "name": "aspect",
             "displayName": "aspect",
             "type": [
@@ -1022,16 +1081,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "callback_url": {
+          {
             "name": "callback_url",
             "displayName": "callback_url",
             "type": [
@@ -1042,16 +1101,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "object_id": {
+          {
             "name": "object_id",
             "displayName": "object_id",
             "type": [
@@ -1062,22 +1121,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1090,17 +1152,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionsGet": {
-        "name": "SubscriptionsGet",
+      {
+        "name": "types.SubscriptionsGet",
         "displayName": "SubscriptionsGet",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -1111,23 +1176,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.SubscriptionData"
+            "items": [
+              "types.SubscriptionData"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1147,17 +1217,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":[{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionsDelete": {
-        "name": "SubscriptionsDelete",
+      {
+        "name": "types.SubscriptionsDelete",
         "displayName": "SubscriptionsDelete",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -1168,22 +1241,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1201,25 +1277,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Tag": {
-        "name": "Tag",
+      {
+        "name": "types.Tag",
         "displayName": "Tag",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "media_count": {
+            "properties": [
+              {
                 "name": "media_count",
                 "displayName": "media_count",
                 "type": [
@@ -1230,16 +1309,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "name": {
+              {
                 "name": "name",
                 "displayName": "name",
                 "type": [
@@ -1250,36 +1329,39 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1293,17 +1375,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":{\"media_count\":2,\"name\":\"forest\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SerachTagItem": {
-        "name": "SerachTagItem",
+      {
+        "name": "types.SerachTagItem",
         "displayName": "SerachTagItem",
         "type": [
           "object"
         ],
-        "properties": {
-          "media_count": {
+        "properties": [
+          {
             "name": "media_count",
             "displayName": "media_count",
             "type": [
@@ -1314,16 +1399,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -1334,22 +1419,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1361,17 +1449,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"media_count\":2,\"name\":\"forest\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsSearch": {
-        "name": "TagsSearch",
+      {
+        "name": "types.TagsSearch",
         "displayName": "TagsSearch",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -1382,23 +1473,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.SerachTagItem"
+            "items": [
+              "types.SerachTagItem"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1417,17 +1513,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":[{\"media_count\":2,\"name\":\"forest\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaLike": {
-        "name": "MediaLike",
+      {
+        "name": "types.MediaLike",
         "displayName": "MediaLike",
         "type": [
           "object"
         ],
-        "properties": {
-          "first_name": {
+        "properties": [
+          {
             "name": "first_name",
             "displayName": "first_name",
             "type": [
@@ -1438,16 +1537,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "last_name": {
+          {
             "name": "last_name",
             "displayName": "last_name",
             "type": [
@@ -1458,16 +1557,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "id": {
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -1478,16 +1577,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -1498,22 +1597,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1527,17 +1629,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"id\":\"2\",\"type\":\"string\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaLikes": {
-        "name": "MediaLikes",
+      {
+        "name": "types.MediaLikes",
         "displayName": "MediaLikes",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -1548,23 +1653,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.MediaLike"
+            "items": [
+              "types.MediaLike"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1582,17 +1692,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":[{\"first_name\":\"John\",\"last_name\":\"Smith\",\"id\":\"2\",\"type\":\"string\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Comment": {
-        "name": "Comment",
+      {
+        "name": "types.Comment",
         "displayName": "Comment",
         "type": [
           "object"
         ],
-        "properties": {
-          "created_time": {
+        "properties": [
+          {
             "name": "created_time",
             "displayName": "created_time",
             "type": [
@@ -1603,16 +1716,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "text": {
+          {
             "name": "text",
             "displayName": "text",
             "type": [
@@ -1623,24 +1736,24 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "from": {
+          {
             "name": "from",
             "displayName": "from",
             "type": [
               "types.User"
             ],
             "required": false,
-            "properties": {
-              "type": {
+            "properties": [
+              {
                 "name": "type",
                 "displayName": "type",
                 "type": [
@@ -1651,30 +1764,30 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "id": {
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -1685,22 +1798,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1718,17 +1834,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaComment": {
-        "name": "MediaComment",
+      {
+        "name": "types.MediaComment",
         "displayName": "MediaComment",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -1745,17 +1864,25 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.Comment"
+            "items": [
+              "types.Comment"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -1780,17 +1907,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Oembed": {
-        "name": "Oembed",
+      {
+        "name": "types.Oembed",
         "displayName": "Oembed",
         "type": [
           "object"
         ],
-        "properties": {
-          "author_id": {
+        "properties": [
+          {
             "name": "author_id",
             "displayName": "author_id",
             "type": [
@@ -1801,16 +1931,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "author_name": {
+          {
             "name": "author_name",
             "displayName": "author_name",
             "type": [
@@ -1821,16 +1951,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "author_url": {
+          {
             "name": "author_url",
             "displayName": "author_url",
             "type": [
@@ -1841,16 +1971,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "heght": {
+          {
             "name": "heght",
             "displayName": "heght",
             "type": [
@@ -1861,16 +1991,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "media_id": {
+          {
             "name": "media_id",
             "displayName": "media_id",
             "type": [
@@ -1881,16 +2011,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "provider_name": {
+          {
             "name": "provider_name",
             "displayName": "provider_name",
             "type": [
@@ -1901,16 +2031,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "provider_url": {
+          {
             "name": "provider_url",
             "displayName": "provider_url",
             "type": [
@@ -1921,16 +2051,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "title": {
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -1941,16 +2071,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -1961,16 +2091,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "url": {
+          {
             "name": "url",
             "displayName": "url",
             "type": [
@@ -1981,16 +2111,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "version": {
+          {
             "name": "version",
             "displayName": "version",
             "type": [
@@ -2001,16 +2131,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "width": {
+          {
             "name": "width",
             "displayName": "width",
             "type": [
@@ -2021,22 +2151,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2058,25 +2191,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"author_id\":20,\"author_name\":\"John\",\"author_url\":\"URL\",\"heght\":400,\"media_id\":\"29\",\"provider_name\":\"Alex\",\"provider_url\":\"URL\",\"title\":\"Photos\",\"type\":\"media\",\"url\":\"URL\",\"version\":\"2.11\",\"width\":600}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.RelationshipsPost": {
-        "name": "RelationshipsPost",
+      {
+        "name": "types.RelationshipsPost",
         "displayName": "RelationshipsPost",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "outgoing_status": {
+            "properties": [
+              {
                 "name": "outgoing_status",
                 "displayName": "outgoing_status",
                 "type": [
@@ -2087,36 +2223,39 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2132,25 +2271,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Relationships": {
-        "name": "Relationships",
+      {
+        "name": "types.Relationships",
         "displayName": "Relationships",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "outgoing_status": {
+            "properties": [
+              {
                 "name": "outgoing_status",
                 "displayName": "outgoing_status",
                 "type": [
@@ -2161,16 +2303,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "incoming_status": {
+              {
                 "name": "incoming_status",
                 "displayName": "incoming_status",
                 "type": [
@@ -2181,36 +2323,39 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2227,25 +2372,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\",\"incoming_status\":\"requested_by\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.RequestedBy": {
-        "name": "RequestedBy",
+      {
+        "name": "types.RequestedBy",
         "displayName": "RequestedBy",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "username": {
+            "properties": [
+              {
                 "name": "username",
                 "displayName": "username",
                 "type": [
@@ -2262,10 +2410,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "profile_picture": {
+              {
                 "name": "profile_picture",
                 "displayName": "profile_picture",
                 "type": [
@@ -2282,10 +2433,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -2302,10 +2456,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -2316,16 +2473,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2343,17 +2506,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200},\"data\":{\"username\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UsersItem": {
-        "name": "UsersItem",
+      {
+        "name": "types.UsersItem",
         "displayName": "UsersItem",
         "type": [
           "object"
         ],
-        "properties": {
-          "username": {
+        "properties": [
+          {
             "name": "username",
             "displayName": "username",
             "type": [
@@ -2370,10 +2536,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "first_name": {
+          {
             "name": "first_name",
             "displayName": "first_name",
             "type": [
@@ -2390,10 +2559,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "profile_picture": {
+          {
             "name": "profile_picture",
             "displayName": "profile_picture",
             "type": [
@@ -2410,10 +2582,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "id": {
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -2430,10 +2605,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "last_name": {
+          {
             "name": "last_name",
             "displayName": "last_name",
             "type": [
@@ -2450,16 +2628,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2474,17 +2658,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"username\":\"John\",\"first_name\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\",\"last_name\":\"Smith\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Users": {
-        "name": "Users",
+      {
+        "name": "types.Users",
         "displayName": "Users",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -2501,17 +2688,25 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.UsersItem"
+            "items": [
+              "types.UsersItem"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2530,17 +2725,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":[{\"username\":\"John\",\"first_name\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\",\"last_name\":\"Smith\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.OkStatus": {
-        "name": "OkStatus",
+      {
+        "name": "types.OkStatus",
         "displayName": "OkStatus",
         "type": [
           "object"
         ],
-        "properties": {
-          "meta": {
+        "properties": [
+          {
             "name": "meta",
             "displayName": "meta",
             "type": [
@@ -2551,42 +2749,49 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "data": {
+          {
             "name": "data",
             "displayName": "data",
             "type": [
-              "any | nil"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "any",
+              "nil"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2599,17 +2804,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"meta\":{\"code\":200}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Likes": {
-        "name": "Likes",
+      {
+        "name": "types.Likes",
         "displayName": "Likes",
         "type": [
           "object"
         ],
-        "properties": {
-          "count": {
+        "properties": [
+          {
             "name": "count",
             "displayName": "count",
             "type": [
@@ -2620,16 +2828,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "data": {
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -2640,23 +2848,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.User"
+            "items": [
+              "types.User"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2681,17 +2894,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Resolution": {
-        "name": "Resolution",
+      {
+        "name": "types.Resolution",
         "displayName": "Resolution",
         "type": [
           "object"
         ],
-        "properties": {
-          "url": {
+        "properties": [
+          {
             "name": "url",
             "displayName": "url",
             "type": [
@@ -2702,16 +2918,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "width": {
+          {
             "name": "width",
             "displayName": "width",
             "type": [
@@ -2722,16 +2938,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "height": {
+          {
             "name": "height",
             "displayName": "height",
             "type": [
@@ -2742,22 +2958,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2770,17 +2989,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"url\":\"URL\",\"width\":400,\"height\":600}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Image": {
-        "name": "Image",
+      {
+        "name": "types.Image",
         "displayName": "Image",
         "type": [
           "object"
         ],
-        "properties": {
-          "low_resolution": {
+        "properties": [
+          {
             "name": "low_resolution",
             "displayName": "low_resolution",
             "type": [
@@ -2791,16 +3013,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "thumbnail": {
+          {
             "name": "thumbnail",
             "displayName": "thumbnail",
             "type": [
@@ -2811,16 +3033,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "standard_resolution": {
+          {
             "name": "standard_resolution",
             "displayName": "standard_resolution",
             "type": [
@@ -2831,22 +3053,25 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2871,17 +3096,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"low_resolution\":{\"url\":\"URL\",\"width\":200,\"height\":400},\"thumbnail\":{\"url\":\"URL\",\"width\":400,\"height\":600},\"standard_resolution\":{\"url\":\"URL\",\"width\":600,\"height\":800}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsRecentMedia": {
-        "name": "TagsRecentMedia",
+      {
+        "name": "types.TagsRecentMedia",
         "displayName": "TagsRecentMedia",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -2892,23 +3120,28 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.TagsRecentMediaItem"
+            "items": [
+              "types.TagsRecentMediaItem"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -2964,17 +3197,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":[{\"type\":\"photo\",\"tags\":[\"forest\",\"flovers\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}],\"count\":1},\"caption\":null,\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":null}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsRecentMediaItem": {
-        "name": "TagsRecentMediaItem",
+      {
+        "name": "types.TagsRecentMediaItem",
         "displayName": "TagsRecentMediaItem",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -2985,16 +3221,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "users_in_photo": {
+          {
             "name": "users_in_photo",
             "displayName": "users_in_photo",
             "type": [
@@ -3005,17 +3241,19 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.UsersInPhoto"
+            "items": [
+              "types.UsersInPhoto"
+            ]
           },
-          "filter": {
+          {
             "name": "filter",
             "displayName": "filter",
             "type": [
@@ -3026,16 +3264,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "tags": {
+          {
             "name": "tags",
             "displayName": "tags",
             "type": [
@@ -3046,25 +3284,27 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "string"
+            "items": [
+              "string"
+            ]
           },
-          "comments": {
+          {
             "name": "comments",
             "displayName": "comments",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "data": {
+            "properties": [
+              {
                 "name": "data",
                 "displayName": "data",
                 "type": [
@@ -3075,17 +3315,19 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "types.Comment"
+                "items": [
+                  "types.Comment"
+                ]
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": [
@@ -3096,50 +3338,54 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "caption": {
+          {
             "name": "caption",
             "displayName": "caption",
             "type": [
-              "nil | types.Comment"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "nil",
+              "types.Comment"
+            ]
           },
-          "likes": {
+          {
             "name": "likes",
             "displayName": "likes",
             "type": [
@@ -3150,16 +3396,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "link": {
+          {
             "name": "link",
             "displayName": "link",
             "type": [
@@ -3170,16 +3416,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "created_time": {
+          {
             "name": "created_time",
             "displayName": "created_time",
             "type": [
@@ -3190,16 +3436,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "images": {
+          {
             "name": "images",
             "displayName": "images",
             "type": [
@@ -3210,16 +3456,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "id": {
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -3230,42 +3476,49 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "location": {
+          {
             "name": "location",
             "displayName": "location",
             "type": [
-              "nil | types.Location"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "nil",
+              "types.Location"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -3330,17 +3583,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"type\":\"photo\",\"tags\":[\"forest\",\"flovers\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}],\"count\":2},\"caption\":{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\"}},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"latitude\":37.77872018361018,\"longitude\":-122.3962783813477,\"id\":\"520640\",\"street_address\":\"\",\"name\":\"Le Truc\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UsersInPhoto": {
-        "name": "UsersInPhoto",
+      {
+        "name": "types.UsersInPhoto",
         "displayName": "UsersInPhoto",
         "type": [
           "object"
         ],
-        "properties": {
-          "user": {
+        "properties": [
+          {
             "name": "user",
             "displayName": "user",
             "type": [
@@ -3357,18 +3613,21 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "position": {
+          {
             "name": "position",
             "displayName": "position",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "x": {
+            "properties": [
+              {
                 "name": "x",
                 "displayName": "x",
                 "type": [
@@ -3385,10 +3644,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "y": {
+              {
                 "name": "y",
                 "displayName": "y",
                 "type": [
@@ -3405,10 +3667,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -3419,16 +3684,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -3454,25 +3725,28 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Media": {
-        "name": "Media",
+      {
+        "name": "types.Media",
         "displayName": "Media",
         "type": [
           "object"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "users_in_photo": {
+            "properties": [
+              {
                 "name": "users_in_photo",
                 "displayName": "users_in_photo",
                 "type": [
@@ -3489,11 +3763,16 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "types.UsersInPhoto"
+                "items": [
+                  "types.UsersInPhoto"
+                ]
               },
-              "filter": {
+              {
                 "name": "filter",
                 "displayName": "filter",
                 "type": [
@@ -3510,10 +3789,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "tags": {
+              {
                 "name": "tags",
                 "displayName": "tags",
                 "type": [
@@ -3524,25 +3806,27 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "string"
+                "items": [
+                  "string"
+                ]
               },
-              "comments": {
+              {
                 "name": "comments",
                 "displayName": "comments",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "data": {
+                "properties": [
+                  {
                     "name": "data",
                     "displayName": "data",
                     "type": [
@@ -3553,17 +3837,19 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "types.Comment"
+                    "items": [
+                      "types.Comment"
+                    ]
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -3574,16 +3860,16 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -3594,14 +3880,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "caption": {
+              {
                 "name": "caption",
                 "displayName": "caption",
                 "type": [
-                  "nil | types.Comment"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -3614,10 +3903,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "nil",
+                  "types.Comment"
+                ]
               },
-              "likes": {
+              {
                 "name": "likes",
                 "displayName": "likes",
                 "type": [
@@ -3634,10 +3930,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "link": {
+              {
                 "name": "link",
                 "displayName": "link",
                 "type": [
@@ -3654,10 +3953,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "user": {
+              {
                 "name": "user",
                 "displayName": "user",
                 "type": [
@@ -3674,10 +3976,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "created_time": {
+              {
                 "name": "created_time",
                 "displayName": "created_time",
                 "type": [
@@ -3694,10 +3999,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -3714,14 +4022,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "location": {
+              {
                 "name": "location",
                 "displayName": "location",
                 "type": [
-                  "types.Location | nil"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -3734,10 +4045,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "types.Location",
+                  "nil"
+                ]
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -3748,16 +4066,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -3852,17 +4176,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"data\":{\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":null,\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchFirstType": {
-        "name": "MediaSearchFirstType",
+      {
+        "name": "types.MediaSearchFirstType",
         "displayName": "MediaSearchFirstType",
         "type": [
           "object"
         ],
-        "properties": {
-          "distance": {
+        "properties": [
+          {
             "name": "distance",
             "displayName": "distance",
             "type": [
@@ -3879,10 +4206,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -3893,16 +4223,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "users_in_photo": {
+          {
             "name": "users_in_photo",
             "displayName": "users_in_photo",
             "type": [
@@ -3919,11 +4249,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.UsersInPhoto"
+            "items": [
+              "types.UsersInPhoto"
+            ]
           },
-          "filter": {
+          {
             "name": "filter",
             "displayName": "filter",
             "type": [
@@ -3940,10 +4275,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "tags": {
+          {
             "name": "tags",
             "displayName": "tags",
             "type": [
@@ -3960,19 +4298,24 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "string"
+            "items": [
+              "string"
+            ]
           },
-          "comments": {
+          {
             "name": "comments",
             "displayName": "comments",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "data": {
+            "properties": [
+              {
                 "name": "data",
                 "displayName": "data",
                 "type": [
@@ -3983,17 +4326,19 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "types.Comment"
+                "items": [
+                  "types.Comment"
+                ]
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": [
@@ -4004,16 +4349,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -4024,14 +4369,17 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "caption": {
+          {
             "name": "caption",
             "displayName": "caption",
             "type": [
-              "nil | types.Comment"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -4044,10 +4392,17 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "nil",
+              "types.Comment"
+            ]
           },
-          "likes": {
+          {
             "name": "likes",
             "displayName": "likes",
             "type": [
@@ -4064,10 +4419,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "link": {
+          {
             "name": "link",
             "displayName": "link",
             "type": [
@@ -4084,10 +4442,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "user": {
+          {
             "name": "user",
             "displayName": "user",
             "type": [
@@ -4104,10 +4465,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "created_time": {
+          {
             "name": "created_time",
             "displayName": "created_time",
             "type": [
@@ -4124,10 +4488,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "id": {
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -4144,10 +4511,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "images": {
+          {
             "name": "images",
             "displayName": "images",
             "type": [
@@ -4158,20 +4528,20 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib/types.raml"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "location": {
+          {
             "name": "location",
             "displayName": "location",
             "type": [
-              "nil | types.Location"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -4184,16 +4554,26 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "nil",
+              "types.Location"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -4282,17 +4662,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"distance\":50,\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":null,\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"id\":\"833\",\"latitude\":37.77956,\"longitude\":-122.4138,\"name\":\"Civic Center BART\"},\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchSecondType": {
-        "name": "MediaSearchSecondType",
+      {
+        "name": "types.MediaSearchSecondType",
         "displayName": "MediaSearchSecondType",
         "type": [
           "object"
         ],
-        "properties": {
-          "distance": {
+        "properties": [
+          {
             "name": "distance",
             "displayName": "distance",
             "type": [
@@ -4309,26 +4692,29 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "videos": {
+          {
             "name": "videos",
             "displayName": "videos",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "low_resolution": {
+            "properties": [
+              {
                 "name": "low_resolution",
                 "displayName": "low_resolution",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "url": {
+                "properties": [
+                  {
                     "name": "url",
                     "displayName": "url",
                     "type": [
@@ -4345,10 +4731,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "width": {
+                  {
                     "name": "width",
                     "displayName": "width",
                     "type": [
@@ -4365,10 +4754,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "height": {
+                  {
                     "name": "height",
                     "displayName": "height",
                     "type": [
@@ -4385,10 +4777,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -4399,18 +4794,21 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "standard_resolution": {
+              {
                 "name": "standard_resolution",
                 "displayName": "standard_resolution",
                 "type": [
                   "object"
                 ],
                 "required": false,
-                "properties": {
-                  "url": {
+                "properties": [
+                  {
                     "name": "url",
                     "displayName": "url",
                     "type": [
@@ -4427,10 +4825,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "width": {
+                  {
                     "name": "width",
                     "displayName": "width",
                     "type": [
@@ -4447,10 +4848,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "height": {
+                  {
                     "name": "height",
                     "displayName": "height",
                     "type": [
@@ -4467,24 +4871,27 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "users_in_photo": {
+              {
                 "name": "users_in_photo",
                 "displayName": "users_in_photo",
                 "type": [
@@ -4501,11 +4908,16 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "types.UsersInPhoto"
+                "items": [
+                  "types.UsersInPhoto"
+                ]
               },
-              "type": {
+              {
                 "name": "type",
                 "displayName": "type",
                 "type": [
@@ -4516,16 +4928,16 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "filter": {
+              {
                 "name": "filter",
                 "displayName": "filter",
                 "type": [
@@ -4542,10 +4954,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "tags": {
+              {
                 "name": "tags",
                 "displayName": "tags",
                 "type": [
@@ -4562,19 +4977,24 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "string"
+                "items": [
+                  "string"
+                ]
               },
-              "comments": {
+              {
                 "name": "comments",
                 "displayName": "comments",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "data": {
+                "properties": [
+                  {
                     "name": "data",
                     "displayName": "data",
                     "type": [
@@ -4585,17 +5005,19 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "types.Comment"
+                    "items": [
+                      "types.Comment"
+                    ]
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -4606,16 +5028,16 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/types.raml"
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -4626,14 +5048,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "caption": {
+              {
                 "name": "caption",
                 "displayName": "caption",
                 "type": [
-                  "nil | types.Comment"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -4646,10 +5071,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "nil",
+                  "types.Comment"
+                ]
               },
-              "likes": {
+              {
                 "name": "likes",
                 "displayName": "likes",
                 "type": [
@@ -4666,10 +5098,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "link": {
+              {
                 "name": "link",
                 "displayName": "link",
                 "type": [
@@ -4686,10 +5121,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "user": {
+              {
                 "name": "user",
                 "displayName": "user",
                 "type": [
@@ -4706,10 +5144,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "created_time": {
+              {
                 "name": "created_time",
                 "displayName": "created_time",
                 "type": [
@@ -4726,10 +5167,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -4746,10 +5190,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "images": {
+              {
                 "name": "images",
                 "displayName": "images",
                 "type": [
@@ -4760,20 +5207,20 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/types.raml"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "location": {
+              {
                 "name": "location",
                 "displayName": "location",
                 "type": [
-                  "nil | types.Location"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -4786,10 +5233,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "nil",
+                  "types.Location"
+                ]
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -4800,16 +5254,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib/types.raml"
         },
         "examples": [
           {
@@ -4921,21 +5381,24 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"URL\",\"width\":200,\"height\":400},\"standard_resolution\":{\"url\":\"URL\",\"width\":400,\"height\":600},\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"latitude\":37.77872018361018,\"longitude\":-122.3962783813477,\"id\":\"520640\",\"street_address\":\"\",\"name\":\"Le Truc\"},\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearch": {
-        "name": "MediaSearch",
+      {
+        "name": "types.MediaSearch",
         "displayName": "MediaSearch",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
-              "types.MediaSearchFirstType | types.MediaSearchSecondType"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -4948,10 +5411,17 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "types.MediaSearchFirstType",
+              "types.MediaSearchSecondType"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -4959,17 +5429,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib/types.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchArray": {
-        "name": "MediaSearchArray",
+      {
+        "name": "types.MediaSearchArray",
         "displayName": "MediaSearchArray",
         "type": [
           "types.OkStatus"
         ],
-        "properties": {
-          "data": {
+        "properties": [
+          {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -4986,11 +5459,28 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType"
+            "items": [
+              {
+                "type": [
+                  "union"
+                ],
+                "anyOf": [
+                  "types.MediaSearchFirstType",
+                  "types.MediaSearchSecondType"
+                ],
+                "sourceMap": {
+                  "path": "lib/types.raml"
+                },
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -4998,14 +5488,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib/types.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "acceptCallback": {
-        "queryParameters": {
-          "callback": {
+    ],
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "callback",
             "displayName": "callback",
             "type": [
@@ -5026,6 +5519,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/acceptCallback.raml"
+            },
             "examples": [
               {
                 "value": "callbackFunction",
@@ -5033,15 +5529,21 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "callbackFunction"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "name": "acceptCallback"
+        ],
+        "name": "acceptCallback",
+        "sourceMap": {
+          "path": "traits/acceptCallback.raml"
+        }
       },
-      "limitableByGeoPoint": {
-        "queryParameters": {
-          "lat": {
+      {
+        "queryParameters": [
+          {
             "name": "lat",
             "displayName": "lat",
             "type": [
@@ -5059,10 +5561,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableByGeoPoint.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lng": {
+          {
             "name": "lng",
             "displayName": "lng",
             "type": [
@@ -5080,10 +5585,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableByGeoPoint.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "distance": {
+          {
             "name": "distance",
             "displayName": "distance",
             "type": [
@@ -5103,15 +5611,21 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableByGeoPoint.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "name": "limitableByGeoPoint"
+        ],
+        "name": "limitableByGeoPoint",
+        "sourceMap": {
+          "path": "traits/limitableByGeoPoint.raml"
+        }
       },
-      "limitable": {
-        "queryParameters": {
-          "count": {
+      {
+        "queryParameters": [
+          {
             "name": "count",
             "displayName": "count",
             "type": [
@@ -5129,6 +5643,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitable.raml"
+            },
             "examples": [
               {
                 "value": 1,
@@ -5136,15 +5653,21 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              1
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "name": "limitable"
+        ],
+        "name": "limitable",
+        "sourceMap": {
+          "path": "traits/limitable.raml"
+        }
       },
-      "limitableByTime": {
-        "queryParameters": {
-          "max_timestamp": {
+      {
+        "queryParameters": [
+          {
             "name": "max_timestamp",
             "displayName": "max_timestamp",
             "type": [
@@ -5162,10 +5685,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableByTime.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "min_timestamp": {
+          {
             "name": "min_timestamp",
             "displayName": "min_timestamp",
             "type": [
@@ -5183,15 +5709,21 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableByTime.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "name": "limitableByTime"
+        ],
+        "name": "limitableByTime",
+        "sourceMap": {
+          "path": "traits/limitableByTime.raml"
+        }
       },
-      "limitableById": {
-        "queryParameters": {
-          "min_id": {
+      {
+        "queryParameters": [
+          {
             "name": "min_id",
             "displayName": "min_id",
             "type": [
@@ -5209,10 +5741,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableById.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "max_id": {
+          {
             "name": "max_id",
             "displayName": "max_id",
             "type": [
@@ -5230,22 +5765,28 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "traits/limitableById.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "name": "limitableById"
+        ],
+        "name": "limitableById",
+        "sourceMap": {
+          "path": "traits/limitableById.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "usersListing": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5257,6 +5798,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/usersListing.raml"
                     },
                     "examples": [
                       {
@@ -5289,18 +5833,72 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/usersListing.raml"
                 }
               }
-            },
+            ],
             "securedBy": [
               {
-                "oauth_2_0": {
+                "name": "oauth_2_0",
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION"
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
                   "scopes": [
                     "relationships"
-                  ]
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
                 }
               }
             ],
@@ -5311,29 +5909,85 @@
                   "calculated": true
                 }
               }
-            }
-          }
-        },
-        "type": "base",
-        "securedBy": [
-          {
-            "oauth_2_0": {
-              "scopes": [
-                "relationships"
-              ]
+            },
+            "sourceMap": {
+              "path": "resourceTypes/usersListing.raml"
             }
           }
         ],
-        "name": "usersListing"
+        "type": {
+          "name": "base"
+        },
+        "securedBy": [
+          {
+            "name": "oauth_2_0",
+            "type": "OAuth 2.0",
+            "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+            "describedBy": {
+              "queryParameters": [
+                {
+                  "name": "access_token",
+                  "displayName": "access_token",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
+            },
+            "settings": {
+              "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+              "authorizationUri": "https://api.instagram.com/oauth/authorize",
+              "authorizationGrants": [
+                "password"
+              ],
+              "scopes": [
+                "relationships"
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
+          }
+        ],
+        "name": "usersListing",
+        "sourceMap": {
+          "path": "resourceTypes/usersListing.raml"
+        }
       },
-      "mediaSearch": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5345,6 +5999,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/mediaSearch.raml"
                     },
                     "examples": [
                       {
@@ -5446,189 +6103,440 @@
                         "name": null
                       }
                     ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
-                  }
-                }
-              }
-            },
-            "method": "get"
-          }
-        },
-        "type": "base",
-        "name": "mediaSearch"
-      },
-      "secured": {
-        "methods": {
-          "delete": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json",
-                    "displayName": "application/json",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "examples": [
-                      {
-                        "value": {
-                          "meta": {
-                            "code": 200
-                          },
-                          "data": null
-                        },
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "type": [
-                      "types.OkStatus | string"
+                    "simplifiedExamples": [
+                      "{\"data\":{\"distance\":50,\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Walden\",\"tags\":[],\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"...\",\"bio\":\"...\",\"website\":\"...\",\"id\":\"3\"},\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\"width\":612,\"height\":612}},\"id\":\"3\",\"location\":{\"id\":\"id\",\"latitude\":-34,\"longitude\":-53,\"name\":\"some place\"}}}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
-              }
-            },
-            "securedBy": [
-              {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/mediaSearch.raml"
                 }
               }
             ],
-            "method": "delete",
-            "__METADATA__": {
-              "optional": true
-            }
-          },
-          "post": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json",
-                    "displayName": "application/json",
-                    "type": [
-                      "types.OkStatus | string"
-                    ],
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "examples": [
-                      {
-                        "value": {
-                          "meta": {
-                            "code": 200
-                          },
-                          "data": null
-                        },
-                        "strict": true,
-                        "name": null
-                      }
-                    ],
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
-                  }
-                }
-              }
-            },
-            "securedBy": [
-              {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
-                }
-              }
-            ],
-            "method": "post",
-            "__METADATA__": {
-              "optional": true
-            }
-          }
-        },
-        "type": "base",
-        "securedBy": [
-          {
-            "oauth_2_0": {
-              "scopes": [
-                "<<scope>>"
-              ]
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/mediaSearch.raml"
             }
           }
         ],
-        "name": "secured"
+        "type": {
+          "name": "base"
+        },
+        "name": "mediaSearch",
+        "sourceMap": {
+          "path": "resourceTypes/mediaSearch.raml"
+        }
       },
-      "base": {
-        "methods": {
-          "delete": {
-            "responses": {
-              "503": {
-                "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "meta": {
+                            "code": 200
+                          },
+                          "data": null
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"meta\":{\"code\":200},\"data\":null}"
+                    ],
+                    "type": [
+                      {
+                        "type": [
+                          "union"
+                        ],
+                        "anyOf": [
+                          "types.OkStatus",
+                          "string"
+                        ],
+                        "sourceMap": {
+                          "path": "resourceTypes/secured.raml"
+                        },
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "name": "type",
+                        "displayName": "type",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
+                }
               }
-            },
+            ],
+            "securedBy": [
+              {
+                "name": "oauth_2_0",
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION"
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
+                  "scopes": [
+                    "<<scope>>"
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
+              }
+            ],
             "method": "delete",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
           },
-          "post": {
-            "responses": {
-              "503": {
-                "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      {
+                        "type": [
+                          "union"
+                        ],
+                        "anyOf": [
+                          "types.OkStatus",
+                          "string"
+                        ],
+                        "sourceMap": {
+                          "path": "resourceTypes/secured.raml"
+                        },
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "name": "type",
+                        "displayName": "type",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "meta": {
+                            "code": 200
+                          },
+                          "data": null
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"meta\":{\"code\":200},\"data\":null}"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
+                }
               }
-            },
+            ],
+            "securedBy": [
+              {
+                "name": "oauth_2_0",
+                "type": "OAuth 2.0",
+                "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+                "describedBy": {
+                  "queryParameters": [
+                    {
+                      "name": "access_token",
+                      "displayName": "access_token",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "type": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION"
+                    }
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "settings": {
+                  "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+                  "authorizationUri": "https://api.instagram.com/oauth/authorize",
+                  "authorizationGrants": [
+                    "password"
+                  ],
+                  "scopes": [
+                    "<<scope>>"
+                  ],
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
+              }
+            ],
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
-          },
-          "get": {
-            "responses": {
-              "503": {
-                "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+          }
+        ],
+        "type": {
+          "name": "base"
+        },
+        "securedBy": [
+          {
+            "name": "oauth_2_0",
+            "type": "OAuth 2.0",
+            "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+            "describedBy": {
+              "queryParameters": [
+                {
+                  "name": "access_token",
+                  "displayName": "access_token",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
               }
             },
+            "settings": {
+              "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+              "authorizationUri": "https://api.instagram.com/oauth/authorize",
+              "authorizationGrants": [
+                "password"
+              ],
+              "scopes": [
+                "<<scope>>"
+              ],
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
+          }
+        ],
+        "name": "secured",
+        "sourceMap": {
+          "path": "resourceTypes/secured.raml"
+        }
+      },
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
+              }
+            ],
+            "method": "delete",
+            "__METADATA__": {
+              "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
+            }
+          },
+          {
+            "responses": [
+              {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
+              }
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
+            }
+          },
+          {
+            "responses": [
+              {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
+              }
+            ],
             "is": [
-              "limitable",
-              "acceptCallback"
+              {
+                "name": "limitable"
+              },
+              {
+                "name": "acceptCallback"
+              }
             ],
             "method": "get",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           }
-        },
-        "name": "base"
+        ],
+        "name": "base",
+        "sourceMap": {
+          "path": "resourceTypes/base.raml"
+        }
       },
-      "feedsListing": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5640,6 +6548,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/feedsListing.raml"
                     },
                     "examples": [
                       {
@@ -5832,27 +6743,41 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
+                ],
+                "sourceMap": {
+                  "path": "resourceTypes/feedsListing.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/feedsListing.raml"
+            }
           }
+        ],
+        "type": {
+          "name": "base"
         },
-        "type": "base",
-        "name": "feedsListing"
+        "name": "feedsListing",
+        "sourceMap": {
+          "path": "resourceTypes/feedsListing.raml"
+        }
       }
-    },
-    "securitySchemes": {
-      "oauth_2_0": {
+    ],
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -5873,9 +6798,15 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
+          ],
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
           }
         },
         "settings": {
@@ -5889,16 +6820,22 @@
             "comments",
             "relationships",
             "likes"
-          ]
+          ],
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "securitySchemes/oauth_2_0.raml"
         }
       },
-      "clientId": {
+      {
         "name": "clientId",
         "type": "x-customHeader",
         "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
         "describedBy": {
-          "queryParameters": {
-            "client_id": {
+          "queryParameters": [
+            {
               "name": "client_id",
               "displayName": "client_id",
               "type": [
@@ -5919,6 +6856,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "securitySchemes/clientId.raml"
+              },
               "examples": [
                 {
                   "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
@@ -5926,12 +6866,24 @@
                   "name": null
                 }
               ],
+              "simplifiedExamples": [
+                "9e0dbc0a3b8d436ca65ae2df9825c893"
+              ],
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
+          ],
+          "sourceMap": {
+            "path": "securitySchemes/clientId.raml"
           }
+        },
+        "sourceMap": {
+          "path": "securitySchemes/clientId.raml"
         }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

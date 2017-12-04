@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -17,10 +17,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
@@ -36,14 +39,38 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PersonOrDog": {
+      {
         "name": "PersonOrDog",
         "displayName": "PersonOrDog",
         "type": [
-          "Person | Dog"
+          {
+            "type": [
+              "union"
+            ],
+            "anyOf": [
+              "Person",
+              "Dog"
+            ],
+            "sourceMap": {
+              "path": "invalid-discriminator-usage.raml"
+            },
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "name": "type",
+            "displayName": "type",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -52,28 +79,31 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Invalid Discriminator Usage",
     "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "kind": {
+                    "properties": [
+                      {
                         "name": "kind",
                         "displayName": "kind",
                         "type": [
@@ -90,10 +120,13 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "invalid-discriminator-usage.raml"
+                        },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "discriminator": "kind",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -105,15 +138,26 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "invalid-discriminator-usage.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
+                ],
+                "sourceMap": {
+                  "path": "invalid-discriminator-usage.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/inline",
+            "absoluteParentUri": "/inline",
+            "sourceMap": {
+              "path": "invalid-discriminator-usage.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/inline",
         "displayName": "/inline",
         "__METADATA__": {
@@ -128,9 +172,16 @@
         ],
         "absoluteUri": "/inline",
         "completeRelativeUri": "/inline",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "invalid-discriminator-usage.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

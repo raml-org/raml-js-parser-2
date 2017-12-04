@@ -1,12 +1,15 @@
 {
   "specification": {
-    "types": {
-      "song": {
+    "types": [
+      {
         "name": "song",
         "displayName": "song",
         "schemaPath": "schema.json",
+        "sourceMap": {
+          "path": "schema.json"
+        },
         "type": [
-          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"properties\": {\n    \"songId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    },\n    \"songTitle\": {\n      \"type\": \"string\"\n    },\n    \"albumId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    }\n  },\n  \"required\": [\n    \"songId\",\n    \"songTitle\"\n  ]\n}\n"
+          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"properties\": {\n    \"songId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    },\n    \"songTitle\": {\n      \"type\": \"string\"\n    },\n    \"albumId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    }\n  },\n  \"required\": [\n    \"songId\",\n    \"songTitle\"\n  ]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,21 +21,28 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
-    "resourceTypes": {
-      "type1": {
+    ],
+    "resourceTypes": [
+      {
         "type": {
-          "collection": {
-            "exampleItem": "<<param1>>"
-          }
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "exampleItem",
+              "value": "<<param1>>"
+            }
+          ]
         },
-        "name": "type1"
+        "name": "type1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "collection": {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -52,23 +62,35 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "<<exampleItem>>\n"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "collection"
+        ],
+        "name": "collection",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "My API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -92,16 +114,32 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/json"
+                "simplifiedExamples": [
+                  "{\"songId\":\"550e8400-e29b-41d4-a716-446655440000\",\"songTitle\":true,\"albumId\":\"183100e3-0e2b-4404-a716-66104d440550\"}"
+                ],
+                "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/songs",
+            "absoluteParentUri": "/songs",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "type1": {
-            "param1": "{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": true,\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n"
-          }
+          "name": "type1",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": true,\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n"
+            }
+          ]
         },
         "relativeUri": "/songs",
         "displayName": "/songs",
@@ -117,9 +155,16 @@
         ],
         "absoluteUri": "/songs",
         "completeRelativeUri": "/songs",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

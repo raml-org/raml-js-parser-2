@@ -3,20 +3,20 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "responses": {
-              "201": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
                       "TestType"
                     ],
-                    "properties": {
-                      "additionalField": {
+                    "properties": [
+                      {
                         "name": "additionalField",
                         "displayName": "additionalField",
                         "type": [
@@ -27,16 +27,16 @@
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "meth12.raml"
+                        }
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -54,35 +54,50 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"baseField\":\"base\",\"field\":\"any text\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "meth12.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "meth12.raml"
                 }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
                 "type": [
                   "account"
                 ],
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "meth12.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test",
+            "sourceMap": {
+              "path": "meth12.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -97,15 +112,19 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "meth12.raml"
+        }
       }
     ],
-    "types": {
-      "account": {
+    "types": [
+      {
         "name": "account",
         "displayName": "account",
         "type": [
-          "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
+          "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -115,16 +134,19 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "sourceMap": {
+          "path": "meth12.raml"
+        }
       },
-      "TypeBase": {
+      {
         "name": "TypeBase",
         "displayName": "TypeBase",
         "type": [
           "object"
         ],
-        "properties": {
-          "baseField": {
+        "properties": [
+          {
             "name": "baseField",
             "displayName": "baseField",
             "type": [
@@ -142,9 +164,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "meth12.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -161,17 +186,23 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"baseField\":\"name\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "meth12.raml"
+        }
       },
-      "TestType": {
+      {
         "name": "TestType",
         "displayName": "TestType",
         "type": [
           "TypeBase"
         ],
-        "properties": {
-          "field": {
+        "properties": [
+          {
             "name": "field",
             "displayName": "field",
             "type": [
@@ -189,9 +220,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "meth12.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -209,9 +243,18 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"baseField\":\"name\",\"field\":\"value\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "meth12.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "meth12.raml"
     }
   },
   "ramlVersion": "RAML10",

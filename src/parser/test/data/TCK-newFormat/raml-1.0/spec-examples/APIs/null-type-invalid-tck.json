@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "NullValue": {
+    "types": [
+      {
         "name": "NullValue",
         "displayName": "NullValue",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,9 +29,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "null-type-invalid.raml"
+            }
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -52,9 +55,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "null-type-invalid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -72,12 +78,21 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Fred\",\"comment\":null}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "null-type-invalid.raml"
+        }
       }
-    },
+    ],
     "title": "Invalid Null Type",
-    "description": "This RAML illustrates that an instance cannot have an empty / no valued node."
+    "description": "This RAML illustrates that an instance cannot have an empty / no valued node.",
+    "sourceMap": {
+      "path": "null-type-invalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

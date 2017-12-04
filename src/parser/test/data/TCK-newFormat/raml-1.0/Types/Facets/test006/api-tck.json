@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "Object": {
+    "types": [
+      {
         "name": "Object",
         "displayName": "Object",
-        "facets": {
-          "methods": {
+        "facets": [
+          {
             "name": "methods",
             "displayName": "methods",
             "type": [
@@ -22,9 +22,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": [
           "object"
         ],
@@ -36,16 +39,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "Person": {
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "Object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -63,9 +69,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -83,9 +92,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -103,9 +115,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -113,16 +128,25 @@
             }
           }
         },
-        "fixedFacets": {
-          "methods": {
-            "list": {
-              "p1": "asd"
+        "fixedFacets": [
+          {
+            "name": "methods",
+            "value": {
+              "list": {
+                "p1": "asd"
+              }
             }
           }
-        },
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

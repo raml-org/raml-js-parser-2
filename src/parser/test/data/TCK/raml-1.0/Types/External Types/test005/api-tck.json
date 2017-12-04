@@ -27,7 +27,7 @@
         "z": {
           "name": "z",
           "displayName": "z",
-          "typePropertyKind": "INPLACE",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "mySchema"
           ],
@@ -61,7 +61,7 @@
         "z2": {
           "name": "z2",
           "displayName": "z2",
-          "typePropertyKind": "INPLACE",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "mySchema"
           ],

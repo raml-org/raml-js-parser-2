@@ -3,27 +3,42 @@
     "uses": [
       {
         "key": "rt",
-        "value": "lib/resource-types.raml"
+        "value": "lib/resource-types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.ty",
-        "value": "lib/types.raml"
+        "value": "lib/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.tr",
-        "value": "lib/traits.raml"
+        "value": "lib/traits.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.lib",
-        "value": "lib/libA.raml"
+        "value": "lib/libA.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.lib.lib",
-        "value": "lib/libB.raml"
+        "value": "lib/libB.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "types": {
-      "MyType": {
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
@@ -37,16 +52,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "traits": {
-      "rt.tr.ResponseCommonErrors": {
-        "responses": {
-          "400": {
+    ],
+    "traits": [
+      {
+        "responses": [
+          {
             "code": "400",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -69,15 +87,24 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "lib/traits.raml"
+                }
               }
+            ],
+            "sourceMap": {
+              "path": "lib/traits.raml"
             }
           },
-          "500": {
+          {
             "code": "500",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -100,27 +127,39 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "lib/traits.raml"
+                }
               }
+            ],
+            "sourceMap": {
+              "path": "lib/traits.raml"
             }
           }
-        },
+        ],
         "name": "rt.tr.ResponseCommonErrors",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib/traits.raml"
         }
       }
-    },
-    "resourceTypes": {
-      "rt.lib.lib.rt": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -140,20 +179,32 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      8
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
-          "post": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -175,20 +226,32 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"p1\":\"stringValue\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
-          "put": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -202,49 +265,78 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
-        },
+        ],
         "name": "rt.lib.lib.rt",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib/libB.raml"
         }
       },
-      "rt.lib.rt": {
+      {
         "type": {
-          "rt.lib.lib.rt": {
-            "param1": "<<param1>>",
-            "param2": "rt.lib.MyType"
-          }
+          "name": "rt.lib.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param1>>"
+            },
+            {
+              "name": "param2",
+              "value": "MyType"
+            }
+          ]
         },
         "name": "rt.lib.rt",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib/libA.raml"
         }
       },
-      "rt.Collection": {
-        "methods": {
-          "get": {
+      {
+        "methods": [
+          {
             "is": [
               {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "rt.ty.ErrorResponseType"
-                }
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "ty.ErrorResponseType"
+                  }
+                ]
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
-          "delete": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -258,37 +350,53 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/resource-types.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/resource-types.raml"
                 }
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt.lib.rt": {
-            "param1": "rt.MyType"
-          }
+          "name": "rt.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "MyType"
+            }
+          ]
         },
         "description": "<<desc>>",
         "name": "rt.Collection",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib/resource-types.raml"
         }
       }
-    },
+    ],
     "title": "Test API",
     "version": "v1z",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -308,15 +416,24 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      8
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               },
-              "400": {
+              {
                 "code": "400",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -339,15 +456,24 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               },
-              "500": {
+              {
                 "code": "500",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -370,27 +496,45 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    }
                   }
-                }
-              }
-            },
-            "is": [
-              {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "rt.ty.ErrorResponseType"
+                ],
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               }
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "ty.ErrorResponseType"
+                  }
+                ]
+              }
+            ],
+            "method": "get",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
-          "delete": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -404,19 +548,30 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/resource-types.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/resource-types.raml"
                 }
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
-          "post": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -438,20 +593,34 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"p1\":\"stringValue\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
-          "put": {
-            "responses": {
-              "200": {
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -465,19 +634,37 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt.Collection": {
-            "desc": "stringValue",
-            "param1": "MyType"
-          }
+          "name": "rt.Collection",
+          "parameters": [
+            {
+              "name": "desc",
+              "value": "stringValue"
+            },
+            {
+              "name": "param1",
+              "value": "MyType"
+            }
+          ]
         },
         "description": "stringValue",
         "relativeUri": "/products",
@@ -494,9 +681,16 @@
         ],
         "absoluteUri": "/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

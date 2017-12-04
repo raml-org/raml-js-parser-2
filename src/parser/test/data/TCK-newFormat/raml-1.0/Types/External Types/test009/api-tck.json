@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "mySchema": {
+    "types": [
+      {
         "name": "mySchema",
         "displayName": "mySchema",
         "type": [
-          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
+          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,16 +15,19 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "z2": {
+      {
         "name": "z2",
         "displayName": "z2",
         "type": [
           "object"
         ],
-        "properties": {
-          "c": {
+        "properties": [
+          {
             "name": "c",
             "displayName": "c",
             "type": [
@@ -41,9 +44,13 @@
                 }
               }
             },
-            "mediaType": "application/json"
+            "mediaType": "application/json",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -65,11 +72,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"c\":{\"id\":\"2\"}}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "A"
+    ],
+    "title": "A",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

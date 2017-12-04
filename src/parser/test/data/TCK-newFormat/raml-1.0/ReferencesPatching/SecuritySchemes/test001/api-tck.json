@@ -3,45 +3,70 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "traits": {
-      "lib.boolean": {
+    "traits": [
+      {
         "name": "lib.boolean",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       }
-    },
-    "resourceTypes": {
-      "lib.number": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth"
+          },
+          {
+            "name": "lib.number"
+          }
         ],
         "name": "lib.number",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       }
-    },
+    ],
     "title": "test API",
     "securedBy": [
-      "lib.number"
+      {
+        "name": "lib.number"
+      }
     ],
     "resources": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
-        "type": "lib.number",
+        "type": {
+          "name": "lib.number"
+        },
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth"
+          },
+          {
+            "name": "lib.number"
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -57,9 +82,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

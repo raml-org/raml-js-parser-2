@@ -1,10 +1,22 @@
 {
   "specification": {
-    "types": {
-      "primitives.ExtLocale": {
-        "name": "ExtLocale",
+    "uses": [
+      {
+        "key": "primitives",
+        "value": "library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "primitives.ExtLocale",
         "displayName": "ExtLocale",
         "schemaPath": "schemas/locale.xsd",
+        "sourceMap": {
+          "path": "schemas/locale.xsd"
+        },
         "type": [
           "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"language\": {\"type\": \"string\", \"minLength\": 2},\n    \"country\": {\"type\": \"string\", \"minLength\": 2}\n  },\n  \"required\": [\"language\"]\n}"
         ],
@@ -18,8 +30,8 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "primitives.Locale": {
-        "name": "Locale",
+      {
+        "name": "primitives.Locale",
         "displayName": "Locale",
         "type": [
           "primitives.ExtLocale"
@@ -31,16 +43,20 @@
             }
           }
         },
-        "mediaType": "application/json"
+        "mediaType": "application/json",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "library.raml"
+        }
       }
-    },
+    ],
     "title": "Library test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -53,12 +69,21 @@
                     }
                   }
                 },
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/exampleRes",
+            "absoluteParentUri": "/exampleRes",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/exampleRes",
         "displayName": "/exampleRes",
         "__METADATA__": {
@@ -73,9 +98,16 @@
         ],
         "absoluteUri": "/exampleRes",
         "completeRelativeUri": "/exampleRes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

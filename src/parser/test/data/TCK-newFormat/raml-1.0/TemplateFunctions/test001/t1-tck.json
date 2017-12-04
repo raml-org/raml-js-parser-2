@@ -1,61 +1,97 @@
 {
   "specification": {
-    "traits": {
-      "notAlwaysPresent": {
-        "responses": {
-          "401": {
+    "traits": [
+      {
+        "responses": [
+          {
             "code": "401",
-            "description": "<<param | !singularize>> cannot be found"
+            "description": "<<param | !singularize>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "402": {
+          {
             "code": "402",
-            "description": "<<param | !pluralize>> cannot be found"
+            "description": "<<param | !pluralize>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "403": {
+          {
             "code": "403",
-            "description": "<<param | !uppercase>> cannot be found"
+            "description": "<<param | !uppercase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "404": {
+          {
             "code": "404",
-            "description": "<<param | !lowercase>> cannot be found"
+            "description": "<<param | !lowercase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "405": {
+          {
             "code": "405",
-            "description": "<<param | !lowercamelcase>> cannot be found"
+            "description": "<<param | !lowercamelcase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "406": {
+          {
             "code": "406",
-            "description": "<<param | !uppercamelcase>> cannot be found"
+            "description": "<<param | !uppercamelcase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "407": {
+          {
             "code": "407",
-            "description": "<<param | !lowerunderscorecase>> cannot be found"
+            "description": "<<param | !lowerunderscorecase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "408": {
+          {
             "code": "408",
-            "description": "<<param | !upperunderscorecase>> cannot be found"
+            "description": "<<param | !upperunderscorecase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "409": {
+          {
             "code": "409",
-            "description": "<<param | !lowerhyphencase>> cannot be found"
+            "description": "<<param | !lowerhyphencase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "410": {
+          {
             "code": "410",
-            "description": "<<param | !upperhyphencase>> cannot be found"
+            "description": "<<param | !upperhyphencase>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           },
-          "411": {
+          {
             "code": "411",
-            "description": "<<param | !unknown>> cannot be found"
+            "description": "<<param | !unknown>> cannot be found",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
           }
-        },
-        "name": "notAlwaysPresent"
+        ],
+        "name": "notAlwaysPresent",
+        "sourceMap": {
+          "path": "t1.raml"
+        }
       }
-    },
+    ],
     "title": "Test",
     "version": "1",
     "baseUri": "/api/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -83,70 +119,110 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "t1.raml"
+        }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "401": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "401",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "402": {
+              {
                 "code": "402",
-                "description": "users cannot be found"
+                "description": "users cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "403": {
+              {
                 "code": "403",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "404": {
+              {
                 "code": "404",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "405": {
+              {
                 "code": "405",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "406": {
+              {
                 "code": "406",
-                "description": "User cannot be found"
+                "description": "User cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "407": {
+              {
                 "code": "407",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "408": {
+              {
                 "code": "408",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "409": {
+              {
                 "code": "409",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "410": {
+              {
                 "code": "410",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               },
-              "411": {
+              {
                 "code": "411",
-                "description": "<<param | !unknown>> cannot be found"
+                "description": "<<param | !unknown>> cannot be found",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
             "is": [
               {
-                "notAlwaysPresent": {
-                  "param": "user"
-                }
+                "name": "notAlwaysPresent",
+                "parameters": [
+                  {
+                    "name": "param",
+                    "value": "user"
+                  }
+                ]
               }
             ],
             "method": "get",
@@ -156,9 +232,49 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users",
+            "absoluteParentUri": "/api/{version}/users",
+            "sourceMap": {
+              "path": "t1.raml"
+            },
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "t1.raml"
+                }
+              }
+            ]
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -173,7 +289,46 @@
         ],
         "absoluteUri": "/api/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/api/{version}",
+        "sourceMap": {
+          "path": "t1.raml"
+        },
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "t1.raml"
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {
@@ -182,6 +337,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "t1.raml"
     }
   },
   "ramlVersion": "RAML10",

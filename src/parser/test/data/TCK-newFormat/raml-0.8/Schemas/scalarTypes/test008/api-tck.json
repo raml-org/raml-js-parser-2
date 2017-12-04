@@ -4,19 +4,39 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": {
-          "get": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"null\"\n}\n",
                 "example": "\"null\"",
-                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"null\"\n}\n"
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"null\"\n}\n",
+                "sourceMap": {
+                  "scalarsSources": {
+                    "schema": [
+                      {
+                        "path": "schema.json"
+                      }
+                    ],
+                    "schemaContent": [
+                      {
+                        "path": "schema.json"
+                      }
+                    ]
+                  },
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -30,9 +50,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

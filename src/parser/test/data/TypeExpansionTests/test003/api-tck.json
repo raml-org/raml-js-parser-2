@@ -1,0 +1,151 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1"
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "fixedFacets": [
+          {
+            "name": "f1",
+            "value": "stringValue"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T3",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "displayName": "f1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "fixedFacets": [
+          {
+            "name": "f1",
+            "value": "stringValue"
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "OauthSecurity": {
+    "securitySchemes": [
+      {
         "name": "OauthSecurity",
         "type": "OAuth 2.0",
         "description": "New Oauth security system. Do not use MediaSecurity or LegacySecurity.",
@@ -14,20 +14,43 @@
           "scopes": [
             "admin",
             "user"
-          ]
+          ],
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "title": "test API",
     "securedBy": [
       {
-        "OauthSecurity": {
+        "name": "OauthSecurity",
+        "type": "OAuth 2.0",
+        "description": "New Oauth security system. Do not use MediaSecurity or LegacySecurity.",
+        "settings": {
+          "accessTokenUri": "https://oauth.simple.api/token",
+          "authorizationUri": "https://oauth.simple.api/authorization",
+          "authorizationGrants": [
+            "authorization_code"
+          ],
           "scopes": [
             "hello"
-          ]
+          ],
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

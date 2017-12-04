@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "PersonAccounts": {
+    "types": [
+      {
         "name": "PersonAccounts",
         "displayName": "PersonAccounts",
         "type": [
@@ -14,12 +14,40 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "string[]"
+        "items": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": [
+              "string"
+            ],
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ]
       }
-    },
-    "title": "Dropbox API"
+    ],
+    "title": "Dropbox API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

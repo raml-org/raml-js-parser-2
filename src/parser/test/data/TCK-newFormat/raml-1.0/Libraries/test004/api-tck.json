@@ -3,49 +3,76 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "traits": {
-      "lib.libTrait1": {
+    "traits": [
+      {
         "name": "lib.libTrait1",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       },
-      "lib.libTrait2": {
+      {
         "name": "lib.libTrait2",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       },
-      "ownTrait1": {
-        "name": "ownTrait1"
+      {
+        "name": "ownTrait1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "ownTrait2": {
-        "name": "ownTrait2"
+      {
+        "name": "ownTrait2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "lib.libResourceType1": {
+    ],
+    "resourceTypes": [
+      {
         "name": "lib.libResourceType1",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       },
-      "lib.libResourceType2": {
+      {
         "name": "lib.libResourceType2",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "lib.raml"
         }
       },
-      "ownResourceType1": {
-        "name": "ownResourceType1"
+      {
+        "name": "ownResourceType1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "ownResourceType2": {
-        "name": "ownResourceType2"
+      {
+        "name": "ownResourceType2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "TCK Sample. RAML 1.0 Libraries 001.",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -58,6 +85,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

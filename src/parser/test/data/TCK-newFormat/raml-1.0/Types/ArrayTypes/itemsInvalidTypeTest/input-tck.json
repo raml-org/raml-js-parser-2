@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Foo": {
+    "types": [
+      {
         "name": "Foo",
         "displayName": "Foo",
         "type": [
@@ -18,9 +18,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "input.raml"
+        }
       },
-      "Bar": {
+      {
         "name": "Bar",
         "displayName": "Bar",
         "type": [
@@ -37,9 +40,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "input.raml"
+        }
       },
-      "FooBarArray": {
+      {
         "name": "FooBarArray",
         "displayName": "FooBarArray",
         "type": [
@@ -57,10 +63,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "input.raml"
+        }
       }
-    },
-    "title": "TestRAML"
+    ],
+    "title": "TestRAML",
+    "sourceMap": {
+      "path": "input.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

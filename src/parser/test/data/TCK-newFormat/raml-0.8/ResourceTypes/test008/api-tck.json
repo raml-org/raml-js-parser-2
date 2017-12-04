@@ -1,41 +1,63 @@
 {
   "specification": {
     "title": "test API",
-    "traits": {
-      "tr1": {
-        "name": "tr1"
-      }
-    },
-    "resourceTypes": {
-      "rt1": {
-        "name": "rt1",
-        "methods": {
-          "get": {
-            "method": "get"
-          }
+    "traits": [
+      {
+        "name": "tr1",
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
+    "resourceTypes": [
+      {
+        "name": "rt1",
+        "methods": [
+          {
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "resources": [
       {
         "relativeUri": "/resource",
         "type": {
-          "rt1": {
-            "param": "stringValue"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "stringValue"
+            }
+          ]
         },
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get",
             "is": [
               {
-                "tr1": {
-                  "param": "stringValue"
-                }
+                "name": "tr1",
+                "parameters": [
+                  {
+                    "name": "param",
+                    "value": "stringValue"
+                  }
+                ]
               }
-            ]
+            ],
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -49,9 +71,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

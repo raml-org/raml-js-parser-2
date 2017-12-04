@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "amazon-apigateway-auth-type": {
+    "types": [
+      {
         "name": "amazon-apigateway-auth-type",
         "displayName": "amazon-apigateway-auth-type",
         "type": [
@@ -21,16 +21,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration-lambda": {
+      {
         "name": "amazon-apigateway-integration-lambda",
         "displayName": "amazon-apigateway-integration-lambda",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -54,9 +57,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -68,16 +74,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration-HTTP": {
+      {
         "name": "amazon-apigateway-integration-HTTP",
         "displayName": "amazon-apigateway-integration-HTTP",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -101,9 +110,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -115,16 +127,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration-mock": {
+      {
         "name": "amazon-apigateway-integration-mock",
         "displayName": "amazon-apigateway-integration-mock",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -148,9 +163,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -162,16 +180,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration-aws": {
+      {
         "name": "amazon-apigateway-integration-aws",
         "displayName": "amazon-apigateway-integration-aws",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -195,9 +216,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -209,13 +233,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration": {
+      {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
-          "amazon-apigateway-integration-lambda | amazon-apigateway-integration-HTTP | amazon-apigateway-integration-mock | amazon-apigateway-integration-aws"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -225,18 +252,27 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "anyOf": [
+          "amazon-apigateway-integration-lambda",
+          "amazon-apigateway-integration-HTTP",
+          "amazon-apigateway-integration-mock",
+          "amazon-apigateway-integration-aws"
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "amazon-apigateway-auth": {
+    ],
+    "annotationTypes": [
+      {
         "name": "amazon-apigateway-auth",
         "displayName": "amazon-apigateway-auth",
         "type": [
           "object"
         ],
-        "properties": {
-          "value": {
+        "properties": [
+          {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -254,9 +290,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -268,16 +307,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "amazon-apigateway-integration": {
+      {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
           "object"
         ],
-        "properties": {
-          "value": {
+        "properties": [
+          {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -295,9 +337,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -309,16 +354,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "securitySchemes": {
-      "key": {
+    ],
+    "securitySchemes": [
+      {
         "name": "key",
         "type": "Pass Through",
         "describedBy": {
-          "headers": {
-            "x-api-key": {
+          "headers": [
+            {
               "name": "x-api-key",
               "displayName": "x-api-key",
               "type": [
@@ -339,12 +387,21 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
+          ],
+          "sourceMap": {
+            "path": "api.raml"
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",
@@ -360,6 +417,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

@@ -3,42 +3,65 @@
     "uses": [
       {
         "key": "files",
-        "value": "libraries/files.raml"
+        "value": "libraries/files.raml",
+        "sourceMap": {
+          "path": "index.raml"
+        }
       }
     ],
-    "traits": {
-      "files.hello": {
+    "traits": [
+      {
         "name": "files.hello",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "libraries/files.raml"
         }
       }
-    },
-    "resourceTypes": {
-      "file": {
-        "methods": {
-          "get": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
             "is": [
-              "files.hello"
+              {
+                "name": "files.hello"
+              }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "files-resource.raml"
+            }
           }
-        },
-        "name": "file"
+        ],
+        "name": "file",
+        "sourceMap": {
+          "path": "files-resource.raml"
+        }
       }
-    },
+    ],
     "title": "Files API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
-              "files.hello"
+              {
+                "name": "files.hello"
+              }
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/files",
+            "absoluteParentUri": "/files",
+            "sourceMap": {
+              "path": "files-resource.raml"
+            }
           }
+        ],
+        "type": {
+          "name": "file"
         },
-        "type": "file",
         "relativeUri": "/files",
         "displayName": "/files",
         "__METADATA__": {
@@ -53,9 +76,16 @@
         ],
         "absoluteUri": "/files",
         "completeRelativeUri": "/files",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "index.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "index.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

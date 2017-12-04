@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Method": {
+    "types": [
+      {
         "name": "Method",
         "displayName": "Method",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,9 +26,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "oType13.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -37,16 +40,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "oType13.raml"
+        }
       },
-      "Resource": {
+      {
         "name": "Resource",
         "displayName": "Resource",
         "type": [
           "object"
         ],
-        "properties": {
-          "/post|get|put/": {
+        "properties": [
+          {
             "name": "/post|get|put/",
             "displayName": "/post|get|put/",
             "type": [
@@ -64,9 +70,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "oType13.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -88,11 +97,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"put\":{\"name\":\"update method\"},\"post\":{\"name\":\"create method\"}}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "oType13.raml"
+        }
       }
-    },
-    "title": "My API With Types"
+    ],
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType13.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

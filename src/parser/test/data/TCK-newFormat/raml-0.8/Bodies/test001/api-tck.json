@@ -3,8 +3,8 @@
     "title": "TCK Bodies 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -32,9 +32,12 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],
@@ -42,29 +45,38 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": {
-          "post": {
-            "responses": {
-              "201": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "{}",
                     "example": "{}",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "schema": "{}",
                 "example": "{}",
-                "schemaContent": "{}"
+                "schemaContent": "{}",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -75,9 +87,49 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": "string",
+                "required": true,
+                "repeat": false,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ]
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -91,7 +143,46 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": "string",
+            "required": true,
+            "repeat": false,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {
@@ -100,6 +191,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML08",

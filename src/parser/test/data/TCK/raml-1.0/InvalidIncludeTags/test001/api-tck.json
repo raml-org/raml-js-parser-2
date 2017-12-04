@@ -51,7 +51,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
-                      "string"
+                      "any"
                     ],
                     "example": null,
                     "__METADATA__": {
@@ -137,23 +137,6 @@
           "line": 13,
           "column": 69,
           "position": 277
-        }
-      }
-    },
-    {
-      "code": "TYPE_EXPECTED",
-      "message": "Expected type 'string' but got 'null'",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 14,
-          "column": 12,
-          "position": 290
-        },
-        "end": {
-          "line": 14,
-          "column": 19,
-          "position": 297
         }
       }
     },

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Feature": {
+    "types": [
+      {
         "name": "Feature",
         "displayName": "Feature",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -28,10 +28,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "geometry": {
+          {
             "name": "geometry",
             "displayName": "geometry",
             "type": [
@@ -48,10 +51,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "properties": {
+          {
             "name": "properties",
             "displayName": "properties",
             "type": [
@@ -68,10 +74,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -79,17 +88,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ZoomEmbed": {
+      {
         "name": "ZoomEmbed",
         "displayName": "ZoomEmbed",
         "type": [
           "object"
         ],
-        "properties": {
-          "_embeds": {
+        "properties": [
+          {
             "name": "_embeds",
             "displayName": "_embeds",
             "type": [
@@ -101,17 +113,19 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "object"
+            "items": [
+              "object"
+            ]
           },
-          "_links": {
+          {
             "name": "_links",
             "displayName": "_links",
             "type": [
@@ -126,10 +140,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -140,18 +157,21 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Scene": {
+      {
         "name": "Scene",
         "displayName": "Scene",
         "type": [
           "ZoomEmbed",
           "Feature"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -168,10 +188,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -179,17 +202,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PlanetScene": {
+      {
         "name": "PlanetScene",
         "displayName": "PlanetScene",
         "type": [
           "Scene"
         ],
-        "properties": {
-          "properties": {
+        "properties": [
+          {
             "name": "properties",
             "displayName": "properties",
             "type": [
@@ -206,10 +232,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "_links": {
+          {
             "name": "_links",
             "displayName": "_links",
             "type": [
@@ -217,8 +246,8 @@
             ],
             "required": true,
             "description": "Links to related resources and actions.",
-            "properties": {
-              "licenses": {
+            "properties": [
+              {
                 "name": "licenses",
                 "displayName": "licenses",
                 "type": [
@@ -235,10 +264,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "test1.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -249,10 +281,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -260,17 +295,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "BaseProperties": {
+      {
         "name": "BaseProperties",
         "displayName": "BaseProperties",
         "type": [
           "object"
         ],
-        "properties": {
-          "acquired": {
+        "properties": [
+          {
             "name": "acquired",
             "displayName": "acquired",
             "type": [
@@ -287,10 +325,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -301,17 +342,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PlanetProperties": {
+      {
         "name": "PlanetProperties",
         "displayName": "PlanetProperties",
         "type": [
           "BaseProperties"
         ],
-        "properties": {
-          "vnd_camera_gain": {
+        "properties": [
+          {
             "name": "vnd_camera_gain",
             "displayName": "vnd_camera_gain",
             "type": [
@@ -329,10 +373,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "test1.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -340,10 +387,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ResourceURL": {
+      {
         "name": "ResourceURL",
         "displayName": "ResourceURL",
         "type": [
@@ -357,10 +407,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "test1.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Planet RAML Experiments",
     "version": "v1",
     "baseUri": "http://api.planet.com",
@@ -372,8 +425,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "protocols": [
               "HTTP"
             ],
@@ -385,15 +438,20 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/v1",
+            "absoluteParentUri": "http://api.planet.com/v1",
+            "sourceMap": {
+              "path": "test1.raml"
             }
           }
-        },
+        ],
         "relativeUri": "/v1",
         "displayName": "/v1",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "protocols": [
                   "HTTP"
                 ],
@@ -405,20 +463,25 @@
                       "calculated": true
                     }
                   }
+                },
+                "parentUri": "/v1/scenes",
+                "absoluteParentUri": "http://api.planet.com/v1/scenes",
+                "sourceMap": {
+                  "path": "test1.raml"
                 }
               }
-            },
+            ],
             "relativeUri": "/scenes",
             "displayName": "/scenes",
             "resources": [
               {
-                "methods": {
-                  "get": {
-                    "responses": {
-                      "200": {
+                "methods": [
+                  {
+                    "responses": [
+                      {
                         "code": "200",
-                        "body": {
-                          "application/json": {
+                        "body": [
+                          {
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
@@ -430,6 +493,9 @@
                                   "calculated": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "test1.raml"
                             },
                             "examples": [
                               {
@@ -452,13 +518,21 @@
                                 "name": null
                               }
                             ],
+                            "simplifiedExamples": [
+                              "[{\"id\":\"foo\",\"type\":\"Feature\",\"geometry\":{},\"properties\":{\"acquired\":\"2016-02-28T16:41:41.090Z\",\"vnd_camera_gain\":5},\"_embeds\":[],\"_links\":{\"licenses\":\"https://api.planet.com/v1/scenes/foo/licenses\"}}]"
+                            ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "items": "PlanetScene"
+                            "items": [
+                              "PlanetScene"
+                            ]
                           }
+                        ],
+                        "sourceMap": {
+                          "path": "test1.raml"
                         }
                       }
-                    },
+                    ],
                     "protocols": [
                       "HTTP"
                     ],
@@ -470,9 +544,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "parentUri": "/v1/scenes/planetscope",
+                    "absoluteParentUri": "http://api.planet.com/v1/scenes/planetscope",
+                    "sourceMap": {
+                      "path": "test1.raml"
                     }
                   }
-                },
+                ],
                 "relativeUri": "/planetscope",
                 "displayName": "/planetscope",
                 "__METADATA__": {
@@ -487,7 +566,11 @@
                 ],
                 "absoluteUri": "http://api.planet.com/v1/scenes/planetscope",
                 "completeRelativeUri": "/v1/scenes/planetscope",
-                "parentUri": "/v1/scenes"
+                "parentUri": "/v1/scenes",
+                "absoluteParentUri": "http://api.planet.com/v1/scenes",
+                "sourceMap": {
+                  "path": "test1.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -502,7 +585,11 @@
             ],
             "absoluteUri": "http://api.planet.com/v1/scenes",
             "completeRelativeUri": "/v1/scenes",
-            "parentUri": "/v1"
+            "parentUri": "/v1",
+            "absoluteParentUri": "http://api.planet.com/v1",
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -517,9 +604,16 @@
         ],
         "absoluteUri": "http://api.planet.com/v1",
         "completeRelativeUri": "/v1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.planet.com",
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "test1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

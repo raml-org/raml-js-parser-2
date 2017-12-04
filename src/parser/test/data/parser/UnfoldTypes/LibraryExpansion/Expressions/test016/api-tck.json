@@ -1,8 +1,24 @@
 {
   "specification": {
-    "types": {
-      "Types.SharedTypes.StandardInt64": {
-        "name": "StandardInt64",
+    "uses": [
+      {
+        "key": "Types",
+        "value": "libraries/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "Types.SharedTypes",
+        "value": "libraries/SharedTypes.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "Types.SharedTypes.StandardInt64",
         "displayName": "StandardInt64",
         "type": [
           "integer"
@@ -15,38 +31,24 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "libraries/SharedTypes.raml"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "Types.SharedTypes.StandardInt64",
-          "displayName": "Types.SharedTypes.StandardInt64",
-          "type": [
-            "integer"
-          ],
-          "format": "int64",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Types.Type1": {
-        "name": "Type1",
+      {
+        "name": "Types.Type1",
         "displayName": "Type1",
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
-              "Types.SharedTypes.StandardInt64 | nil"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -59,38 +61,17 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "libraries/types.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "unfolded": {
-              "name": "id",
-              "displayName": "id",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "#/specification/types/Types.SharedTypes.StandardInt64",
-                    "nil"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
+            "anyOf": [
+              "#/specification/types/Types.SharedTypes.StandardInt64",
+              "nil"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -101,70 +82,24 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "libraries/types.raml"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "Types.Type1",
-          "displayName": "Types.Type1",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "#/specification/types/Types.SharedTypes.StandardInt64",
-                    "nil"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "put": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "Types.Type1"
+                  "#/specification/types/Types.Type1"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -172,6 +107,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "examples": [
                   {
@@ -182,38 +120,21 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"id\":null}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "unfolded": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "#/specification/types/Types.Type1"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  },
-                  "examples": [
-                    {
-                      "value": {
-                        "id": null
-                      },
-                      "strict": true,
-                      "name": null
-                    }
-                  ],
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -228,9 +149,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

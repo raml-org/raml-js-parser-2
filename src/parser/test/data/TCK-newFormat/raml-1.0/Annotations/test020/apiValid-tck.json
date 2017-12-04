@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "helloNightmare": {
-        "queryParameters": {
-          "nightMare": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "nightMare",
             "displayName": "nightMare",
             "type": [
@@ -25,14 +25,20 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "<<isRequired>>": "<<value>>"
+            "<<isRequired>>": "<<value>>",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
-        "name": "helloNightmare"
+        ],
+        "name": "helloNightmare",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "searchable": {
+    ],
+    "annotationTypes": [
+      {
         "name": "searchable",
         "displayName": "searchable",
         "type": [
@@ -46,16 +52,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
-      "sortable": {
+      {
         "name": "sortable",
         "displayName": "sortable",
         "type": [
           "object"
         ],
-        "properties": {
-          "default": {
+        "properties": [
+          {
             "name": "default",
             "displayName": "default",
             "type": [
@@ -78,9 +87,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -92,28 +104,31 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
+    ],
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "kind": {
-                "annotations": {
-                  "sortable": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
+                "annotations": [
+                  {
                     "name": "sortable",
-                    "structuredValue": {
+                    "value": {
                       "default": "low"
                     }
                   },
-                  "searchable": {
+                  {
                     "name": "searchable",
-                    "structuredValue": null
+                    "value": null
                   }
-                },
+                ],
                 "name": "kind",
                 "displayName": "kind",
                 "type": [
@@ -134,14 +149,17 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                }
               }
-            },
-            "responses": {
-              "200": {
+            ],
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -158,14 +176,25 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/animals",
+            "absoluteParentUri": "/animals",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/animals",
         "displayName": "/animals",
         "__METADATA__": {
@@ -180,9 +209,16 @@
         ],
         "absoluteUri": "/animals",
         "completeRelativeUri": "/animals",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

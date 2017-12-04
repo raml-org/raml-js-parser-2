@@ -1,0 +1,136 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "number"
+          ],
+          "example": 5,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          },
+          "structuredExample": {
+            "value": "5",
+            "strict": false,
+            "name": null,
+            "structuredValue": 5,
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        }
+      },
+      {
+        "T2": {
+          "name": "T2",
+          "displayName": "T2",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "number"
+          ],
+          "examples": [
+            {
+              "value": "5",
+              "strict": false,
+              "name": "e1",
+              "structuredValue": 5,
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            {
+              "value": "5",
+              "strict": false,
+              "name": "e2",
+              "structuredValue": 5,
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "testAPI",
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 118
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 124
+        }
+      }
+    },
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 8,
+          "position": 198
+        },
+        "end": {
+          "line": 14,
+          "column": 14,
+          "position": 204
+        }
+      }
+    },
+    {
+      "code": "STRICT_BOOLEAN",
+      "message": "'strict' should be boolean",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 8,
+          "position": 241
+        },
+        "end": {
+          "line": 17,
+          "column": 14,
+          "position": 247
+        }
+      }
+    }
+  ]
+}

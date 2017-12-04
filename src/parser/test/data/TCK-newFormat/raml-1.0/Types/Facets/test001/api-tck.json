@@ -1,21 +1,21 @@
 {
   "specification": {
-    "types": {
-      "myDate": {
-        "annotations": {
-          "reader": {
+    "types": [
+      {
+        "annotations": [
+          {
             "name": "reader",
-            "structuredValue": "myReaader.ts"
+            "value": "myReaader.ts"
           },
-          "writer": {
+          {
             "name": "writer",
-            "structuredValue": "myWiter.ts"
+            "value": "myWiter.ts"
           }
-        },
+        ],
         "name": "myDate",
         "displayName": "myDate",
-        "facets": {
-          "format": {
+        "facets": [
+          {
             "name": "format",
             "displayName": "format",
             "type": [
@@ -29,9 +29,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": [
           "string"
         ],
@@ -43,9 +46,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "year": {
+      {
         "name": "year",
         "displayName": "year",
         "type": [
@@ -58,15 +64,21 @@
             }
           }
         },
-        "fixedFacets": {
-          "format": "YYYY"
-        },
+        "fixedFacets": [
+          {
+            "name": "format",
+            "value": "YYYY"
+          }
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "reader": {
+    ],
+    "annotationTypes": [
+      {
         "name": "reader",
         "displayName": "reader",
         "type": [
@@ -80,9 +92,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "writer": {
+      {
         "name": "writer",
         "displayName": "writer",
         "type": [
@@ -96,16 +111,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "A",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "y": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "y",
                 "displayName": "y",
                 "type": [
@@ -123,12 +141,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/q",
+            "absoluteParentUri": "/q",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {
@@ -143,9 +169,16 @@
         ],
         "absoluteUri": "/q",
         "completeRelativeUri": "/q",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

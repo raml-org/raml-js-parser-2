@@ -423,10 +423,13 @@ export interface TestOptions{
     tckJsonPath?:string,
     regenerteJSON?:boolean,
     expandLib?:boolean,
-    unfoldTypes?:boolean,
+    expandExpressions?:boolean,
     typeReferences?:boolean,
     newFormat?:boolean,
-    serializeMetadata?:boolean
+    serializeMetadata?:boolean,
+    expandTypes?: boolean,
+    recursionDepth?: number,
+    unfoldTypes?:boolean
 }
 
 export function testAPIScript(o:TestOptions){
@@ -467,7 +470,8 @@ export function testAPI(
         expandLib: expandLib
     }, callTests,doAssert);
     
-    }
+}
+
 function doTestAPI(o:TestOptions,callTests:boolean,doAssert:boolean):TestResult{
     o = o || {};
 
@@ -487,15 +491,18 @@ function doTestAPI(o:TestOptions,callTests:boolean,doAssert:boolean):TestResult{
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var json:any;
-    if(o.newFormat||o.unfoldTypes){
+    if(o.newFormat||o.expandExpressions){
         if(extensions && extensions.length>0){
             apiPath = extensions[extensions.length-1];
         }
         json = index.loadSync(apiPath,{
             expandLibraries: o.expandLib,
-            unfoldTypes: o.unfoldTypes,
+            serializeMetadata: o.serializeMetadata,
+            expandTypes: o.expandTypes,
+            expandExpressions: o.expandExpressions,
             typeReferences: o.typeReferences,
-            serializeMetadata: o.serializeMetadata
+            typeExpansionRecursionDepth: o.recursionDepth,
+            sourceMap: true
         });
     }
     else {
@@ -662,7 +669,6 @@ ${testsStr}
 }
 
 function dumpTest(test:Test,dataRoot:string,o:TestOptions):string{
-
 
     let relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
     let options:TestOptions = o ? util.deepCopy(o) : {};

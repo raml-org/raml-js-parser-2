@@ -3,11 +3,14 @@
     "uses": [
       {
         "key": "views",
-        "value": "views.raml"
+        "value": "views.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "types": {
-      "Method": {
+    "types": [
+      {
         "name": "Method",
         "displayName": "Method",
         "type": [
@@ -21,20 +24,23 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "Class": {
+      {
         "name": "Class",
         "displayName": "Class",
-        "facets": {
-          "methods": {
+        "facets": [
+          {
             "name": "methods",
             "displayName": "methods",
             "type": [
               "object"
             ],
-            "properties": {
-              "//": {
+            "properties": [
+              {
                 "name": "//",
                 "displayName": "//",
                 "type": [
@@ -52,9 +58,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -66,9 +75,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": [
           "object"
         ],
@@ -80,16 +92,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "Repository": {
+      {
         "name": "Repository",
         "displayName": "Repository",
         "type": [
           "Class"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -107,9 +122,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -127,9 +145,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -147,9 +168,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -158,21 +182,24 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "Hello",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "put": {
-            "annotations": {
-              "views.views": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "views.views",
-                "structuredValue": [
+                "value": [
                   {
                     "id": "x",
                     "fixedParameters": {
@@ -181,9 +208,9 @@
                   }
                 ]
               }
-            },
-            "queryParameters": {
-              "a": {
+            ],
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": [
@@ -194,18 +221,18 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "headers": {
-              "b": {
+            ],
+            "headers": [
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": [
@@ -216,21 +243,21 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "responses": {
-              "200": {
+            ],
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -244,14 +271,20 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
-              "400": {
+              {
                 "code": "400",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -265,13 +298,19 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -285,14 +324,51 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
+            ],
+            "method": "put",
+            "parentUri": "/hello/{id}",
+            "absoluteParentUri": "/hello/{id}",
+            "sourceMap": {
+              "path": "api.raml"
             },
-            "method": "put"
+            "uriParameters": [
+              {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ]
           }
-        },
-        "uriParameters": {
-          "id": {
+        ],
+        "uriParameters": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -314,9 +390,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/hello/{id}",
         "displayName": "/hello/{id}",
         "__METADATA__": {
@@ -332,9 +411,16 @@
         ],
         "absoluteUri": "/hello/{id}",
         "completeRelativeUri": "/hello/{id}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

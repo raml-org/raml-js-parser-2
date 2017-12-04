@@ -632,7 +632,7 @@ describe('Parser regression tests', function () {
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
     })
     it ("naming rules" ,function(){
-        testErrors(util.data("parser/custom/naming1.raml"),["object is expected","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists"]);
+        testErrors(util.data("parser/custom/naming1.raml"),["Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists","Type 'Person' already exists", "Trait 'qq' already exists", "Resource '/ee' already exists"]);
     })
     it ("resource types test with types" ,function(){
         testErrors(util.data("parser/custom/rtypes.raml"));//Ok for now lets improve later
@@ -1283,10 +1283,10 @@ describe('Property override tests',function(){
         testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["Property 'documentation' should be a sequence"]);
     });
     it ("Title value must be specified in 0.8",function(){
-        testErrors(util.data("parser/custom/missedTitle.raml"),["Missing required property 'title'"]);
+        testErrors(util.data("parser/custom/missedTitle.raml"),["Value is not provided for required property 'title'"]);
     });
     it ("Title value must be specified in 1.0",function(){
-        testErrors(util.data("parser/custom/missedTitle10.raml"),["Missing required property 'title'"]);
+        testErrors(util.data("parser/custom/missedTitle10.raml"),["Value is not provided for required property 'title'"]);
     });
     it ("expander not halted by this sample any more",function(){
         testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),10);
@@ -1476,7 +1476,7 @@ describe('New API',function(){
         var p = util.data("parser/libraries/nestedUses/index.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['traits']['files.hello']['name']=='hello');
+        assert(spec['traits'][0]['name']=='files.hello');
     });
 });
 
@@ -1486,14 +1486,14 @@ describe('JSON Extension default attributes',function(){
         var p = util.data("extensions/test58Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+        assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
     });
 
     it("securedBy2", function () {
         var p = util.data("extensions/test59Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+        assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
     });
 });
 

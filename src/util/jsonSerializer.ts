@@ -394,26 +394,36 @@ export class JsonSerializer {
                     })
                 }
             }
-
+            let hasValue = Array.isArray(value) ? (value.length>0) : (value != null);
             if(definition && definition.isAssignableFrom("TypeDeclaration")
-                && (propName === "type" || propName == "schema") && value) {
+                && (propName === "type" || propName == "schema") && hasValue) {
 
-                if (value.forEach && typeof value[0] === "string") {
+                if (Array.isArray(value)) {
+                    let val = value.length > 0 ? value[0] : null;
+                    if(val==null){
+                        const defaultsCalculator = (<core.BasicNodeImpl>node).getDefaultsCalculator();
+                        if(defaultsCalculator) {
+                            let typeProp = def.getUniverse("RAML10").type("TypeDeclaration").property("type");
+                            val = defaultsCalculator.attributeDefaultIfEnabled(node.highLevel().asElement(),typeProp);
+                        }
+                        value[0]=val;
+                    }
 
                     var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
                     var runtimeType = highLevelNode.localType();
 
+                    let canBeJson = false;
+                    let canBeXml = false;
                     if (runtimeType && runtimeType.hasExternalInHierarchy()) {
 
-                        var schemaString = value[0].trim();
-                        var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                        var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
-
-                        if (canBeJson) {
-                            obj["typePropertyKind"] = "JSON";
-                        } else if (canBeXml) {
-                            obj["typePropertyKind"] = "XML";
-                        }
+                        var schemaString = val.trim();
+                        canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                        canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                    }
+                    if (canBeJson) {
+                        obj["typePropertyKind"] = "JSON";
+                    } else if (canBeXml) {
+                        obj["typePropertyKind"] = "XML";
                     } else {
                         obj["typePropertyKind"] = "TYPE_EXPRESSION";
                     }

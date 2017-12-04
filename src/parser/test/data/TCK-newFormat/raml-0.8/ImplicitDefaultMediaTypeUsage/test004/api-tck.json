@@ -4,53 +4,82 @@
     "mediaType": "application/json",
     "schemas": [
       {
-        "t1": "{}"
+        "value": "{}",
+        "name": "t1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "t2": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+        "value": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+        "name": "t2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "t3": "{}"
-      }
-    ],
-    "resourceTypes": {
-      "collection": {
-        "name": "collection",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json",
-                    "schema": "t1",
-                    "schemaContent": "{}"
-                  },
-                  "application/xml": {
-                    "name": "application/xml",
-                    "schema": "t2",
-                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
-                  }
-                }
-              }
-            },
-            "method": "get"
-          }
+        "value": "{}",
+        "name": "t3",
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
+    "resourceTypes": [
+      {
+        "name": "collection",
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "schema": "t1",
+                    "schemaContent": "{}",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  },
+                  {
+                    "name": "application/xml",
+                    "schema": "t2",
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "resources": [
       {
         "relativeUri": "/schemes",
-        "type": "collection",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "type": {
+          "name": "collection"
+        },
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "t3",
                     "schemaContent": "{}",
@@ -60,19 +89,33 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "schema": "t2",
-                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/schemes",
+            "absoluteParentUri": "/schemes",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/schemes",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -86,9 +129,16 @@
         ],
         "absoluteUri": "/schemes",
         "completeRelativeUri": "/schemes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

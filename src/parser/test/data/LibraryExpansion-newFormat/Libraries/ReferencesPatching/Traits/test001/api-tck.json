@@ -1,8 +1,17 @@
 {
   "specification": {
-    "types": {
-      "lib.LibType": {
-        "name": "LibType",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.LibType",
         "displayName": "LibType",
         "type": [
           "object"
@@ -15,16 +24,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
-    },
-    "traits": {
-      "lib.libTrait1": {
-        "responses": {
-          "200": {
+    ],
+    "traits": [
+      {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -38,13 +50,25 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "lib/lib.raml"
+                }
               }
+            ],
+            "sourceMap": {
+              "path": "lib/lib.raml"
             }
           }
-        },
-        "name": "libTrait1"
+        ],
+        "name": "lib.libTrait1",
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

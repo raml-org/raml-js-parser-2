@@ -3,16 +3,19 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/lib.raml"
+        "value": "libs/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "put": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -22,8 +25,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "objectProperty": {
+                    "properties": [
+                      {
                         "name": "objectProperty",
                         "displayName": "objectProperty",
                         "type": [
@@ -41,9 +44,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       },
-                      "stringProperty": {
+                      {
                         "name": "stringProperty",
                         "displayName": "stringProperty",
                         "type": [
@@ -61,9 +67,12 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       }
-                    },
+                    ],
                     "additionalProperties": false,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -76,7 +85,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "sourceMap": {
+                      "path": "fragments/type.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -98,13 +110,24 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"objectProperty\":{\"prop\":\"string\"},\"stringProperty\":\"abcdefghijklmnopqrstuvwxyz0123456789\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -119,9 +142,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

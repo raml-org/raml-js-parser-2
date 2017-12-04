@@ -655,6 +655,9 @@ export class LibraryExpander{
         if(api==null){
             return null;
         }
+        if(!universeHelpers.isApiSibling(_api.definition())){
+            return null;
+        }
         if(proxy.LowLevelCompositeNode.isInstance(api.lowLevel())){
             api = api.lowLevel().unit().highLevel().asElement();
         }

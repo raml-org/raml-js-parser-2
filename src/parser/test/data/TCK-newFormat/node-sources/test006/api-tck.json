@@ -1,12 +1,25 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt1": {
+    "resourceTypes": [
+      {
         "description": "string value\n",
-        "name": "rt1"
+        "name": "rt1",
+        "sourceMap": {
+          "scalarsSources": {
+            "description": [
+              {
+                "path": "description.txt"
+              }
+            ]
+          },
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

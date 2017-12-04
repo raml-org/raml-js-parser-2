@@ -20,7 +20,7 @@ export import api08 = require("./parser/artifacts/raml08parserapi")
  * @param options Load options
  * @return Object representation of the specification wrapped into a Promise.
  **/
-export function load(ramlPathOrContent:string,options?:parserCore.Options2):Promise<jsonTypings.RAMLParseResult>{
+export function load(ramlPathOrContent:string,options?:parserCore.LoadOptions):Promise<jsonTypings.RAMLParseResult>{
     return apiLoader.load(ramlPathOrContent,options);
 }
 
@@ -30,7 +30,7 @@ export function load(ramlPathOrContent:string,options?:parserCore.Options2):Prom
  * @param options Load options
  * @return Object representation of the specification.
  **/
-export function loadSync(ramlPathOrContent:string,options?:parserCore.Options2):jsonTypings.RAMLParseResult{
+export function loadSync(ramlPathOrContent:string,options?:parserCore.LoadOptions):jsonTypings.RAMLParseResult{
     return apiLoader.loadSync(ramlPathOrContent,options);
 }
 
@@ -40,7 +40,7 @@ export function loadSync(ramlPathOrContent:string,options?:parserCore.Options2):
  * @param options Load options
  * @return High level AST root wrapped into a Promise.
  **/
-export function parse(ramlPathOrContent:string,options?:parserCore.Options2):Promise<hl.IHighLevelNode>{
+export function parse(ramlPathOrContent:string,options?:parserCore.LoadOptions):Promise<hl.IHighLevelNode>{
     return apiLoader.parse(ramlPathOrContent,options);
 }
 
@@ -50,7 +50,7 @@ export function parse(ramlPathOrContent:string,options?:parserCore.Options2):Pro
  * @param options Load options
  * @return High level AST root.
  **/
-export function parseSync(ramlPathOrContent:string,options?:parserCore.Options2):hl.IHighLevelNode{
+export function parseSync(ramlPathOrContent:string,options?:parserCore.LoadOptions):hl.IHighLevelNode{
     return apiLoader.parseSync(ramlPathOrContent,options);
 }
 

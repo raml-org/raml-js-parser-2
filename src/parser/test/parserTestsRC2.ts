@@ -83,7 +83,7 @@ describe('External type facets tests',function(){
 
     it ("JSON External type facets test 9",function(){
         parserTests.testErrors(util.data("../data/rc2/jsonSchemaNegative6.raml"),
-            ["It is not allowed to use external types in component type definitions"]);
+            ["It is not allowed to use external types as array component types in types and type properties declarations"]);
     });
 
     // it ("JSON External type facets test 10",function(){
@@ -169,7 +169,7 @@ describe('External type facets tests',function(){
 
     it ("XSD External type facets test 9",function(){
         parserTests.testErrors(util.data("../data/rc2/xsdSchemaNegative6.raml"),
-            ["It is not allowed to use external types in component type definitions"]);
+            ["It is not allowed to use external types as array component types in types and type properties declarations"]);
     });
 
     // it ("XSD External type facets test 10",function(){

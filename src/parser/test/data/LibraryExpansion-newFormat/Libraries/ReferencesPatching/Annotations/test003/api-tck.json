@@ -1,81 +1,122 @@
 {
   "specification": {
-    "resourceTypes": {
-      "lib.rt": {
-        "type": {
-          "lib.lib.rt": {
-            "param1": "<<param1>>",
-            "param2": "lib.Monkey"
-          }
-        },
-        "name": "rt"
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/libA.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "lib.lib.rt": {
-        "annotations": {
-          "<<param1>>": {
-            "name": "<<param1>>",
-            "structuredValue": "stringValue1"
-          },
-          "<<param2>>": {
-            "name": "<<param2>>",
-            "structuredValue": 5
-          },
-          "lib.lib.Monkey": {
-            "name": "lib.lib.Monkey",
-            "structuredValue": true
-          }
-        },
-        "methods": {
-          "get": {
-            "annotations": {
-              "<<param1>>": {
-                "name": "<<param1>>",
-                "structuredValue": "stringValue2"
-              }
-            },
-            "method": "get"
-          },
-          "post": {
-            "annotations": {
-              "<<param2>>": {
-                "name": "<<param2>>",
-                "structuredValue": 8
-              }
-            },
-            "method": "post"
-          },
-          "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
-                "name": "lib.lib.Monkey",
-                "structuredValue": false
-              }
-            },
-            "method": "put"
-          },
-          "delete": {
-            "annotations": {
-              "<<param1>>": {
-                "name": "<<param1>>",
-                "structuredValue": "stringValue3"
-              },
-              "<<param2>>": {
-                "name": "<<param2>>",
-                "structuredValue": 16
-              },
-              "lib.lib.Monkey": {
-                "name": "lib.lib.Monkey",
-                "structuredValue": true
-              }
-            },
-            "method": "delete"
-          }
-        },
-        "name": "rt"
+      {
+        "key": "lib.lib",
+        "value": "lib/libB.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "Monkey": {
+    ],
+    "resourceTypes": [
+      {
+        "type": {
+          "name": "lib.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param1>>"
+            },
+            {
+              "name": "param2",
+              "value": "Monkey"
+            }
+          ]
+        },
+        "name": "lib.rt",
+        "sourceMap": {
+          "path": "lib/libA.raml"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "name": "<<param1>>",
+            "value": "stringValue1"
+          },
+          {
+            "name": "<<param2>>",
+            "value": 5
+          },
+          {
+            "name": "lib.lib.Monkey",
+            "value": true
+          }
+        ],
+        "methods": [
+          {
+            "annotations": [
+              {
+                "name": "<<param1>>",
+                "value": "stringValue2"
+              }
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
+          },
+          {
+            "annotations": [
+              {
+                "name": "<<param2>>",
+                "value": 8
+              }
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
+          },
+          {
+            "annotations": [
+              {
+                "name": "lib.lib.Monkey",
+                "value": false
+              }
+            ],
+            "method": "put",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
+          },
+          {
+            "annotations": [
+              {
+                "name": "<<param1>>",
+                "value": "stringValue3"
+              },
+              {
+                "name": "<<param2>>",
+                "value": 16
+              },
+              {
+                "name": "lib.lib.Monkey",
+                "value": true
+              }
+            ],
+            "method": "delete",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
+          }
+        ],
+        "name": "lib.lib.rt",
+        "sourceMap": {
+          "path": "lib/libB.raml"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -89,10 +130,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "number"
@@ -105,10 +149,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib/libA.raml"
+        }
       },
-      "lib.lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "boolean"
@@ -121,8 +168,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib/libB.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

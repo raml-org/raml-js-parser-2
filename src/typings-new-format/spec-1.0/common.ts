@@ -4,31 +4,63 @@ import methods = require("./methods");
 import security = require("./security");
 import resources = require("./resources");
 
-export interface Annotable {
+export interface SourceInfo{
+
+    /**
+     * Path to file which contains definition
+     */
+    path?: string
+
+    /**
+     * Namespace of defining library if any
+     */
+    namespace?: string
+
+}
+
+export interface ElementSourceInfo extends SourceInfo{
+
+    /**
+     * Source information for fields which are defined in another file rather then their owning component.
+     * If all scalar fields of the component are defined in the same file, the 'scalarsSources' field is undefined.
+     */
+    scalarsSources?: { [key:string]:SourceInfo[] }
+
+}
+
+export interface HasSource {
+
+    sourceMap?: ElementSourceInfo
+
+    __METADATA__?: any
+}
+
+
+export interface Annotable extends HasSource{
 
     /**
      * Most of RAML model elements may have attached annotations decribing
      * additional meta data about this element
      */
-    annotations: { [key: string]: AnnotationInstance | AnnotationInstance[] };
+    annotations?: AnnotationInstance[];
 
-    scalarsAnnotations: { [key: string]: (AnnotationInstance | AnnotationInstance[])[] };
-
-    __METADATA__: any
+    scalarsAnnotations?: { [key: string]: AnnotationInstance[][] };
 }
 
-export interface AnnotationInstance {
+export interface AnnotationInstance extends Annotable {
 
     name: string
 
-    structuredValue: any
+    value: any
 }
 
-export interface UsesDeclaration {
+export interface UsesDeclaration extends Annotable{
 
     key: string
 
     value: string
+
+    usage?: string
 }
 
 export interface FragmentDeclaration extends Annotable {

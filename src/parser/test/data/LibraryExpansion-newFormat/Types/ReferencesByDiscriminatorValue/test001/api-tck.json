@@ -1,7 +1,16 @@
 {
   "specification": {
-    "types": {
-      "MyArrayType": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
         "name": "MyArrayType",
         "displayName": "MyArrayType",
         "type": [
@@ -13,6 +22,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "examples": [
           {
@@ -30,18 +42,23 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "[{\"kind\":\"t1\",\"value\":15},{\"kind\":\"t2\",\"value\":17}]"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "lib.Base"
+        "items": [
+          "lib.Base"
+        ]
       },
-      "lib.Base": {
-        "name": "Base",
+      {
+        "name": "lib.Base",
         "displayName": "Base",
         "type": [
           "object"
         ],
-        "properties": {
-          "kind": {
+        "properties": [
+          {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -58,10 +75,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "value": {
+          {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -78,10 +98,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "discriminator": "kind",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -93,11 +116,14 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.T1": {
-        "name": "T1",
+      {
+        "name": "lib.T1",
         "displayName": "T1",
         "type": [
           "lib.Base"
@@ -110,11 +136,14 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.T2": {
-        "name": "T2",
+      {
+        "name": "lib.T2",
         "displayName": "T2",
         "type": [
           "lib.Base"
@@ -127,11 +156,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

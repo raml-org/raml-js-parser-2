@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Message": {
+    "types": [
+      {
         "name": "Message",
         "displayName": "Message",
         "type": [
           "object"
         ],
-        "properties": {
-          "title": {
+        "properties": [
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -19,16 +19,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-facets-single-example.raml"
+            }
           },
-          "body": {
+          {
             "name": "body",
             "displayName": "body",
             "type": [
@@ -39,16 +39,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-facets-single-example.raml"
+            }
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -59,16 +59,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-facets-single-example.raml"
+            }
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -79,16 +79,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-facets-single-example.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -107,20 +107,26 @@
             },
             "strict": false,
             "name": null,
-            "annotations": {
-              "pii": {
-                "structuredValue": true,
-                "name": "pii"
+            "annotations": [
+              {
+                "name": "pii",
+                "value": true
               }
-            }
+            ]
           }
         ],
+        "simplifiedExamples": [
+          "{\"title\":\"Attention needed\",\"body\":\"You have been added to group 274\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "additional-facets-single-example.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "pii": {
+    ],
+    "annotationTypes": [
+      {
         "name": "pii",
         "displayName": "pii",
         "type": [
@@ -134,10 +140,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "additional-facets-single-example.raml"
+        }
       }
-    },
-    "title": "Single example with additional facets"
+    ],
+    "title": "Single example with additional facets",
+    "sourceMap": {
+      "path": "additional-facets-single-example.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

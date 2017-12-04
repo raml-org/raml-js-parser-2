@@ -30,9 +30,13 @@
                   "",
                   ""
                 ],
-                "absoluteUri": "//api.test.com//common//users/groups/",
+                "absoluteUri": "//api.test.com//common//users//groups//",
                 "completeRelativeUri": "//users//groups//",
-                "parentUri": "//users/"
+                "parentUri": "//users/",
+                "absoluteParentUri": "//api.test.com//common//users/",
+                "sourceMap": {
+                  "path": "trailing-slashes.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -48,7 +52,11 @@
             ],
             "absoluteUri": "//api.test.com//common//users/",
             "completeRelativeUri": "//users/",
-            "parentUri": "/"
+            "parentUri": "/",
+            "absoluteParentUri": "//api.test.com//common/",
+            "sourceMap": {
+              "path": "trailing-slashes.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -59,9 +67,13 @@
           }
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "//api.test.com//common//",
+        "absoluteUri": "//api.test.com//common/",
         "completeRelativeUri": "/",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "//api.test.com//common//",
+        "sourceMap": {
+          "path": "trailing-slashes.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -70,6 +82,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "trailing-slashes.raml"
     }
   },
   "ramlVersion": "RAML10",

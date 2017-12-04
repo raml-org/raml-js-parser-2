@@ -1,13 +1,17 @@
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
-import def = require("raml-definition-system")
 import yaml = require("yaml-ast-parser");
+import def = require("raml-definition-system");
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
+import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../parser/highLevelImpl");
+import linter = require("../parser/ast.core/linter");
+import expander=require("../parser/ast.core/expanderHL");
 import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
 import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
+import typeExpander = require("./typeExpander");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
@@ -22,6 +26,7 @@ import helpersLL = require("../parser/wrapped-ast/helpersLL");
 import stubs = require('../parser/stubs');
 
 import _ = require("underscore");
+import path = require("path");
 
 var pathUtils = require("path");
 const RAML_MEDIATYPE = "application/raml+yaml";
@@ -44,38 +49,59 @@ var getRootPath = function (node:hl.IParseResult) {
     }
     return rootPath;
 };
+export function appendSourcePath(eNode: hl.IParseResult, result: any) {
+    let unitPath = hlImpl.actualPath(eNode);
+    let sourceMap = result.sourceMap;
+    if (!sourceMap) {
+        sourceMap = {};
+        result.sourceMap = sourceMap;
+    }
+    if (!sourceMap.path) {
+        sourceMap.path = unitPath;
+    }
+};
+
 export class JsonSerializer {
 
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
+        if (this.options.allParameters == null) {
+            this.options.allParameters = true;
+        }
+        if (this.options.expandSecurity == null) {
+            this.options.expandSecurity = true;
+        }
         if (this.options.serializeMetadata == null) {
-            this.options.serializeMetadata = true;
+            this.options.serializeMetadata = false;
         }
         if (this.options.attributeDefaults == null) {
             this.options.attributeDefaults = true;
         }
+        if(this.options.expandExpressions == null){
+            this.options.expandExpressions = true;
+        }
+        if (this.options.expandTypes == null) {
+            //this.options.expandTypes = true;
+        }
+        else if(this.options.expandTypes){
+            if(!this.options.typeExpansionRecursionDepth){
+                this.options.typeExpansionRecursionDepth = 0;
+            }
+        }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
-            new ResourcesTransformer(),
-            //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
+            new MethodsTransformer(),
+            new ResourcesTransformer(this.options,this),
             new TypeTransformer(this.options,this),
-            //new ParametersTransformer(),
-            //new ArrayExpressionTransformer(),
-            //new UsesTransformer(),
-            //new PropertiesTransformer(),
-            //new ResponsesTransformer(),
-            //new BodiesTransformer(),
-            //new AnnotationsTransformer(),
+            new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
-
-            //new FacetsTransformer(),
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
-            new AllUriParametersTransformer(this.options.allUriParameters)
-            //new OneElementArrayTransformer()
+            new SecurityExpandingTransformer(this.options.expandSecurity),
+            new AllParametersTransformer(this.options.allParameters,this.options.serializeMetadata)
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
         fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
@@ -84,28 +110,28 @@ export class JsonSerializer {
     nodeTransformers:Transformation[];
 
     nodePropertyTransformers:Transformation[] = [
-        new MethodsToMapTransformer(),
-        new TypesTransformer(),
-        new TraitsTransformer(),
-        new SecuritySchemesTransformer(),
-        new ResourceTypesTransformer(),
+        //new MethodsToMapTransformer(),
+        //new TypesTransformer(),
+        //new TraitsTransformer(),
+        //new SecuritySchemesTransformer(),
+        //new ResourceTypesTransformer(),
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
-        new ParametersTransformer(),
+        //new ParametersTransformer(),
         //new TypesTransformer(),
         //new UsesTransformer(),
-        new PropertiesTransformer(),
-//        new TypeValueTransformer(),
-        // //new ExamplesTransformer(),
-        new ResponsesTransformer(),
-        new BodiesTransformer(),
-        new AnnotationsTransformer(),
+        //new PropertiesTransformer(),
+        //new TypeValueTransformer(),
+        //new ExamplesTransformer(),
+        //new ResponsesTransformer(),
+        //new BodiesTransformer(),
+        //new AnnotationsTransformer(),
         //new SecuritySchemesTransformer(),
         //new AnnotationTypesTransformer(),
         //new TemplateParametrizedPropertiesTransformer(),
         //new TraitsTransformer(),
         //new ResourceTypesTransformer(),
-        new FacetsTransformer(),
+        //new FacetsTransformer(),
         //new SchemasTransformer(),
         //new ProtocolsToUpperCaseTransformer(),
         //new ResourceTypeMethodsToMapTransformer(),
@@ -148,6 +174,9 @@ export class JsonSerializer {
             if(universeHelpers.isApiSibling(definition)) {
                 this.helpersMap["traits"] = new TemplatesHandler(helpersLL.allTraits(eNode, false));
                 this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
+            }
+            else if(!universeHelpers.isLibraryType(definition)){
+                delete this.options.expandTypes;
             }
         }
     }
@@ -208,29 +237,30 @@ export class JsonSerializer {
         }
 
         if((<hlImpl.BasicASTNode>_node).isReused()) {
-            var reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
+            let reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
             if(reusedJSON!=null){
                 //console.log(_node.id());
                 return reusedJSON;
             }
         }
 
-        var result:any = {};
+        let result:any = {};
         if (_node.isElement()) {
 
-            var map:{[key:string]:PropertyValue} = {};
-            var eNode = _node.asElement();
-            var definition = eNode.definition();
+            let map:{[key:string]:PropertyValue} = {};
+            let eNode = _node.asElement();
+            let definition = eNode.definition();
+            let eNodeProperty = nodeProperty || eNode.property();
 
             if(universeHelpers.isExampleSpecType(definition)){
                 if(eNode.parent()!=null){
                     result = "";//to be fulfilled by the transformer
                 }
                 else {
-                    var at = hlImpl.auxiliaryTypeForExample(eNode);
-                    var eObj:any = helpersLL.dumpExpandableExample(
+                    let at = hlImpl.auxiliaryTypeForExample(eNode);
+                    let eObj:any = helpersLL.dumpExpandableExample(
                         at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
-                    var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
+                    let uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
                     if (uses.length > 0) {
                         eObj["uses"] = uses;
                     }
@@ -238,14 +268,14 @@ export class JsonSerializer {
                 }
             }
             else {
-                var obj:any = {};
-                var children = (<hl.IParseResult[]>eNode.attrs())
+                let obj:any = {};
+                let children = (<hl.IParseResult[]>eNode.attrs())
                     .concat(eNode.children().filter(x=>!x.isAttr()));
-                for (var ch of children) {
-                    var prop = ch.property();
+                for (let ch of children) {
+                    let prop = ch.property();
                     if (prop != null) {
-                        var pName = prop.nameId();
-                        var pVal = map[pName];
+                        let pName = prop.nameId();
+                        let pVal = map[pName];
                         if (pVal == null) {
                             pVal = new PropertyValue(prop);
                             map[pName] = pVal;
@@ -253,83 +283,60 @@ export class JsonSerializer {
                         pVal.registerValue(ch);
                     }
                     else {
-                        var llNode = ch.lowLevel();
-                        var key = llNode.key();
+                        let llNode = ch.lowLevel();
+                        let key = llNode.key();
                         if (key) {
                             //obj[key] = llNode.dumpToObject();
                         }
                     }
                 }
-                var scalarsAnnotations = {};
-                for (var p of definition.allProperties()
+                let scalarsAnnotations:any = {};
+                let scalarsSources:any = {};
+                for (let p of definition.allProperties()
                     .concat((<def.NodeClass>definition).allCustomProperties())) {
 
                     if (def.UserDefinedProp.isInstance(p)) {
                         continue;
                     }
 
-                    var pName = p.nameId();
+                    let pName = p.nameId();
                     //TODO implement as transformer or ignore case
                     if (!isRoot && pName == "uses") {
                         if (universeHelpers.isApiSibling(eNode.root().definition())) {
                             continue;
                         }
                     }
-                    var pVal = map[pName];
+                    let pVal = map[pName];
                     if(universeHelpers.isTypeProperty(p)){
-                        if (map["schema"]) {
-                            var isNull = (pVal == null);
-                            if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
-                                isNull = (pVal.arr[0].asAttr().value()==null);
-                            }
-                            if(isNull) {
-                                meta = meta || new core.NodeMetadataImpl();
-                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
-                            }
-                            continue;
-                        }
-                        if(universeHelpers.isStringTypeDeclarationDescendant(definition)){
-                            if(pVal==null){
-                                result["type"] = "string";
-                                meta = meta || new core.NodeMetadataImpl();
-                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
-                                continue;
-                            }
-                            else if (pVal.arr.length == 1 && pVal.arr[0].isAttr()) {
-                                var tVal = pVal.arr[0].asAttr().value()
-                                if (tVal == null){
-                                    result["type"] = "string";
-                                    meta = meta || new core.NodeMetadataImpl();
-                                    (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
-                                    continue;
-                                }
-                                else if(tVal === "NULL" || tVal === "Null"){
-                                    result["type"] = "string";
-                                    continue;
-                                }
-                            }
+                        if(pVal && pVal.arr.length==1 && pVal.arr[0].isAttr()&&(pVal.arr[0].asAttr().value()==null)){
+                            pVal = undefined;
                         }
                     }
                     pVal = this.applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
-                    var udVal = obj[pName];
+                    let udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
                         if (pVal.isMultiValue) {
                             aVal = pVal.arr.map((x,i)=>{
-                                var pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
+                                let pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
                                 return this.dumpInternal(x, pVal.prop,rp,pMeta);
                             });
                             if (p.isValueProperty()) {
-                                var sAnnotations = [];
-                                var gotScalarAnnotations = false;
+                                let sAnnotations = [];
+                                let sPaths:string[] = [];
+                                let gotScalarAnnotations = false;
                                 pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
                                     .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
-                                    var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length > 0;
                                     sAnnotations.push(sAnnotations1);
+                                    sPaths.push(hlImpl.actualPath(x,true));
                                 });
                                 if (gotScalarAnnotations) {
                                     scalarsAnnotations[pName] = sAnnotations;
+                                }
+                                if(sPaths.filter(x=>x!=null).length>0){
+                                    scalarsSources[pName] = sPaths.map(x=>{return {path:x}});
                                 }
                             }
                             if (universeHelpers.isTypeDeclarationDescendant(definition)
@@ -344,11 +351,17 @@ export class JsonSerializer {
                         else {
                             aVal = this.dumpInternal(pVal.val, pVal.prop,rp);
                             if (p.isValueProperty()) {
-                                var attr = pVal.val.asAttr();
+                                let attr = pVal.val.asAttr();
                                 if (attr.isAnnotatedScalar()) {
-                                    var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     if (sAnnotations.length > 0) {
-                                        scalarsAnnotations[pName] = sAnnotations;
+                                        scalarsAnnotations[pName] = [ sAnnotations ];
+                                    }
+                                }
+                                if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
+                                    let sPath = hlImpl.actualPath(attr, true);
+                                    if (sPath) {
+                                        scalarsSources[pName] = [ { path: sPath }];
                                     }
                                 }
                             }
@@ -370,7 +383,7 @@ export class JsonSerializer {
                                     return x;
                                 });
                             }
-                            else if (hlImpl.isASTPropImpl(defVal)) {
+                            else if (hlImpl.BasicASTNode.isInstance(defVal)) {
                                 defVal = this.dumpInternal(<hl.IParseResult>defVal, p, rp);
                             }
                             aVal = defVal;
@@ -390,45 +403,21 @@ export class JsonSerializer {
                     if (aVal != null) {
                         //TODO implement as transformer
                         if ((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
-                            var schemaString = aVal[0].trim();
+                            let schemaString = aVal[0].trim();
 
-                            var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                            var canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                            let canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                            let canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
 
                             if (canBeJson || canBeXml) {
-                                var include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
-                                if(!include){
-                                    var typeAttr = eNode.attr("type");
-                                    if(!typeAttr){
-                                        typeAttr = eNode.attr("schema");
+                                let schemaPath = getSchemaPath(eNode);
+                                if(schemaPath){
+                                    result["schemaPath"] = schemaPath;
+                                    let sourceMap = result.sourceMap;
+                                    if(!sourceMap){
+                                        sourceMap = {};
+                                        result.sourceMap = sourceMap;
                                     }
-                                    if(typeAttr){
-                                        include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
-                                    }
-                                }
-
-                                if(include) {
-
-                                    var ind = include.indexOf("#");
-                                    var postfix = "";
-                                    if(ind>=0){
-                                        postfix = include.substring(ind);
-                                        include = include.substring(0,ind);
-                                    }
-
-                                    var aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
-
-                                    var relativePath;
-
-                                    if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
-                                        relativePath = aPath;
-                                    } else {
-                                        relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
-                                    }
-
-                                    relativePath = relativePath.replace(/\\/g, '/');
-
-                                    result["schemaPath"] = relativePath + postfix;
+                                    sourceMap.path = schemaPath;
                                 }
                             }
                         }
@@ -455,27 +444,37 @@ export class JsonSerializer {
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
                 }
+                if (this.options.sourceMap && Object.keys(scalarsSources).length > 0) {
+                    let sourceMap = result.sourceMap;
+                    if(!sourceMap){
+                        sourceMap = {};
+                        result.sourceMap = sourceMap;
+                    }
+                    sourceMap.scalarsSources = scalarsSources;
+                }
                 var pProps = helpersLL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
                     result["parametrizedProperties"] = pProps;
                 }
                 if (universeHelpers.isTypeDeclarationDescendant(definition)) {
-                    var fixedFacets = helpersLL.typeFixedFacets(eNode);
+                    let fixedFacets = helpersLL.typeFixedFacets(eNode);
                     if (fixedFacets) {
                         result["fixedFacets"] = fixedFacets;
                     }
                 }
-                result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
+                result = applyTransformersMap(eNode, eNodeProperty, result, this.nodeTransformersMap);
+            }
+            if(this.options.sourceMap && typeof result == "object") {
+                appendSourcePath(eNode, result);
             }
         }
         else if (_node.isAttr()) {
 
-            var aNode = _node.asAttr();
-            var val = aNode.value();
-            var prop = aNode.property();
-            var rangeType = prop.range();
-            var isValueType = rangeType.isValueType();
-            var val:any;
+            let aNode = _node.asAttr();
+            let val = aNode.value();
+            let prop = aNode.property();
+            let rangeType = prop.range();
+            let isValueType = rangeType.isValueType();
             if (isValueType && aNode['value']) {
                 val = aNode['value']();
                 if(val==null && universeHelpers.isAnyTypeType(rangeType)){
@@ -489,21 +488,24 @@ export class JsonSerializer {
                 }
             }
             if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
-                result = val;
-            }
-            else {
-                if (hlImpl.isStructuredValue(val)) {
-                    val = aNode.plainValue();
-                    if(hlImpl.BasicASTNode.isInstance(val)){
-                        val = this.dumpInternal(val, nodeProperty || aNode.property(),rp, null,true);
-                    }
+                if(universeHelpers.isStringTypeDescendant(prop.range())){
+                    val = '' + val;
                 }
-                val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
-                result = val;
             }
+            else if (hlImpl.isStructuredValue(val)) {
+                val = aNode.plainValue();
+                if (hlImpl.BasicASTNode.isInstance(val)) {
+                    val = this.dumpInternal(val, nodeProperty || aNode.property(), rp, null, true);
+                }
+            }
+            else if(jsyaml.ASTNode.isInstance(val)||proxy.LowLevelProxyNode.isInstance(val)){
+                val = (<ll.ILowLevelASTNode>val).dumpToObject();
+            }
+            val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
+            result = val;
         }
         else {
-            var llNode = _node.lowLevel();
+            let llNode = _node.lowLevel();
             result = llNode ? llNode.dumpToObject() : null;
         }
         _node.setJSON(result);
@@ -534,6 +536,12 @@ export class JsonSerializer {
         }).sort((x, y)=> {
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);
+            }
+            if(y.range.start==null){
+                return 1;
+            }
+            else if(x.range.start==null){
+                return -1;
             }
             if(y.range.start==null){
                 return 1;
@@ -616,7 +624,7 @@ export interface SerializeOptions{
 
     /**
      * Whether to serialize metadata
-     * @default true
+     * @default false
      */
     serializeMetadata?:boolean
 
@@ -626,11 +634,19 @@ export interface SerializeOptions{
 
     attributeDefaults?:boolean
 
-    allUriParameters?:boolean
+    allParameters?:boolean
 
-    unfoldTypes?:boolean
+    expandSecurity?:boolean
+
+    expandExpressions?:boolean
 
     typeReferences?:boolean
+
+    expandTypes?:boolean
+
+    typeExpansionRecursionDepth?:number
+
+    sourceMap?:boolean
 }
 
 class PropertyValue{
@@ -708,7 +724,7 @@ function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IPrope
     return extractParams(pVal, uri, resource,p,serializeMetadata);
 }
 
-function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
+function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
 
     var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
     var uri = buriAttr ? buriAttr.value() : '';
@@ -881,7 +897,7 @@ export interface Transformation{
 
     match(node:hl.IParseResult,prop:nominals.IProperty):boolean
 
-    transform(value:any,node?:hl.IParseResult);
+    transform(value:any,node:hl.IParseResult,valueProp?:hl.IProperty);
 
     registrationInfo():Object;
 }
@@ -924,7 +940,7 @@ export function applyTransformersMap(node:hl.IParseResult,prop:hl.IProperty,valu
         return value;
     }
     for(var t of arr){
-        value = t.transform(value,node);
+        value = t.transform(value,node,prop);
     }
     return value;
 }
@@ -1091,7 +1107,7 @@ abstract class MatcherBasedTransformation implements Transformation{
         return definition ? this.matcher.match(definition,prop) : false;
     }
 
-    abstract transform(_value:any,node?:hl.IParseResult);
+    abstract transform(_value:any,node:hl.IParseResult);
 
     registrationInfo():Object{
         return this.matcher.registrationInfo();
@@ -1130,51 +1146,51 @@ class CompositeObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
     }
 }
 
-class ArrayToMapTransformer implements Transformation{
-
-    constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
-
-    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
-        return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
-            var obj = {};
-            value.forEach(x=>{
-                var key = x["$$"+this.propName];
-                if(key!=null){
-                    delete x["$$"+this.propName];
-                }
-                else{
-                    key = x[this.propName];
-                }
-                var previous = obj[key];
-                if(previous){
-                    if(Array.isArray(previous)){
-                        previous.push(x);
-                    }
-                    else{
-                        obj[key] = [ previous, x ];
-                    }
-                }
-                else {
-                    obj[key] = x;
-                }
-            });
-            return obj;
-        }
-        return value;
-    }
-
-    registrationInfo():Object{
-        return this.matcher.registrationInfo();
-    }
-}
+// class ArrayToMapTransformer implements Transformation{
+//
+//     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
+//
+//     match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+//         return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
+//     }
+//
+//     transform(value:any,node:hl.IParseResult){
+//         if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
+//             var obj = {};
+//             value.forEach(x=>{
+//                 var key = x["$$"+this.propName];
+//                 if(key!=null){
+//                     delete x["$$"+this.propName];
+//                 }
+//                 else{
+//                     key = x[this.propName];
+//                 }
+//                 var previous = obj[key];
+//                 if(previous){
+//                     if(Array.isArray(previous)){
+//                         previous.push(x);
+//                     }
+//                     else{
+//                         obj[key] = [ previous, x ];
+//                     }
+//                 }
+//                 else {
+//                     obj[key] = x;
+//                 }
+//             });
+//             return obj;
+//         }
+//         return value;
+//     }
+//
+//     registrationInfo():Object{
+//         return this.matcher.registrationInfo();
+//     }
+// }
 
 class ResourcesTransformer extends BasicTransformation{
 
-    constructor(){
+    constructor(private options:SerializeOptions = {},private owner:JsonSerializer){
         super(universes.Universe10.Resource.name,null,true);
     }
 
@@ -1193,11 +1209,36 @@ class ResourcesTransformer extends BasicTransformation{
             value.completeRelativeUri = helpersLL.completeRelativeUri(node.asElement());
             if(universeHelpers.isResourceType(node.parent().definition())){
                 value.parentUri = helpersLL.completeRelativeUri(node.parent());
+                value.absoluteParentUri = helpersLL.absoluteUri(node.parent());
             }
             else{
                 value.parentUri = "";
+                const parent = this.owner.astRoot().asElement() || node.parent();
+                let baseUriAttr = parent.attr(universes.Universe10.Api.properties.baseUri.name);
+                let baseUri = (baseUriAttr && baseUriAttr.value())||"";
+                value.absoluteParentUri = baseUri;
             }
         }
+        return value;
+    }
+}
+
+class MethodsTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe10.Method.name,null,true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(Array.isArray(value)){
+            return value;
+        }
+        let parent = node.parent();
+        if(!universeHelpers.isResourceType(parent.definition())){
+            return value;
+        }
+        value.parentUri = helpersLL.completeRelativeUri(parent);
+        value.absoluteParentUri = helpersLL.absoluteUri(parent);
         return value;
     }
 }
@@ -1208,13 +1249,83 @@ class TypeTransformer extends BasicTransformation{
         super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
-    transform(_value:any,node:hl.IParseResult){
+    transform(_value:any,node:hl.IParseResult,valueProp?:hl.IProperty){
+
+        const nodeProperty = node.property();
+        if(this.options.expandTypes && node&&node.isElement()){
+            let parent = node.parent();
+            if(parent && universeHelpers.isTypeDeclarationDescendant(parent.definition())){
+                return {};
+            }
+            let pt = node.asElement().parsedType();
+            let isInsideTemplate = linter.typeOfContainingTemplate(node)!=null;
+            let isAnnotationType = nodeProperty && universeHelpers.isAnnotationTypesProperty(nodeProperty);
+            let result = new typeExpander.TypeExpander({
+                node: node.asElement(),
+                typeCollection: (<hlImpl.ASTNodeImpl>node).types(),
+                typeExpansionRecursionDepth: this.options.typeExpansionRecursionDepth,
+                serializeMetadata: this.options.serializeMetadata,
+                sourceMap: this.options.sourceMap,
+                isInsideTemplate: isInsideTemplate,
+                isAnnotationType: isAnnotationType
+            }).serializeType(pt);
+            if(nodeProperty&&universeHelpers.isParametersProperty(nodeProperty)){
+                if(result.name && util.stringEndsWith(result.name,"?")){
+                    result.name = result.name.substring(0,result.name.length-1);
+                    if(!result.hasOwnProperty("required")){
+                        result.required = false;
+                    }
+                }
+                else if(!result.hasOwnProperty("required")){
+                    result.required = true;
+                    this.appendMeta(result,"required","insertedAsDefault");
+                }
+                if(result.displayName && util.stringEndsWith(result.displayName,"?")){
+                    result.displayName = result.displayName.substring(0,result.displayName.length-1);
+                }
+                if(_value.hasOwnProperty("enum")&&!result.hasOwnProperty("enum")){
+                    result.enum = _value.enum;
+                    this.appendMeta(result,"enum","calculated");
+                }
+                if(_value.__METADATA__ && _value.__METADATA__.calculated===true){
+                    this.appendMeta(result,null,"calculated");
+                }
+            }
+            if(nodeProperty&&universeHelpers.isBodyProperty(nodeProperty)){
+                if(result.name != _value.name){
+                    result.name = _value.name;
+                    result.displayName = _value.displayName;
+                }
+            }
+            if(_value && typeof _value === "object" && _value.hasOwnProperty("parametrizedProperties")){
+                result.parametrizedProperties = _value.parametrizedProperties;
+            }
+            return result;
+        }
 
         var isArray = Array.isArray(_value);
         if(isArray && _value.length==0){
             return _value;
         }
         var value = isArray ? _value[0] : _value;
+        if(this.options.sourceMap) {
+            appendSourcePath(node, value);
+        }
+        const aPropsVal = value[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.additionalProperties.name];
+        if(typeof aPropsVal !== "boolean" && aPropsVal){
+            delete value[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.additionalProperties.name];
+        }
+        let prop = nodeProperty;
+        // if(universeHelpers.isItemsProperty(prop)||universeHelpers.isTypeProperty(prop)){
+        //     if(value.name == prop.nameId()){
+        //         delete value.name;
+        //     }
+        // }
+        // else if(universeHelpers.isBodyProperty(prop)){
+        //     if(node.lowLevel().key()==prop.nameId()){
+        //         delete value.name;
+        //     }
+        // }
         var exampleObj = helpersLL.typeExample(
             node.asElement(),this.options.dumpXMLRepresentationOfExamples);
         if(exampleObj){
@@ -1228,6 +1339,21 @@ class TypeTransformer extends BasicTransformation{
             }
         }
         delete value["example"];
+        if(value["examples"]!=null){
+            value["simplifiedExamples"] = value["examples"].map(x=>{
+                if(x==null){
+                    return x;
+                }
+                let val = x["value"];
+                if(val==null){
+                    return val;
+                }
+                else if(typeof val === "object"){
+                    return JSON.stringify(val);
+                }
+                return val;
+            });
+        }
         if(value.hasOwnProperty("schema")){
             if(!value.hasOwnProperty("type")){
                 value["type"] = value["schema"];
@@ -1238,19 +1364,40 @@ class TypeTransformer extends BasicTransformation{
                     typeValue = [ typeValue ];
                     value["type"] = typeValue;
                 }
-                var schemaValue = value["schema"];
-                if(Array.isArray(schemaValue)){
-                    schemaValue.forEach(x=>typeValue.push(x));
-                }
-                else{
-                    typeValue.push(schemaValue);
-                }
+                value["type"] = _.unique(typeValue);
             }
             delete value["schema"];
+        }
+        if(valueProp && universeHelpers.isSchemaProperty(valueProp)&&value.name=="schema"){
+            value.name = "type";
+            if(value.displayName=="schema"){
+                value.displayName="type";
+            }
         }
         //this.refineTypeValue(value,node.asElement());
         if(!Array.isArray(value.type)){
             value.type = [value.type];
+        }
+        let tp = node.isElement()&&node.asElement().parsedType();
+        if(tp&&tp.isUnion()){
+
+            const reg = node.root().types().getTypeRegistry();
+            tp.declaredFacets().filter(x=>{
+
+                if(value.hasOwnProperty(x.facetName())){
+                    return false;
+                }
+                if(!x.validateSelf(reg).isOk()){
+                    return false;
+                }
+                if(!this.facetsToExtract[x.facetName()]){
+                    return false;
+                }
+                if(x.facetName()=="discriminatorValue"){
+                    return (<any>x).isStrict();
+                }
+                return true;
+            }).forEach(x=>value[x.facetName()]=x.value());
         }
         value.mediaType = RAML_MEDIATYPE;
         if(node && node.isElement()) {
@@ -1271,21 +1418,35 @@ class TypeTransformer extends BasicTransformation{
                 else {
                     value.mediaType = "application/json";
                 }
+                if(_value.type && _value.type.length){
+                    let t = _value.type[0];
+                    if(typeof t == "string"){
+                        t = t.trim();
+                        if(t == sch){
+                            _value.type[0] = t;
+                        }
+                    }
+                }
             }
         }
-        var prop = node.property();
-        if (prop && !(universeHelpers.isHeadersProperty(prop)
+        if (!prop || !(universeHelpers.isHeadersProperty(prop)
             || universeHelpers.isQueryParametersProperty(prop)
             || universeHelpers.isUriParametersProperty(prop)
             || universeHelpers.isPropertiesProperty(prop)
             || universeHelpers.isBaseUriParametersProperty(prop))) {
 
             delete value["required"];
-            var metaObj = value["__METADATA__"]
+            let metaObj = value["__METADATA__"]
             if (metaObj) {
-                var pMetaObj = metaObj["primitiveValuesMeta"];
+                let pMetaObj = metaObj["primitiveValuesMeta"];
                 if (pMetaObj) {
                     delete pMetaObj["required"];
+                    if(!Object.keys(pMetaObj).length){
+                        delete metaObj["primitiveValuesMeta"]
+                    }
+                }
+                if(!Object.keys(metaObj).length){
+                    delete value["__METADATA__"]
                 }
             }
         }
@@ -1304,6 +1465,8 @@ class TypeTransformer extends BasicTransformation{
                     value["typePropertyKind"] = "JSON";
                 } else if (canBeXml) {
                     value["typePropertyKind"] = "XML";
+                } else {
+                    value["typePropertyKind"] = "TYPE_EXPRESSION";
                 }
             } else {
                 value["typePropertyKind"] = "TYPE_EXPRESSION";
@@ -1311,46 +1474,110 @@ class TypeTransformer extends BasicTransformation{
         } else if (typeof typeValue === "object"){
             value["typePropertyKind"] = "INPLACE";
         }
-        if(this.options.unfoldTypes) {
-            value.unfolded = this.processExpressions(value,node);
-        }
-        if(value.type.length==1){
-            var typeVal = value.type[0];
-            if(typeof(typeVal) == "string"){
-                typeVal = typeVal.trim();
-                var isArr = util.stringEndsWith(typeVal,"[]");
-                if(isArr){
-                    var itemsStr = typeVal.substring(0,typeVal.length-"[]".length).trim();
-                    while(itemsStr.length>0
-                    &&itemsStr.charAt(0)=="("
-                    &&itemsStr.charAt(itemsStr.length-1)==")"){
-                        itemsStr = itemsStr.substring(1,itemsStr.length-1);
-                    }
-                    value.type[0] = "array";
-                    value.items = itemsStr;
-                }
-            }
+        if(this.options.expandExpressions) {
+            this.processExpressions(value,node);
         }
         return _value;
     }
 
+    private facetsToExtract = {
+        "maxItems" : true,
+        "minItems" : true,
+        "discriminatorValue" : true,
+        "discriminator" : true,
+        "pattern" : true,
+        "minLength" : true,
+        "maxLength" : true,
+        "enum" : true,
+        "minimum" : true,
+        "maximum" : true,
+        "format" : true,
+        "fileTypes" : true
+    }
+
     private processExpressions(value:any,node:hl.IParseResult):any{
-        let copy = util.deepCopy(value);
-        this.parseExpressions(copy,node);
-        return copy;
+        this.parseExpressions(value,node);
     }
 
     private parseExpressions(obj,node:hl.IParseResult){
-        this.parseExpressionsForProperty(obj,"type",node);
-        this.parseExpressionsForProperty(obj,"items",node);
-        if(obj.properties){
-            for(var pName of Object.keys(obj.properties)){
-                let p = obj.properties[pName];
-                if(p.unfolded){
-                    obj.properties[pName] = p.unfolded;
+        let typeValue = obj.type;
+        let isSingleString = Array.isArray(typeValue)
+            && typeValue.map(x=> typeof x === "string");
+
+        this.parseExpressionsForProperty(obj,"items", node);
+        this.parseExpressionsForProperty(obj,"type", node);
+
+        if(isSingleString){
+            let t = node.asElement().parsedType();
+            for(let i = 0 ; i < obj.type.length; i++) {
+                if(!isSingleString[i]){
+                    continue;
+                }
+                let newTypeValue = obj.type[i];
+                if (newTypeValue && typeof newTypeValue == "object") {
+                    let copy = false;
+                    if(!this.isEmptyUnion(t)&&obj.type.length==1){
+                        copy = Object.keys(newTypeValue).filter(x=>{
+                            if(x=="type"){
+                                return false;
+                            }
+                            return !obj.hasOwnProperty(x);
+                        }).length>0;
+                    }
+                    if (copy) {
+                        Object.keys(newTypeValue).forEach(x => {
+                            obj[x] = newTypeValue[x];
+                        });
+                    }
+                    else if (!newTypeValue.name) {
+                        newTypeValue.name = "type"
+                        newTypeValue.displayName = "type"
+                        newTypeValue.typePropertyKind = "TYPE_EXPRESSION"
+                        this.appendMeta(newTypeValue, "displayName", "calculated");
+                    }
                 }
             }
         }
+    }
+
+    appendSource(obj:any,sourceMap:any){
+        if(!this.options.sourceMap||!sourceMap){
+            return;
+        }
+        obj.sourceMap = sourceMap;
+    }
+
+    appendMeta(obj:any,field:string,kind:string){
+        if(!this.options.serializeMetadata){
+            return;
+        }
+        let metaObj = obj.__METADATA__;
+        if(!metaObj){
+            metaObj = {};
+            obj.__METADATA__ = metaObj;
+        }
+        if(field==null){
+            metaObj[kind] = true;
+            return;
+        }
+        let scalarsObj = metaObj.primitiveValuesMeta;
+        if(!scalarsObj){
+            scalarsObj = {};
+            metaObj.primitiveValuesMeta = scalarsObj;
+        }
+        let fObj = scalarsObj[field];
+        if(!fObj){
+            fObj = {};
+            scalarsObj[field] = fObj;
+        }
+        fObj[kind] = true;
+    }
+
+    isEmptyUnion(t:typeSystem.IParsedType){
+        if(!t.isUnion()){
+            return false;
+        }
+        return !t.isEmpty();
     }
 
     private parseExpressionsForProperty(obj:any, prop:string,node:hl.IParseResult){
@@ -1427,7 +1654,7 @@ class TypeTransformer extends BasicTransformation{
                 resultingArray.push(expr);
                 continue;
             }
-            let exprObj = this.expressionToObject(parsedExpression,escapeData,node);
+            let exprObj = this.expressionToObject(parsedExpression,escapeData,node,obj.sourceMap);
             if(exprObj!=null){
                 resultingArray.push(exprObj);
             }
@@ -1438,7 +1665,8 @@ class TypeTransformer extends BasicTransformation{
     private expressionToObject(
         expr:typeExpressions.BaseNode,
         escapeData:referencePatcher.EscapeData,
-        node:hl.IParseResult):any{
+        node:hl.IParseResult,
+        sourceMap:any):any{
 
         let result:any;
         let arr = 0;
@@ -1460,60 +1688,56 @@ class TypeTransformer extends BasicTransformation{
             let union = <typeExpressions.Union>expr;
             result = {
                 type: ["union"],
-                options: []
+                anyOf: []
             };
-            let components = this.toOptionsArray(union);
+            let components = toOptionsArray(union);
             for(var c of components){
                 if(c==null){
                     result = null;
                     break;
                 }
-                let c1 = this.expressionToObject(c,escapeData,node);
-                result.options.push(c1);
+                let c1 = this.expressionToObject(c,escapeData,node,sourceMap);
+                result.anyOf.push(c1);
             }
-            result.options = _.unique(result.options);
+            result.anyOf = _.unique(result.anyOf);
+            this.appendSource(result,sourceMap);
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
             arr = parens.arr;
-            result = this.expressionToObject(parens.expr,escapeData,node);
+            result = this.expressionToObject(parens.expr,escapeData,node,sourceMap);
         }
-        if(result!=null) {
+        if(result!=null && arr>0) {
+            if (typeof result === "string"){
+                // result = {
+                //     type: [ result ],
+                //     name: "items",
+                //     displayName: "items",
+                //     typePropertyKind: "TYPE_EXPRESSION"
+                // };
+                // this.appendMeta(result,"displayName","calculated");
+                // this.appendSource(result,sourceMap);
+            }
             while (arr-- > 0) {
                 result = {
                     type: ["array"],
-                    items: result
+                    items: [ result ]
                 };
+                if(arr>0){
+                    result.name = "items";
+                    result.displayName = "items";
+                    result.typePropertyKind = "TYPE_EXPRESSION";
+                    this.appendMeta(result,"displayName","calculated");
+                    this.appendSource(result,sourceMap);
+                }
             }
         }
-        return result;
-    }
-
-    private toOptionsArray(union:typeExpressions.Union):typeExpressions.BaseNode[]{
-        let result:typeExpressions.BaseNode[];
-        let e1 = union.first;
-        let e2 = union.rest;
-        while(e1.type=="parens" && (<typeExpressions.Parens>e1).arr == 0){
-            e1 = (<typeExpressions.Parens>e1).expr;
-        }
-        while(e2.type=="parens" && (<typeExpressions.Parens>e2).arr == 0){
-            e2 = (<typeExpressions.Parens>e2).expr;
-        }
-        if(e1.type=="union"){
-            result = this.toOptionsArray(<typeExpressions.Union>e1);
-        }
-        else{
-            result = [ e1 ];
-        }
-        if(e2.type=="union"){
-            result = result.concat(this.toOptionsArray(<typeExpressions.Union>e2));
-        }
-        else{
-            result.push(e2);
+        if(typeof result === "object"){
+            result.typePropertyKind = "TYPE_EXPRESSION";
+            result.sourceMap = sourceMap;
         }
         return result;
     }
-
 
     private typeReference(node: hl.IParseResult, result: string) {
         if(!result){
@@ -1580,7 +1804,7 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any,node?:hl.IParseResult){
+    transform(value:any,node:hl.IParseResult){
 
         if(!node.parent() || !node.parent().lowLevel()["libProcessed"]){
             return value;
@@ -1588,14 +1812,14 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
 
         var llNode = node.lowLevel();
         var key = llNode.key();
-        value["$$name"] = key;
+        //value["$$name"] = key;
         var original:ll.ILowLevelASTNode = llNode;
         while(proxy.LowLevelProxyNode.isInstance(original)){
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
         var aVal =  value;
-        aVal.name = oKey;
+        //aVal.name = oKey;
         if(aVal.displayName==key){
             aVal.displayName = oKey;
         }
@@ -1617,7 +1841,7 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
         ]));
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
@@ -1633,16 +1857,16 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
     }
 
 }
-
-class PropertiesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
-        ]),"name");
-    }
-
-}
+//
+// class PropertiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
+//         ]),"name");
+//     }
+//
+// }
 
 
 class SchemasTransformer extends BasicTransformation{
@@ -1651,14 +1875,20 @@ class SchemasTransformer extends BasicTransformation{
         super(universes.Universe08.GlobalSchema.name,universes.Universe08.Api.properties.schemas.name,true, ["RAML08"]);
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
         else {
-            var obj = {};
-            obj[value.key] = value.value;
-            return obj;
+            if(value.sourceMap){
+                delete value.sourceMap["scalarsSources"];
+                if(Object.keys(value.sourceMap).length==0){
+                    delete value["sourceMap"];
+                }
+            }
+            value.name = value.key;
+            delete value.key;
+            return value;
         }
     }
 }
@@ -1672,7 +1902,7 @@ class ProtocolsToUpperCaseTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(typeof(value)=='string'){
             return value.toUpperCase();
         }
@@ -1693,8 +1923,8 @@ class ReferencesTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any){
-        if(!value){
+    transform(value:any,node:hl.IParseResult){
+        if(value==null){
             return null;
         }
         if(Array.isArray(value)){
@@ -1704,26 +1934,228 @@ class ReferencesTransformer extends MatcherBasedTransformation{
     }
 
     private toSimpleValue(x):any {
-        if(typeof(x)=="string"){
-            return x;
+        if(typeof(x) !== "object"){
+            return {
+                name: x
+            };
         }
-        var name = x['name'];
-        var params = x['structuredValue'];
+        let result:any = {
+            name: x['name']
+        }
+        var params = x['value'];
         if (params) {
-            var obj = {};
-            obj[name] = params;
-            return obj;
+            Object.keys(params).forEach(y=>{
+                result.parameters = result.parameters||[];
+                result.parameters.push({
+                    name: y,
+                    value: params[y]
+                });
+            });
         }
-        else {
-            return name;
-        }
+        return result;
     }
 
 }
 
-class AllUriParametersTransformer extends MatcherBasedTransformation{
+class UsesDeclarationTransformer extends BasicTransformation {
 
-    constructor(private enabled:boolean=false){
+    constructor(private dumper:JsonSerializer) {
+        super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
+    }
+
+    private referencePatcher:referencePatcher.ReferencePatcher;
+
+    private getReferencePatcher(){
+        this.referencePatcher = this.referencePatcher || new referencePatcher.ReferencePatcher();
+        return this.referencePatcher;
+    }
+
+    transform(_value:any,node?:hl.IParseResult){
+        let llNode = node.lowLevel();
+        let actual = llNode && llNode.actual();
+        let libExpanded = actual && actual.libExpanded;
+        if(!libExpanded){
+            return _value;
+        }
+        let usesArray = _value[def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name];
+        if(!usesArray||!Array.isArray(usesArray)||usesArray.length==0){
+            return _value;
+        }
+        let unit = llNode.unit();
+        let resolver = (<llImpl.Project>unit.project()).namespaceResolver();
+        if(!resolver){
+            return _value;
+        }
+        let nsMap = resolver.expandedNSMap(unit);
+        if(!nsMap){
+            return _value;
+        }
+        let usagePropName = def.universesInfo.Universe10.Library.properties.usage.name;
+        let annotationsPropName = def.universesInfo.Universe10.Annotable.properties.annotations.name;
+        for(let u of usesArray){
+            let namespace = u.key;
+            let usesEntry = nsMap[namespace];
+            if(!usesEntry){
+                continue;
+            }
+            let libUnit = usesEntry.unit;
+            let lib = libUnit.highLevel();
+            if(!lib.isElement()){
+                continue;
+            }
+            let libAnnotations = lib.asElement().attributes(annotationsPropName);
+            let libUsage = lib.asElement().attr(usagePropName);
+
+            if(libUsage){
+                u[usagePropName] = libUsage.value();
+            }
+            if(libAnnotations.length>0){
+                let usesEntryAnnotations:any[] = [];
+                for(let a of libAnnotations){
+                    let aObj = this.dumper.dump(a);
+                    if(!aObj || !aObj.name){
+                        continue;
+                    }
+                    let aName = aObj.name;
+                    let range = a.property().range();
+                    let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
+                        aName, unit, resolver, [unit, libUnit],range);
+
+                    if(!patchedReference){
+                        continue;
+                    }
+                    aObj.name = patchedReference.value();
+                    usesEntryAnnotations.push(aObj);
+                }
+                if(usesEntryAnnotations.length>0){
+                    u[annotationsPropName] = usesEntryAnnotations;
+                }
+            }
+
+        }
+        return _value;
+    }
+}
+
+class SecurityExpandingTransformer extends MatcherBasedTransformation {
+
+    constructor(private enabled: boolean = false) {
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Overlay.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Extension.name, null, true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Library.name, null, true)
+        ]));
+    }
+
+    match(node: hl.IParseResult, prop: nominals.IProperty): boolean {
+        return this.enabled ? super.match(node, prop) : false;
+    }
+
+    registrationInfo(): Object {
+        return this.enabled ? super.registrationInfo() : null;
+    }
+
+    transform(value:any,_node:hl.IParseResult){
+        this.processApi(value);
+        return value;
+    }
+
+    private processApi(value:any){
+        let securitySchemesArr = value[def.universesInfo.Universe10.Api.properties.securitySchemes.name];
+        if(!securitySchemesArr || securitySchemesArr.length==0){
+            return;
+        }
+        let securitySchemes:any = {};
+        for(let ss of securitySchemesArr){
+            securitySchemes[ss.name] = ss;
+        }
+        this.expandSecuredBy(value, securitySchemes);
+        let resources = value[def.universesInfo.Universe10.Api.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        let resourceTypes = value[def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name];
+        if(resourceTypes) {
+            for (let r of resourceTypes) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        let traits = value[def.universesInfo.Universe10.LibraryBase.properties.traits.name];
+        if(traits) {
+            for (let t of traits) {
+                this.expandSecuredBy(t, securitySchemes);
+            }
+        }
+        return value;
+    }
+
+    private processResource(res:any,securitySchemes:any){
+
+        this.expandSecuredBy(res,securitySchemes);
+
+        let methods = res[def.universesInfo.Universe10.Resource.properties.methods.name];
+        if(methods) {
+            for (let m of methods) {
+                this.expandSecuredBy(m, securitySchemes);
+            }
+        }
+
+        let resources = res[def.universesInfo.Universe10.Resource.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+    }
+
+    private expandSecuredBy(obj:any,securitySchemes:any){
+
+        let securedBy = obj[def.universesInfo.Universe10.ResourceBase.properties.securedBy.name];
+        if(!securedBy){
+            return;
+        }
+        for(let i = 0 ; i < securedBy.length ; i++){
+            let ref = securedBy[i];
+            if(ref==null){
+                continue;
+            }
+            let sch:any;
+            if(typeof ref == "string"){
+                sch = securitySchemes[ref];
+            }
+            else if (typeof ref == "object"){
+                let refObj = ref;
+                ref = ref.name;//Object.keys(refObj)[0];
+                sch = JSON.parse(JSON.stringify(securitySchemes[ref]));
+                let params = refObj.parameters;
+                if(params && params.length>0) {
+                    // let paramNames = Object.keys(params);
+                    // if (paramNames.length > 0) {
+                        let settings: any = sch.settings;
+                        if (!settings) {
+                            settings = {};
+                            sch.settings = settings;
+                        }
+                        for (let pn of params) {
+                            settings[pn.name] = pn.value;
+                        }
+                    //}
+                }
+            }
+            if(!sch){
+                continue;
+            }
+            securedBy[i] = sch;
+        }
+    }
+}
+
+class AllParametersTransformer extends MatcherBasedTransformation{
+
+    constructor(private enabled:boolean=false,private serializeMetadata=false){
         super(new CompositeObjectPropertyMatcher([
             new BasicObjectPropertyMatcher(universes.Universe10.Api.name,null,true)
         ]));
@@ -1746,149 +2178,218 @@ class AllUriParametersTransformer extends MatcherBasedTransformation{
     private static resourcesPropName
         = universes.Universe10.Api.properties.resources.name;
 
-    transform(value:any,node?:hl.IParseResult,uriParams?:any){
+    private static queryParametersPropName
+        = universes.Universe10.Method.properties.queryParameters.name;
 
-        var params:any[] = uriParams;
-        var ownParams = value[AllUriParametersTransformer.uriParamsPropName];
-        if(ownParams){
-            params = [].concat(uriParams||[]);
-            Object.keys(ownParams).forEach(x=>{
-                var obj = ownParams[x];
-                if(Array.isArray(obj)){
-                    obj.forEach(y=>params.push(y));
-                }
-                else{
-                    params.push(obj);
-                }
-            });
-        }
-        if(params){
-            value["allUriParameters"] = params;
-            var methods = value[AllUriParametersTransformer.methodsPropName];
-            if(methods){
-                Object.keys(methods).forEach(x=>
-                    methods[x]["allUriParameters"] = params
-                );
-            }
-        }
-        var resources = value[AllUriParametersTransformer.resourcesPropName];
-        if(resources){
-            resources.forEach(x=>this.transform(x,null,params));
-        }
+    private static headersPropName
+        = universes.Universe10.Method.properties.headers.name;
+
+    private static securedByPropName = universes.Universe10.Method.properties.securedBy.name;
+
+    private static responsesPropName = universes.Universe10.Method.properties.responses.name;
+
+    transform(value:any,node:hl.IParseResult,uriParams?:any){
+
+        this.processApi(value);
         return value;
     }
-}
 
-class MethodsToMapTransformer extends ArrayToMapTransformer{
+    private processApi(api:any){
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
-        ]),"method");
-    }
-}
-
-class TypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
-        ]),"name");
-    }
-}
-
-class TraitsTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
-                universes.Universe10.LibraryBase.properties.traits.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
-                universes.Universe08.Api.properties.traits.name,true)
-        ]),"name");
-    }
-}
-
-class ResourceTypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class SecuritySchemesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class ParametersTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
-        ]),"name");
+        let params = this.extract(api,def.universesInfo.Universe10.Api.properties.baseUriParameters.name);
+        let resources = api[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params);
+        }
     }
 
-}
+    private processResource(resource:any,uriParams:any[]){
 
-class ResponsesTransformer extends ArrayToMapTransformer{
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let params1 = this.extract(resource,pName);
+        let newParams = uriParams.concat(resource[pName]||[]);
+        if(newParams.length>0) {
+            resource[pName] = newParams;
+        }
+        let params2 = uriParams.concat(params1);
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
-        ]),"code");
+        let methods = resource[def.universesInfo.Universe10.ResourceBase.properties.methods.name]||[];
+        for(let m of methods){
+            this.processMethod(m,params2);
+        }
+
+        let resources = resource[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params2);
+        }
     }
-}
 
-class AnnotationsTransformer extends ArrayToMapTransformer{
+    private processMethod(method:any,uriParams:any[]){
+        this.appendSecurityData(method);
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
-        ]),"name");
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let newParams = uriParams.concat(method[pName]||[]);
+        if(newParams.length>0) {
+            method[pName] = newParams;
+        }
     }
-}
 
-class BodiesTransformer extends ArrayToMapTransformer{
+    private appendSecurityData(obj:any){
+        let headerPName = def.universesInfo.Universe10.Operation.properties.headers.name;
+        let responsesPName = def.universesInfo.Universe10.Operation.properties.responses.name;
+        let queryPName = def.universesInfo.Universe10.Operation.properties.queryParameters.name;
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
-        ]),"name");
+        let securedBy = obj[def.universesInfo.Universe10.Method.properties.securedBy.name]||[];
+        for(let sSch of securedBy){
+            if(!sSch){
+                continue;
+            }
+            let describedBy = sSch[def.universesInfo.Universe10.AbstractSecurityScheme.properties.describedBy.name]||{};
+            let sHeaders = this.extract(describedBy,headerPName);
+            let sResponses = this.extract(describedBy,responsesPName);
+            let sQParams = this.extract(describedBy,queryPName);
+            if(sHeaders.length>0){
+                obj[headerPName] = (obj[headerPName]||[]).concat(sHeaders);
+            }
+            if(sResponses.length>0){
+                obj[responsesPName] = (obj[responsesPName]||[]).concat(sResponses);
+            }
+            if(sQParams.length>0){
+                obj[queryPName] = (obj[queryPName]||[]).concat(sQParams);
+            }
+        }
+    }
+
+    private extract(api: any,pName:string) {
+        let arr = api[pName] || [];
+        arr = JSON.parse(JSON.stringify(arr));
+        if(this.serializeMetadata) {
+            for (let x of arr) {
+                let mtd = x["__METADATA__"];
+                if (!mtd) {
+                    mtd = {};
+                    x["__METADATA__"] = mtd;
+                }
+                mtd["calculated"] = true;
+            }
+        }
+        return arr;
     }
 
 }
 
-class FacetsTransformer extends ArrayToMapTransformer{
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
-        ]),"name");
-    }
-}
+//
+// class MethodsToMapTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
+//         ]),"method");
+//     }
+// }
+//
+// class TypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class TraitsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
+//                 universes.Universe10.LibraryBase.properties.traits.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
+//                 universes.Universe08.Api.properties.traits.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class ResourceTypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class SecuritySchemesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class ParametersTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class ResponsesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
+//         ]),"code");
+//     }
+// }
+//
+// class AnnotationsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class BodiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class FacetsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
+//         ]),"name");
+//     }
+// }
 
 class Api10SchemasTransformer extends MatcherBasedTransformation{
 
@@ -1898,7 +2399,7 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any,node?:hl.IParseResult){
+    transform(value:any,node:hl.IParseResult){
 
         if(!value){
             return value;
@@ -1912,11 +2413,7 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
         }
         else{
             var typesValue = value["types"];
-            Object.keys(schemasValue).forEach(x=>{
-                if(!typesValue.hasOwnProperty(x)){
-                    typesValue[x] = schemasValue[x];
-                }
-            });
+            value["types"] = typesValue.concat(schemasValue);
         }
         delete value["schemas"];
         return value;
@@ -1950,4 +2447,68 @@ function mergeObjects(o1:Object,o2:Object):Object{
         }
     }
     return o1;
+}
+
+export function toOptionsArray(union:typeExpressions.Union):typeExpressions.BaseNode[]{
+    let result:typeExpressions.BaseNode[];
+    let e1 = union.first;
+    let e2 = union.rest;
+    while(e1.type=="parens" && (<typeExpressions.Parens>e1).arr == 0){
+        e1 = (<typeExpressions.Parens>e1).expr;
+    }
+    while(e2.type=="parens" && (<typeExpressions.Parens>e2).arr == 0){
+        e2 = (<typeExpressions.Parens>e2).expr;
+    }
+    if(e1.type=="union"){
+        result = toOptionsArray(<typeExpressions.Union>e1);
+    }
+    else{
+        result = [ e1 ];
+    }
+    if(e2.type=="union"){
+        result = result.concat(toOptionsArray(<typeExpressions.Union>e2));
+    }
+    else{
+        result.push(e2);
+    }
+    return result;
+}
+
+export function getSchemaPath(eNode:hl.IHighLevelNode){
+    let include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
+    if(!include){
+        let typeAttr = eNode.attr("type");
+        if(!typeAttr){
+            typeAttr = eNode.attr("schema");
+        }
+        if(typeAttr){
+            include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
+        }
+    }
+
+    let schemaPath:string;
+    if(include) {
+
+        let ind = include.indexOf("#");
+        let postfix = "";
+        if(ind>=0){
+            postfix = include.substring(ind);
+            include = include.substring(0,ind);
+        }
+
+        let aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
+
+        let relativePath;
+
+        if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
+            relativePath = aPath;
+        } else {
+            relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
+        }
+
+        relativePath = relativePath.replace(/\\/g, '/');
+
+        schemaPath = relativePath + postfix;
+    }
+    return schemaPath;
 }

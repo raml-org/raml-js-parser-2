@@ -119,17 +119,9 @@
     "code" : "SCALAR_EXPECTED",
     "message" : "Scalar is expected here"
   },
-  "STRING_EXPECTED" : {
-    "code" : "STRING_EXPECTED",
-    "message" : "Property '{{propName}}' must be a string"
-  },
   "UNKNOWN_ANNOTATION" : {
     "code" : "UNKNOWN_ANNOTATION",
     "message" : "Unknown annotation: '{{aName}}'"
-  },
-  "STRING_EXPECTED_2" : {
-    "code" : "STRING_EXPECTED_2",
-    "message" : "{{propName}} value should be a string"
   },
   "SECUREDBY_LIST_08" : {
     "code" : "SECUREDBY_LIST_08",
@@ -146,10 +138,6 @@
   "NUMBER_EXPECTED" : {
     "code" : "NUMBER_EXPECTED",
     "message" : "Value of '{{propName}}' must be a number"
-  },
-  "STRING_EXPECTED_3" : {
-    "code" : "STRING_EXPECTED_3",
-    "message" :  "'{{propName}}' must be a string"
   },
   "STATUS_MUST_BE_3NUMBER" : {
     "code" : "STATUS_MUST_BE_3NUMBER",
@@ -258,6 +246,10 @@
   "MISSING_REQUIRED_PROPERTY" : {
     "code" : "MISSING_REQUIRED_PROPERTY",
     "message" : "Missing required property '{{propName}}'"
+  },
+  "VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED" : {
+    "code" : "VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED",
+    "message" : "Value is not provided for required property '{{propName}}'"
   },
   "VALUE_NOT_PROVIDED" : {
     "code" : "VALUE_NOT_PROVIDED",

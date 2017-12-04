@@ -3,26 +3,48 @@
   "type": "object",
   "definitions": {
     "TypeDeclarationFragment": {
-      "allOf":[
-        {"$ref": "common.json#/definitions/FragmentDeclaration"},
-        {"$ref": "#/definitions/Type"}
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/FragmentDeclaration"
+        },
+        {
+          "$ref": "#/definitions/Type"
+        }
       ],
-      "required": ["type", "required"]
+      "required": [
+        "type",
+        "required"
+      ]
     },
     "ExampleFragment": {
-      "allOf":[
-        {"$ref": "common.json#/definitions/FragmentDeclaration"},
-        {"$ref": "#/definitions/ExampleSpec10"}
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/FragmentDeclaration"
+        },
+        {
+          "$ref": "#/definitions/ExampleSpec10"
+        }
       ]
     },
     "ExampleSpec10": {
-      "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "common.json#/definitions/ParametrizedProperties"},
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/Annotable"
+        },
+        {
+          "$ref": "common.json#/definitions/ParametrizedProperties"
+        },
         {
           "properties": {
             "value": {
-              "type": ["object", "boolean", "string", "number", "array", "null"],
+              "type": [
+                "object",
+                "boolean",
+                "string",
+                "number",
+                "array",
+                "null"
+              ],
               "description": "Actual example value"
             },
             "strict": {
@@ -30,11 +52,17 @@
               "description": "By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate."
             },
             "name": {
-              "type": ["string", "null"],
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "Example identifier, if specified"
             },
             "description": {
-              "type": [ "string", "null" ],
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "A longer, human-friendly description of the example"
             },
             "displayName": {
@@ -48,18 +76,31 @@
     "Type": {
       "description": "Declaration of (data) type for use within API",
       "anyOf": [
-        {"$ref": "#/definitions/StringTypeDeclaration"},
-        {"$ref": "#/definitions/NumberTypeDeclaration"},
-        {"$ref": "#/definitions/DateTypeDeclaration"},
-        {"$ref": "#/definitions/FileTypeDeclaration"},
-        {"$ref": "#/definitions/ArrayTypeDeclaration"},
-        {"$ref": "#/definitions/ObjectTypeDeclaration"},
-        {"$ref": "#/definitions/BrokenTypeDeclaration"}
+        {
+          "$ref": "#/definitions/StringTypeDeclaration"
+        },
+        {
+          "$ref": "#/definitions/NumberTypeDeclaration"
+        },
+        {
+          "$ref": "#/definitions/DateTypeDeclaration"
+        },
+        {
+          "$ref": "#/definitions/FileTypeDeclaration"
+        },
+        {
+          "$ref": "#/definitions/ArrayTypeDeclaration"
+        },
+        {
+          "$ref": "#/definitions/ObjectTypeDeclaration"
+        }
       ]
     },
     "ArrayTypeDeclaration": {
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        },
         {
           "properties": {
             "uniqueItems": {
@@ -74,19 +115,28 @@
               "type": "number",
               "description": "Maximum amount of items in array"
             },
-            "items": {"$ref": "#/definitions/TypeReference10"}
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TypeReference10"
+              }
+            }
           }
         }
       ]
     },
     "FileTypeDeclaration": {
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        },
         {
           "properties": {
             "fileTypes": {
               "type": "array",
-              "items": { "type": "string" },
+              "items": {
+                "type": "string"
+              },
               "description": "A list of valid content-type strings for the file. The file type */* should be a valid value."
             },
             "minLength": {
@@ -103,8 +153,10 @@
     },
     "StringTypeDeclaration": {
       "description": "Value must be a string",
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        },
         {
           "properties": {
             "enum": {
@@ -129,8 +181,10 @@
     },
     "NumberTypeDeclaration": {
       "description": "Value MUST be a number. Indicate floating point numbers as defined by YAML.",
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        },
         {
           "properties": {
             "enum": {
@@ -152,25 +206,6 @@
             "multipleOf": {
               "type": "number",
               "description": "A numeric instance is valid against \"multipleOf\" if the result of the division of the instance by this keywords value is an integer."
-            },
-            "fixedFacets": {
-              "type": "object",
-              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
-              "properties": {
-                "maximum": {
-                  "type": "number",
-                  "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
-                },
-                "minimum": {
-                  "type": "number",
-                  "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
-                },
-                "format": {
-                  "type": "string",
-                  "description": "Value format"
-                }
-              },
-              "additionalProperties": false
             }
           }
         }
@@ -178,20 +213,30 @@
     },
     "DateTypeDeclaration": {
       "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"}
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        }
       ]
     },
     "TypeReference10": {
       "oneOf": [
-        {"type": "string"},
-        {"$ref": "#/definitions/Type"}
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/Type"
+        }
       ]
     },
     "TypeDeclaration": {
-      "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "common.json#/definitions/ParametrizedProperties"},
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/Annotable"
+        },
+        {
+          "$ref": "common.json#/definitions/ParametrizedProperties"
+        },
         {
           "properties": {
             "type": {
@@ -203,18 +248,40 @@
             "examples": {
               "type": "array",
               "description": "An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.",
-              "items": {"$ref": "#/definitions/ExampleSpec10"}
+              "items": {
+                "$ref": "#/definitions/ExampleSpec10"
+              }
+            },
+            "simplifiedExamples": {
+              "type": "array",
+              "description": "An array containing plain example values.String, boolean and number values remain as is, while object and array values are serialized to string.",
+              "items": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              }
             },
             "name": {
               "type": "string",
               "description": "name of the parameter"
             },
             "default": {
-              "type": ["object", "string", "array", "number", "boolean"],
+              "type": [
+                "object",
+                "string",
+                "array",
+                "number",
+                "boolean"
+              ],
               "description": "Provides default value for a property"
             },
             "description": {
-              "type": [ "string", "null" ],
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "A longer, human-friendly description of the type"
             },
             "allowedTargets": {
@@ -252,30 +319,50 @@
             },
             "required": {
               "type": "boolean",
-              "description": "Sets if property is optional or not"
+              "description": "For property or parameter states if it is required"
             },
             "displayName": {
               "type": "string",
               "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
             },
             "facets": {
-              "type": "object",
+              "type": "array",
               "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
-              "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+              "items": {
+                "$ref": "#/definitions/TypeDeclaration"
               }
             },
             "fixedFacets": {
-              "type": "object",
-              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet."
+              "type": "array",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [ "string", "number", "boolean", "object", "array", "null" ]
+                  }
+                }
+              }
+            },
+            "anyOf": {
+              "type": "array",
+              "description": "Lists available options for union types.",
+              "items": {
+                "$ref": "#/definitions/TypeReference10"
+              }
             }
           }
         }
       ]
     },
     "ObjectTypeDeclaration": {
-      "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
+      "allOf": [
+        {
+          "$ref": "#/definitions/TypeDeclaration"
+        },
         {
           "properties": {
             "discriminator": {
@@ -287,10 +374,12 @@
               "description": "The value of discriminator for the type"
             },
             "properties": {
-              "type": "object",
+              "type": "array",
               "description": "The properties that instances of this type may or must have.",
               "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+                "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
+                  "$ref": "#/definitions/Type"
+                }
               }
             },
             "minProperties": {
@@ -308,25 +397,6 @@
           }
         }
       ]
-    },
-    "BrokenTypeDeclaration": {
-      "type": "object",
-      "properties": {
-        "required": {
-          "type": "boolean"
-        },
-
-        "type": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "string"
-          }
-        },
-        "__METADATA__": {
-          "type": "object"
-        }
-      }
     }
   }
 }

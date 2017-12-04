@@ -1,12 +1,12 @@
 {
   "specification": {
-    "methods": {
-      "get": {
-        "responses": {
-          "200": {
+    "methods": [
+      {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -20,23 +20,40 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libraries-invalid-chaining.raml"
+                }
               }
+            ],
+            "sourceMap": {
+              "path": "libraries-invalid-chaining.raml"
             }
           }
-        },
-        "is": [
-          "files.drm"
         ],
-        "method": "get"
+        "is": [
+          {
+            "name": "files.drm"
+          }
+        ],
+        "method": "get",
+        "sourceMap": {
+          "path": "libraries-invalid-chaining.raml"
+        }
       }
-    },
+    ],
     "uses": [
       {
         "key": "files",
-        "value": "libraries/files.raml"
+        "value": "libraries/files.raml",
+        "sourceMap": {
+          "path": "libraries-invalid-chaining.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "libraries-invalid-chaining.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "ResourceType",

@@ -23,15 +23,12 @@
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemes1/subdir/scheme1.json#/definitions/Type1",
                     "schema": [
-                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                      "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\n      \"type\": \"string\"\n    },\n    \"p2\": {\n      \"$ref\": \"/schemes2/subdir/scheme2.json#/definitions/Type2\"\n    }\n  },\n  \"required\": [\n    \"p1\",\n    \"p2\"\n  ]\n}"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -59,7 +56,7 @@
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemes1/subdir/scheme1.json#/definitions/Type1",
                     "schema": [
-                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                      "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\n      \"type\": \"string\"\n    },\n    \"p2\": {\n      \"$ref\": \"/schemes2/subdir/scheme2.json#/definitions/Type2\"\n    }\n  },\n  \"required\": [\n    \"p1\",\n    \"p2\"\n  ]\n}"
                     ],
                     "example": {
                       "p1": "p1Value",
@@ -72,9 +69,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

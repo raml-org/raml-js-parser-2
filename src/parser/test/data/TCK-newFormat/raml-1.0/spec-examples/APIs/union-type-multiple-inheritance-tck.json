@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "HasHome": {
+    "types": [
+      {
         "name": "HasHome",
         "displayName": "HasHome",
         "type": [
           "object"
         ],
-        "properties": {
-          "homeAddress": {
+        "properties": [
+          {
             "name": "homeAddress",
             "displayName": "homeAddress",
             "type": [
@@ -25,10 +25,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -36,17 +39,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "union-type-multiple-inheritance.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Cat": {
+      {
         "name": "Cat",
         "displayName": "Cat",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -63,10 +69,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "color": {
+          {
             "name": "color",
             "displayName": "color",
             "type": [
@@ -83,10 +92,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -94,17 +106,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "union-type-multiple-inheritance.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -121,10 +136,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "fangs": {
+          {
             "name": "fangs",
             "displayName": "fangs",
             "type": [
@@ -141,26 +159,12 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
-      },
-      "HomeAnimal": {
-        "name": "HomeAnimal",
-        "displayName": "HomeAnimal",
-        "type": [
-          "HasHome",
-          "Dog | Cat"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -169,11 +173,58 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "union-type-multiple-inheritance.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "HomeAnimal",
+        "displayName": "HomeAnimal",
+        "type": [
+          "HasHome",
+          {
+            "type": [
+              "union"
+            ],
+            "anyOf": [
+              "Dog",
+              "Cat"
+            ],
+            "sourceMap": {
+              "path": "union-type-multiple-inheritance.raml"
+            },
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "name": "type",
+            "displayName": "type",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "union-type-multiple-inheritance.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "My API With Types"
+    ],
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "union-type-multiple-inheritance.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

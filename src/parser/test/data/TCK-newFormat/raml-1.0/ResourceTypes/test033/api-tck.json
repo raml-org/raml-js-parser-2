@@ -3,26 +3,32 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "./lib1.raml"
+        "value": "./lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "resourceTypes": {
-      "rt1": {
-        "methods": {
-          "put": {
-            "body": {
-              "application/json": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "p1": {
+                "properties": [
+                  {
                     "name": "p1",
                     "displayName": "p1",
                     "type": [
@@ -39,11 +45,16 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "<<type1>>"
+                    "items": [
+                      "<<type1>>"
+                    ]
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -54,27 +65,36 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "rt1"
+        ],
+        "name": "rt1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "rt2": {
-        "methods": {
-          "delete": {
-            "body": {
-              "application/json": {
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "p2": {
+                "properties": [
+                  {
                     "name": "p2",
                     "displayName": "p2",
                     "type": [
@@ -91,11 +111,16 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "<<type2>>"
+                    "items": [
+                      "<<type2>>"
+                    ]
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -106,38 +131,51 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt1": {
-            "type1": "<<type2>>"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "type1",
+              "value": "<<type2>>"
+            }
+          ]
         },
-        "name": "rt2"
+        "name": "rt2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "test",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "delete": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "p2": {
+                "properties": [
+                  {
                     "name": "p2",
                     "displayName": "p2",
                     "type": [
@@ -154,11 +192,16 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "lib1.lib2.T2"
+                    "items": [
+                      "lib1.lib2.T2"
+                    ]
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -169,22 +212,30 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "put": {
-            "body": {
-              "application/json": {
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "p1": {
+                "properties": [
+                  {
                     "name": "p1",
                     "displayName": "p1",
                     "type": [
@@ -201,11 +252,16 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "lib1.lib2.T2"
+                    "items": [
+                      "lib1.lib2.T2"
+                    ]
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -216,17 +272,29 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt2": {
-            "type2": "lib1.lib2.T2"
-          }
+          "name": "rt2",
+          "parameters": [
+            {
+              "name": "type2",
+              "value": "lib1.lib2.T2"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -242,9 +310,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

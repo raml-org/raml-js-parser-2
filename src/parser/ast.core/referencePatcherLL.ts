@@ -653,7 +653,7 @@ export class ReferencePatcher {
         var collectionName = "types";
 
         var llNode = <proxy.LowLevelProxyNode>node;
-        var value = node.value(true).toString();
+        var value = node.value(true).toString().trim();
         var ch0 = value[0];
         var ch1 = value[value.length - 1];
         if ((ch0 === "{" && ch1 == "}") || (ch0 === "<" && ch1 == ">")) {
@@ -1025,7 +1025,7 @@ export class ReferencePatcher {
                                         state.globalScope,
                                         state.resolver);
                                     state1.units = state.units;
-                                    //state1.registerOnly = true;
+                                    state1.registerOnly = true;
                                     typesTransition.processNode(aCh, state1);
                                 }
                             }
@@ -1199,7 +1199,7 @@ export class ReferencePatcher {
                 }
             }
         }
-        this.removeUses(api);
+        this.patchUses(api,resolver);
         api.actual().libExpanded = true;
         if(this.needTypesReset) {
             this.resetHighLevel(api);
@@ -1269,6 +1269,16 @@ export class ReferencePatcher {
                                 }
                             }
                         }
+                        const dValPropName = def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminatorValue.name;
+                        let discriminatorValue = chNode.children().filter(x=> x.key() == dValPropName);
+                        if(!discriminatorValue.length){
+                            let dValNode = jsyaml.createMapNode(dValPropName,chNode.unit());
+                            let strictProp = jsyaml.createMapping("strict",false);
+                            let valueProp = jsyaml.createMapping("value",chNode.key());
+                            dValNode.addChild(valueProp);
+                            dValNode.addChild(strictProp);
+                            chNode.replaceChild(null,dValNode);
+                        }
                     }
                 }
                 this.process(chNode, api, typeName, true, true);
@@ -1310,7 +1320,7 @@ export class ReferencePatcher {
             _.find(llApi.children(),x=>x.key()==name);
 
         if(llNode==null){
-            var n = jsyaml.createMapNode(name);
+            var n = jsyaml.createMapNode(name,llApi.unit());
             llNode = llApi.replaceChild(null,n);
         }
         let result = false;

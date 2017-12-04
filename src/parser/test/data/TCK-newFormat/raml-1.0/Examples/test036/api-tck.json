@@ -1,18 +1,18 @@
 {
   "specification": {
-    "types": {
-      "ItsComplicated": {
+    "types": [
+      {
         "name": "ItsComplicated",
         "displayName": "ItsComplicated",
         "type": [
           "object"
         ],
-        "properties": {
-          "/.*/": {
+        "properties": [
+          {
             "name": "/.*/",
             "displayName": "/.*/",
             "type": [
-              "string[] | string"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -25,10 +25,28 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": [
+                  "string"
+                ],
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "string"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -39,6 +57,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": {
@@ -48,11 +69,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"prop1\":\"stringValue\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "Api"
+    ],
+    "title": "Api",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

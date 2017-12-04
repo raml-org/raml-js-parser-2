@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
@@ -14,6 +14,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "examples": [
           {
             "value": [
@@ -24,12 +27,20 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "[\"some string\",\"another string\"]"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "string"
+        "items": [
+          "string"
+        ]
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "t1": {
+    "types": [
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
@@ -31,16 +31,21 @@
             },
             "scalarsAnnotations": {
               "description": [
-                {
-                  "name": "a",
-                  "structuredValue": "abcdefg"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "abcdefg"
+                  }
+                ]
               ]
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -52,11 +57,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "a": {
+    ],
+    "annotationTypes": [
+      {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -75,11 +83,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "testAPI",
-    "version": "v1"
+    "version": "v1",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

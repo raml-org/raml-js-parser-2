@@ -1,8 +1,17 @@
 {
   "specification": {
-    "annotationTypes": {
-      "lib.TestAnnotationType": {
-        "name": "TestAnnotationType",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.TestAnnotationType",
         "displayName": "TestAnnotationType",
         "type": [
           "string"
@@ -15,16 +24,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
-      "lib.AnotherAnnotationType": {
-        "name": "AnotherAnnotationType",
+      {
+        "name": "lib.AnotherAnnotationType",
         "displayName": "AnotherAnnotationType",
         "type": [
           "object"
         ],
-        "properties": {
-          "firstProp": {
+        "properties": [
+          {
             "name": "firstProp",
             "displayName": "firstProp",
             "type": [
@@ -42,9 +54,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           },
-          "secondProp": {
+          {
             "name": "secondProp",
             "displayName": "secondProp",
             "type": [
@@ -62,9 +77,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -73,25 +91,28 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
-    },
+    ],
     "title": "Overlay 2",
     "resources": [
       {
-        "annotations": {
-          "lib.TestAnnotationType": {
+        "annotations": [
+          {
             "name": "lib.TestAnnotationType",
-            "structuredValue": "TestAnnotationType2"
+            "value": "TestAnnotationType2"
           },
-          "lib.AnotherAnnotationType": {
+          {
             "name": "lib.AnotherAnnotationType",
-            "structuredValue": {
+            "value": {
               "firstProp": "firstProp2",
               "secondProp": 101
             }
           }
-        },
+        ],
         "relativeUri": "/servers",
         "displayName": "/servers",
         "__METADATA__": {
@@ -106,10 +127,17 @@
         ],
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        }
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

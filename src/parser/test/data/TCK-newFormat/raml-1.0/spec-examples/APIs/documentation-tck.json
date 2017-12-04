@@ -8,11 +8,24 @@
     "documentation": [
       {
         "title": "Home",
-        "content": "Welcome to the _Zencoder API_ Documentation. The _Zencoder API_\nallows you to connect your application to our encoding service\nand encode videos without going through the web  interface. You\nmay also benefit from one of our\n[integration libraries](https://app.zencoder.com/docs/faq/basics/libraries)\nfor different languages.\n"
+        "content": "Welcome to the _Zencoder API_ Documentation. The _Zencoder API_\nallows you to connect your application to our encoding service\nand encode videos without going through the web  interface. You\nmay also benefit from one of our\n[integration libraries](https://app.zencoder.com/docs/faq/basics/libraries)\nfor different languages.\n",
+        "sourceMap": {
+          "path": "documentation.raml"
+        }
       },
       {
         "title": "Legal",
-        "content": "legal document\n"
+        "content": "legal document\n",
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              {
+                "path": "docs/legal.markdown"
+              }
+            ]
+          },
+          "path": "documentation.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -21,6 +34,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "documentation.raml"
     }
   },
   "ramlVersion": "RAML10",

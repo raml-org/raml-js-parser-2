@@ -5,7 +5,10 @@
     "mediaType": [
       "application/json",
       "application/xml"
-    ]
+    ],
+    "sourceMap": {
+      "path": "default-media-types-multiple.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

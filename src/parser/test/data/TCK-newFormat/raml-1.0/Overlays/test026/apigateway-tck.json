@@ -3,16 +3,19 @@
     "uses": [
       {
         "key": "AWS",
-        "value": "aws-lib.raml"
+        "value": "aws-lib.raml",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        }
       }
     ],
-    "securitySchemes": {
-      "key": {
+    "securitySchemes": [
+      {
         "name": "key",
         "type": "Pass Through",
         "describedBy": {
-          "headers": {
-            "x-api-key": {
+          "headers": [
+            {
               "name": "x-api-key",
               "displayName": "x-api-key",
               "type": [
@@ -33,12 +36,21 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "sourceMap": {
+                "path": "apigateway.raml"
+              }
             }
+          ],
+          "sourceMap": {
+            "path": "apigateway.raml"
           }
+        },
+        "sourceMap": {
+          "path": "apigateway.raml"
         }
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",
@@ -50,16 +62,16 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "annotations": {
-              "AWS.amazon-apigateway-auth": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "AWS.amazon-apigateway-auth",
-                "structuredValue": "aws_iam"
+                "value": "aws_iam"
               },
-              "AWS.amazon-apigateway-integration": {
+              {
                 "name": "AWS.amazon-apigateway-integration",
-                "structuredValue": {
+                "value": {
                   "type": "aws",
                   "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
                   "httpMethod": "POST",
@@ -98,9 +110,9 @@
                   }
                 }
               }
-            },
-            "queryParameters": {
-              "latitude": {
+            ],
+            "queryParameters": [
+              {
                 "name": "latitude",
                 "displayName": "latitude",
                 "type": [
@@ -117,9 +129,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "apigateway.raml"
+                }
               },
-              "longitude": {
+              {
                 "name": "longitude",
                 "displayName": "longitude",
                 "type": [
@@ -136,9 +151,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "apigateway.raml"
+                }
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],
@@ -149,9 +167,14 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/products",
+            "absoluteParentUri": "https://api.uber.com/products",
+            "sourceMap": {
+              "path": "apigateway-aws-overlay.raml"
             }
           }
-        },
+        ],
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
         "relativeUri": "/products",
         "displayName": "Product Types",
@@ -160,7 +183,11 @@
         ],
         "absoluteUri": "https://api.uber.com/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.uber.com",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        }
       }
     ],
     "extends": "apigateway.raml",
@@ -170,6 +197,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apigateway-aws-overlay.raml"
     }
   },
   "ramlVersion": "RAML10",

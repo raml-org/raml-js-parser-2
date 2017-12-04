@@ -3,10 +3,10 @@
     "title": "Anchor breaks queryParameter/uriParameter type parsing",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "qp1": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "qp1",
                 "displayName": "qp1",
                 "type": [
@@ -25,9 +25,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "qp2": {
+              {
                 "name": "qp2",
                 "displayName": "qp2",
                 "type": [
@@ -45,12 +48,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource1",
+            "absoluteParentUri": "/resource1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource1",
         "displayName": "/resource1",
         "__METADATA__": {
@@ -65,13 +76,17 @@
         ],
         "absoluteUri": "/resource1",
         "completeRelativeUri": "/resource1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "qp11": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "qp11",
                 "displayName": "qp11",
                 "type": [
@@ -90,9 +105,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "qp21": {
+              {
                 "name": "qp21",
                 "displayName": "qp21",
                 "type": [
@@ -110,12 +128,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource2",
+            "absoluteParentUri": "/resource2",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource2",
         "displayName": "/resource2",
         "__METADATA__": {
@@ -130,9 +156,16 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

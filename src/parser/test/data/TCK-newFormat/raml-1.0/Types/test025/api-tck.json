@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "Player1": {
+    "types": [
+      {
         "name": "Player1",
         "displayName": "Player1",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}\n"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,13 +15,16 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "Player2": {
+      {
         "name": "Player2",
         "displayName": "Player2",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}\n"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -31,9 +34,12 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "Types 002.",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -46,6 +52,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -23,9 +23,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           },
-          "age": {
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -40,9 +43,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           },
-          "/^note\\d+$/": {
+          {
             "name": "/^note\\d+$/",
             "displayName": "/^note\\d+$/",
             "type": [
@@ -60,9 +66,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -74,11 +83,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "types-pattern-properties.raml"
+        }
       }
-    },
+    ],
     "title": "My API With Types",
-    "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n"
+    "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n",
+    "sourceMap": {
+      "path": "types-pattern-properties.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -4,6 +4,21 @@
 
 This document is intended to provide an initial knowledge of how to use RAML 1.0 JavaScript parser.
 
+## Quick start
+Install the parser: `npm install raml-1-parser`
+
+Create new file test.js with the following code:
+
+```
+var raml = require("raml-1-parser");
+var apiJSON = raml.load(ramlFileName);
+console.log(JSON.stringify(apiJSON, null, 2));
+```
+
+where `ramlFileName` is a path to RAML file.
+
+Run the test: `node ./test.js`
+
 ## Installation
 
 ###	Pre-required software

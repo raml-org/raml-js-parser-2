@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test API
+mediaType: application/xml
+
+/hello:
+  get:
+    body:
+      example: !include example1.xml
+    responses:
+      200:
+        body:
+          application/xml:
+            examples:
+              e1: !include example1.xml
+              e2: !include example2.xml

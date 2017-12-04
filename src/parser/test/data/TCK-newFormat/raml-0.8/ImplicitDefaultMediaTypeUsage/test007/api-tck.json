@@ -5,58 +5,90 @@
     "mediaType": "application/atom+xml",
     "schemas": [
       {
-        "atom": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+        "value": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+        "name": "atom",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "resourceTypes": {
-      "emailed": {
+    "resourceTypes": [
+      {
         "name": "emailed",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/atom+xml": {
+                "body": [
+                  {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
+            ],
             "method": "get",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/photos",
-        "type": "emailed",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "type": {
+          "name": "emailed"
+        },
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "image/*": {
-                    "name": "image/*"
+                "body": [
+                  {
+                    "name": "image/*",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   },
-                  "application/atom+xml": {
+                  {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/photos",
+            "absoluteParentUri": "/photos",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "displayName": "/photos",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -70,9 +102,16 @@
         ],
         "absoluteUri": "/photos",
         "completeRelativeUri": "/photos",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -17,10 +17,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Another": {
+      {
         "name": "Another",
         "displayName": "Another",
         "type": [
@@ -36,10 +39,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "New API",
     "description": "This RAML illustrates an example of how default media types get automatically applied or in the /send resources overriden",
     "mediaType": [
@@ -48,13 +54,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -67,11 +73,16 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apply-default-media-type.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Person"
+                    "items": [
+                      "Person"
+                    ]
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -84,16 +95,29 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apply-default-media-type.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Person"
+                    "items": [
+                      "Person"
+                    ]
                   }
+                ],
+                "sourceMap": {
+                  "path": "apply-default-media-type.raml"
                 }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/list",
+            "absoluteParentUri": "/list",
+            "sourceMap": {
+              "path": "apply-default-media-type.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/list",
         "displayName": "/list",
         "__METADATA__": {
@@ -108,13 +132,17 @@
         ],
         "absoluteUri": "/list",
         "completeRelativeUri": "/list",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
+        }
       },
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -127,13 +155,21 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apply-default-media-type.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/send",
+            "absoluteParentUri": "/send",
+            "sourceMap": {
+              "path": "apply-default-media-type.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/send",
         "displayName": "/send",
         "__METADATA__": {
@@ -148,9 +184,16 @@
         ],
         "absoluteUri": "/send",
         "completeRelativeUri": "/send",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-default-media-type.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

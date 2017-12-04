@@ -1,24 +1,37 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt": {
-        "methods": {
-          "get": {
-            "method": "get"
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "rt"
+        ],
+        "name": "rt",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "Test",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "method": "get"
+        "methods": [
+          {
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
+        ],
+        "type": {
+          "name": "rt"
         },
-        "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -33,9 +46,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

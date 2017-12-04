@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "logo": {
+    "annotationTypes": [
+      {
         "name": "logo",
         "displayName": "logo",
         "type": [
@@ -18,16 +18,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
-      "test-harness": {
+      {
         "name": "test-harness",
         "displayName": "test-harness",
         "type": [
           "object"
         ],
-        "properties": {
-          "level": {
+        "properties": [
+          {
             "name": "level",
             "displayName": "level",
             "type": [
@@ -53,9 +56,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -73,9 +79,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -87,25 +96,28 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
+    ],
     "title": "Playing with annotations",
     "resources": [
       {
-        "annotations": {
-          "test-harness": {
+        "annotations": [
+          {
             "name": "test-harness",
-            "structuredValue": {
+            "value": {
               "name": "user-harness",
               "level": "medium"
             }
           },
-          "logo": {
+          {
             "name": "logo",
-            "structuredValue": "google.com"
+            "value": "google.com"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -120,9 +132,16 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

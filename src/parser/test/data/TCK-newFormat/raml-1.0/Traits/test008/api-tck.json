@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "box": {
-        "queryParameters": {
-          "param": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "param",
             "displayName": "param",
             "type": [
@@ -21,14 +21,20 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "box"
+        ],
+        "name": "box",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "container": {
-        "headers": {
-          "auth": {
+      {
+        "headers": [
+          {
             "name": "auth",
             "displayName": "auth",
             "type": [
@@ -46,9 +52,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "queryString": {
           "name": "queryString",
           "displayName": "queryString",
@@ -66,10 +75,13 @@
             }
           },
           "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "body": {
-          "application/json": {
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -86,16 +98,27 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "is": [
-          "box"
         ],
-        "name": "container"
+        "is": [
+          {
+            "name": "box"
+          }
+        ],
+        "name": "container",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "Traits"
+    ],
+    "title": "Traits",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

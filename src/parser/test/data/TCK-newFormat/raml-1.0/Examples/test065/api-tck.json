@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "t1": {
+    "types": [
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -23,8 +23,8 @@
             "name": "ex2"
           }
         ],
-        "properties": {
-          "p": {
+        "properties": [
+          {
             "name": "p",
             "displayName": "p",
             "type": [
@@ -42,9 +42,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -55,10 +58,17 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"p\":\"stringValue1\"}",
+          "{\"p\":\"stringValue2\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "t2": {
+      {
         "name": "t2",
         "displayName": "t2",
         "type": [
@@ -75,8 +85,8 @@
             "description": "Example for the 'T2' type"
           }
         ],
-        "properties": {
-          "p": {
+        "properties": [
+          {
             "name": "p",
             "displayName": "p",
             "type": [
@@ -94,9 +104,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -107,16 +120,28 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"p\":\"stringValue1\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "traits": {
-      "tr": {
-        "name": "tr"
+    ],
+    "traits": [
+      {
+        "name": "tr",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

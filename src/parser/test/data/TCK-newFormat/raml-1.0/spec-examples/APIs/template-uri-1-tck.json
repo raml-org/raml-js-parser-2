@@ -3,8 +3,8 @@
     "title": "ZEncoder API",
     "version": "v2",
     "baseUri": "https://app.zencoder.com/api/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -32,9 +32,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "template-uri-1.raml"
+        }
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -46,8 +49,41 @@
         "resources": [
           {
             "description": "A specific job, a member of the jobs collection",
-            "uriParameters": {
-              "jobId": {
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v2"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "template-uri-1.raml"
+                }
+              },
+              {
                 "name": "jobId",
                 "displayName": "jobId",
                 "type": [
@@ -69,9 +105,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "template-uri-1.raml"
+                }
               }
-            },
+            ],
             "relativeUri": "/{jobId}",
             "displayName": "/{jobId}",
             "__METADATA__": {
@@ -86,7 +125,11 @@
             ],
             "absoluteUri": "https://app.zencoder.com/api/{version}/jobs/{jobId}",
             "completeRelativeUri": "/jobs/{jobId}",
-            "parentUri": "/jobs"
+            "parentUri": "/jobs",
+            "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs",
+            "sourceMap": {
+              "path": "template-uri-1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -101,7 +144,46 @@
         ],
         "absoluteUri": "https://app.zencoder.com/api/{version}/jobs",
         "completeRelativeUri": "/jobs",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://app.zencoder.com/api/{version}",
+        "sourceMap": {
+          "path": "template-uri-1.raml"
+        },
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v2"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "template-uri-1.raml"
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {
@@ -110,6 +192,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "template-uri-1.raml"
     }
   },
   "ramlVersion": "RAML10",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "mytype": {
+    "types": [
+      {
         "name": "mytype",
         "displayName": "mytype",
         "type": [
@@ -15,9 +15,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "mystring": {
+      {
         "name": "mystring",
         "displayName": "mystring",
         "type": [
@@ -31,13 +34,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "base.raml"
+        }
       }
-    },
-    "traits": {
-      "foo": {
-        "queryParameters": {
-          "foo": {
+    ],
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "foo",
             "displayName": "foo",
             "type": [
@@ -55,22 +61,28 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "trait.raml"
+            }
           }
-        },
+        ],
         "name": "foo",
         "__METADATA__": {
           "calculated": true
+        },
+        "sourceMap": {
+          "path": "trait.raml"
         }
       }
-    },
+    ],
     "title": "foo",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "foo": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "foo",
                 "displayName": "foo",
                 "type": [
@@ -88,15 +100,25 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "trait.raml"
+                }
               }
-            },
-            "is": [
-              "foo"
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "foo"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/foobar",
+            "absoluteParentUri": "/foobar",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/foobar",
         "displayName": "/foobar",
         "__METADATA__": {
@@ -111,10 +133,17 @@
         ],
         "absoluteUri": "/foobar",
         "completeRelativeUri": "/foobar",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "extends": "./base.raml"
+    "extends": "./base.raml",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

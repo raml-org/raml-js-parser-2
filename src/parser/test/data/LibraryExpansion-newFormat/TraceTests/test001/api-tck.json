@@ -1,14 +1,30 @@
 {
   "specification": {
-    "types": {
-      "lib1.LibType1": {
-        "name": "LibType1",
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "libraries/lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "libraries/lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "lib1.LibType1",
         "displayName": "LibType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -26,9 +42,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libraries/lib1.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -40,16 +59,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libraries/lib1.raml"
+        }
       },
-      "lib1.lib2.LibType2": {
-        "name": "LibType2",
+      {
+        "name": "lib1.lib2.LibType2",
         "displayName": "LibType2",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -67,9 +89,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libraries/lib2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -89,10 +114,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p1\":\"01/01/1900\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libraries/lib2.raml"
+        }
       }
-    },
+    ],
     "title": "testAPI",
     "version": "v1",
     "mediaType": [
@@ -100,10 +131,10 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -117,12 +148,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -137,13 +176,77 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
   "errors": [
+    {
+      "code": "INVALID_DATEONLY",
+      "message": "'date-only' instance should match 'yyyy-mm-dd' pattern",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/LibraryExpansion-newFormat/TraceTests/test001/libraries/lib2.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 6,
+          "position": 94
+        },
+        "end": {
+          "line": 7,
+          "column": 8,
+          "position": 96
+        }
+      },
+      "trace": [
+        {
+          "code": "ISSUES_IN_THE_LIBRARY",
+          "message": "Issues in the used library: 'lib2.raml'",
+          "path": "libraries/lib1.raml",
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 2,
+              "position": 28
+            },
+            "end": {
+              "line": 3,
+              "column": 6,
+              "position": 32
+            }
+          },
+          "isWarning": true,
+          "trace": [
+            {
+              "code": "ISSUES_IN_THE_LIBRARY",
+              "message": "Issues in the used library: 'libraries/lib1.raml'",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 5,
+                  "column": 2,
+                  "position": 74
+                },
+                "end": {
+                  "line": 5,
+                  "column": 6,
+                  "position": 78
+                }
+              },
+              "isWarning": true
+            }
+          ]
+        }
+      ]
+    },
     {
       "code": "INVALID_DATEONLY",
       "message": "'date-only' instance should match 'yyyy-mm-dd' pattern",

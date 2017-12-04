@@ -1,8 +1,18 @@
 {
   "specification": {
-    "types": {
-      "AWS.amazon-apigateway-method": {
-        "name": "amazon-apigateway-method",
+    "uses": [
+      {
+        "key": "AWS",
+        "value": "aws-lib.raml",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        },
+        "usage": "Data types and annotation types for AWS API Gateway"
+      }
+    ],
+    "types": [
+      {
+        "name": "AWS.amazon-apigateway-method",
         "displayName": "amazon-apigateway-method",
         "type": [
           "string"
@@ -24,6 +34,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "examples": [
           {
             "value": "POST",
@@ -31,11 +44,14 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "POST"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-status": {
-        "name": "amazon-apigateway-status",
+      {
+        "name": "AWS.amazon-apigateway-status",
         "displayName": "amazon-apigateway-status",
         "type": [
           "string"
@@ -51,17 +67,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-templates": {
-        "name": "amazon-apigateway-templates",
+      {
+        "name": "AWS.amazon-apigateway-templates",
         "displayName": "amazon-apigateway-templates",
         "type": [
           "object"
         ],
-        "properties": {
-          "/\\w+/\\w+/": {
+        "properties": [
+          {
             "name": "/\\w+/\\w+/",
             "displayName": "/\\w+/\\w+/",
             "type": [
@@ -81,10 +100,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -95,11 +117,14 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-auth-type": {
-        "name": "amazon-apigateway-auth-type",
+      {
+        "name": "AWS.amazon-apigateway-auth-type",
         "displayName": "amazon-apigateway-auth-type",
         "type": [
           "string"
@@ -117,17 +142,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration-lambda": {
-        "name": "amazon-apigateway-integration-lambda",
+      {
+        "name": "AWS.amazon-apigateway-integration-lambda",
         "displayName": "amazon-apigateway-integration-lambda",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -150,10 +178,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -164,17 +195,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration-HTTP": {
-        "name": "amazon-apigateway-integration-HTTP",
+      {
+        "name": "AWS.amazon-apigateway-integration-HTTP",
         "displayName": "amazon-apigateway-integration-HTTP",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -197,10 +231,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -211,17 +248,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration-mock": {
-        "name": "amazon-apigateway-integration-mock",
+      {
+        "name": "AWS.amazon-apigateway-integration-mock",
         "displayName": "amazon-apigateway-integration-mock",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -244,10 +284,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -258,17 +301,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration-aws": {
-        "name": "amazon-apigateway-integration-aws",
+      {
+        "name": "AWS.amazon-apigateway-integration-aws",
         "displayName": "amazon-apigateway-integration-aws",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -291,10 +337,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "uri": {
+          {
             "name": "uri",
             "displayName": "uri",
             "type": [
@@ -314,10 +363,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "httpMethod": {
+          {
             "name": "httpMethod",
             "displayName": "httpMethod",
             "type": [
@@ -334,10 +386,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "credentials": {
+          {
             "name": "credentials",
             "displayName": "credentials",
             "type": [
@@ -357,10 +412,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "requestTemplates": {
+          {
             "name": "requestTemplates",
             "displayName": "requestTemplates",
             "type": [
@@ -377,10 +435,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "requestParameters": {
+          {
             "name": "requestParameters",
             "displayName": "requestParameters",
             "type": [
@@ -397,10 +458,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "cacheNamespace": {
+          {
             "name": "cacheNamespace",
             "displayName": "cacheNamespace",
             "type": [
@@ -420,10 +484,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "cacheKeyParameters": {
+          {
             "name": "cacheKeyParameters",
             "displayName": "cacheKeyParameters",
             "type": [
@@ -440,27 +507,32 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "string"
+            "items": [
+              "string"
+            ]
           },
-          "responses": {
+          {
             "name": "responses",
             "displayName": "responses",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "/.*/": {
+            "properties": [
+              {
                 "name": "/.*/",
                 "displayName": "/.*/",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "statusCode": {
+                "properties": [
+                  {
                     "name": "statusCode",
                     "displayName": "statusCode",
                     "type": [
@@ -477,10 +549,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "aws-lib.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "responseParameters": {
+                  {
                     "name": "responseParameters",
                     "displayName": "responseParameters",
                     "type": [
@@ -497,10 +572,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "aws-lib.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "responseTemplates": {
+                  {
                     "name": "responseTemplates",
                     "displayName": "responseTemplates",
                     "type": [
@@ -517,10 +595,13 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "aws-lib.raml"
+                    },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -534,10 +615,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "aws-lib.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -551,10 +635,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "aws-lib.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -564,6 +651,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "aws-lib.raml"
         },
         "examples": [
           {
@@ -609,14 +699,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"type\":\"aws\",\"uri\":\"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\"httpMethod\":\"POST\",\"credentials\":\"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\"requestTemplates\":{\"application/json\":\"json request template 2\",\"application/xml\":\"xml request template 2\"},\"requestParameters\":{\"integration.request.path.integrationPathParam\":\"method.request.querystring.latitude\",\"integration.request.querystring.integrationQueryParam\":\"method.request.querystring.longitude\"},\"cacheNamespace\":\"cache namespace\",\"cacheKeyParameters\":[],\"responses\":{\"2\\\\d{2}\":{\"statusCode\":\"200\",\"responseParameters\":{\"method.response.header.test-method-response-header\":\"integration.response.header.integrationResponseHeaderParam1\"},\"responseTemplates\":{\"application/json\":\"json 200 response template\",\"application/xml\":\"xml 200 response template\"}},\"default\":{\"statusCode\":\"400\",\"responseParameters\":{\"method.response.header.test-method-response-header\":\"'static value'\"},\"responseTemplates\":{\"application/json\":\"json 400 response template\",\"application/xml\":\"xml 400 response template\"}}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration": {
-        "name": "amazon-apigateway-integration",
+      {
+        "name": "AWS.amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
-          "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -625,13 +718,22 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "anyOf": [
+          "AWS.amazon-apigateway-integration-lambda",
+          "AWS.amazon-apigateway-integration-HTTP",
+          "AWS.amazon-apigateway-integration-mock",
+          "AWS.amazon-apigateway-integration-aws"
+        ]
       }
-    },
-    "annotationTypes": {
-      "AWS.amazon-apigateway-auth": {
-        "name": "amazon-apigateway-auth",
+    ],
+    "annotationTypes": [
+      {
+        "name": "AWS.amazon-apigateway-auth",
         "displayName": "amazon-apigateway-auth",
         "type": [
           "AWS.amazon-apigateway-auth-type"
@@ -643,11 +745,14 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AWS.amazon-apigateway-integration": {
-        "name": "amazon-apigateway-integration",
+      {
+        "name": "AWS.amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
           "AWS.amazon-apigateway-integration"
@@ -659,17 +764,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "aws-lib.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "securitySchemes": {
-      "key": {
+    ],
+    "securitySchemes": [
+      {
         "name": "key",
         "type": "Pass Through",
         "describedBy": {
-          "headers": {
-            "x-api-key": {
+          "headers": [
+            {
               "name": "x-api-key",
               "displayName": "x-api-key",
               "type": [
@@ -689,13 +797,22 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apigateway.raml"
+              },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
+          ],
+          "sourceMap": {
+            "path": "apigateway.raml"
           }
+        },
+        "sourceMap": {
+          "path": "apigateway.raml"
         }
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",
@@ -707,16 +824,16 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "annotations": {
-              "AWS.amazon-apigateway-auth": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "AWS.amazon-apigateway-auth",
-                "structuredValue": "aws_iam"
+                "value": "aws_iam"
               },
-              "AWS.amazon-apigateway-integration": {
+              {
                 "name": "AWS.amazon-apigateway-integration",
-                "structuredValue": {
+                "value": {
                   "type": "aws",
                   "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
                   "httpMethod": "POST",
@@ -755,9 +872,9 @@
                   }
                 }
               }
-            },
-            "queryParameters": {
-              "latitude": {
+            ],
+            "queryParameters": [
+              {
                 "name": "latitude",
                 "displayName": "latitude",
                 "type": [
@@ -773,10 +890,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apigateway.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "longitude": {
+              {
                 "name": "longitude",
                 "displayName": "longitude",
                 "type": [
@@ -792,10 +912,13 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apigateway.raml"
+                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],
@@ -806,9 +929,14 @@
                   "calculated": true
                 }
               }
+            },
+            "parentUri": "/products",
+            "absoluteParentUri": "https://api.uber.com/products",
+            "sourceMap": {
+              "path": "apigateway-aws-overlay.raml"
             }
           }
-        },
+        ],
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
         "relativeUri": "/products",
         "displayName": "Product Types",
@@ -817,7 +945,11 @@
         ],
         "absoluteUri": "https://api.uber.com/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.uber.com",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        }
       }
     ],
     "extends": "apigateway.raml",
@@ -827,6 +959,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apigateway-aws-overlay.raml"
     }
   },
   "ramlVersion": "RAML10",

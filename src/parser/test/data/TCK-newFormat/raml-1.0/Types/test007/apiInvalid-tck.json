@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "SimpleUnion": {
+    "types": [
+      {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
         "type": [
-          "array"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -14,18 +14,46 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "string[] | number"
+        "anyOf": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": [
+              "string"
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": [
+              "number"
+            ],
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
+          }
+        ]
       },
-      "TypeWithUnionProps": {
+      {
         "name": "TypeWithUnionProps",
         "displayName": "TypeWithUnionProps",
         "type": [
           "object"
         ],
-        "properties": {
-          "unionArray1": {
+        "properties": [
+          {
             "name": "unionArray1",
             "displayName": "unionArray1",
             "type": [
@@ -42,10 +70,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "unionArray2": {
+          {
             "name": "unionArray2",
             "displayName": "unionArray2",
             "type": [
@@ -62,16 +93,22 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         },
         "examples": [
           {
@@ -91,11 +128,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"unionArray1\":[\"blah\",2,3],\"unionArray2\":[\"blah\",\"blah\",\"blah\"]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

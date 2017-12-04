@@ -1,11 +1,12 @@
 import parameters = require("./parameters");
+import common = require("./common");
 
 /**
  * Resource methods MAY have one or more responses.
  * Responses MAY be described using the description property,
  * and MAY include example attributes or schema properties.
  */
-export interface Response08 {
+export interface Response08 extends common.HasSource{
 
     /**
      * Responses MUST be a map of one or more HTTP status codes,
@@ -22,7 +23,7 @@ export interface Response08 {
      * This is particularly useful for APIs that allow HTTP headers that
      * conform to some naming convention to send arbitrary, custom data.
      */
-    headers?: { [key: string]: parameters.Parameter08 }
+    headers?: parameters.Parameter08[]
 
     /**
      * Each response MAY contain a body property, which conforms to
@@ -35,7 +36,7 @@ export interface Response08 {
      * Processing applications MUST match the most descriptive
      * media type first if `* /*` is used.
      */
-    body?: BodyLike08
+    body?: BodyLike08[]
 
     /**
      * The description attribute describes the intended use or meaning
@@ -52,7 +53,7 @@ export interface Response08 {
  * representations. A method's body is defined in the body property as
  * a hashmap, in which the key MUST be a valid media type.
  */
-export interface BodyLike08{
+export interface BodyLike08 extends common.HasSource{
 
     /**
      * Mime type of the request or response body
@@ -92,7 +93,7 @@ export interface BodyLike08{
      * parameter, and the value is itself a map the specifies the web
      * form parameter's attributes.
      */
-    formParameters?: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    formParameters?: parameters.Parameter08[]
 
     /**
      * Returns schema content for the cases when schema is inlined,

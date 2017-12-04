@@ -9,7 +9,13 @@
       ],
       "scopes": [
         "http://example.com"
-      ]
+      ],
+      "sourceMap": {
+        "path": "securitySchemeFragment.raml"
+      }
+    },
+    "sourceMap": {
+      "path": "securitySchemeFragment.raml"
     }
   },
   "ramlVersion": "RAML10",

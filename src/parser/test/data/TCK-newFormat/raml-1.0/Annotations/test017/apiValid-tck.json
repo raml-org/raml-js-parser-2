@@ -1,22 +1,22 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotation": {
+    "annotations": [
+      {
         "name": "MyAnnotation",
-        "structuredValue": {
+        "value": {
           "numberProp": 11
         }
       }
-    },
-    "types": {
-      "MyType": {
+    ],
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "numberProp": {
+        "properties": [
+          {
             "name": "numberProp",
             "displayName": "numberProp",
             "type": [
@@ -34,9 +34,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -48,16 +51,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
-      "TargetType": {
+      {
         "name": "TargetType",
         "displayName": "TargetType",
         "type": [
           "object"
         ],
-        "properties": {
-          "stringParam": {
+        "properties": [
+          {
             "name": "stringParam",
             "displayName": "stringParam",
             "type": [
@@ -75,9 +81,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -89,13 +98,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
-    "traits": {
-      "trait1": {
-        "headers": {
-          "header1": {
+    ],
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "header1",
             "displayName": "header1",
             "type": [
@@ -116,14 +128,20 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
-        },
-        "name": "trait1"
+        ],
+        "name": "trait1",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "MyAnnotation": {
+    ],
+    "annotationTypes": [
+      {
         "name": "MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
@@ -140,10 +158,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
-    },
-    "title": "MyApi"
+    ],
+    "title": "MyApi",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

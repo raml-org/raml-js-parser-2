@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -15,10 +15,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "default-types-1.raml"
+        }
       }
-    },
-    "title": "Default Types 1"
+    ],
+    "title": "Default Types 1",
+    "sourceMap": {
+      "path": "default-types-1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

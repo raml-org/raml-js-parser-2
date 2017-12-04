@@ -1,22 +1,22 @@
 {
   "specification": {
-    "types": {
-      "baseAnnotation": {
+    "types": [
+      {
         "name": "baseAnnotation",
         "displayName": "baseAnnotation",
         "type": [
           "object"
         ],
-        "properties": {
-          "baseProperty1": {
+        "properties": [
+          {
             "name": "baseProperty1",
             "displayName": "baseProperty1",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "field1": {
+            "properties": [
+              {
                 "name": "field1",
                 "displayName": "field1",
                 "type": [
@@ -30,16 +30,16 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
-              "field2": {
+              {
                 "name": "field2",
                 "displayName": "field2",
                 "type": [
@@ -57,9 +57,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -74,9 +77,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "baseProperty2": {
+          {
             "name": "baseProperty2",
             "displayName": "baseProperty2",
             "type": [
@@ -90,16 +96,16 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -111,13 +117,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "MyType": {
-        "annotations": {
-          "childAnnotation": {
+      {
+        "annotations": [
+          {
             "name": "childAnnotation",
-            "structuredValue": {
+            "value": {
               "baseProperty1": {
                 "field1": "field1_value",
                 "field2": 15
@@ -127,7 +136,7 @@
               "childProperty2": 17
             }
           }
-        },
+        ],
         "name": "MyType",
         "displayName": "MyType",
         "type": [
@@ -144,18 +153,21 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "childAnnotation": {
+    ],
+    "annotationTypes": [
+      {
         "name": "childAnnotation",
         "displayName": "childAnnotation",
         "type": [
           "baseAnnotation"
         ],
-        "properties": {
-          "childProperty1": {
+        "properties": [
+          {
             "name": "childProperty1",
             "displayName": "childProperty1",
             "type": [
@@ -182,9 +194,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "childProperty2": {
+          {
             "name": "childProperty2",
             "displayName": "childProperty2",
             "type": [
@@ -196,16 +211,16 @@
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -214,14 +229,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "TCK Sample. RAML 1.0 Annotations 002.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -249,27 +267,30 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "annotations": {
-              "childAnnotation": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "childAnnotation",
-                "structuredValue": {
+                "value": {
                   "baseProperty1": {
                     "field2": 19
                   },
                   "childProperty1": "enum_value2"
                 }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -280,9 +301,49 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/helloWorld",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/helloWorld",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ]
           }
-        },
+        ],
         "relativeUri": "/helloWorld",
         "displayName": "/helloWorld",
         "__METADATA__": {
@@ -297,7 +358,46 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/helloWorld",
         "completeRelativeUri": "/helloWorld",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {
@@ -306,6 +406,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

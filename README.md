@@ -6,6 +6,21 @@ See http://raml.org for more information about RAML.
 
 This parser supports both RAML 0.8 and 1.0.
 
+## Quick start
+Install the parser: `npm install raml-1-parser`
+
+Create new file test.js with the following code:
+
+```
+var raml = require("raml-1-parser");
+var apiJSON = raml.load(ramlFileName);
+console.log(JSON.stringify(apiJSON, null, 2));
+```
+
+where `ramlFileName` is a path to RAML file.
+
+Run the test: `node ./test.js`
+
 ## Installation
 ```
 npm install raml-1-parser

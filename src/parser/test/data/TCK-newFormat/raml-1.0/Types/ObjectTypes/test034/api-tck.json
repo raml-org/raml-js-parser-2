@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MyStringType": {
+    "types": [
+      {
         "name": "MyStringType",
         "displayName": "MyStringType",
         "type": [
@@ -20,9 +20,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "MyNumberType": {
+      {
         "name": "MyNumberType",
         "displayName": "MyNumberType",
         "type": [
@@ -44,9 +47,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "MyBooleanType": {
+      {
         "name": "MyBooleanType",
         "displayName": "MyBooleanType",
         "type": [
@@ -64,10 +70,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "myApi"
+    ],
+    "title": "myApi",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

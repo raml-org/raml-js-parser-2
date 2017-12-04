@@ -26,6 +26,7 @@ import universeHelpers = require("./tools/universeHelpers")
 import resourceRegistry = require("./jsyaml/resourceRegistry")
 import rTypes=defs.rt;
 import path=require("path");
+import jsonPath = require("json-path");
 type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
@@ -721,49 +722,51 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     plainValue():any{
         let val = this.value();
         if(StructuredValue.isInstance(val)){
-            var sVal = (<StructuredValue>val);
-            var llNode = sVal.lowLevel();
+            let sVal = (<StructuredValue>val);
+            let llNode = sVal.lowLevel();
             val = llNode ? llNode.dumpToObject() : null;
 
-            var prop = this.property();
-            var rangeType = prop.range();
-            var propName = prop.nameId();
+            let prop = this.property();
+            let rangeType = prop.range();
+            let isTypeProp = universeHelpers.isTypeProperty(prop)
+                ||universeHelpers.isSchemaProperty(prop)
+                ||universeHelpers.isItemsProperty(prop);
             if (rangeType.isAssignableFrom("Reference")) {
-                var key = Object.keys(val)[0];
-                var name = sVal.valueName();
-                var refVal = val[key];
+                let key = Object.keys(val)[0];
+                let name = sVal.valueName();
+                let refVal = val[key];
                 if (refVal === undefined) {
                     refVal = null;
                 }
                 val = {
                     name: name,
-                    structuredValue: refVal
+                    value: refVal
                 }
             }
-            else if (propName == "type") {
-                var llNode = this.lowLevel();
-                var tdl = null;
-                var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                var tNode = new ASTNodeImpl(llNode, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+            else if (isTypeProp) {
+                let llNode = this.lowLevel();
+                let tdl = null;
+                let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                let tNode = new ASTNodeImpl(llNode, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                 tNode.patchType(builder.doDescrimination(tNode));
                 val = tNode;
             }
-            else if (propName == "items" && typeof val === "object") {
-                var isArr = Array.isArray(val);
-                var isObj = !isArr;
+            else if (universeHelpers.isItemsProperty(prop) && typeof val === "object") {
+                let isArr = Array.isArray(val);
+                let isObj = !isArr;
                 if (isArr) {
                     isObj = _.find(val, x=>typeof(x) == "object") != null;
                 }
                 if (isObj) {
                     val = null;
-                    var a = this.parent().lowLevel();
-                    var tdl = null;
+                    let a = this.parent().lowLevel();
+                    let tdl = null;
                     a.children().forEach(x=> {
                         if (x.key() == "items") {
-                            var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                            var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                            var tNode = new ASTNodeImpl(x, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
+                            let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                            let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                            let tNode = new ASTNodeImpl(x, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
                             tNode.patchType(builder.doDescrimination(tNode));
                             val = tNode;
                         }
@@ -838,6 +841,15 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             &&this.property()&&(universeHelpers.isTypeOrSchemaProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
             &&this.parent()&&universeHelpers.isTypeDeclarationDescendant(this.parent().definition())){
             return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
+        }
+        if (this.property()&&(universeHelpers.isTypeOrSchemaProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
+            &&this.parent()&&universeHelpers.isTypeDeclarationDescendant(this.parent().definition())){
+            if(typeof(actualValue)==="string"&&this.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF){
+                let resolvedSchema = resolveSchemaFragment(this,actualValue);
+                if(resolvedSchema){
+                    actualValue = resolvedSchema;
+                }
+            }
         }
         return actualValue;
     }
@@ -1388,6 +1400,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                         // }
                     });
                 }
+                if(this.lowLevel().actual().libExpanded){
+                    (<any>this._types)["uses"] = {};
+                }
                 c.types=this._types;
             }
 
@@ -1450,6 +1465,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private isParametrizedType():boolean {
         var isParametrizedType:boolean = false;
         var typeAttr = this.attr(universes.Universe10.TypeDeclaration.properties.type.name);
+        if(!typeAttr){
+            typeAttr = this.attr(universes.Universe10.TypeDeclaration.properties.schema.name);
+        }
         if (typeAttr) {
             var typeAttrValue = typeAttr.value();
             if (typeof typeAttrValue == "string") {
@@ -1906,7 +1924,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             var defClass = this.definition();
             var ramlVersion = defClass.universe().version();
             if(defClass&&ramlVersion=="RAML10"&&(<ASTPropImpl>ka).isFromKey()) {
-                var key = this._node.key();
+                var key = this._computedKey||this._node.key();
                 c = this._node.optional() ? key + "?" : key;
             }
             else{
@@ -2842,4 +2860,34 @@ export function actualUnit(llNode:ll.ILowLevelASTNode) {
         }
     }
     return unit;
+}
+
+export function resolveSchemaFragment(node:hl.IParseResult,value:string):string{
+    let result:string=null;
+    try{
+        let schemaObj = JSON.parse(value);
+        if(schemaObj && typeof schemaObj==="object" && Object.keys(schemaObj).length==1 && schemaObj.hasOwnProperty("$ref")){
+            let ref = schemaObj["$ref"];
+            if(typeof ref === "string"){
+                let ind = ref.indexOf("#");
+                if(ind>=0){
+                    let unitPath = ref.substring(0,ind);
+                    let fragment = ref.substring(ind);
+                    if(fragment.length>1) {
+                        let unit = node.lowLevel().unit().resolve(unitPath);
+                        if (unit) {
+                            let schemaContent = unit.contents();
+                            let fullSchemaObj = JSON.parse(schemaContent);
+                            let jPath = jsonPath.create(fragment);
+                            let res = jPath.resolve(fullSchemaObj,()=>null);
+                            if (Array.isArray(res) && res.length) {
+                                result = JSON.stringify(res[0], null, 2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }catch(e){}
+    return result;
 }

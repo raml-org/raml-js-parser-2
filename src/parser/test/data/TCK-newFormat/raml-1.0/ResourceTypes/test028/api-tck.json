@@ -1,11 +1,11 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt1": {
-        "methods": {
-          "put": {
-            "body": {
-              "application/json": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -19,19 +19,28 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "rt1"
+        ],
+        "name": "rt1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "rt2": {
-        "methods": {
-          "delete": {
-            "body": {
-              "application/json": {
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -45,30 +54,43 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt1": {
-            "type2": "<<type1>>"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "type2",
+              "value": "<<type1>>"
+            }
+          ]
         },
-        "name": "rt2"
+        "name": "rt2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "test",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "delete": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -82,14 +104,22 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "put": {
-            "body": {
-              "application/json": {
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -103,16 +133,28 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt2": {
-            "type1": "invalidType"
-          }
+          "name": "rt2",
+          "parameters": [
+            {
+              "name": "type1",
+              "value": "invalidType"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -128,9 +170,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,15 +1,31 @@
 {
   "specification": {
-    "traits": {
-      "lib1.lib2.myTrait": {
-        "body": {
-          "application/json": {
-            "annotations": {
-              "lib1.lib2.MyAnnotation": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib/lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib/lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "traits": [
+      {
+        "body": [
+          {
+            "annotations": [
+              {
                 "name": "lib1.lib2.MyAnnotation",
-                "structuredValue": "stringValue"
+                "value": "stringValue"
               }
-            },
+            ],
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -26,23 +42,34 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "lib/lib2.raml"
+            }
           }
-        },
-        "name": "myTrait"
-      }
-    },
-    "resourceTypes": {
-      "lib1.rt": {
-        "is": [
-          "lib1.lib2.myTrait"
         ],
-        "name": "rt"
+        "name": "lib1.lib2.myTrait",
+        "sourceMap": {
+          "path": "lib/lib2.raml"
+        }
       }
-    },
-    "annotationTypes": {
-      "lib1.lib2.MyAnnotation": {
-        "name": "MyAnnotation",
+    ],
+    "resourceTypes": [
+      {
+        "is": [
+          {
+            "name": "lib1.lib2.myTrait"
+          }
+        ],
+        "name": "lib1.rt",
+        "sourceMap": {
+          "path": "lib/lib1.raml"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib1.lib2.MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
           "string"
@@ -55,8 +82,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "lib/lib2.raml"
+        }
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

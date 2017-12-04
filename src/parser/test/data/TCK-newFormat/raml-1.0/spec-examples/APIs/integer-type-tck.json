@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Age": {
+    "types": [
+      {
         "name": "Age",
         "displayName": "Age",
         "type": [
@@ -19,10 +19,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "integer-type.raml"
+        }
       }
-    },
-    "title": "Integer Type"
+    ],
+    "title": "Integer Type",
+    "sourceMap": {
+      "path": "integer-type.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

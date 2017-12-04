@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Category": {
+    "types": [
+      {
         "name": "Category",
         "displayName": "Category",
         "type": [
@@ -15,15 +15,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "parentResourceType": {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "foo": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "foo",
                 "displayName": "foo",
                 "type": [
@@ -41,30 +44,46 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "parentResourceType"
+        ],
+        "name": "parentResourceType",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "childResourceType": {
+      {
         "type": {
-          "parentResourceType": {
-            "typeName": "<<typeName>>"
-          }
+          "name": "parentResourceType",
+          "parameters": [
+            {
+              "name": "typeName",
+              "value": "<<typeName>>"
+            }
+          ]
         },
-        "name": "childResourceType"
+        "name": "childResourceType",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "Minimal bug case",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "foo": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "foo",
                 "displayName": "foo",
                 "type": [
@@ -82,16 +101,28 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/cats",
+            "absoluteParentUri": "/cats",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "childResourceType": {
-            "typeName": "Category"
-          }
+          "name": "childResourceType",
+          "parameters": [
+            {
+              "name": "typeName",
+              "value": "Category"
+            }
+          ]
         },
         "relativeUri": "/cats",
         "displayName": "/cats",
@@ -107,9 +138,16 @@
         ],
         "absoluteUri": "/cats",
         "completeRelativeUri": "/cats",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

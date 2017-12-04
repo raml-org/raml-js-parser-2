@@ -1,0 +1,31 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\n      \"type\": \"string\"\n    }\n  }\n}"
+        ],
+        "typePropertyKind": "JSON",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

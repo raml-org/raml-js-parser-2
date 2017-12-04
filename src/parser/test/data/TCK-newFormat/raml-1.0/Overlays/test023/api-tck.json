@@ -1,9 +1,15 @@
 {
   "specification": {
-    "traits": {
-      "env-org-pair": {
+    "traits": [
+      {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Digest Authentication",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
         ],
         "displayName": "overlayDisplayName2",
         "name": "env-org-pair",
@@ -13,13 +19,22 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
         }
       }
-    },
-    "resourceTypes": {
-      "servers-collection": {
+    ],
+    "resourceTypes": [
+      {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Digest Authentication",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
         ],
         "name": "servers-collection",
         "__METADATA__": {
@@ -29,15 +44,21 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
-    "securitySchemes": {
-      "x-ttt": {
+    ],
+    "securitySchemes": [
+      {
         "name": "x-ttt",
-        "type": "Digest Authentication"
+        "type": "Digest Authentication",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "Extension2",
     "version": "0.4",
     "baseUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
@@ -48,15 +69,29 @@
       "application/json"
     ],
     "securedBy": [
-      "x-ttt"
+      {
+        "name": "x-ttt",
+        "type": "Digest Authentication",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
     ],
     "resources": [
       {
         "is": [
-          "env-org-pair"
+          {
+            "name": "env-org-pair"
+          }
         ],
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Digest Authentication",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
         ],
         "relativeUri": "/servers",
         "displayName": "/servers",
@@ -72,10 +107,17 @@
         ],
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

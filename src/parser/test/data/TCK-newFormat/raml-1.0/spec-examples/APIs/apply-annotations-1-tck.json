@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "testHarness": {
+    "annotationTypes": [
+      {
         "name": "testHarness",
         "displayName": "testHarness",
         "type": [
@@ -15,21 +15,24 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apply-annotations-1.raml"
+        }
       }
-    },
+    ],
     "title": "Testing annotations",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "annotations": {
-          "testHarness": {
+        "annotations": [
+          {
             "name": "testHarness",
-            "structuredValue": "usersTest"
+            "value": "usersTest"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -44,9 +47,16 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apply-annotations-1.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-annotations-1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

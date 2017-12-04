@@ -1,0 +1,106 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "ValidConstraintsInheritance",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "name": "name"
+          },
+          {
+            "type": [
+              "integer"
+            ],
+            "facets": [
+              {
+                "name": "format",
+                "type": [
+                  "string"
+                ]
+              },
+              {
+                "name": "format",
+                "type": [
+                  "string"
+                ]
+              }
+            ],
+            "name": "age",
+            "required": true
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": {
+              "type": [
+                "string"
+              ]
+            },
+            "name": "cats",
+            "required": true
+          },
+          {
+            "type": [
+              "object"
+            ],
+            "name": "bio",
+            "required": true
+          },
+          {
+            "type": [
+              "datetime"
+            ],
+            "facets": [
+              {
+                "name": "format",
+                "type": [
+                  "string"
+                ]
+              }
+            ],
+            "format": "rfc2616",
+            "name": "dob",
+            "required": true
+          }
+        ],
+        "minProperties": 2,
+        "maxProperties": 9,
+        "sourceMap": {
+          "path": "type_collections.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "type_collections.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": [
+    {
+      "code": "PATTERN_VIOLATION",
+      "message": "String should match to 'foobar'",
+      "path": "type_collections.raml",
+      "range": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "position": 499
+        },
+        "end": {
+          "line": 27,
+          "column": 8,
+          "position": 503
+        }
+      }
+    }
+  ]
+}

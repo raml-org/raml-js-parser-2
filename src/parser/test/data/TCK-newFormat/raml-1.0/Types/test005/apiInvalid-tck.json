@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -25,10 +25,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -36,17 +39,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AnotherType": {
+      {
         "name": "AnotherType",
         "displayName": "AnotherType",
         "type": [
           "SomeType"
         ],
-        "properties": {
-          "age": {
+        "properties": [
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -63,10 +69,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "additionalProperties": false,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -75,17 +84,20 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ComplexTypeWithArrayProperty": {
+      {
         "name": "ComplexTypeWithArrayProperty",
         "displayName": "ComplexTypeWithArrayProperty",
         "type": [
           "object"
         ],
-        "properties": {
-          "users": {
+        "properties": [
+          {
             "name": "users",
             "displayName": "users",
             "type": [
@@ -102,11 +114,16 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "AnotherType"
+            "items": [
+              "AnotherType"
+            ]
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -116,6 +133,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         },
         "examples": [
           {
@@ -138,11 +158,17 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"users\":[{\"name\":\"John\",\"age\":\"not number\"},{\"name1\":\"Jane\",\"age\":28},{\"name\":\"Alex\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

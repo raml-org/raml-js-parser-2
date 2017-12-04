@@ -1,9 +1,9 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotationType1": {
+    "annotations": [
+      {
         "name": "MyAnnotationType1",
-        "structuredValue": {
+        "value": {
           "cc": [
             1,
             2,
@@ -12,13 +12,13 @@
           ]
         }
       },
-      "MyAnnotationType2": {
+      {
         "name": "MyAnnotationType2",
-        "structuredValue": "a"
+        "value": "a"
       }
-    },
-    "types": {
-      "SmallArray": {
+    ],
+    "types": [
+      {
         "name": "SmallArray",
         "displayName": "SmallArray",
         "type": [
@@ -32,20 +32,25 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "number"
+        "items": [
+          "number"
+        ]
       }
-    },
-    "annotationTypes": {
-      "MyAnnotationType1": {
+    ],
+    "annotationTypes": [
+      {
         "name": "MyAnnotationType1",
         "displayName": "MyAnnotationType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "cc": {
+        "properties": [
+          {
             "name": "cc",
             "displayName": "cc",
             "type": [
@@ -62,10 +67,13 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -76,10 +84,13 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "MyAnnotationType2": {
+      {
         "name": "MyAnnotationType2",
         "displayName": "MyAnnotationType2",
         "type": [
@@ -95,11 +106,17 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "title": "Test API"
+    ],
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

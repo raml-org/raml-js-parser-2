@@ -143,10 +143,17 @@ function cleanupJson(j:any){
     return j;
 }
 
-export function parseXML(value:string){
-    var v=new DomParser.DOMParser(parserOptions);
+export function parseXML(value:string, errorsHandler?:{
+    warning: (x) => void,
+    error: (x) => void,
+    fatalError: (x) => void
+}){
+    let options = errorsHandler ? {
+        errorHandler: errorsHandler
+    }: parserOptions;
+    let v=new DomParser.DOMParser(options);
     if (!value || value.trim().indexOf("<<") == 0) return null;
 
-    var parsed=v.parseFromString(value);
+    let parsed=v.parseFromString(value);
     return cleanupJson(cleanupText(xmlToJson(parsed)))
 }

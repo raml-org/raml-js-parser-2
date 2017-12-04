@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test API
+mediaType: application/json
+
+/hello:
+  get:
+    body:
+      example: !include example.json
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              e1: !include example1.json
+              e2: !include example2.json

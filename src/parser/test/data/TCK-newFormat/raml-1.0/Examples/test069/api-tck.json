@@ -1,11 +1,11 @@
 {
   "specification": {
-    "resourceTypes": {
-      "collection": {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -28,23 +28,35 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "<<postRequestBodyExample>>"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
-        },
-        "name": "collection"
+        ],
+        "name": "collection",
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       }
-    },
+    ],
     "title": "A title",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -76,26 +88,41 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"subscriptionID\":\"8f19cb50-3f57-4d38\",\"name\":\"NewSub\",\"description\":\"This is the new subscription.\",\"startDate\":\"2015-01-01\",\"endDate\":\"2018-01-01\",\"quantity\":5,\"productName\":\"ABC Product\",\"supportLevel\":4}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
-            },
-            "method": "post"
-          }
-        },
-        "type": {
-          "collection": {
-            "postRequestBodyExample": {
-              "subscriptionID": "8f19cb50-3f57-4d38",
-              "name": "NewSub",
-              "description": "This is the new subscription.",
-              "startDate": "2015-01-01",
-              "endDate": "2018-01-01",
-              "quantity": 5,
-              "productName": "ABC Product",
-              "supportLevel": 4
+            ],
+            "method": "post",
+            "parentUri": "/testURI",
+            "absoluteParentUri": "/testURI",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
             }
           }
+        ],
+        "type": {
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "postRequestBodyExample",
+              "value": {
+                "subscriptionID": "8f19cb50-3f57-4d38",
+                "name": "NewSub",
+                "description": "This is the new subscription.",
+                "startDate": "2015-01-01",
+                "endDate": "2018-01-01",
+                "quantity": 5,
+                "productName": "ABC Product",
+                "supportLevel": 4
+              }
+            }
+          ]
         },
         "relativeUri": "/testURI",
         "displayName": "/testURI",
@@ -111,9 +138,16 @@
         ],
         "absoluteUri": "/testURI",
         "completeRelativeUri": "/testURI",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "File": {
+    "types": [
+      {
         "name": "File",
         "displayName": "File",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,9 +29,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           },
-          "length": {
+          {
             "name": "length",
             "displayName": "length",
             "type": [
@@ -49,9 +52,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -63,13 +69,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
-    },
-    "traits": {
-      "drm": {
-        "headers": {
-          "drm-key": {
+    ],
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "drm-key",
             "displayName": "drm-key",
             "type": [
@@ -90,32 +99,54 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
-        },
-        "name": "drm"
+        ],
+        "name": "drm",
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "file": {
-        "methods": {
-          "get": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
             "is": [
-              "drm"
+              {
+                "name": "drm"
+              }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           },
-          "put": {
+          {
             "is": [
-              "drm"
+              {
+                "name": "drm"
+              }
             ],
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
-        },
-        "name": "file"
+        ],
+        "name": "file",
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
-    },
-    "usage": "Use to define some basic file-related constructs.\n"
+    ],
+    "usage": "Use to define some basic file-related constructs.\n",
+    "sourceMap": {
+      "path": "libraries.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

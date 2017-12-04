@@ -1,0 +1,530 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "any"
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "p1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "name": "p1",
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "array"
+                ],
+                "items": [
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "items",
+                    "displayName": "items",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                ],
+                "displayName": "p2",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "p2",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "displayName": "p1",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "required": false
+          },
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "array"
+            ],
+            "items": [
+              {
+                "name": "T1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "any"
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "p1",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "name": "p1",
+                    "required": false
+                  },
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "array"
+                    ],
+                    "items": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "items",
+                        "displayName": "items",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "displayName": "p2",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "name": "p2",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "T1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            ],
+            "displayName": "p2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "name": "p2",
+            "required": true
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      {
+        "name": "T2",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "r1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "any"
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "displayName": "r1",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "name": "r1",
+                        "required": false
+                      },
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "array"
+                        ],
+                        "items": [
+                          {
+                            "type": [
+                              "any"
+                            ],
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
+                            "name": "items",
+                            "displayName": "items",
+                            "__METADATA__": {
+                              "primitiveValuesMeta": {
+                                "displayName": {
+                                  "calculated": true
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "displayName": "r2",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "name": "r2",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "displayName": "q1",
+                    "name": "q1",
+                    "required": true
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "displayName": "r1",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "required": false
+              },
+              {
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "array"
+                ],
+                "items": [
+                  {
+                    "name": "T2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "object"
+                        ],
+                        "properties": [
+                          {
+                            "type": [
+                              "any"
+                            ],
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
+                            "displayName": "r1",
+                            "__METADATA__": {
+                              "primitiveValuesMeta": {
+                                "displayName": {
+                                  "calculated": true
+                                },
+                                "type": {
+                                  "insertedAsDefault": true
+                                }
+                              }
+                            },
+                            "name": "r1",
+                            "required": false
+                          },
+                          {
+                            "typePropertyKind": "TYPE_EXPRESSION",
+                            "type": [
+                              "array"
+                            ],
+                            "items": [
+                              {
+                                "type": [
+                                  "any"
+                                ],
+                                "sourceMap": {
+                                  "path": "api.raml"
+                                },
+                                "name": "items",
+                                "displayName": "items",
+                                "__METADATA__": {
+                                  "primitiveValuesMeta": {
+                                    "displayName": {
+                                      "calculated": true
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "displayName": "r2",
+                            "__METADATA__": {
+                              "primitiveValuesMeta": {
+                                "displayName": {
+                                  "calculated": true
+                                },
+                                "required": {
+                                  "insertedAsDefault": true
+                                }
+                              }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
+                            "name": "r2",
+                            "required": true
+                          }
+                        ],
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "type": {
+                              "insertedAsDefault": true
+                            },
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "displayName": "q1",
+                        "name": "q1",
+                        "required": true
+                      }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "displayName": "T2",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ],
+                "displayName": "r2",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "name": "r2",
+                "required": true
+              }
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "displayName": "q1",
+            "name": "q1",
+            "required": true
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "displayName": "T2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "PropertyType1": {
+    "types": [
+      {
         "name": "PropertyType1",
         "displayName": "PropertyType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,9 +26,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "test2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -40,16 +43,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "test2.raml"
+        }
       },
-      "PropertyType2": {
+      {
         "name": "PropertyType2",
         "displayName": "PropertyType2",
         "type": [
           "PropertyType1"
         ],
-        "properties": {
-          "name2": {
+        "properties": [
+          {
             "name": "name2",
             "displayName": "name2",
             "type": [
@@ -67,9 +73,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "test2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -78,16 +87,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "test2.raml"
+        }
       },
-      "PropertyType3": {
+      {
         "name": "PropertyType3",
         "displayName": "PropertyType3",
         "type": [
           "object"
         ],
-        "properties": {
-          "name3": {
+        "properties": [
+          {
             "name": "name3",
             "displayName": "name3",
             "type": [
@@ -105,9 +117,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "test2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -119,16 +134,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "test2.raml"
+        }
       },
-      "Type1": {
+      {
         "name": "Type1",
         "displayName": "Type1",
         "type": [
           "object"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -146,9 +164,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "test2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -160,16 +181,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "test2.raml"
+        }
       },
-      "Type2": {
+      {
         "name": "Type2",
         "displayName": "Type2",
         "type": [
           "Type1"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -187,9 +211,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "test2.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -198,10 +225,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "test2.raml"
+        }
       }
-    },
-    "title": "test"
+    ],
+    "title": "test",
+    "sourceMap": {
+      "path": "test2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,0 +1,74 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "description": {
+            "prop1": null
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "INVALID_PROPERTY_RANGE",
+      "message": "Property 'description' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 4,
+          "position": 40
+        },
+        "end": {
+          "line": 4,
+          "column": 15,
+          "position": 51
+        }
+      }
+    },
+    {
+      "code": "INVALID_PROPERTY_RANGE",
+      "message": "Property 'displayName' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 4,
+          "position": 70
+        },
+        "end": {
+          "line": 6,
+          "column": 15,
+          "position": 81
+        }
+      }
+    }
+  ]
+}

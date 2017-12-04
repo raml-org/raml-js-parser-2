@@ -1,7 +1,23 @@
 {
   "specification": {
-    "types": {
-      "Monkey": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libA.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "lib.lib",
+        "value": "libB.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -15,10 +31,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "number"
@@ -31,10 +50,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libA.raml"
+        }
       },
-      "lib.lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "boolean"
@@ -47,24 +69,37 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "libB.raml"
+        }
       }
-    },
-    "resourceTypes": {
-      "lib.rt": {
+    ],
+    "resourceTypes": [
+      {
         "type": {
-          "lib.lib.rt": {
-            "param1": "<<param1>>",
-            "param2": "lib.Monkey"
-          }
+          "name": "lib.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param1>>"
+            },
+            {
+              "name": "param2",
+              "value": "Monkey"
+            }
+          ]
         },
-        "name": "rt"
+        "name": "lib.rt",
+        "sourceMap": {
+          "path": "libA.raml"
+        }
       },
-      "lib.lib.rt": {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -78,9 +113,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "application/xml": {
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -94,9 +132,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "text/plain": {
+              {
                 "name": "text/plain",
                 "displayName": "text/plain",
                 "type": [
@@ -110,13 +151,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "atom/xml": {
+              {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "<<param1>> | <<param2>> | lib.lib.Monkey"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -126,22 +170,36 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "<<param1>>",
+                  "<<param2>>",
+                  "lib.lib.Monkey"
+                ],
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           }
-        },
-        "name": "rt"
+        ],
+        "name": "lib.lib.rt",
+        "sourceMap": {
+          "path": "libB.raml"
+        }
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -155,9 +213,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "application/xml": {
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -171,9 +232,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "text/plain": {
+              {
                 "name": "text/plain",
                 "displayName": "text/plain",
                 "type": [
@@ -187,13 +251,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               },
-              "atom/xml": {
+              {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "Monkey | lib.Monkey | lib.lib.Monkey"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -203,16 +270,33 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "anyOf": [
+                  "Monkey",
+                  "lib.Monkey",
+                  "lib.lib.Monkey"
+                ],
+                "sourceMap": {
+                  "path": "libB.raml"
+                }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "libB.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "lib.rt": {
-            "param1": "Monkey"
-          }
+          "name": "lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "Monkey"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -228,9 +312,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

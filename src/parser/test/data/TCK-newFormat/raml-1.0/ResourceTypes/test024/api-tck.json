@@ -1,31 +1,52 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt": {
-        "methods": {
-          "delete": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
             "description": "<<param1>> <<param2>> <<param3>>",
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "rt"
+        ],
+        "name": "rt",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "description": "<<param1>> stringValue2 stringValue3",
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/resource1",
+            "absoluteParentUri": "/resource1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt": {
-            "param1:\"stringValue1\"": null,
-            "param2": "stringValue2",
-            "param3": "stringValue3"
-          }
+          "name": "rt",
+          "parameters": [
+            {
+              "name": "param1:\"stringValue1\"",
+              "value": null
+            },
+            {
+              "name": "param2",
+              "value": "stringValue2"
+            },
+            {
+              "name": "param3",
+              "value": "stringValue3"
+            }
+          ]
         },
         "relativeUri": "/resource1",
         "displayName": "/resource1",
@@ -41,21 +62,40 @@
         ],
         "absoluteUri": "/resource1",
         "completeRelativeUri": "/resource1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "description": "stringValue1 <<param2>> stringValue3",
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/resource2",
+            "absoluteParentUri": "/resource2",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt": {
-            "param1": "stringValue1",
-            "param2:'stringValue2'": null,
-            "param3": "stringValue3"
-          }
+          "name": "rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "stringValue1"
+            },
+            {
+              "name": "param2:'stringValue2'",
+              "value": null
+            },
+            {
+              "name": "param3",
+              "value": "stringValue3"
+            }
+          ]
         },
         "relativeUri": "/resource2",
         "displayName": "/resource2",
@@ -71,21 +111,40 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "description": "stringValue1 stringValue2 <<param3>>",
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/resource3",
+            "absoluteParentUri": "/resource3",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt": {
-            "param1": "stringValue1",
-            "param2": "stringValue2",
-            "param3:stringValue3": null
-          }
+          "name": "rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "stringValue1"
+            },
+            {
+              "name": "param2",
+              "value": "stringValue2"
+            },
+            {
+              "name": "param3:stringValue3",
+              "value": null
+            }
+          ]
         },
         "relativeUri": "/resource3",
         "displayName": "/resource3",
@@ -101,9 +160,16 @@
         ],
         "absoluteUri": "/resource3",
         "completeRelativeUri": "/resource3",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

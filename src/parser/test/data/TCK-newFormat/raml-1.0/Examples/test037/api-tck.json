@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "GeoPoint": {
+    "types": [
+      {
         "name": "GeoPoint",
         "displayName": "GeoPoint",
         "type": [
@@ -14,6 +14,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": 100,
@@ -21,10 +24,13 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          100
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "GeoPoints": {
+      {
         "name": "GeoPoints",
         "displayName": "GeoPoints",
         "type": [
@@ -37,6 +43,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": [
@@ -47,11 +56,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "[100,10]"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "number"
+        "items": [
+          "number"
+        ]
       },
-      "Bool": {
+      {
         "name": "Bool",
         "displayName": "Bool",
         "type": [
@@ -64,6 +78,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "examples": [
           {
             "value": true,
@@ -71,9 +88,15 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          true
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML10",

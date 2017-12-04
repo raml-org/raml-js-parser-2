@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "Label": {
+    "annotationTypes": [
+      {
         "name": "Label",
         "displayName": "Label",
         "type": [
@@ -15,17 +15,20 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "New API",
     "version": "v1",
     "resources": [
       {
-        "annotations": {
-          "Label": {
+        "annotations": [
+          {
             "name": "Label",
-            "structuredValue": {
+            "value": {
               "field1": 7,
               "field2": true,
               "field3": "stringValue",
@@ -35,7 +38,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -50,9 +53,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

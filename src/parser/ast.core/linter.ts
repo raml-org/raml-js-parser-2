@@ -1256,8 +1256,8 @@ class CompositePropertyValidator implements PropertyValidator{
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
                             if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((nodeProperty.isRequired()||universeHelpers.isMediaTypeProperty(nodeProperty))&&(vk==null||vk===undefined))) {
                                 if (!nodeProperty.domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
-                                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED,
-                                        {propName: node.name()}, node));
+                                    v.accept(createIssue1(messageRegistry.INVALID_PROPERTY_RANGE,
+                                        {propName: node.name(),range: "string"}, node));
                                 }
                             }
                         }
@@ -1316,8 +1316,8 @@ class CompositePropertyValidator implements PropertyValidator{
             //     var llv=node.lowLevel().value();
             //     if (node.lowLevel().children().length>0){
             //         var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
-            //         v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
-            //             {propName: valName},node,false));
+            //         v.accept(createIssue1(messageRegistry.INVALID_PROPERTY_RANGE,
+            //             {propName: valName,range: "string"},node,false));
             //     }
             // }
             new ExampleAndDefaultValueValidator().validate(node, v);
@@ -1621,11 +1621,11 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 //actually valid, but not reporting this for now.
                 if (h && p) {
                     var highLevelProperty = h.attr(p.nameId());
-                    if (highLevelProperty) {
+                    if (highLevelProperty && !highLevelProperty.isAnnotatedScalar()) {
                         var lowLevelChildren = highLevelProperty.lowLevel().children();
                         if (lowLevelChildren && lowLevelChildren.length > 0) {
-                            return new ValidationError(messageRegistry.STRING_EXPECTED_3,
-                                {propName:p.nameId()});
+                            return new ValidationError(messageRegistry.INVALID_PROPERTY_RANGE,
+                                {propName:p.nameId(),range:"string"});
                         }
                     }
                 }
@@ -2489,8 +2489,8 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 r=r.arrayInHierarchy().componentType();
             }
             if (r.hasValueTypeInHierarchy()) {
-                var nm = node.attr(x.nameId());
-                var gotValue = false;
+                let nm = node.attr(x.nameId());
+                let gotValue = false;
                 if (nm!=null){
                     if(nm.lowLevel().kind()==yaml.Kind.SCALAR||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR){
                         if(nm.value()!=null){
@@ -2502,12 +2502,17 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     }
                 }
                 if(!gotValue){
-                    var parameters = { propName: x.nameId() };
-                    var messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
+                    let parameters = { propName: x.nameId() };
+                    let messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
+                    let issueNode:hl.IParseResult = node;
                     if (isInlinedTemplate){
                         messageEntry = messageRegistry.VALUE_NOT_PROVIDED;
                     }
-                    var i = createIssue1(messageEntry, parameters, node);
+                    else if(nm){
+                        messageEntry = messageRegistry.VALUE_FOR_REQUIRED_PROPERTY_NOT_PROVIDED
+                        issueNode = nm;
+                    }
+                    let i = createIssue1(messageEntry, parameters, issueNode);
                     v.accept(i);
                 }
             }
@@ -2723,6 +2728,50 @@ class TypeDeclarationValidator implements NodeValidator{
             var atAttrs = node.attributes(universes.Universe10.TypeDeclaration.properties.allowedTargets.name);
             for(var attr of atAttrs){
                 this.checkAnnotationTarget(attr,v);
+            }
+        }
+
+        if(node.property() && universeHelpers.isBodyProperty(node.property())){
+            if(rof.superTypes().length==1&&rof.superTypes()[0]==def.rt.builtInTypes().get("any")){
+                let examples = rof.examples();
+                let mediaType = getMediaType(node.attr(def.universesInfo.Universe10.TypeDeclaration.properties.name.name));
+                let isJSON = isJson(mediaType);
+                let isXml = isXML(mediaType);
+
+                if(examples.length && (isJSON||isXml)){
+                    for(let e of examples){
+                        let eVal = e.value();
+                        if(typeof eVal === "object"){
+                            continue;
+                        }
+                        else if(typeof eVal === "string"){
+                            let eNode:hl.IParseResult;
+                            if(examples.length==1){
+                                if(e.name()==null){
+                                    eNode = node.element("example");
+                                }
+                            }
+                            if(!eNode){
+                                for(let exNode of node.elementsOfKind("examples")){
+                                    if(exNode.name()==null && e.name()==null){
+                                        if(exNode.attr("value").value()==eVal){
+                                            eNode = exNode;
+                                            break;
+                                        }
+                                    }
+                                    else if(exNode.name()==e.name()){
+                                        eNode = exNode;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(!eNode){
+                                eNode = node;
+                            }
+                            parseJsonOrXml(mediaType,eVal,v,eNode,false);
+                        }
+                    }
+                }
             }
         }
 
@@ -3794,33 +3843,11 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         else{
             if (mediaType){
-                if (isJson(mediaType)){
-                    try{
-                        def.rt.getSchemaUtils().tryParseJSON(vl,true);
-                        pObj=JSON.parse(vl);
-                    }catch (e){
-                        if(ValidationError.isInstance(e)){
-                            if(!checkIfIncludeTagIsMissing(node, cb, (<ValidationError>e).messageEntry.code, !strictValidation)){
-                                cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
-                            }
-                        }
-                        else {
-                            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
-                                {msg: e.message}, node, !strictValidation));
-                        }
-                        return;
-                    }
+                let parsed = parseJsonOrXml(mediaType,vl,cb,node,!strictValidation);
+                if(!parsed.status){
+                    return;
                 }
-                if (isXML(mediaType)){
-                    try {
-                        pObj = xmlutil.parseXML(vl);
-                    }
-                    catch (e){
-                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
-                            {msg:e.message},node,!strictValidation));
-                        return;
-                    }
-                }
+                pObj = parsed.result;
             }
             else{
                 try{
@@ -4112,10 +4139,10 @@ class TemplateCyclesDetector implements NodeValidator {
 }
 
 export function isJson(s:string){
-    return s.indexOf("json")!=-1;
+    return s!=null && s.indexOf("json")!=-1;
 }
 export function isXML(s:string){
-    return s.indexOf("xml")!=-1;
+    return s!=null && s.indexOf("xml")!=-1;
 }
 export function getMediaType(node:hl.IAttribute){
     var vl=getMediaType2(node);
@@ -4860,4 +4887,71 @@ class KeyErrorsRegistry{
         return this.codesMap[code]||false;
     }
 
+}
+
+
+function parseJsonOrXml(
+    mediaType:string,
+    vl:string,
+    cb:hl.ValidationAcceptor,
+    node:hl.IParseResult,
+    isWarning:boolean):{
+    result: any,
+    status: boolean
+}{
+
+    let pObj:any;
+    if (isJson(mediaType)){
+        try{
+            def.rt.getSchemaUtils().tryParseJSON(vl,true);
+            pObj=JSON.parse(vl);
+        }catch (e){
+            if(e.message.indexOf("Cannot tokenize symbol '<'")<0||!typeOfContainingTemplate(node)) {
+                if (ValidationError.isInstance(e)) {
+                    if (!checkIfIncludeTagIsMissing(node, cb, (<ValidationError>e).messageEntry.code, isWarning)) {
+                        cb.accept(createIssue2(<ValidationError>e, node, isWarning));
+                    }
+                }
+                else {
+                    cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
+                        {msg: e.message}, node, isWarning));
+                }
+                return {
+                    result: null,
+                    status: false
+                };
+            }
+        }
+    }
+    if (isXML(mediaType)){
+        try {
+            let warnings:any[] = [];
+            let errors:any[] = [];
+            pObj = xmlutil.parseXML(vl,{
+                warning: (x) => { warnings.push(x)},
+                error: (x) => { errors.push(x) },
+                fatalError: (x) => { errors.push(x) }
+            });
+            if(warnings.length){
+                warnings.forEach(x=>cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                    {msg:x},node,isWarning)));
+            }
+            else if(errors.length){
+                errors.forEach(x=>cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                    {msg:x},node,isWarning)));
+            }
+        }
+        catch (e){
+            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                {msg:e.message},node,isWarning));
+            return {
+                result: null,
+                status: false
+            };
+        }
+    }
+    return {
+        result: pObj,
+        status: true
+    };
 }

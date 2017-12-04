@@ -1,0 +1,62 @@
+#%RAML 1.0
+
+title: test API
+
+annotationTypes:
+  MyObjectAnnotation:
+    properties:
+      ap1:
+      ap2: number
+  MyStringAnnotation:
+
+types:
+  T1:
+    (MyObjectAnnotation):
+      ap1: T1
+      ap2: 0
+    (MyStringAnnotation): T1
+
+    properties:
+      p1:
+        (MyObjectAnnotation):
+          ap1: T1.p1
+          ap2: 1
+        (MyStringAnnotation): T1.p1
+
+  T2:
+    type: T1
+    (MyObjectAnnotation):
+      ap1: T2
+      ap2: 2
+    (MyStringAnnotation): T2
+    properties:
+      p2:
+        (MyObjectAnnotation):
+          ap1: T2.p2
+          ap2: 3
+        (MyStringAnnotation): T2.p2
+
+  T3:
+    (MyObjectAnnotation):
+      ap1: T3
+      ap2: 4
+    (MyStringAnnotation): T3
+    properties:
+      p3:
+        (MyObjectAnnotation):
+          ap1: T3.p3
+          ap2: 5
+        (MyStringAnnotation): T3.p3
+
+  T4:
+    type: T2|T3
+    (MyObjectAnnotation):
+      ap1: T4
+      ap2: 6
+    (MyStringAnnotation): T4
+    properties:
+      p4:
+        (MyObjectAnnotation):
+          ap1: T4.p4
+          ap2: 7
+        (MyStringAnnotation): T4.p4

@@ -11,8 +11,8 @@
         "resources": [
           {
             "relativeUri": "/{resourceId}",
-            "uriParameters": {
-              "resourceId": {
+            "uriParameters": [
+              {
                 "name": "resourceId",
                 "displayName": "resourceId",
                 "type": "string",
@@ -34,62 +34,69 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "methods": {
-              "post": {
-                "body": {
-                  "application/x-www-form-urlencoded": {
+            ],
+            "methods": [
+              {
+                "body": [
+                  {
                     "name": "application/x-www-form-urlencoded",
-                    "formParameters": {
-                      "name": [
-                        {
-                          "name": "name",
-                          "displayName": "name",
-                          "type": "string",
-                          "required": false,
-                          "example": "Comment",
-                          "repeat": false,
-                          "description": "The name of the resource to create",
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              },
-                              "repeat": {
-                                "insertedAsDefault": true
-                              }
+                    "formParameters": [
+                      {
+                        "name": "name",
+                        "displayName": "name",
+                        "type": "string",
+                        "required": false,
+                        "example": "Comment",
+                        "repeat": false,
+                        "description": "The name of the resource to create",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
                             }
                           }
                         },
-                        {
-                          "name": "name",
-                          "displayName": "name",
-                          "type": "string",
-                          "required": false,
-                          "example": "Comment1",
-                          "repeat": false,
-                          "description": "The name 1 of the resource to create",
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              },
-                              "repeat": {
-                                "insertedAsDefault": true
-                              }
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
+                      },
+                      {
+                        "name": "name",
+                        "displayName": "name",
+                        "type": "string",
+                        "required": false,
+                        "example": "Comment1",
+                        "repeat": false,
+                        "description": "The name 1 of the resource to create",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
-                      ],
-                      "description": {
+                      },
+                      {
                         "name": "description",
                         "displayName": "description",
                         "type": "string",
@@ -109,11 +116,17 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -124,9 +137,43 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/resource/{resourceId}",
+                "absoluteParentUri": "http://example.com/resource/{resourceId}",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "uriParameters": [
+                  {
+                    "name": "resourceId",
+                    "displayName": "resourceId",
+                    "type": "string",
+                    "required": true,
+                    "repeat": false,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                ]
               }
-            },
+            ],
             "displayName": "/{resourceId}",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -140,7 +187,11 @@
             ],
             "absoluteUri": "http://example.com/resource/{resourceId}",
             "completeRelativeUri": "/resource/{resourceId}",
-            "parentUri": "/resource"
+            "parentUri": "/resource",
+            "absoluteParentUri": "http://example.com/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -156,7 +207,11 @@
         ],
         "absoluteUri": "http://example.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://example.com",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -165,6 +220,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML08",

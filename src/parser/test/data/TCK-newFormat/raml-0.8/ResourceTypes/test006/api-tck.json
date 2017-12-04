@@ -3,8 +3,8 @@
     "title": "Transactor Thor API",
     "version": "1.0",
     "baseUri": "http://server/api/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -32,61 +32,90 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],
     "schemas": [
       {
-        "member": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
-      }
-    ],
-    "resourceTypes": {
-      "collection": {
-        "name": "collection",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json",
-                    "schema": "<<schema>>",
-                    "schemaContent": "<<schema>>"
-                  }
-                }
-              }
-            },
-            "method": "get"
-          }
+        "value": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+        "name": "member",
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
-    },
+    ],
+    "resourceTypes": [
+      {
+        "name": "collection",
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "schema": "<<schema>>",
+                    "schemaContent": "<<schema>>",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "resources": [
       {
         "relativeUri": "/members",
         "type": {
-          "collection": {
-            "schema": "member"
-          }
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "schema",
+              "value": "member"
+            }
+          ]
         },
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "member",
-                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -97,9 +126,49 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/members",
+            "absoluteParentUri": "http://server/api/{version}/members",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": "string",
+                "required": true,
+                "repeat": false,
+                "enum": [
+                  "1.0"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ]
           }
-        },
+        ],
         "displayName": "/members",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -113,7 +182,46 @@
         ],
         "absoluteUri": "http://server/api/{version}/members",
         "completeRelativeUri": "/members",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://server/api/{version}",
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": "string",
+            "required": true,
+            "repeat": false,
+            "enum": [
+              "1.0"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {
@@ -122,6 +230,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "ramlVersion": "RAML08",

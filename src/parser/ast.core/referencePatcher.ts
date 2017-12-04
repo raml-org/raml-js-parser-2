@@ -970,7 +970,19 @@ export class ReferencePatcher{
                 })){
                 continue;
             }
-            var newLlNode = llNode.replaceChild(null,e.lowLevel());
+            let newLlNode = llNode.replaceChild(null,e.lowLevel());
+            if(collection.name==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+                const dValPropName = def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminatorValue.name;
+                let discriminatorValue = newLlNode.children().filter(x=> x.key() == dValPropName);
+                if(!discriminatorValue.length){
+                    let dValNode = jsyaml.createMapNode(dValPropName,newLlNode.unit());
+                    let strictProp = jsyaml.createMapping("strict",false);
+                    let valueProp = jsyaml.createMapping("value",newLlNode.key());
+                    dValNode.addChild(valueProp);
+                    dValNode.addChild(strictProp);
+                    newLlNode.replaceChild(null,dValNode);
+                }
+            }
             var definition = (e.isElement()&&e.asElement().definition())||propRange;
             var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,definition,prop);
             directChildren.push(newHLNode);

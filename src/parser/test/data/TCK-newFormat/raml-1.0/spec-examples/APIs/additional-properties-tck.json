@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -23,9 +23,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-properties.raml"
+            }
           },
-          "age": {
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -40,9 +43,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-properties.raml"
+            }
           },
-          "//": {
+          {
             "name": "//",
             "displayName": "//",
             "type": [
@@ -60,9 +66,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "additional-properties.raml"
+            }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -74,11 +83,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "additional-properties.raml"
+        }
       }
-    },
+    ],
     "title": "My API With Types",
-    "description": "This RAML illustrates an example to restrict all additional properties to be string.\n"
+    "description": "This RAML illustrates an example to restrict all additional properties to be string.\n",
+    "sourceMap": {
+      "path": "additional-properties.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

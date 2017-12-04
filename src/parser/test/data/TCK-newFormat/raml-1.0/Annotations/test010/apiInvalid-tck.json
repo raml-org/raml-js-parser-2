@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "suborg": {
+    "annotationTypes": [
+      {
         "name": "suborg",
         "displayName": "suborg",
         "type": [
@@ -18,16 +18,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
-    },
+    ],
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
-        "annotations": {
-          "suborg": {
+        "annotations": [
+          {
             "name": "suborg",
-            "structuredValue": {
+            "value": {
               "manager": {
                 "name": "Tom"
               },
@@ -36,7 +39,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/assets",
         "displayName": "/assets",
         "__METADATA__": {
@@ -51,13 +54,17 @@
         ],
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
-        "annotations": {
-          "suborg1": {
+        "annotations": [
+          {
             "name": "suborg1",
-            "structuredValue": {
+            "value": {
               "manager": {
                 "name": "Tom"
               },
@@ -66,7 +73,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/foods",
         "displayName": "/foods",
         "__METADATA__": {
@@ -81,9 +88,16 @@
         ],
         "absoluteUri": "/foods",
         "completeRelativeUri": "/foods",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
