@@ -1296,6 +1296,8 @@ class TypeTransformer extends BasicTransformation{
                     result.name = _value.name;
                     result.displayName = _value.displayName;
                 }
+                this.appendMeta(result,"name","calculated",_value.__METADATA__);
+                this.appendMeta(result,"displayName","calculated",_value.__METADATA__);
             }
             if(_value && typeof _value === "object" && _value.hasOwnProperty("parametrizedProperties")){
                 result.parametrizedProperties = _value.parametrizedProperties;
@@ -1547,9 +1549,23 @@ class TypeTransformer extends BasicTransformation{
         obj.sourceMap = sourceMap;
     }
 
-    appendMeta(obj:any,field:string,kind:string){
+    appendMeta(obj:any,field:string,kind:string,maskObj?:any){
         if(!this.options.serializeMetadata){
             return;
+        }
+        let useMask = maskObj!=null;
+        let maskScalarsObj = useMask && maskObj.primitiveValuesMeta;
+        if(useMask && ! maskScalarsObj){
+            return;
+        }
+        let maskFObj = maskScalarsObj && maskScalarsObj[field];
+        if(useMask){
+            if(!maskFObj) {
+                return;
+            }
+            else if(!maskFObj[kind]){
+                return;
+            }
         }
         let metaObj = obj.__METADATA__;
         if(!metaObj){
@@ -1806,23 +1822,10 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
 
     transform(value:any,node:hl.IParseResult){
 
-        if(!node.parent() || !node.parent().lowLevel()["libProcessed"]){
+        if (!node.parent() || !node.parent().lowLevel()["libProcessed"]) {
             return value;
         }
-
-        var llNode = node.lowLevel();
-        var key = llNode.key();
-        //value["$$name"] = key;
-        var original:ll.ILowLevelASTNode = llNode;
-        while(proxy.LowLevelProxyNode.isInstance(original)){
-            original = (<proxy.LowLevelProxyNode>original).originalNode();
-        }
-        var oKey = original.key();
-        var aVal =  value;
-        //aVal.name = oKey;
-        if(aVal.displayName==key){
-            aVal.displayName = oKey;
-        }
+        patchDisplayName(value,node.lowLevel());
         return value;
     }
 }
@@ -2511,4 +2514,28 @@ export function getSchemaPath(eNode:hl.IHighLevelNode){
         schemaPath = relativePath + postfix;
     }
     return schemaPath;
+}
+
+export function patchDisplayName(value:any,llNode:ll.ILowLevelASTNode) {
+
+    let key = llNode.key();
+    //value["$$name"] = key;
+    let original: ll.ILowLevelASTNode = llNode;
+    while (proxy.LowLevelProxyNode.isInstance(original)) {
+        original = (<proxy.LowLevelProxyNode>original).originalNode();
+    }
+    let oKey = original.key();
+    if(proxy.LowLevelProxyNode.isInstance(llNode)) {
+        if (oKey && oKey.indexOf("<<") >= 0 && llNode.key().indexOf("<<") <= 0){
+            oKey = llNode.key();
+        }
+    }
+    if(oKey==null){
+        return;
+    }
+    let aVal = value;
+    //aVal.name = oKey;
+    if (aVal.displayName == key) {
+        aVal.displayName = oKey;
+    }
 }
