@@ -3,8 +3,6 @@
 import resolversApi = require("./resolversApi")
 
 var HttpResponse = require('http-response-object');
-require('concat-stream');
-require('then-request');
 import  lru=require("lrucache")
 
 var globalCache=lru(50);
