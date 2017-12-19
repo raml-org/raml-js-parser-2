@@ -1,0 +1,67 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "specification": {
+    "typePropertyKind": "TYPE_EXPRESSION",
+    "type": [
+      "object"
+    ],
+    "required": true,
+    "properties": {
+      "authorizationId": {
+        "name": "authorizationId",
+        "displayName": "authorizationId",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        }
+      }
+    },
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "type": {
+          "insertedAsDefault": true
+        },
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    },
+    "sourceMap": {
+      "path": "dataType.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: bad indentation of a mapping entry at line 6, column 3",
+      "path": "dataType.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 2,
+          "position": 70
+        },
+        "end": {
+          "line": 5,
+          "column": 3,
+          "position": 71
+        }
+      }
+    }
+  ]
+}
