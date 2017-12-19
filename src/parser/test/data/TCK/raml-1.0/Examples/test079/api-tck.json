@@ -1,0 +1,227 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "prop1": null
+          },
+          "properties": {
+            "prop1": {
+              "name": "prop1",
+              "displayName": "prop1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": false,
+              "properties": {
+                "q1": {
+                  "name": "q1",
+                  "displayName": "q1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          },
+          "structuredExample": {
+            "value": "{\n  \"prop1\": null\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": null
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        }
+      },
+      {
+        "MyType2": {
+          "name": "MyType2",
+          "displayName": "MyType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "prop1": null
+          },
+          "properties": {
+            "prop1": {
+              "name": "prop1",
+              "displayName": "prop1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "properties": {
+                "q1": {
+                  "name": "q1",
+                  "displayName": "q1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          },
+          "structuredExample": {
+            "value": "{\n  \"prop1\": null\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": null
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 4,
+          "position": 113
+        },
+        "end": {
+          "line": 9,
+          "column": 11,
+          "position": 120
+        }
+      }
+    },
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 4,
+          "position": 240
+        },
+        "end": {
+          "line": 18,
+          "column": 11,
+          "position": 247
+        }
+      }
+    }
+  ]
+}

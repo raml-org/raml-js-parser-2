@@ -41,7 +41,7 @@
               "displayName": "p1",
               "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
-                "lib.t2"
+                "lib.t2 | nil"
               ],
               "required": false,
               "__METADATA__": {

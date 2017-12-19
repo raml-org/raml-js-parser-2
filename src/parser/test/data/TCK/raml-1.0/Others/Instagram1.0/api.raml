@@ -178,6 +178,7 @@ securedBy: [ oauth_2_0 , clientId ]
             body:
               application/json:
                 type: types.Relationships
+                example: !include ./examples/relationship-example.json
       post:
         description: Modify the relationship between the current user and the target user.
         body:
@@ -197,6 +198,7 @@ securedBy: [ oauth_2_0 , clientId ]
             body:
               application/json:
                 type: types.Relationships
+                example: !include ./examples/relationship-example.json
   /search:
     type: usersListing
     get:

@@ -5417,6 +5417,15 @@
                             "type": [
                               "types.Relationships"
                             ],
+                            "example": {
+                              "meta": {
+                                "code": 200
+                              },
+                              "data": {
+                                "outgoing_status": "none",
+                                "incoming_status": "requested_by"
+                              }
+                            },
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
@@ -5426,6 +5435,23 @@
                             },
                             "sourceMap": {
                               "path": "api.raml"
+                            },
+                            "structuredExample": {
+                              "value": "{\n    \"meta\": {\n        \"code\": 200\n    }, \n    \"data\": {\n        \"outgoing_status\": \"none\", \n        \"incoming_status\": \"requested_by\"\n    }\n}",
+                              "strict": true,
+                              "name": null,
+                              "structuredValue": {
+                                "meta": {
+                                  "code": 200
+                                },
+                                "data": {
+                                  "outgoing_status": "none",
+                                  "incoming_status": "requested_by"
+                                }
+                              },
+                              "sourceMap": {
+                                "path": "api.raml"
+                              }
                             }
                           }
                         },
@@ -5489,7 +5515,10 @@
                               "meta": {
                                 "code": 200
                               },
-                              "data": null
+                              "data": {
+                                "outgoing_status": "none",
+                                "incoming_status": "requested_by"
+                              }
                             },
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -5502,14 +5531,17 @@
                               "path": "api.raml"
                             },
                             "structuredExample": {
-                              "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
+                              "value": "{\n    \"meta\": {\n        \"code\": 200\n    }, \n    \"data\": {\n        \"outgoing_status\": \"none\", \n        \"incoming_status\": \"requested_by\"\n    }\n}",
                               "strict": true,
                               "name": null,
                               "structuredValue": {
                                 "meta": {
                                   "code": 200
                                 },
-                                "data": null
+                                "data": {
+                                  "outgoing_status": "none",
+                                  "incoming_status": "requested_by"
+                                }
                               },
                               "sourceMap": {
                                 "path": "api.raml"

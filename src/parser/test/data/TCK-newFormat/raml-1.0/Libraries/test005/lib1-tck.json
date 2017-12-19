@@ -21,7 +21,7 @@
             "name": "p1",
             "displayName": "p1",
             "type": [
-              "lib.t2"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
@@ -31,11 +31,15 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "lib1.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "anyOf": [
+              "lib.t2",
+              "nil"
+            ]
           }
         ],
         "__METADATA__": {
@@ -47,6 +51,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "lib1.raml"
         },
         "examples": [
           {
@@ -73,10 +80,7 @@
           "{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":null}}}}}}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "sourceMap": {
-          "path": "lib1.raml"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "sourceMap": {

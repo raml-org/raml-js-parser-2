@@ -16891,6 +16891,24 @@
                             "sourceMap": {
                               "path": "api.raml"
                             },
+                            "examples": [
+                              {
+                                "value": {
+                                  "meta": {
+                                    "code": 200
+                                  },
+                                  "data": {
+                                    "outgoing_status": "none",
+                                    "incoming_status": "requested_by"
+                                  }
+                                },
+                                "strict": true,
+                                "name": null
+                              }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\",\"incoming_status\":\"requested_by\"}}"
+                            ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
@@ -17082,14 +17100,17 @@
                                   "meta": {
                                     "code": 200
                                   },
-                                  "data": null
+                                  "data": {
+                                    "outgoing_status": "none",
+                                    "incoming_status": "requested_by"
+                                  }
                                 },
                                 "strict": true,
                                 "name": null
                               }
                             ],
                             "simplifiedExamples": [
-                              "{\"meta\":{\"code\":200},\"data\":null}"
+                              "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\",\"incoming_status\":\"requested_by\"}}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
