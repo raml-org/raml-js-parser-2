@@ -232,7 +232,7 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
             var wn = node.wrapperNode();
             setAttributeDefaults(wn,options);
             var master = node.getMaster();
-            node = master ? master.asElement() : null;
+            node = master && master !== node ? master.asElement() : null;
         }
 
         return x.wrapperNode();
