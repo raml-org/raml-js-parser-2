@@ -1,0 +1,132 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "displayName": "T1",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "examples": [
+          {
+            "value": 5,
+            "strict": true,
+            "name": null
+          }
+        ],
+        "simplifiedExamples": [
+          5
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "T2",
+        "displayName": "T2",
+        "type": [
+          "number"
+        ],
+        "examples": [
+          {
+            "value": 5,
+            "strict": true,
+            "name": "e1"
+          },
+          {
+            "value": 5,
+            "strict": true,
+            "name": "e2"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "simplifiedExamples": [
+          5,
+          5
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "testAPI",
+    "mediaType": [
+      "application/json"
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "DISPLAY_NAME_STRING",
+      "message": "Property 'displayName' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 118
+        },
+        "end": {
+          "line": 8,
+          "column": 17,
+          "position": 129
+        }
+      }
+    },
+    {
+      "code": "DISPLAY_NAME_STRING",
+      "message": "Property 'displayName' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 8,
+          "position": 203
+        },
+        "end": {
+          "line": 14,
+          "column": 19,
+          "position": 214
+        }
+      }
+    },
+    {
+      "code": "DISPLAY_NAME_STRING",
+      "message": "Property 'displayName' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 8,
+          "position": 251
+        },
+        "end": {
+          "line": 17,
+          "column": 19,
+          "position": 262
+        }
+      }
+    }
+  ]
+}
