@@ -1700,7 +1700,7 @@ class NormalValidator implements PropertyValidator{
                             if (ValidationError.isInstance(decl)) {
                                 let ve = <ValidationError>decl;
                                 resultingIssue = createIssue2(ve, c);
-                                trace = createIssue1(ve.messageEntry, {msg: ve.message}, node);
+                                trace = createIssue1(ve.messageEntry, ve.parameters, node);
                             }
                             else {
                                 resultingIssue = createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>decl).message}, c);

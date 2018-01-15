@@ -109,6 +109,18 @@ export class ContentProvider {
     promiseResolve(arg: any): Promise<any> {
         return Promise.resolve(arg);
     }
+
+    rootPath(){
+        return this.unit.project().getRootPath();
+    }
+
+    isWebPath(p:string){
+        return ll.isWebPath(p);
+    }
+
+    relativePath(from, to) {
+        return path.relative(from,to);
+    }
 }
 
 function isWebPath(str):boolean {

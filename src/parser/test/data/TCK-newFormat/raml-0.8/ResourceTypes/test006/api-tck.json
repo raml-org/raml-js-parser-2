@@ -276,7 +276,7 @@
       "trace": [
         {
           "code": "INVALID_JSON_SCHEMA_DETAILS",
-          "message": "Invalid JSON schema: Invalid JSON schema: Keyword 'type' is expected to be of type 'array,boolean,integer,number,null,object,string'",
+          "message": "Invalid JSON schema: Keyword 'type' is expected to be of type 'array,boolean,integer,number,null,object,string'",
           "path": "api.raml",
           "range": {
             "start": {
