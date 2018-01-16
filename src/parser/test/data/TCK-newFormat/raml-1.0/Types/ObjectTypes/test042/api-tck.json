@@ -1,0 +1,318 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "Cover",
+        "displayName": "Cover",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "disc",
+            "displayName": "disc",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "discriminator": "disc",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "CarCover",
+        "displayName": "CarCover",
+        "type": [
+          "Cover"
+        ],
+        "properties": [
+          {
+            "name": "NumberOfseats",
+            "displayName": "NumberOfseats",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "VanCover",
+        "displayName": "VanCover",
+        "type": [
+          "Cover"
+        ],
+        "properties": [
+          {
+            "name": "Towbar",
+            "displayName": "Towbar",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "Discriminator",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "Cover"
+                    ],
+                    "examples": [
+                      {
+                        "value": {
+                          "name": "A Van",
+                          "Towbar": true,
+                          "disc": "VanCover"
+                        },
+                        "strict": true,
+                        "name": "avan"
+                      },
+                      {
+                        "value": {
+                          "name": "A Car",
+                          "NumberOfseats": "11",
+                          "disc": "CarCover"
+                        },
+                        "strict": true,
+                        "name": "acar"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "simplifiedExamples": [
+                      "{\"name\":\"A Van\",\"Towbar\":true,\"disc\":\"VanCover\"}",
+                      "{\"name\":\"A Car\",\"NumberOfseats\":\"11\",\"disc\":\"CarCover\"}"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "method": "get",
+            "parentUri": "/cover/van-car/{id}",
+            "absoluteParentUri": "/cover/van-car/{id}",
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "uriParameters": [
+              {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
+          }
+        ],
+        "uriParameters": [
+          {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "relativeUri": "/cover/van-car/{id}",
+        "displayName": "/cover/van-car/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "cover",
+          "van-car",
+          "{id}"
+        ],
+        "absoluteUri": "/cover/van-car/{id}",
+        "completeRelativeUri": "/cover/van-car/{id}",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

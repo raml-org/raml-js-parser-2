@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: Discriminator
+mediaType: application/json
+types:
+  Cover:
+    type: object
+    discriminator: disc
+    properties:
+      disc: string
+      name: string
+  CarCover:
+    type: Cover
+    properties:
+      NumberOfseats: string
+  VanCover:
+    type: Cover
+    properties:
+      Towbar: boolean
+
+/cover/van-car/{id}:
+    get:
+     responses:
+      200:
+        body:
+          type: Cover
+          examples:
+            avan:
+              name: A Van
+              Towbar: true
+              disc: VanCover
+            acar:
+              name: A Car
+              NumberOfseats: "11"
+              disc: CarCover
+

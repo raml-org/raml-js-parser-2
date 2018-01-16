@@ -1,0 +1,287 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Cover": {
+          "name": "Cover",
+          "displayName": "Cover",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "disc": {
+              "name": "disc",
+              "displayName": "disc",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "discriminator": "disc",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      },
+      {
+        "CarCover": {
+          "name": "CarCover",
+          "displayName": "CarCover",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Cover"
+          ],
+          "properties": {
+            "NumberOfseats": {
+              "name": "NumberOfseats",
+              "displayName": "NumberOfseats",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      },
+      {
+        "VanCover": {
+          "name": "VanCover",
+          "displayName": "VanCover",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Cover"
+          ],
+          "properties": {
+            "Towbar": {
+              "name": "Towbar",
+              "displayName": "Towbar",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "boolean"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "Discriminator",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "array"
+                    ],
+                    "example": [
+                      {
+                        "name": "A Car",
+                        "NumberOfseats": "11",
+                        "disc": "CarCover"
+                      },
+                      {
+                        "name": "A Van",
+                        "Towbar": true,
+                        "disc": "VanCover"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
+                    "structuredExample": {
+                      "value": "[\n  {\n    \"name\": \"A Car\",\n    \"NumberOfseats\": \"11\",\n    \"disc\": \"CarCover\"\n  },\n  {\n    \"name\": \"A Van\",\n    \"Towbar\": true,\n    \"disc\": \"VanCover\"\n  }\n]",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": [
+                        {
+                          "name": "A Car",
+                          "NumberOfseats": "11",
+                          "disc": "CarCover"
+                        },
+                        {
+                          "name": "A Van",
+                          "Towbar": true,
+                          "disc": "VanCover"
+                        }
+                      ],
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
+                    },
+                    "items": "Cover"
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        },
+        "relativeUri": "/cover/{id}",
+        "displayName": "/cover/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "cover",
+          "{id}"
+        ],
+        "absoluteUri": "/cover/{id}"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}
