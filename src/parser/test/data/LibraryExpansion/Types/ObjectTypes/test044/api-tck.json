@@ -1,0 +1,99 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "condition": {
+          "name": "condition",
+          "displayName": "condition",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "prop1": {
+              "name": "prop1",
+              "displayName": "prop1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "lib.LibType"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "fragment.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "fragment.raml"
+          }
+        }
+      },
+      {
+        "lib.LibType": {
+          "name": "LibType",
+          "displayName": "LibType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "libProp": {
+              "name": "libProp",
+              "displayName": "libProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
+              }
+            }
+          },
+          "discriminatorValue": null,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

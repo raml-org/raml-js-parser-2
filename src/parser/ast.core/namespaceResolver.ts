@@ -320,7 +320,7 @@ export class NamespaceResolver{
             var absPath = libUnit.absolutePath();
             
             var includePath;
-            if (path.isAbsolute(value) || ll.isWebPath(value)) {
+            if (ll.isWebPath(value)) {
                 includePath = libUnit.absolutePath();
             }
             else {
