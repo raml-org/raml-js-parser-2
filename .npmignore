@@ -8,8 +8,6 @@
 /dist/search/test
 /dist/topLevelGenerator
 
-!/standalone-typings/
-
 /documentation/*
 !/documentation/images/
 !/documentation/GettingStarted.md
