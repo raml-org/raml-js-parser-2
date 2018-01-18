@@ -336,24 +336,7 @@
                         }
                       }
                     ],
-                    "items": {
-                      "name": "items",
-                      "displayName": "items",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "dataTypes.Customer"
-                      ],
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          }
-                        }
-                      },
-                      "sourceMap": {
-                        "path": "sample-api.raml"
-                      }
-                    },
+                    "items": "dataTypes.Customer",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {

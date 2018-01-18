@@ -5,6 +5,7 @@ import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
+import yaml = require("yaml-ast-parser");
 import hlImpl = require("../parser/highLevelImpl");
 import builder = require("../parser/ast.core/builder");
 
@@ -386,9 +387,34 @@ export class JsonSerializer {
                         if (x.key() == "items") {
                             var td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
                             var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
-                            var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
-                            tNode.patchType(builder.doDescrimination(tNode));
-                            value = this.dumpInternal(tNode.wrapperNode(), false, nodeProperty);
+                            let tNode:hlImpl.ASTNodeImpl;
+                            let llNode = x;
+                            let itemType:nominals.ITypeDefinition;
+                            let stop:boolean;
+                            do {
+                                stop = true;
+                                tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
+                                itemType = builder.doDescrimination(tNode);
+                                const itemsLocalType = tNode.localType();
+                                if(itemsLocalType && isEmpty(itemsLocalType)&& itemType.superTypes().length==1){
+                                    let tChildren = llNode.children().filter(y=>y.key()=="type");
+                                    if(tChildren.length==1){
+                                        if(tChildren[0].resolvedValueKind()==yaml.Kind.SCALAR){
+                                            value = tChildren[0].value();
+                                            break;
+                                        }
+                                        else{
+                                            llNode = tChildren[0];
+                                            stop = false;
+                                        }
+                                    }
+                                }
+                            } while ( !stop );
+
+                            if(value==null) {
+                                tNode.patchType(itemType);
+                                value = this.dumpInternal(tNode.wrapperNode(), false, nodeProperty);
+                            }
                             propName = x.key();
                         }
                     })
@@ -1346,4 +1372,28 @@ export interface SerializeOptions{
      * Whether to serialize source maps
      */
     sourceMap?: boolean
+}
+
+export function isEmpty(nc:nominals.ITypeDefinition):boolean{
+    if(nc.properties().length){
+        return false;
+    }
+    if(nc.annotations().length){
+        return false;
+    }
+    if(nc.facets().length){
+        return false;
+    }
+    const fixedFacets = nc.fixedFacets();
+    if(fixedFacets && Object.keys(fixedFacets).length){
+        return false;
+    }
+    const fixedBuiltinFacets = nc.fixedBuiltInFacets();
+    if(fixedBuiltinFacets && Object.keys(fixedBuiltinFacets).length){
+        return false;
+    }
+    if(nc.description()){
+        return false;
+    }
+    return true;
 }

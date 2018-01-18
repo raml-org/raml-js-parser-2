@@ -1,3 +1,4 @@
+var universe = require("../parser/tools/universe");
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");
@@ -12,6 +13,8 @@ import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
 import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
 import typeExpander = require("./typeExpander");
+import jsonSerializerTL = require("./jsonSerializer");
+import builder = require("../parser/ast.core/builder");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
@@ -110,6 +113,7 @@ export class JsonSerializer {
     nodeTransformers:Transformation[];
 
     nodePropertyTransformers:Transformation[] = [
+        new ItemsTransformer()
         //new MethodsToMapTransformer(),
         //new TypesTransformer(),
         //new TraitsTransformer(),
@@ -1220,6 +1224,54 @@ class ResourcesTransformer extends BasicTransformation{
             }
         }
         return value;
+    }
+}
+
+class ItemsTransformer extends BasicTransformation {
+
+    constructor() {
+        super(universes.Universe10.TypeDeclaration.name,
+            universes.Universe10.ArrayTypeDeclaration.properties.items.name, true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(!value || !Array.isArray(value)
+                  || value.length != 1
+                  || (typeof value[0] !== "object") || !node.isElement()){
+            return value;
+        }
+        let highLevelNode = node.asElement();
+        let result = value[0];
+        let td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+        let hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+        let tNode:hlImpl.ASTNodeImpl;
+        let llNode = highLevelNode.attr("items").lowLevel();
+        let itemType:nominals.ITypeDefinition;
+        let stop:boolean;
+        do {
+            stop = true;
+            tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
+            itemType = builder.doDescrimination(tNode);
+            const itemsLocalType = tNode.localType();
+            if(itemsLocalType && jsonSerializerTL.isEmpty(itemsLocalType)&& itemType.superTypes().length==1){
+                let tChildren = llNode.children().filter(y=>y.key()=="type");
+                if(tChildren.length==1){
+                    if(tChildren[0].resolvedValueKind()==yaml.Kind.SCALAR){
+                        result = tChildren[0].value();
+                        break;
+                    }
+                    else{
+                        llNode = tChildren[0];
+                        stop = false;
+                        result = result.type[0];
+                    }
+                }
+            }
+        } while ( !stop );
+        if(!Array.isArray(result)){
+            result = [ result ];
+        }
+        return result;
     }
 }
 

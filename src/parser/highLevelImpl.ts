@@ -750,6 +750,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
                 let tNode = new ASTNodeImpl(llNode, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                 tNode.patchType(builder.doDescrimination(tNode));
+                tNode.patchProp(this.property());
                 val = tNode;
             }
             else if (universeHelpers.isItemsProperty(prop) && typeof val === "object") {
