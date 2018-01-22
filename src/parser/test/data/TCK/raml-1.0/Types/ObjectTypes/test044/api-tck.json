@@ -29,6 +29,30 @@
                 "lib.LibType"
               ],
               "required": false,
+              "properties": {
+                "prop2": {
+                  "name": "prop2",
+                  "displayName": "prop2",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "fragment.raml"
+                  }
+                }
+              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {

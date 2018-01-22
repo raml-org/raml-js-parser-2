@@ -670,3 +670,7 @@ export function isRAML10Attribute(node : hl.IAttribute ) : boolean {
 export function isParametersProperty(p:hl.IProperty){
     return isQueryParametersProperty(p)||isHeadersProperty(p)||isUriParametersProperty(p)||isBaseUriParametersProperty(p);
 }
+
+export function canBeFragment(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return isResourceTypeType(type)||isTraitType(type)||isExampleSpecType(type)||isSecuritySchemaType(type)||isTypeDeclarationDescendant(type);
+}

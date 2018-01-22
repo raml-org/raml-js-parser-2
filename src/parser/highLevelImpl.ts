@@ -1344,69 +1344,79 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     }
 
     types():rTypes.IParsedTypeCollection{
-        if (!this._types){
-            if (this.parent()&&(this.definition().key()!==universes.Universe10.Library)){
-                return this.parent().types();
-            }
-            else{
-                var c=this.lowLevel().actual();
-                if (c.types){
-                    return c.types;
+        if (!this._types) {
+            const unit = this.lowLevel().unit();
+            if (unit && this.parent() && this.definition() && (this.definition().key() !== universes.Universe10.Library)) {
+                const parentUnit = this.parent().lowLevel().unit();
+                const parentPath = parentUnit.absolutePath();
+                const thisPath = unit.absolutePath();
+                const includePath = this.lowLevel().includePath();
+                let included = includePath!=null;
+                let parentTypes = this.parent().types();
+                let thisDef = this.definition();
+                if(!included||!thisDef||!universeHelpers.canBeFragment(thisDef)){
+                    return parentTypes;
                 }
-                let unit = this.lowLevel().unit();
-                if(unit) {
-                    let project = <jsyaml.Project>unit.project();
-                    if (unit.absolutePath() != project.getMainUnitPath()) {
-                        let mainUnit = project.getMainUnit();
-                        if (mainUnit) {
-                            let nsr = project.namespaceResolver();
-                            let eSet = nsr.unitModel(mainUnit).extensionSet();
-                            if (!eSet[unit.absolutePath()]) {
-                                let mainTypes = (<ASTNodeImpl>mainUnit.highLevel()).types();
-                                if (mainTypes) {
-                                    let usesInfo = nsr.resolveNamespace(mainUnit, unit);
-                                    if(usesInfo) {
-                                        let segments = usesInfo.namespaceSegments;
-                                        let col = mainTypes;
-                                        for (let ind = 0; ind < segments.length;) {
-                                            let lib: rTypes.IParsedTypeCollection;
-                                            for (let i = ind; i < segments.length; i++) {
-                                                let ns = segments.slice(ind, i + 1).join(".");
-                                                lib = col.library(ns);
-                                                if (lib) {
-                                                    ind = i + 1;
-                                                    col = lib;
-                                                }
-                                            }
-                                            if (lib == null) {
-                                                col = null;
-                                                break;
+                let iUnit = unit.resolve(includePath);
+                let thisTypes = iUnit.highLevel().asElement().types()
+                mergeLibs(parentTypes,thisTypes);
+                this._types = thisTypes;
+                return thisTypes;
+            }
+
+            var c = this.lowLevel().actual();
+            if (c.types) {
+                return c.types;
+            }
+            if (unit) {
+                let project = <jsyaml.Project>unit.project();
+                if (unit.absolutePath() != project.getMainUnitPath()) {
+                    let mainUnit = project.getMainUnit();
+                    if (mainUnit) {
+                        let nsr = project.namespaceResolver();
+                        let eSet = nsr.unitModel(mainUnit).extensionSet();
+                        if (!eSet[unit.absolutePath()]) {
+                            let mainTypes = (<ASTNodeImpl>mainUnit.highLevel()).types();
+                            if (mainTypes) {
+                                let usesInfo = nsr.resolveNamespace(mainUnit, unit);
+                                if (usesInfo) {
+                                    let segments = usesInfo.namespaceSegments;
+                                    let col = mainTypes;
+                                    for (let ind = 0; ind < segments.length;) {
+                                        let lib: rTypes.IParsedTypeCollection;
+                                        for (let i = ind; i < segments.length; i++) {
+                                            let ns = segments.slice(ind, i + 1).join(".");
+                                            lib = col.library(ns);
+                                            if (lib) {
+                                                ind = i + 1;
+                                                col = lib;
                                             }
                                         }
-                                        if (col) {
-                                            this._types = col;
+                                        if (lib == null) {
+                                            col = null;
+                                            break;
                                         }
+                                    }
+                                    if (col) {
+                                        this._types = col;
                                     }
                                 }
                             }
                         }
                     }
                 }
-                if(!this._types) {
-                    this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
-                    this._types.types().forEach(x => {
-                        var convertedType = typeBuilder.convertType(this, x)
-                        // if (defs.instanceOfHasExtra(convertedType)) {
-                        convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
-                        // }
-                    });
-                }
-                if(this.lowLevel().actual().libExpanded){
-                    (<any>this._types)["uses"] = {};
-                }
-                c.types=this._types;
             }
-
+            if (!this._types) {
+                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
+                this._types.types().forEach(x => {
+                    var convertedType = typeBuilder.convertType(this, x)
+                    convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
+                });
+            }
+            if (this.lowLevel().actual().libExpanded) {
+                (<any>this._types)["uses"] = {};
+            }
+            c.types = this._types;
         }
         return this._types;
     }
@@ -2891,4 +2901,29 @@ export function resolveSchemaFragment(node:hl.IParseResult,value:string):string{
         }
     }catch(e){}
     return result;
+}
+
+function mergeLibs(from:rTypes.IParsedTypeCollection,to:rTypes.IParsedTypeCollection):void{
+    for(let t of from.types()){
+        if(!to.getType(t.name())){
+            to.add(t);
+        }
+    }
+    for(let t of from.annotationTypes()){
+        if(!to.getType(t.name())){
+            to.addAnnotationType(t);
+        }
+    }
+    let libs = from.libraries();
+    for(let ns of Object.keys(libs)){
+        let lib = libs[ns];
+        const toCh = to.library(ns);
+        if(toCh){
+            mergeLibs(lib,toCh);
+        }
+        else{
+            to.addLibrary(ns,lib);
+        }
+    }
+
 }

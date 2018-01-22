@@ -1,0 +1,159 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "rtLib",
+        "value": "./rt-lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "rtLib.lib",
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rtLib.rt": {
+          "name": "rtLib.rt",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "sourceMap": {
+            "path": "rt.raml"
+          },
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rtLib.lib.MyType"
+                    ],
+                    "example": {
+                      "p1": "stringValue"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "rt.raml"
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"p1\": \"stringValue\"\n}",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "stringValue"
+                      },
+                      "sourceMap": {
+                        "path": "rt.raml"
+                      }
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "rt.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "rt.raml"
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rtLib.lib.MyType"
+                    ],
+                    "example": {
+                      "p1": "stringValue"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "rt.raml"
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"p1\": \"stringValue\"\n}",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "stringValue"
+                      },
+                      "sourceMap": {
+                        "path": "rt.raml"
+                      }
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "rt.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "rt.raml"
+            }
+          }
+        ],
+        "type": "rtLib.rt",
+        "relativeUri": "/flights",
+        "displayName": "/flights",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "flights"
+        ],
+        "absoluteUri": "/flights"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

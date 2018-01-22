@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+
+uses: 
+  lib: ./lib.raml
+
+get:
+  responses:
+    200:
+      body:
+        application/json:
+          type: lib.MyType
+          example:
+            p1: stringValue
