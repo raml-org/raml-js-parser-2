@@ -1358,6 +1358,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                     return parentTypes;
                 }
                 let iUnit = unit.resolve(includePath);
+                if(!iUnit.isRAMLUnit()){
+                    return parentTypes;
+                }
                 let thisTypes = iUnit.highLevel().asElement().types()
                 mergeLibs(parentTypes,thisTypes);
                 this._types = thisTypes;
