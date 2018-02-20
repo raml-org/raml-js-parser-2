@@ -1,0 +1,143 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Data": {
+          "name": "Data",
+          "displayName": "Data",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "code": {
+              "name": "code",
+              "displayName": "code",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "xml": {
+                "attribute": true,
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "mediaType": "application/xml",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "Data"
+                ],
+                "example": "<Data code=\"123\">test</Data>",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "structuredExample": {
+                  "value": "<Data code=\"123\">test</Data>",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "<Data code=\"123\">test</Data>",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              }
+            },
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "",
+      "message": "The node is not allowed to have text content",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 6,
+          "position": 213
+        },
+        "end": {
+          "line": 18,
+          "column": 13,
+          "position": 220
+        }
+      }
+    }
+  ]
+}
