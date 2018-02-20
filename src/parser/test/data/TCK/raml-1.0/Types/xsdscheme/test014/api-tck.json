@@ -1,0 +1,71 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "mediaType": "application/xml",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "XML",
+                "schemaPath": "schema.xsd",
+                "sourceMap": {
+                  "path": "schema.xsd"
+                },
+                "type": [
+                  "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>\n    <xs:element name='Data' type='DataType'>\n    </xs:element>\n\n    <xs:complexType name='DataType'>\n        <xs:sequence>\n            <xs:element name='Description' minOccurs='0' maxOccurs='unbounded' type='xs:string'>\n            </xs:element>\n        </xs:sequence>\n    </xs:complexType>\n</xs:schema>"
+                ],
+                "example": "<Data>\n    <Description>Value1 &amp; Value2</Description>\n</Data>",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "<Data>\n    <Description>Value1 &amp; Value2</Description>\n</Data>",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "<Data>\n    <Description>Value1 &amp; Value2</Description>\n</Data>",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              }
+            },
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

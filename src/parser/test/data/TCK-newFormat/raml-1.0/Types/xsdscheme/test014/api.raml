@@ -1,0 +1,11 @@
+#%RAML 1.0
+
+title: test API
+
+mediaType: application/xml
+
+/resource:
+  post:
+    body:
+      type: !include ./schema.xsd
+      example: !include ./example.xml
