@@ -1056,6 +1056,8 @@ export enum OverlayMergeMode {
 }
 export interface ParseNode {
 
+    path():string
+
     key():string
 
     value():any
@@ -1109,6 +1111,10 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         var root = this._node && this._node.includeBaseUnit() && ((this._node.includePath && this._node.includePath()) ? this._node.includeBaseUnit().resolve(this._node.includePath()) : this._node.includeBaseUnit());
 
         return new contentprovider.ContentProvider(root);
+    }
+
+    path():string{
+        return  this._node.unit() && this._node.unit().absolutePath()
     }
     
     key(){
@@ -1262,6 +1268,11 @@ export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
             return new LowLevelWrapperForTypeSystem(s.ast(), this._highLevelRoot).children();
         }
         return [];
+    }
+
+    path():string{
+        const s = this._node.unit() && this._node.unit().resolve(this.value());
+        return  s && s.absolutePath()
     }
 
     anchor(){
@@ -2907,6 +2918,11 @@ export function resolveSchemaFragment(node:hl.IParseResult,value:string):string{
 }
 
 function mergeLibs(from:rTypes.IParsedTypeCollection,to:rTypes.IParsedTypeCollection):void{
+
+    if(from.id()&&(from.id()==to.id())){
+        return;
+    }
+
     for(let t of from.types()){
         if(!to.getType(t.name())){
             to.add(t);

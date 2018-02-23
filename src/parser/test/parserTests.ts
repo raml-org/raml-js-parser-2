@@ -1441,6 +1441,11 @@ describe('RAML10/Dead Loop Tests/Libraries',function(){
         testErrors(util.data("./parser/deadLoopTests/Libraries/test004/lib2.raml"));
     });
 
+    it("test005", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test005/api.raml"));
+    });
+
 });
 
 describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
