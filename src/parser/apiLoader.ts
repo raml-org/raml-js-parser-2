@@ -308,7 +308,8 @@ function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, option
 }
 
 function fetchAndLoadApiAsyncHL(project: jsyaml.Project, unitName : string, options: parserCoreApi.Options):Promise<hl.IHighLevelNode>{
-    return llimpl.fetchIncludesAndMasterAsync(project,unitName).then(x=>{
+    var _unitName = unitName.replace(/\\/g,"/")
+    return llimpl.fetchIncludesAndMasterAsync(project,_unitName).then(x=>{
         try {
             var api = toApi(x, options);
             if (options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length) {
