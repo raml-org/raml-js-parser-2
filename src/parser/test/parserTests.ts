@@ -1448,7 +1448,7 @@ describe('RAML10/Dead Loop Tests/Libraries',function(){
 
     it("test006", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/Libraries/test006/api.raml"));
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test006/api.raml"),["Property 'p1' refers to unknown type 'Issue1Reason'", "Property 'p2' refers to unknown type 'Issue2Reason'"]);
     });
 
 });
