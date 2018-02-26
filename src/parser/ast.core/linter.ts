@@ -880,7 +880,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     toValidate.setValueSource(highLevelNode);
                     toValidate.validate(
                         hlimpl.createBasicValidationAcceptor(issues, toValidate));
-                    if (issues.length>0){
+                    if (issues.length>0&&highLevelNode.lowLevel().start()>=0){
                         var brand=createLibraryIssue(vn, highLevelNode);
                         issues.forEach(x=> {
                             x.unit = x.unit == null ? rs : x.unit;
@@ -890,11 +890,16 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         });
                         for(var issue of issues) {
                             var _issue = issue;
+                            var alreadyAdded = false
                             while(_issue.extras && _issue.extras.length>0){
                                 _issue = _issue.extras[0];
+                                if(_issue==brand){
+                                    alreadyAdded = true;
+                                    break;
+                                }
                             }
 
-                            if(_issue != brand) {
+                            if(!alreadyAdded) {
                                 if(!_issue.extras) {
                                     _issue.extras = [];
                                 }
