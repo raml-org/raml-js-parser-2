@@ -1,0 +1,11 @@
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name='Data' type='DataType'>
+    </xs:element>
+
+    <xs:complexType name='DataType'>
+        <xs:sequence>
+            <xs:element name='Description' minOccurs='0' maxOccurs='unbounded' type='xs:string'>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

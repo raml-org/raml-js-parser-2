@@ -107,11 +107,11 @@ export class JsonSerializer {
         var highLevelNode = node.highLevel();
         var highLevelParent = highLevelNode && highLevelNode.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        var result = this.dumpInternal(node, rootNodeDetails);
+        var result = this.dumpInternal(node, rootNodeDetails, true);
         return result;
     }
 
-    dumpInternal(node:any, rootNodeDetails:boolean = false, nodeProperty?:hl.IProperty):any {
+    dumpInternal(node:any, rootNodeDetails:boolean = false, isRoot = false, nodeProperty?:hl.IProperty):any {
 
         if (node == null) {
             return null;
@@ -123,7 +123,15 @@ export class JsonSerializer {
             var props:{[key:string]:nominals.IProperty} = {};
             var basicNode:coreApi.BasicNode = <coreApi.BasicNode>node;
             var definition = basicNode.highLevel().definition();
-            definition.allProperties().filter(x=>!this.ignore.match(basicNode.definition(), x)).forEach(x=> {
+            definition.allProperties().filter(x=>{
+                if(this.ignore.match(basicNode.definition(), x)){
+                    return false;
+                }
+                else if(!isRoot && x.nameId()=="uses" &&!isFragment(basicNode.highLevel())){
+                    return false;
+                }
+                return true;
+            }).forEach(x=> {
                 props[x.nameId()] = x;
             });
             (<def.NodeClass>definition).allCustomProperties().filter(x=>!this.ignore.match(basicNode.definition(), x)).forEach(x=> {
@@ -367,7 +375,7 @@ export class JsonSerializer {
                         var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
                         var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
-                        value = this.dumpInternal(tNode.wrapperNode(),false,nodeProperty);
+                        value = this.dumpInternal(tNode.wrapperNode(),false, false,nodeProperty);
                         propName = x.key();
                     }
                 })
@@ -413,7 +421,7 @@ export class JsonSerializer {
 
                             if(value==null) {
                                 tNode.patchType(itemType);
-                                value = this.dumpInternal(tNode.wrapperNode(), false, nodeProperty);
+                                value = this.dumpInternal(tNode.wrapperNode(), false, false, nodeProperty);
                             }
                             propName = x.key();
                         }
@@ -1396,4 +1404,25 @@ export function isEmpty(nc:nominals.ITypeDefinition):boolean{
         return false;
     }
     return true;
+}
+
+function isFragment(node:hl.IHighLevelNode):boolean {
+    if(!node.parent()){
+        return true;
+    }
+    if(node.lowLevel()["libProcessed"]){
+        return false;
+    }
+    if(!universeHelpers.isLibraryType(node.root().definition())){
+        return false;
+    }
+    const includePath = node.lowLevel().includePath();
+    if(includePath==null){
+        return false;
+    }
+    const resolvedUnit = node.lowLevel().unit().resolve(includePath);
+    if(resolvedUnit&&resolvedUnit.contents().startsWith("#%RAML")){
+        return true;
+    }
+    return false;
 }

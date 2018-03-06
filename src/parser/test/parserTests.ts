@@ -788,6 +788,9 @@ describe('Parser regression tests', function () {
     it ("Is node must be an array in master API" ,function() {
         testErrors(util.data("parser/overlay/o23/NewOverlay.raml"), ["Property 'is' must be an array"]);
     })
+    it ("Absolute (from root) path are used in API. Ovelay is located in separate folder. The parser must not throw exceptions." ,function() {
+        testErrors(util.data("parser/overlay/OverlayInSeparateFolder/overlays/overlay.raml"), ["Can not resolve /resource.raml","Node '/resource' can not be a scalar"]);
+    })
     it ("Security Scheme Fragment: new security scheme" ,function(){
         testErrors(util.data("parser/securityschemefragments/ss1/securitySchemeFragment.raml"));
     })
@@ -1439,6 +1442,16 @@ describe('RAML10/Dead Loop Tests/Libraries',function(){
     it("test004", function () {
         this.timeout(15000);
         testErrors(util.data("./parser/deadLoopTests/Libraries/test004/lib2.raml"));
+    });
+
+    it("test005", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test005/api.raml"));
+    });
+
+    it("test006", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test006/api.raml"),["Property 'p1' refers to unknown type 'Issue1Reason'", "Property 'p2' refers to unknown type 'Issue2Reason'"]);
     });
 
 });

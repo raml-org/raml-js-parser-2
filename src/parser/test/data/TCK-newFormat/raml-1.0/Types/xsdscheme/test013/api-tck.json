@@ -1,0 +1,151 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "Data",
+        "displayName": "Data",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "code",
+            "displayName": "code",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "xml": {
+              "attribute": true,
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "test API",
+    "mediaType": [
+      "application/xml"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "Data"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "examples": [
+                  {
+                    "value": "<Data code=\"123\">test</Data>",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "simplifiedExamples": [
+                  "<Data code=\"123\">test</Data>"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "",
+      "message": "The node is not allowed to have text content",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 6,
+          "position": 213
+        },
+        "end": {
+          "line": 18,
+          "column": 13,
+          "position": 220
+        }
+      }
+    }
+  ]
+}

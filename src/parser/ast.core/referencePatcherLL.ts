@@ -808,7 +808,7 @@ export class ReferencePatcher {
                     let referencedUnit:ll.ICompilationUnit;
                     let newNS = newVal.namespace();
                     if(newNS){
-                        let referencedUsesInfo = byNSMap[newNS];
+                        let referencedUsesInfo = byNSMap && byNSMap[newNS];
                         if(referencedUsesInfo) {
                             referencedUnit = referencedUsesInfo.unit
                         }

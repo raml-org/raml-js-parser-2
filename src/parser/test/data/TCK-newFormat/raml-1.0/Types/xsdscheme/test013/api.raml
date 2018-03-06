@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+title: test API
+
+mediaType: application/xml
+
+types:
+  Data:
+    properties:
+      code:
+        type: string
+        xml:
+          attribute: true
+
+/resource:
+  post:
+    body:
+      type: Data
+      example: <Data code="123">test</Data>
