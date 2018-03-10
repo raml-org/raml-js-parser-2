@@ -1,5 +1,7 @@
 # RAML 1.0 JS Parser
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/raml-org/raml-js-parser-2.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/raml-org/raml-js-parser-2.svg?branch=master)](https://travis-ci.org/raml-org/raml-js-parser-2)
 
 See http://raml.org for more information about RAML.
