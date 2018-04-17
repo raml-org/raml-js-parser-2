@@ -1,0 +1,88 @@
+{
+  "specification": {
+    "title": "test API",
+    "version": "v1",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": [
+              {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/people",
+            "absoluteParentUri": "/people",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/people",
+        "displayName": "/people",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "people"
+        ],
+        "absoluteUri": "/people",
+        "completeRelativeUri": "/people",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "ITEMS_DEFINED_FOR_NON_ARRAY",
+      "message": "The 'items' property can only be defined for array types",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 8,
+          "position": 125
+        },
+        "end": {
+          "line": 10,
+          "column": 13,
+          "position": 130
+        }
+      }
+    }
+  ]
+}

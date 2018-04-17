@@ -1,0 +1,105 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "specification": {
+    "typePropertyKind": "TYPE_EXPRESSION",
+    "type": [
+      "object"
+    ],
+    "required": true,
+    "properties": {
+      "name": {
+        "name": "name",
+        "displayName": "name",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        }
+      },
+      "age": {
+        "name": "age",
+        "displayName": "age",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        }
+      },
+      "visitedCountries": {
+        "name": "visitedCountries",
+        "displayName": "visitedCountries",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "array | nil"
+        ],
+        "required": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        }
+      }
+    },
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    },
+    "sourceMap": {
+      "path": "dataType.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "ITEMS_DEFINED_FOR_NON_ARRAY",
+      "message": "The 'items' property can only be defined for array types",
+      "path": "dataType.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 20
+        },
+        "end": {
+          "line": 7,
+          "column": 17,
+          "position": 134
+        }
+      }
+    }
+  ]
+}

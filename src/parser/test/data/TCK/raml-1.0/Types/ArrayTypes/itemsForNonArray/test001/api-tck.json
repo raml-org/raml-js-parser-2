@@ -1,0 +1,83 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "version": "v1",
+    "baseUri": null,
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/people",
+        "displayName": "/people",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "people"
+        ],
+        "absoluteUri": "/people"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "ITEMS_DEFINED_FOR_NON_ARRAY",
+      "message": "The 'items' property can only be defined for array types",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 8,
+          "position": 125
+        },
+        "end": {
+          "line": 10,
+          "column": 13,
+          "position": 130
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "specification": {
+    "type": [
+      "object"
+    ],
+    "properties": [
+      {
+        "name": "name",
+        "displayName": "name",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "age",
+        "displayName": "age",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "visitedCountries",
+        "displayName": "visitedCountries",
+        "type": [
+          {
+            "type": [
+              "union"
+            ],
+            "anyOf": [
+              "array",
+              "nil"
+            ],
+            "sourceMap": {
+              "path": "dataType.raml"
+            },
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "name": "type",
+            "displayName": "type",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "required": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "dataType.raml"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "sourceMap": {
+      "path": "dataType.raml"
+    },
+    "mediaType": "application/raml+yaml",
+    "typePropertyKind": "TYPE_EXPRESSION"
+  },
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "errors": [
+    {
+      "code": "ITEMS_DEFINED_FOR_NON_ARRAY",
+      "message": "The 'items' property can only be defined for array types",
+      "path": "dataType.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 20
+        },
+        "end": {
+          "line": 7,
+          "column": 17,
+          "position": 134
+        }
+      }
+    }
+  ]
+}
