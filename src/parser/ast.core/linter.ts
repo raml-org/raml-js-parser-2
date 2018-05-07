@@ -1003,13 +1003,13 @@ function cleanupIncludesFlag(node:hl.IParseResult,v:hl.ValidationAcceptor) {
 
 }
 function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
-    var llNode = node.lowLevel();
+    let llNode = node.lowLevel();
 
     if(!llNode) {
         return;
     }
 
-    var val=<any>llNode.actual();
+    let val=<any>llNode.actual();
 
     if (val._inc){
         return;
@@ -1029,19 +1029,25 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
     if (llNode) {
 
         llNode.includeErrors().forEach(x=> {
-            var isWarn=false;
+            let isWarn=false;
             if (node.lowLevel().hasInnerIncludeError()){
                 isWarn=true;
             }
-            var em = createIssue1(messageRegistry.INCLUDE_ERROR, { msg: x }, node,isWarn);
+            let em = createIssue1(messageRegistry.INCLUDE_ERROR, { msg: x }, node,isWarn);
             v.accept(em)
         });
-        var includePath = llNode.includePath();
+        let includePath = llNode.includePath();
         if(includePath!=null && !path.isAbsolute(includePath) && !ll.isWebPath(includePath)){
-            var unitPath = llNode.unit().absolutePath();
-            var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
+            let unitPath = llNode.unit().absolutePath();
+            if(llNode instanceof proxy.LowLevelCompositeNode){
+                var includingNode = (<proxy.LowLevelCompositeNode>llNode).adoptedNodes().find(x=>x.includePath()==includePath)
+                if(includingNode){
+                    unitPath = includingNode.unit().absolutePath()
+                }
+            }
+            let exceeding = calculateExceeding(path.dirname(unitPath),includePath);
             if(exceeding>0){
-                var em = createIssue1(messageRegistry.PATH_EXCEEDS_ROOT, {}, node,true);
+                let em = createIssue1(messageRegistry.PATH_EXCEEDS_ROOT, {}, node,true);
                 v.accept(em)
             }
         }
