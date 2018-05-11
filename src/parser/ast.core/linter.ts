@@ -858,59 +858,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             return;
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
-            var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
-            var libPath = vn && vn.value();
-            if (libPath!=null && typeof libPath == "string"){
-                var rs=highLevelNode.lowLevel().unit().resolve(libPath);
-                if (!rs || rs.contents() === null){
-                    v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
-                        {path:libPath},highLevelNode,false));
-                } else if(!resourceRegistry.isWaitingFor(libPath)){
-                    var issues:hl.ValidationIssue[]=[];
-
-                    if(rs.contents().trim().length === 0) {
-                        v.accept(createIssue1(messageRegistry.EMPTY_FILE,
-                            {path:libPath},highLevelNode,false));
-                        return;
-                    }
-
-                    let hlNode = rs.highLevel().asElement();
-                    let toValidate = new hlimpl.ASTNodeImpl(
-                        hlNode.lowLevel(),hlNode.parent(),hlNode.definition(),hlNode.property());
-                    toValidate.setValueSource(highLevelNode);
-                    toValidate.validate(
-                        hlimpl.createBasicValidationAcceptor(issues, toValidate));
-                    if (issues.length>0&&highLevelNode.lowLevel().start()>=0){
-                        var brand=createLibraryIssue(vn, highLevelNode);
-                        issues.forEach(x=> {
-                            x.unit = x.unit == null ? rs : x.unit;
-                            if (!x.path) {
-                                x.path = rs.absolutePath();
-                            }
-                        });
-                        for(var issue of issues) {
-                            var _issue = issue;
-                            var alreadyAdded = false
-                            while(_issue.extras && _issue.extras.length>0){
-                                _issue = _issue.extras[0];
-                                if(_issue==brand){
-                                    alreadyAdded = true;
-                                    break;
-                                }
-                            }
-
-                            if(!alreadyAdded) {
-                                if(!_issue.extras) {
-                                    _issue.extras = [];
-                                }
-
-                                _issue.extras.push(brand);
-                            }
-                            v.accept(issue);
-                        }
-                    }
-                }
-            }
+            new UsesEntryValidator().validate(highLevelNode,v)
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
             highLevelNode.attrs().forEach(a=>{
@@ -951,6 +899,9 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             new RecurrentValidateChildrenKeys().validate(highLevelNode, v);
             new NodeSpecificValidator().validate(highLevelNode,v);
             new TypeDeclarationValidator().validate(highLevelNode,v);
+            if(highLevelNode.parent()==null){
+                highLevelNode.elements().filter(x=>x.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)).forEach(x=>new UsesEntryValidator().validate(x,v))
+            }
             return;
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)){
@@ -3578,6 +3529,66 @@ class ValidateChildrenKeys implements NodeValidator {
         var anyExceptRequireds = isAllowAny && hasRequireds;
 
         return anyExceptRequireds;
+    }
+}
+
+class UsesEntryValidator implements  NodeValidator{
+    validate(highLevelNode:hl.IHighLevelNode,v:hl.ValidationAcceptor){
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
+            var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
+            var libPath = vn && vn.value();
+            if (libPath!=null && typeof libPath == "string"){
+                var rs=highLevelNode.lowLevel().unit().resolve(libPath);
+                if (!rs || rs.contents() === null){
+                    v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
+                        {path:libPath},highLevelNode,false));
+                } else if(!resourceRegistry.isWaitingFor(libPath)){
+                    var issues:hl.ValidationIssue[]=[];
+
+                    if(rs.contents().trim().length === 0) {
+                        v.accept(createIssue1(messageRegistry.EMPTY_FILE,
+                            {path:libPath},highLevelNode,false));
+                        return;
+                    }
+
+                    let hlNode = rs.highLevel().asElement();
+                    let toValidate = new hlimpl.ASTNodeImpl(
+                        hlNode.lowLevel(),hlNode.parent(),hlNode.definition(),hlNode.property());
+                    toValidate.setValueSource(highLevelNode);
+                    toValidate.validate(
+                        hlimpl.createBasicValidationAcceptor(issues, toValidate));
+                    if (issues.length>0&&highLevelNode.lowLevel().start()>=0){
+                        var brand=createLibraryIssue(vn, highLevelNode);
+                        issues.forEach(x=> {
+                            x.unit = x.unit == null ? rs : x.unit;
+                            if (!x.path) {
+                                x.path = rs.absolutePath();
+                            }
+                        });
+                        for(var issue of issues) {
+                            var _issue = issue;
+                            var alreadyAdded = false
+                            while(_issue.extras && _issue.extras.length>0){
+                                _issue = _issue.extras[0];
+                                if(_issue==brand){
+                                    alreadyAdded = true;
+                                    break;
+                                }
+                            }
+
+                            if(!alreadyAdded) {
+                                if(!_issue.extras) {
+                                    _issue.extras = [];
+                                }
+
+                                _issue.extras.push(brand);
+                            }
+                            v.accept(issue);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
