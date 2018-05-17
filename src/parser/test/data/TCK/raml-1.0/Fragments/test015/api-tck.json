@@ -1,0 +1,93 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "specification": {
+    "typePropertyKind": "TYPE_EXPRESSION",
+    "type": [
+      "object"
+    ],
+    "required": true,
+    "properties": {
+      "Foo": {
+        "name": "Foo",
+        "displayName": "Foo",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "myTypes.Foo"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    },
+    "uses": [
+      {
+        "key": "myTypes",
+        "value": "libs/myLib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "type": {
+          "insertedAsDefault": true
+        },
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    },
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "INVALID_LIBRARY_PATH",
+      "message": "Can not resolve library from path: 'libs/myLib.raml'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 2,
+          "position": 29
+        },
+        "end": {
+          "line": 3,
+          "column": 9,
+          "position": 36
+        }
+      }
+    },
+    {
+      "code": "UNKNOWN_IN_PROPERTY_DEFINITION",
+      "message": "Property 'Foo' refers to unknown type 'myTypes.Foo'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 2,
+          "position": 69
+        },
+        "end": {
+          "line": 6,
+          "column": 5,
+          "position": 72
+        }
+      }
+    }
+  ]
+}

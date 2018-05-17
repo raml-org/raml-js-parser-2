@@ -1095,20 +1095,17 @@ function extractParams(
     propName:string):RamlWrapper.TypeDeclaration[] {
     
     if(typeof(uri)!='string'){
-        return [];
+        uri = "";
     }
 
-    var ownerHl = owner.highLevel();
-    var definition = ownerHl.definition();
-    var prop = definition.property(propName);
+    let ownerHl = owner.highLevel();
+    let definition = ownerHl.definition();
+    let prop = definition.property(propName);
 
-    if(!uri){
-        return [];
-    }
 
-    var describedParams = {};
+    let describedParams = {};
     params.forEach(x=>{
-        var arr = describedParams[x.name()];
+        let arr = describedParams[x.name()];
         if(!arr){
             arr = [];
             describedParams[x.name()] = arr;
@@ -1116,25 +1113,25 @@ function extractParams(
         arr.push(x);
     });
 
-    var allParams:RamlWrapper.TypeDeclaration[] = [];
-    var prev = 0;
-    var mentionedParams = {};
-    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
+    let allParams:RamlWrapper.TypeDeclaration[] = [];
+    let prev = 0;
+    let mentionedParams = {};
+    for (let i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
         prev = uri.indexOf('}', ++i);
         if(prev<0){
             break;
         }
-        var paramName = uri.substring(i, prev);
+        let paramName = uri.substring(i, prev);
         mentionedParams[paramName] = true;
         if (describedParams[paramName]) {
             describedParams[paramName].forEach(x=>allParams.push(x));
         }
         else {
-            var universe = definition.universe();
-            var nc=<defs.NodeClass>universe.type(universeDef.Universe10.StringTypeDeclaration.name);
-            var node=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
-            var uriParameter = factory.buildWrapperNode(node);
-            var hlNode = uriParameter.highLevel();
+            let universe = definition.universe();
+            let nc=<defs.NodeClass>universe.type(universeDef.Universe10.StringTypeDeclaration.name);
+            let node=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
+            let uriParameter = factory.buildWrapperNode(node);
+            let hlNode = uriParameter.highLevel();
             hlNode.setParent(ownerHl);
             (<core.NodeMetadataImpl>uriParameter.meta()).setCalculated();
             (<RamlWrapperImpl.TypeDeclarationImpl>uriParameter).setName(paramName);
@@ -1146,7 +1143,7 @@ function extractParams(
     Object.keys(describedParams).filter(x=>!mentionedParams[x])
         .forEach(x=>describedParams[x].forEach(y=>allParams.push(y)));
     return allParams;
-};
+}
 
 
 /**

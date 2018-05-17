@@ -613,16 +613,16 @@ function extractParams(
     propName:string,
     propNode:ll.ILowLevelASTNode):RamlWrapper.Parameter[] {
 
-    var ownerHl = owner.highLevel();
-    var prop = ownerHl.definition().property(propName);
+    let ownerHl = owner.highLevel();
+    let prop = ownerHl.definition().property(propName);
 
-    if(!uri){
-        return [];
+    if(typeof(uri)!='string'){
+        uri = "";
     }
 
-    var describedParams = {};
+    let describedParams = {};
     params.forEach(x=>{
-        var arr = describedParams[x.name()];
+        let arr = describedParams[x.name()];
         if(!arr){
             arr = [];
             describedParams[x.name()] = arr;
@@ -630,24 +630,24 @@ function extractParams(
         arr.push(x);
     });
 
-    var allParams:RamlWrapper.Parameter[] = [];
-    var prev = 0;
-    var mentionedParams = {};
-    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
+    let allParams:RamlWrapper.Parameter[] = [];
+    let prev = 0;
+    let mentionedParams = {};
+    for (let i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
         prev = uri.indexOf('}', ++i);
         if(prev<0){
             break;
         }
-        var paramName = uri.substring(i, prev);
+        let paramName = uri.substring(i, prev);
         mentionedParams[paramName] = true;
         if (describedParams[paramName]) {
             describedParams[paramName].forEach(x=>allParams.push(x));
         }
         else {
             let propUnit = propNode && hlimpl.actualUnit(propNode);
-                var uriParameter = new RamlWrapperImpl.StringTypeDeclarationImpl(paramName);
+                let uriParameter = new RamlWrapperImpl.StringTypeDeclarationImpl(paramName);
                 uriParameter.setName(paramName);
-                var hlNode = uriParameter.highLevel();
+                let hlNode = uriParameter.highLevel();
                 (<jsyaml.ASTNode>hlNode.lowLevel()).setUnit(propUnit);
                 hlNode.setParent(ownerHl);
                 (<core.NodeMetadataImpl>uriParameter.meta()).setCalculated();
@@ -659,7 +659,7 @@ function extractParams(
     Object.keys(describedParams).filter(x=>!mentionedParams[x])
         .forEach(x=>describedParams[x].forEach(y=>allParams.push(y)));
     return allParams;
-};
+}
 
 /**
  * __$helperMethod__
