@@ -24,7 +24,7 @@
     "extractTypings": "node ./dist/devUtil/extractTypings.js"
   },
   "dependencies": {
-    "base64url": "2.0.0",
+    "urlsafe-base64": "1.0.0",
     "change-case": "3.0.1",
     "http-response-object": "2.0.3",
     "invariant": "2.2.2",
