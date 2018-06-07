@@ -2,7 +2,7 @@ import _= require("underscore");
 
 var DOMParser = require('xmldom').DOMParser;
 
-var base64 = require('base64url');
+var base64 = require('urlsafe-base64');
 
 export interface ValidationIssue {
     message : string;
@@ -185,7 +185,7 @@ class IncludeReferenceImpl implements IncludeReference{
     }
 
     encodedName(withExtention: boolean = true): string {
-        return base64(this.includePath + '/' + this.asString()) + (withExtention ? this.includePath.substring(this.includePath.lastIndexOf('.')) : '');
+        return base64.encode(new Buffer(this.includePath + '/' + this.asString())) + (withExtention ? this.includePath.substring(this.includePath.lastIndexOf('.')) : '');
     }
 }
 
