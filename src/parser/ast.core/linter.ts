@@ -2676,13 +2676,6 @@ class TypeDeclarationValidator implements NodeValidator{
             };
         }
 
-        let examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
-
-        if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
-            let issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
-
-            v.accept(issue);
-        }
         if((node.property()&&universeHelpers.isAnnotationTypesProperty(node.property()))
             ||hlimpl.isAnnotationTypeFragment(node)){
             var atAttrs = node.attributes(universes.Universe10.TypeDeclaration.properties.allowedTargets.name);
