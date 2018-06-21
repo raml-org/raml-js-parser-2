@@ -635,5 +635,9 @@
   "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE" : {
     "code" : "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE",
     "message": "Annotation type '{{typeName}}' depends on '{{chainedType}}' imported through a library chain. Library chainig is not allowed."
+  },
+  "PROTOCOLS_ARRAY" : {
+    "code" : "PROTOCOLS_ARRAY",
+    "message": "'protocols' value should be a non empty array"
   }
 }

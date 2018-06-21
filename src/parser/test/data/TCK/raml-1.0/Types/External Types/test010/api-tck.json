@@ -105,6 +105,13 @@
         "absoluteUri": "https://example.com/baz"
       }
     ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
     "sourceMap": {
       "path": "api.raml"
     }

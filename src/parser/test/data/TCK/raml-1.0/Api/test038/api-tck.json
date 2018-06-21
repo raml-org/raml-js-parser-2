@@ -3,6 +3,9 @@
   "type": "Api",
   "specification": {
     "title": "test",
+    "protocols": [
+      null
+    ],
     "resources": [
       {
         "methods": [
@@ -11,7 +14,7 @@
               "201": {
                 "code": "201",
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             },
@@ -34,16 +37,16 @@
                   }
                 },
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             },
             "protocols": [
-              "HTTP"
+              null
             ],
             "method": "post",
             "sourceMap": {
-              "path": "meth06.raml"
+              "path": "api.raml"
             }
           }
         ],
@@ -57,7 +60,7 @@
           }
         },
         "sourceMap": {
-          "path": "meth06.raml"
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "test"
@@ -66,24 +69,41 @@
       }
     ],
     "sourceMap": {
-      "path": "meth06.raml"
+      "path": "api.raml"
     }
   },
   "errors": [
     {
       "code": "PROTOCOLS_ARRAY",
       "message": "'protocols' value should be a non empty array",
-      "path": "meth06.raml",
+      "path": "api.raml",
       "range": {
         "start": {
-          "line": 4,
-          "column": 4,
-          "position": 42
+          "line": 2,
+          "column": 0,
+          "position": 23
         },
         "end": {
-          "line": 4,
+          "line": 2,
+          "column": 9,
+          "position": 32
+        }
+      }
+    },
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 53
+        },
+        "end": {
+          "line": 5,
           "column": 13,
-          "position": 51
+          "position": 62
         }
       }
     }

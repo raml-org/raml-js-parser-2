@@ -934,7 +934,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             validateBasic(<hlimpl.BasicASTNode>node,v);
         }
         new UriParametersValidator().validate(highLevelNode,v);
-
+        new ProtocolsValidator().validate(highLevelNode,v)
         new CompositeNodeValidator().validate(highLevelNode,v);
         new TemplateCyclesDetector().validate(highLevelNode,v);
     }
@@ -3132,6 +3132,32 @@ class NodeSpecificValidator implements NodeValidator {
     validate(node:hl.IHighLevelNode,acceptor:hl.ValidationAcceptor) {
         NodeSpecificValidator.entries.forEach(entry=>entry.validate(node, acceptor));
     }
+}
+
+class ProtocolsValidator implements NodeValidator{
+
+    validate(node: hl.IHighLevelNode, cb: hl.ValidationAcceptor) {
+        var def = node.definition()
+        if(!def){
+            return
+        }
+        if(!(universeHelpers.isApiSibling(def)||universeHelpers.isMethodBaseSibling(def))){
+            return
+        }
+        var llNode = node.lowLevel()
+        var pNode = llNode.children().find(x=>x.key()==universes.Universe10.Api.properties.protocols.name)
+        if(!pNode){
+            return
+        }
+        var val = pNode.value()
+        if(val == null && pNode.children().length == 0){
+            cb.accept(createLLIssue1(messageRegistry.PROTOCOLS_ARRAY, {}, pNode, node))
+        }
+        else if(pNode.resolvedValueKind()!=yaml.Kind.SEQ){
+            cb.accept(createLLIssue1(messageRegistry.PROTOCOLS_ARRAY,{},pNode,node))
+        }
+    }
+
 }
 
 

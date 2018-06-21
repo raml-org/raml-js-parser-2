@@ -414,7 +414,7 @@
     "version": "v1",
     "baseUri": "http://api.planet.com",
     "protocols": [
-      "HTTPS"
+      "HTTP"
     ],
     "mediaType": "application/json",
     "resources": [
@@ -601,6 +601,13 @@
         "absoluteUri": "http://api.planet.com/v1"
       }
     ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
     "sourceMap": {
       "path": "test1.raml"
     }
@@ -612,14 +619,14 @@
       "path": "test1.raml",
       "range": {
         "start": {
-          "line": 15,
+          "line": 14,
           "column": 10,
-          "position": 291
+          "position": 274
         },
         "end": {
-          "line": 15,
+          "line": 14,
           "column": 14,
-          "position": 295
+          "position": 278
         }
       }
     }

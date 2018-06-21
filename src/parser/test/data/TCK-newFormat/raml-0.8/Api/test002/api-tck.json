@@ -1,54 +1,41 @@
 {
   "specification": {
     "title": "test",
+    "protocols": [
+      "HTTP"
+    ],
     "resources": [
       {
+        "relativeUri": "/test",
         "methods": [
           {
             "responses": [
               {
                 "code": "201",
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             ],
             "body": [
               {
                 "name": "application/json",
-                "displayName": "application/json",
-                "type": [
-                  "any"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             ],
             "protocols": [
-              "HTTP"
+              "HTTPS"
             ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test",
             "sourceMap": {
-              "path": "meth06.raml"
+              "path": "api.raml"
             }
           }
         ],
-        "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -65,31 +52,48 @@
         "parentUri": "",
         "absoluteParentUri": "",
         "sourceMap": {
-          "path": "meth06.raml"
+          "path": "api.raml"
         }
       }
     ],
     "sourceMap": {
-      "path": "meth06.raml"
+      "path": "api.raml"
     }
   },
-  "ramlVersion": "RAML10",
+  "ramlVersion": "RAML08",
   "type": "Api",
   "errors": [
     {
       "code": "PROTOCOLS_ARRAY",
       "message": "'protocols' value should be a non empty array",
-      "path": "meth06.raml",
+      "path": "api.raml",
       "range": {
         "start": {
-          "line": 4,
-          "column": 4,
-          "position": 42
+          "line": 2,
+          "column": 0,
+          "position": 23
         },
         "end": {
-          "line": 4,
+          "line": 2,
+          "column": 9,
+          "position": 32
+        }
+      }
+    },
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 58
+        },
+        "end": {
+          "line": 5,
           "column": 13,
-          "position": 51
+          "position": 67
         }
       }
     }

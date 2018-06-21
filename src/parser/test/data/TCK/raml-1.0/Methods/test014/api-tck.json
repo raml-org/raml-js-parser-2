@@ -11,7 +11,7 @@
               "201": {
                 "code": "201",
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             },
@@ -34,16 +34,16 @@
                   }
                 },
                 "sourceMap": {
-                  "path": "meth06.raml"
+                  "path": "api.raml"
                 }
               }
             },
             "protocols": [
-              "HTTP"
+              null
             ],
             "method": "post",
             "sourceMap": {
-              "path": "meth06.raml"
+              "path": "api.raml"
             }
           }
         ],
@@ -57,7 +57,7 @@
           }
         },
         "sourceMap": {
-          "path": "meth06.raml"
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "test"
@@ -66,14 +66,14 @@
       }
     ],
     "sourceMap": {
-      "path": "meth06.raml"
+      "path": "api.raml"
     }
   },
   "errors": [
     {
       "code": "PROTOCOLS_ARRAY",
       "message": "'protocols' value should be a non empty array",
-      "path": "meth06.raml",
+      "path": "api.raml",
       "range": {
         "start": {
           "line": 4,

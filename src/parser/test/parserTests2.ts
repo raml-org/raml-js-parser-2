@@ -298,11 +298,11 @@ describe('Method', function(){
         testErrors(util.data('parser/method/meth05.raml'));
     });
 
-    it('Should allows to set single protocol value and validate it', function(){
-        testErrors(util.data('parser/method/meth06.raml'));
+    it('Should not allow to set single protocol value', function(){
+        testErrors(util.data('parser/method/meth06.raml'), ["'protocols' value should be a non empty array"]);
     });
 
-    it('Should allows to set array protocol value and validate it 2', function(){
+    it('Should allow to set array protocol value and validate it 2', function(){
         testErrors(util.data('parser/method/meth07.raml'));
     });
 
