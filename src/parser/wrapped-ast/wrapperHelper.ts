@@ -12,6 +12,7 @@ import linter = require('../ast.core/linter');
 import stubs = require('../stubs');
 
 import defs = require('raml-definition-system');
+import tsInterfaces = defs.tsInterfaces
 import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')
@@ -778,8 +779,17 @@ function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):Examp
     if(!runtimeDefinition){
         return [];
     }
-    var hlParent = node.highLevel();
-    return examplesFromNominal(runtimeDefinition, hlParent, isSingle);
+    var isTopLevel = runtimeDefinition.getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+    var nodeProperty = node.highLevel().property()
+    var isInTypes = nodeProperty && (universeHelpers.isTypesProperty(nodeProperty)
+        ||universeHelpers.isSchemasProperty(nodeProperty))
+    if(isInTypes || !isTopLevel) {
+        var hlParent = node.highLevel();
+        return examplesFromNominal(runtimeDefinition, hlParent, isSingle);
+    }
+    else {
+        return []
+    }
 };
 
 /**

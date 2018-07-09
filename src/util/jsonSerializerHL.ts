@@ -3,6 +3,7 @@ import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");
 import def = require("raml-definition-system");
+import tsInterfaces = def.tsInterfaces
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
@@ -1243,17 +1244,16 @@ class ItemsTransformer extends BasicTransformation {
         let highLevelNode = node.asElement();
         let result = value[0];
         let td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
-        let hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+        let hasType = highLevelNode.definition().universe().type(universe.Universe10.ArrayTypeDeclaration.name);
         let tNode:hlImpl.ASTNodeImpl;
         let llNode = highLevelNode.attr("items").lowLevel();
-        let itemType:nominals.ITypeDefinition;
+        let itemsLocalType:nominals.ITypeDefinition;
         let stop:boolean;
         do {
             stop = true;
-            tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
-            itemType = builder.doDescrimination(tNode);
-            const itemsLocalType = tNode.localType();
-            if(itemsLocalType && jsonSerializerTL.isEmpty(itemsLocalType)&& itemType.superTypes().length==1){
+            tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.ArrayTypeDeclaration.properties.items.name));
+            itemsLocalType = tNode.localType();
+            if(itemsLocalType && jsonSerializerTL.isEmpty(itemsLocalType)&& itemsLocalType.superTypes().length==1){
                 let tChildren = llNode.children().filter(y=>y.key()=="type");
                 if(tChildren.length==1){
                     if(tChildren[0].resolvedValueKind()==yaml.Kind.SCALAR){
@@ -1268,6 +1268,10 @@ class ItemsTransformer extends BasicTransformation {
                 }
             }
         } while ( !stop );
+        if(itemsLocalType.getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+            && typeof result == "object" && ! Array.isArray(result)){
+            result = result.type;
+        }
         if(!Array.isArray(result)){
             result = [ result ];
         }
@@ -1380,33 +1384,38 @@ class TypeTransformer extends BasicTransformation{
         //         delete value.name;
         //     }
         // }
-        var exampleObj = helpersLL.typeExample(
-            node.asElement(),this.options.dumpXMLRepresentationOfExamples);
-        if(exampleObj){
-            value["examples"] = [ exampleObj ];
-        }
-        else {
-            var examples = helpersLL.typeExamples(
+        var isTopLevel = node.asElement().localType().getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+        var isInTypes = nodeProperty && (universeHelpers.isTypesProperty(nodeProperty)
+            ||universeHelpers.isSchemasProperty(nodeProperty))
+        if(isInTypes || !isTopLevel) {
+            var exampleObj = helpersLL.typeExample(
                 node.asElement(), this.options.dumpXMLRepresentationOfExamples);
-            if (examples.length > 0) {
-                value["examples"] = examples;
+            if (exampleObj) {
+                value["examples"] = [exampleObj];
             }
-        }
-        delete value["example"];
-        if(value["examples"]!=null){
-            value["simplifiedExamples"] = value["examples"].map(x=>{
-                if(x==null){
-                    return x;
+            else {
+                var examples = helpersLL.typeExamples(
+                    node.asElement(), this.options.dumpXMLRepresentationOfExamples);
+                if (examples.length > 0) {
+                    value["examples"] = examples;
                 }
-                let val = x["value"];
-                if(val==null){
+            }
+            delete value["example"];
+            if (value["examples"] != null) {
+                value["simplifiedExamples"] = value["examples"].map(x => {
+                    if (x == null) {
+                        return x;
+                    }
+                    let val = x["value"];
+                    if (val == null) {
+                        return val;
+                    }
+                    else if (typeof val === "object") {
+                        return JSON.stringify(val);
+                    }
                     return val;
-                }
-                else if(typeof val === "object"){
-                    return JSON.stringify(val);
-                }
-                return val;
-            });
+                });
+            }
         }
         if(value.hasOwnProperty("schema")){
             if(!value.hasOwnProperty("type")){

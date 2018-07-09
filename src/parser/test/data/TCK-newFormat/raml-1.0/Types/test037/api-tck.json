@@ -8,25 +8,7 @@
           "array"
         ],
         "items": [
-          {
-            "name": "items",
-            "displayName": "items",
-            "type": [
-              "integer"
-            ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          }
+          "integer"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -35,11 +17,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "api.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "TestApi",
@@ -58,14 +40,14 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "type": [
                   "ArrayOfInt"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",

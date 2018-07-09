@@ -748,7 +748,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 let tdl = null;
                 let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
                 let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                let tNode = new ASTNodeImpl(llNode, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+                let tNode = new ASTNodeImpl(llNode, this.parent(), td, prop)
                 tNode.patchType(builder.doDescrimination(tNode));
                 tNode.patchProp(this.property());
                 val = tNode;
@@ -1356,13 +1356,14 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     types():rTypes.IParsedTypeCollection{
         if (!this._types) {
+            let isInLibExpandMode = (this.root().lowLevel().actual().libExpanded===true);
             const unit = this.lowLevel().unit();
             if (unit && this.parent() && this.definition() && (this.definition().key() !== universes.Universe10.Library)) {
                 const parentUnit = this.parent().lowLevel().unit();
                 const parentPath = parentUnit.absolutePath();
                 const thisPath = unit.absolutePath();
                 const includePath = this.lowLevel().includePath();
-                let included = includePath!=null;
+                let included = !isInLibExpandMode && includePath!=null;
                 let parentTypes = this.parent().types();
                 let thisDef = this.definition();
                 if(!included||!thisDef||!universeHelpers.canBeFragment(thisDef)){
@@ -1384,7 +1385,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             }
             if (unit) {
                 let project = <jsyaml.Project>unit.project();
-                if (unit.absolutePath() != project.getMainUnitPath()) {
+                if (!isInLibExpandMode && unit.absolutePath() != project.getMainUnitPath()) {
                     let mainUnit = project.getMainUnit();
                     if (mainUnit) {
                         let nsr = project.namespaceResolver();
@@ -1421,7 +1422,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 }
             }
             if (!this._types) {
-                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
+                var ignoreUses = isInLibExpandMode
+                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this),ignoreUses);
                 this._types.types().forEach(x => {
                     var convertedType = typeBuilder.convertType(this, x)
                     convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
@@ -1442,6 +1444,41 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     parsedType():rTypes.IParsedType{
 
         if (!this._ptype){
+            let root = this.root()
+            let isApi = root.definition() && universeHelpers.isApiSibling(root.definition())
+            let isInLibExpandModel = this.root().lowLevel().actual().libExpanded === true
+            if((!isApi||isInLibExpandModel) && this.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
+                let parent = this.parent()
+                if(parent && parent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+                    let parentType = parent.parsedType()
+                    if (parentType != null) {
+                        if (universeHelpers.isPropertiesProperty(this.property())) {
+                            let name = this.name()
+                            let prop = parentType.properties().find(p => p.name() == name)
+                            if (prop) {
+                                let range= prop.range()
+                                if(range){
+                                    return range
+                                }
+                            }
+                        }
+                        else if (universeHelpers.isItemsProperty(this.property())) {
+                            let ct = parentType.componentType()
+                            if(ct){
+                                return ct
+                            }
+                        }
+                        else if (universeHelpers.isTypeProperty(this.property())) {
+                            let superTypes = parentType.superTypes();
+                            let ct = superTypes && superTypes.length == 1 && superTypes[0]
+                            if(ct){
+                                return ct
+                            }
+                        }
+
+                    }
+                }
+            }
             let llWrapper = new LowLevelWrapperForTypeSystem(this.lowLevel(), this);
             if(linter.typeOfContainingTemplate(this)){
                 markTemplateTypes(llWrapper);
