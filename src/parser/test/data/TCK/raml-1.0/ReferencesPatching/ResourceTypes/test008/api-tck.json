@@ -150,7 +150,7 @@
               }
             }
           },
-          "name": "rt.tr.ResponseCommonErrors",
+          "name": "ResponseCommonErrors",
           "__METADATA__": {
             "calculated": true
           },
@@ -163,7 +163,7 @@
     "resourceTypes": [
       {
         "rt.lib.lib.rt": {
-          "name": "rt.lib.lib.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },
@@ -306,7 +306,7 @@
               "param2": "MyType"
             }
           },
-          "name": "rt.lib.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },
@@ -323,7 +323,7 @@
             }
           },
           "description": "<<desc>>",
-          "name": "rt.Collection",
+          "name": "Collection",
           "__METADATA__": {
             "calculated": true
           },
@@ -511,7 +511,7 @@
             "is": [
               {
                 "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "rt.ty.ErrorResponseType"
+                  "errorResponseType": "ty.ErrorResponseType"
                 }
               }
             ],

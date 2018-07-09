@@ -1354,11 +1354,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         c.types=null;
     }
 
-    types():rTypes.IParsedTypeCollection{
+    types(requestedByFragmentOrLibrary=false):rTypes.IParsedTypeCollection{
         if (!this._types) {
             let isInLibExpandMode = (this.root().lowLevel().actual().libExpanded===true);
             const unit = this.lowLevel().unit();
-            if (unit && this.parent() && this.definition() && (this.definition().key() !== universes.Universe10.Library)) {
+            let isLibrary = this.definition().key() === universes.Universe10.Library;
+            if (unit && this.parent() && this.definition() && !isLibrary) {
                 const parentUnit = this.parent().lowLevel().unit();
                 const parentPath = parentUnit.absolutePath();
                 const thisPath = unit.absolutePath();
@@ -1391,7 +1392,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                         let nsr = project.namespaceResolver();
                         let eSet = nsr.unitModel(mainUnit).extensionSet();
                         if (!eSet[unit.absolutePath()]) {
-                            let mainTypes = (<ASTNodeImpl>mainUnit.highLevel()).types();
+                            let mainTypes = (<ASTNodeImpl>mainUnit.highLevel()).types(true);
                             if (mainTypes) {
                                 let usesInfo = nsr.resolveNamespace(mainUnit, unit);
                                 if (usesInfo) {
@@ -1432,7 +1433,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             if (this.lowLevel().actual().libExpanded) {
                 (<any>this._types)["uses"] = {};
             }
-            c.types = this._types;
+            if(!requestedByFragmentOrLibrary) {
+                c.types = this._types;
+            }
         }
         return this._types;
     }

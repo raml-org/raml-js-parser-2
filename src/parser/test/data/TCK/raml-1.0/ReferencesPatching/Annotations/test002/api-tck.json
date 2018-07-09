@@ -20,7 +20,7 @@
               "name": "lib.MyAnnotation"
             }
           },
-          "name": "lib.libTrait1",
+          "name": "libTrait1",
           "__METADATA__": {
             "calculated": true
           },
@@ -37,7 +37,7 @@
               "name": "lib.MyAnnotation"
             }
           },
-          "name": "lib.libTrait2",
+          "name": "libTrait2",
           "__METADATA__": {
             "calculated": true
           },
@@ -53,7 +53,7 @@
           "is": [
             "lib.libTrait2"
           ],
-          "name": "lib.libResourceType",
+          "name": "libResourceType",
           "__METADATA__": {
             "calculated": true
           },

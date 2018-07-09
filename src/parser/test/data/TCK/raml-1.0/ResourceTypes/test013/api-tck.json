@@ -38,6 +38,46 @@
     ],
     "traits": [
       {
+        "lib.hasResponseCollection": {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<resourcePathName|!uppercamelcase>>"
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "hasResponseCollection.raml"
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "hasResponseCollection.raml"
+              }
+            }
+          },
+          "name": "hasResponseCollection",
+          "usage": "Use this trait for resources whose response body is a collection of items",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "sourceMap": {
+            "path": "hasResponseCollection.raml"
+          }
+        }
+      },
+      {
         "hasResponseCollection": {
           "responses": {
             "200": {
@@ -69,46 +109,6 @@
           },
           "name": "hasResponseCollection",
           "usage": "Use this trait for resources whose response body is a collection of items",
-          "sourceMap": {
-            "path": "hasResponseCollection.raml"
-          }
-        }
-      },
-      {
-        "lib.hasResponseCollection": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "<<resourcePathName|!uppercamelcase>>"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  },
-                  "sourceMap": {
-                    "path": "hasResponseCollection.raml"
-                  }
-                }
-              },
-              "sourceMap": {
-                "path": "hasResponseCollection.raml"
-              }
-            }
-          },
-          "name": "lib.hasResponseCollection",
-          "usage": "Use this trait for resources whose response body is a collection of items",
-          "__METADATA__": {
-            "calculated": true
-          },
           "sourceMap": {
             "path": "hasResponseCollection.raml"
           }

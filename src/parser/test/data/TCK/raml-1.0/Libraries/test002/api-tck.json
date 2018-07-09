@@ -42,7 +42,7 @@
               }
             }
           },
-          "name": "security.auth",
+          "name": "auth",
           "__METADATA__": {
             "calculated": true
           },

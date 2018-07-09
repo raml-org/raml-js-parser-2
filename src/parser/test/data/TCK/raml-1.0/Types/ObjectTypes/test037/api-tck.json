@@ -120,7 +120,7 @@
               }
             }
           },
-          "name": "NewLibrary.FilterableByPrice",
+          "name": "FilterableByPrice",
           "__METADATA__": {
             "calculated": true
           },
@@ -133,7 +133,7 @@
     "resourceTypes": [
       {
         "NewLibrary.Collection": {
-          "name": "NewLibrary.Collection",
+          "name": "Collection",
           "__METADATA__": {
             "calculated": true
           },
@@ -204,7 +204,7 @@
       },
       {
         "NewLibrary.Member": {
-          "name": "NewLibrary.Member",
+          "name": "Member",
           "__METADATA__": {
             "calculated": true
           },

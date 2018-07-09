@@ -41,7 +41,7 @@
               }
             }
           },
-          "name": "lib1.lib2.myTrait",
+          "name": "myTrait",
           "__METADATA__": {
             "calculated": true
           },
@@ -57,7 +57,7 @@
           "is": [
             "lib1.lib2.myTrait"
           ],
-          "name": "lib1.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },

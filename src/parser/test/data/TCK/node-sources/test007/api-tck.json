@@ -58,7 +58,7 @@
               }
             }
           },
-          "name": "lib.trait1",
+          "name": "trait1",
           "__METADATA__": {
             "calculated": true
           },
@@ -72,7 +72,7 @@
       {
         "lib.resourceType1": {
           "description": "string value 1\n",
-          "name": "lib.resourceType1",
+          "name": "resourceType1",
           "sourceMap": {
             "scalarsSources": {
               "description": [

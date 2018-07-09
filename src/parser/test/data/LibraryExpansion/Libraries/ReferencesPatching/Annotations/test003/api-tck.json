@@ -37,7 +37,7 @@
           "type": {
             "lib.lib.rt": {
               "param1": "<<param1>>",
-              "param2": "lib.Monkey"
+              "param2": "Monkey"
             }
           },
           "name": "rt",

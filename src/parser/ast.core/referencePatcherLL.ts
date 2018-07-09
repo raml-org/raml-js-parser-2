@@ -697,54 +697,57 @@ export class ReferencePatcher {
         let chainingData:any=[];
         if (gotExpression) {
             var expressionPatchFailed = false;
-            var expr = typeExpressions.parse(stringToPatch);
             var gotPatch = false;
-            typeExpressions.visit(expr, x=> {
-                if (x.type == "name") {
-                    var lit = <typeExpressions.Literal>x;
-                    var typeName = lit.value;
-                    var unescapeData:referencePatcherHL.EscapeData = {status: referencePatcherHL.ParametersEscapingStatus.NOT_REQUIRED};
-                    var unescaped:string;
-                    if (escapeData.status == referencePatcherHL.ParametersEscapingStatus.OK) {
-                        unescaped = escapeData.substitutions[typeName];
-                        if (unescaped == null) {
-                            unescapeData = referencePatcherHL.unescapeTemplateParameters(
-                                typeName, escapeData.substitutions);
-                            if (unescapeData.status == referencePatcherHL.ParametersEscapingStatus.OK) {
-                                typeName = unescapeData.resultingString;
+            try {
+                var expr = typeExpressions.parse(stringToPatch);
+                typeExpressions.visit(expr, x => {
+                    if (x.type == "name") {
+                        var lit = <typeExpressions.Literal>x;
+                        var typeName = lit.value;
+                        var unescapeData: referencePatcherHL.EscapeData = {status: referencePatcherHL.ParametersEscapingStatus.NOT_REQUIRED};
+                        var unescaped: string;
+                        if (escapeData.status == referencePatcherHL.ParametersEscapingStatus.OK) {
+                            unescaped = escapeData.substitutions[typeName];
+                            if (unescaped == null) {
+                                unescapeData = referencePatcherHL.unescapeTemplateParameters(
+                                    typeName, escapeData.substitutions);
+                                if (unescapeData.status == referencePatcherHL.ParametersEscapingStatus.OK) {
+                                    typeName = unescapeData.resultingString;
+                                }
+                                else if (unescapeData.status == referencePatcherHL.ParametersEscapingStatus.ERROR) {
+                                    expressionPatchFailed = true;
+                                    return;
+                                }
                             }
-                            else if (unescapeData.status == referencePatcherHL.ParametersEscapingStatus.ERROR) {
-                                expressionPatchFailed = true;
-                                return;
+                            else {
+                                typeName = unescaped;
                             }
                         }
-                        else {
-                            typeName = unescaped;
+                        if (transformer == null && (unescaped != null || unescapeData.status == referencePatcherHL.ParametersEscapingStatus.OK)) {
+                            lit.value = typeName;
+                            return;
+                        }
+                        //var patchTransformedValue = true;
+                        //if(typeName.indexOf("<<")>=0&&this.isCompoundValue(typeName)){
+                        //    patchTransformedValue = false;
+                        //}
+                        var patched = this.resolveReferenceValue(
+                            typeName, state, transformer, collectionName);//, patchTransformedValue);
+                        if (patched != null) {
+                            lit.value = patched.value();
+                            gotPatch = true;
+                            this.registerPatchedReference(patched);
+                            if (patched.isChained()) {
+                                chainingData.push({
+                                    kind: 'type',
+                                    value: lit.value
+                                });
+                            }
                         }
                     }
-                    if (transformer == null && (unescaped != null || unescapeData.status == referencePatcherHL.ParametersEscapingStatus.OK)) {
-                        lit.value = typeName;
-                        return;
-                    }
-                    //var patchTransformedValue = true;
-                    //if(typeName.indexOf("<<")>=0&&this.isCompoundValue(typeName)){
-                    //    patchTransformedValue = false;
-                    //}
-                    var patched = this.resolveReferenceValue(
-                        typeName, state, transformer, collectionName);//, patchTransformedValue);
-                    if (patched != null) {
-                        lit.value = patched.value();
-                        gotPatch = true;
-                        this.registerPatchedReference(patched);
-                        if(patched.isChained()){
-                            chainingData.push({
-                                kind: 'type',
-                                value: lit.value
-                            });
-                        }
-                    }
-                }
-            });
+                });
+            }
+            catch(e){}
             if (gotPatch && !expressionPatchFailed) {
                 newValue = typeExpressions.serializeToString(expr);
             }

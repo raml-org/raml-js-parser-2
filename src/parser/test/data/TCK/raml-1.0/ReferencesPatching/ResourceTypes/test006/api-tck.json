@@ -75,7 +75,7 @@
               }
             }
           },
-          "name": "defaultResponses.general",
+          "name": "general",
           "__METADATA__": {
             "calculated": true
           },

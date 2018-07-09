@@ -1084,7 +1084,7 @@ describe('Object values for template parameters tests', function () {
     this.timeout(15000);
     it("Parameter used in key must have scalar value", function () {
         this.timeout(15000);
-        testErrors(util.data("parser/resourceType/resType21.raml"), ["Property 'param' must be a string","Unknown node: '{\"param\":{\"p1\":null,\"p2\":null}}'"]);
+        testErrors(util.data("parser/resourceType/resType21.raml"), ["Property 'param' must be a string"]);
     })
 
     it("Parameter used inside string value must have scalar value", function () {

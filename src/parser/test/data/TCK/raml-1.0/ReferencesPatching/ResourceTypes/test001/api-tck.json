@@ -43,7 +43,7 @@
     "resourceTypes": [
       {
         "lib.lib.rt": {
-          "name": "lib.lib.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },
@@ -140,7 +140,7 @@
               "param2": "Monkey"
             }
           },
-          "name": "lib.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },
