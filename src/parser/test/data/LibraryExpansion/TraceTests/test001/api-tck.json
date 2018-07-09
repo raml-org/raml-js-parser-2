@@ -2,6 +2,22 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "libraries/lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "libraries/lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "types": [
       {
         "lib1.LibType1": {

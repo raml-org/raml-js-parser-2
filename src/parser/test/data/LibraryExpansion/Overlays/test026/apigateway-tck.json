@@ -2,6 +2,15 @@
   "ramlVersion": "RAML10",
   "type": "Overlay",
   "specification": {
+    "uses": [
+      {
+        "key": "AWS",
+        "value": "aws-lib.raml",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        }
+      }
+    ],
     "types": [
       {
         "AWS.amazon-apigateway-method": {

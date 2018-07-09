@@ -22,8 +22,7 @@ import universeProvider=require("../definition-system/universeProvider")
 import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
-import expander=require("./expander")
-import expanderLL=require("./expanderLL")
+import expander=require("./expanderLL")
 import builder = require('./builder')
 import search = require("../../search/search-interface")
 import rtypes=def.rt;
@@ -534,7 +533,7 @@ function createUnknownNodeIssue(node:hlimpl.BasicASTNode):hl.ValidationIssue {
         if(d) {
             let propName = node.name();
             let typeName = d.nameId();
-            if(expanderLL.isPossibleMethodName(propName)){
+            if(expander.isPossibleMethodName(propName)){
                 issue = createIssue1(
                     messageRegistry.INVALID_METHOD_USAGE, { typeName: typeName }, node);
             }
@@ -2417,7 +2416,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 paramsMap[ch.key()] = ch.value(true);
             }
             var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
-            var unitsChain = expander.toUnits(node);
+            var unitsChain = expander.toUnits(node.lowLevel());
             var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(),unitsChain,paramsMap);
             var parent = node.parent();
             var def = parent?parent.definition():node.definition();

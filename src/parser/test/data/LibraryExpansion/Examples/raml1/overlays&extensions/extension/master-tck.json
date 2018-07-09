@@ -2,6 +2,15 @@
   "ramlVersion": "RAML10",
   "type": "Extension",
   "specification": {
+    "uses": [
+      {
+        "key": "decls",
+        "value": "lib/decls.raml",
+        "sourceMap": {
+          "path": "extension.raml"
+        }
+      }
+    ],
     "annotationTypes": [
       {
         "decls.important": {

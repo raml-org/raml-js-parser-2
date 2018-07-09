@@ -15,7 +15,7 @@ import hl=require("../highLevelAST")
 import t3 = require("../artifacts/raml10parser")
 import textutil=require('../../util/textutil')
 
-import expander = require("../ast.core/expander")
+import expander = require("../ast.core/expanderLL")
 import RamlWrapper = require("../artifacts/raml10parserapi");
 import RamlWrapperImpl = require("../artifacts/raml10parser");
 

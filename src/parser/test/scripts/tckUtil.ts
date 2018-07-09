@@ -7,7 +7,6 @@ import hlImpl = require("../../highLevelImpl");
 import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
-import expanderHL = require("../../ast.core/expanderHL")
 import universeHelpers = require("../../tools/universeHelpers");
 
 class MessageMapping{

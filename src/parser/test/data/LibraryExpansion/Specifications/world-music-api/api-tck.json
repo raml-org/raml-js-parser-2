@@ -10,6 +10,22 @@
         "name": "info"
       }
     },
+    "uses": [
+      {
+        "key": "SongsLib",
+        "value": "libraries/songs-library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "ApiLib",
+        "value": "libraries/api-library.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "types": [
       {
         "Entry": {

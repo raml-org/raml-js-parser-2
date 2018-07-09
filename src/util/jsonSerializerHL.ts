@@ -1,3 +1,5 @@
+import has = Reflect.has;
+
 var universe = require("../parser/tools/universe");
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
@@ -9,10 +11,11 @@ import ll = require("../parser/lowLevelAST");
 import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../parser/highLevelImpl");
 import linter = require("../parser/ast.core/linter");
-import expander=require("../parser/ast.core/expanderHL");
+import expander=require("../parser/ast.core/expanderLL");
 import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
 import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
+import referencePatcherLL=require("../parser/ast.core/referencePatcherLL");
 import typeExpander = require("./typeExpander");
 import jsonSerializerTL = require("./jsonSerializer");
 import builder = require("../parser/ast.core/builder");
@@ -2027,10 +2030,10 @@ class UsesDeclarationTransformer extends BasicTransformation {
         super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
     }
 
-    private referencePatcher:referencePatcher.ReferencePatcher;
+    private referencePatcher:referencePatcherLL.ReferencePatcher;
 
     private getReferencePatcher(){
-        this.referencePatcher = this.referencePatcher || new referencePatcher.ReferencePatcher();
+        this.referencePatcher = this.referencePatcher || new referencePatcherLL.ReferencePatcher();
         return this.referencePatcher;
     }
 
@@ -2082,8 +2085,12 @@ class UsesDeclarationTransformer extends BasicTransformation {
                     }
                     let aName = aObj.name;
                     let range = a.property().range();
+                    var hasRootMediaType = unit.ast().children().some(x=>x.key()==universes.Universe10.Api.properties.mediaType.name)
+                    var scope = new referencePatcherLL.Scope()
+                    scope.hasRootMediaType = hasRootMediaType
+                    var state = new referencePatcherLL.State(this.getReferencePatcher(),unit,scope,resolver)
                     let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
-                        aName, unit, resolver, [unit, libUnit],range);
+                        aName, state, a.property().nameId(),[unit, libUnit]);
 
                     if(!patchedReference){
                         continue;

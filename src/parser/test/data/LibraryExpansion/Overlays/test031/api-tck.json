@@ -16,6 +16,29 @@
         "name": "lib0.a0"
       }
     },
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "o2.raml"
+        }
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "o2.raml"
+        }
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml",
+        "sourceMap": {
+          "path": "o2.raml"
+        }
+      }
+    ],
     "annotationTypes": [
       {
         "lib0.a0": {

@@ -1,6 +1,6 @@
 import assert = require("assert")
 import util = require("./test-utils")
-import expander = require("../ast.core/expander")
+import expander = require("../ast.core/expanderLL")
 import RamlWrapper = require("../artifacts/raml10parser")
 import json = require("../jsyaml/json2lowLevel")
 
