@@ -11,24 +11,7 @@
           "type": [
             "array"
           ],
-          "items": {
-            "name": "items",
-            "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "type": [
-              "integer"
-            ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
-            "sourceMap": {
-              "path": "api.raml"
-            }
-          },
+          "items": "integer",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
