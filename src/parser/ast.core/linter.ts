@@ -3580,7 +3580,7 @@ class UsesEntryValidator implements  NodeValidator{
                         issues.forEach(x=> {
                             x.unit = x.unit == null ? rs : x.unit;
                             if (!x.path) {
-                                x.path = rs.absolutePath();
+                                x.path = rs.path();
                             }
                         });
                         for(var issue of issues) {

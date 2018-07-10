@@ -7,7 +7,7 @@
         "key": "lib",
         "value": "lib.raml",
         "sourceMap": {
-          "path": "lib.raml"
+          "path": "dependencies/type.raml"
         }
       }
     ],

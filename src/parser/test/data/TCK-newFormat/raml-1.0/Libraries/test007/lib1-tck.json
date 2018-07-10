@@ -40,7 +40,24 @@
     {
       "code": "RECURRENT_DEFINITION",
       "message": "Recurrent type definition",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/TCK-newFormat/raml-1.0/Libraries/test007/lib2.raml",
+      "path": "lib1.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 5,
+          "position": 65
+        },
+        "end": {
+          "line": 7,
+          "column": 9,
+          "position": 69
+        }
+      }
+    },
+    {
+      "code": "RECURRENT_DEFINITION",
+      "message": "Recurrent type definition",
+      "path": "lib2.raml",
       "range": {
         "start": {
           "line": 7,
@@ -73,23 +90,6 @@
           "isWarning": true
         }
       ]
-    },
-    {
-      "code": "RECURRENT_DEFINITION",
-      "message": "Recurrent type definition",
-      "path": "lib1.raml",
-      "range": {
-        "start": {
-          "line": 7,
-          "column": 5,
-          "position": 65
-        },
-        "end": {
-          "line": 7,
-          "column": 9,
-          "position": 69
-        }
-      }
     }
   ]
 }

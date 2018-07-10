@@ -7,7 +7,7 @@
         "key": "security",
         "value": "myLibrary.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "rt0.raml"
         }
       }
     ],

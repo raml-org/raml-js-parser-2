@@ -21,7 +21,7 @@
         "key": "lib0",
         "value": "libs/lib.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "fragments/type.raml"
         }
       }
     ],

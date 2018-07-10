@@ -41,6 +41,23 @@
     {
       "code": "RECURRENT_DEFINITION",
       "message": "Recurrent type definition",
+      "path": "lib1.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 5,
+          "position": 65
+        },
+        "end": {
+          "line": 7,
+          "column": 9,
+          "position": 69
+        }
+      }
+    },
+    {
+      "code": "RECURRENT_DEFINITION",
+      "message": "Recurrent type definition",
       "path": "lib2.raml",
       "range": {
         "start": {
@@ -74,23 +91,6 @@
           "isWarning": true
         }
       ]
-    },
-    {
-      "code": "RECURRENT_DEFINITION",
-      "message": "Recurrent type definition",
-      "path": "lib1.raml",
-      "range": {
-        "start": {
-          "line": 7,
-          "column": 5,
-          "position": 65
-        },
-        "end": {
-          "line": 7,
-          "column": 9,
-          "position": 69
-        }
-      }
     }
   ]
 }

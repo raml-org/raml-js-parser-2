@@ -7,7 +7,7 @@
         "key": "lib",
         "value": "library.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "collection.raml"
         }
       }
     ],

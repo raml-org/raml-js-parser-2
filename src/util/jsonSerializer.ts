@@ -186,6 +186,9 @@ export class JsonSerializer {
             }
             if(this.options.sourceMap && typeof obj == "object") {
                 let unitPath = hlImpl.actualPath(node.highLevel());
+                if(node.highLevel().lowLevel() && node.highLevel().lowLevel().actual() && node.highLevel().lowLevel().actual().actualPath){
+                    unitPath = node.highLevel().lowLevel().actual().actualPath
+                }
                 let sourceMap = obj.sourceMap;
                 if(!sourceMap){
                     sourceMap = {};

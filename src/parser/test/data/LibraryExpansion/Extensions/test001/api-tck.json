@@ -28,14 +28,14 @@
         "key": "lib1",
         "value": "lib1.raml",
         "sourceMap": {
-          "path": "e2.raml"
+          "path": "e1.raml"
         }
       },
       {
         "key": "lib0",
         "value": "lib0.raml",
         "sourceMap": {
-          "path": "e2.raml"
+          "path": "api.raml"
         }
       }
     ],

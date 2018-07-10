@@ -7,7 +7,7 @@
         "key": "files",
         "value": "libraries/files.raml",
         "sourceMap": {
-          "path": "index.raml"
+          "path": "files-resource.raml"
         }
       }
     ],

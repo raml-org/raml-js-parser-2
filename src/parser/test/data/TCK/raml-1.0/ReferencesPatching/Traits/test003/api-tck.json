@@ -14,7 +14,7 @@
         "key": "lib2",
         "value": "libraries/annotations.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "traits/trait.raml"
         }
       }
     ],

@@ -1091,6 +1091,7 @@ export class ReferencePatcher {
             var ip = ui.includePath;
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
             mapping.setUnit(yamlNode.unit());
+            mapping.actual().actualPath = ui.usesNodes[0].unit().path()
             usesNode.replaceChild(null, mapping);
         }
     }

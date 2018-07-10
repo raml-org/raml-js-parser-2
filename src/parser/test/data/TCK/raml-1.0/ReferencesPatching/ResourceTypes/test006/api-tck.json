@@ -14,7 +14,7 @@
         "key": "error-types",
         "value": "types/error-types.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "resourceTypes/collection.raml"
         }
       }
     ],
