@@ -1478,7 +1478,14 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                                 return ct
                             }
                         }
-
+                    }
+                }
+                else if (parent && parent.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)) {
+                    if (universeHelpers.isAnnotationTypesProperty(this.property())) {
+                        let ct = this.types().annotationTypes().find(x => x.name() == this.name())
+                        if (ct) {
+                            return ct
+                        }
                     }
                 }
             }

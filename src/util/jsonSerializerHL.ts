@@ -2066,31 +2066,35 @@ class UsesDeclarationTransformer extends BasicTransformation {
                 continue;
             }
             let libUnit = usesEntry.unit;
-            let lib = libUnit.highLevel();
-            if(!lib.isElement()){
-                continue;
-            }
-            let libAnnotations = lib.asElement().attributes(annotationsPropName);
-            let libUsage = lib.asElement().attr(usagePropName);
-
+            let libNode = libUnit.ast()
+            let libAnnotations = libNode.children().filter(x=>{
+                var key = x.key()
+                return util.stringStartsWith(key,"(") && util.stringEndsWith(key,")")
+            })
+            let libUsage = libNode.children().find(x=>x.key()==usagePropName)
             if(libUsage){
                 u[usagePropName] = libUsage.value();
             }
             if(libAnnotations.length>0){
+                var annotableType = node.root().definition().universe().type(universes.Universe10.Annotable.name)
+                var annotationsProp = annotableType.property(universes.Universe10.Annotable.properties.annotations.name)
                 let usesEntryAnnotations:any[] = [];
                 for(let a of libAnnotations){
-                    let aObj = this.dumper.dump(a);
+                    let dumped = a.dumpToObject();
+                    let aObj = {
+                        name: a.key().substring(1,a.key().length-1),
+                        value: dumped[Object.keys(dumped)[0]]
+                    }
                     if(!aObj || !aObj.name){
                         continue;
                     }
                     let aName = aObj.name;
-                    let range = a.property().range();
                     var hasRootMediaType = unit.ast().children().some(x=>x.key()==universes.Universe10.Api.properties.mediaType.name)
                     var scope = new referencePatcherLL.Scope()
                     scope.hasRootMediaType = hasRootMediaType
                     var state = new referencePatcherLL.State(this.getReferencePatcher(),unit,scope,resolver)
                     let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
-                        aName, state, a.property().nameId(),[unit, libUnit]);
+                        aName, state, annotationsProp.nameId(),[unit, libUnit]);
 
                     if(!patchedReference){
                         continue;
