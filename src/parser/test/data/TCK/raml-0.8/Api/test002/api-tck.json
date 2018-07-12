@@ -1,0 +1,96 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/test",
+        "methods": [
+          {
+            "responses": {
+              "201": {
+                "code": "201",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 2,
+          "column": 0,
+          "position": 23
+        },
+        "end": {
+          "line": 2,
+          "column": 9,
+          "position": 32
+        }
+      }
+    },
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 58
+        },
+        "end": {
+          "line": 5,
+          "column": 13,
+          "position": 67
+        }
+      }
+    }
+  ]
+}

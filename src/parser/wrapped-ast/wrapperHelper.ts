@@ -12,14 +12,14 @@ import linter = require('../ast.core/linter');
 import stubs = require('../stubs');
 
 import defs = require('raml-definition-system');
+import tsInterfaces = defs.tsInterfaces
 import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
-import expander=require("../ast.core/expander")
 import expanderLL=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
-import referencePatcher = require("../ast.core/referencePatcher")
+import referencePatcher = require("../ast.core/referencePatcherLL")
 import search=require("../../search/search-interface")
 import ll=require("../lowLevelAST");
 import llImpl=require("../jsyaml/jsyaml2lowLevel");
@@ -30,6 +30,7 @@ import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
 import builder = require("../ast.core/builder");
+import helpersLL = require("./helpersLL");
 
 let messageRegistry = require("../../../resources/errorMessages");
 
@@ -72,9 +73,7 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
  * __$meta__={"name":"expand"}
  */
 export function expandLibrarySpec(lib:RamlWrapper.Library):RamlWrapper.Library{
-
-    var exp = lib.highLevel().reusedNode() != null ? expanderLL : expander;
-    return exp.expandLibrary(lib);
+    return expanderLL.expandLibrary(lib);
 }
 /**
  * __$helperMethod__
@@ -98,8 +97,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(proxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
-    return exp.expandTraitsAndResourceTypes(api);
+    return expanderLL.expandTraitsAndResourceTypes(api);
 }
 
 /**
@@ -107,8 +105,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
  * __$meta__={"name":"expandLibraries"}
  */
 export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
-    return exp.expandLibraries(api);
+    return expanderLL.expandLibraries(api);
 }
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
@@ -158,7 +155,7 @@ export function allTraits(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).traits_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isTraitType(d));
+    return helpersLL.allTraits(a.highLevel(),true).map(x=><RamlWrapper.Trait>x.wrapperNode());
 }
 
 /**
@@ -178,38 +175,8 @@ export function allResourceTypes(a:RamlWrapper.LibraryBase):RamlWrapper.Resource
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).resourceTypes_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d));
+    return helpersLL.allResourceTypes(a.highLevel(),true).map(x=><RamlWrapper.ResourceType>x.wrapperNode());
 }
-
-function findTemplates(a:core.BasicNode,filter) {
-    var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
-    var ll = a.highLevel().lowLevel();
-    var nodePath = ll.includePath();
-    if(!nodePath){
-        nodePath = ll.unit().path();
-    }
-    var isProxy = proxy.LowLevelProxyNode.isInstance(a.highLevel().lowLevel());
-    var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
-    var topLevelArr = arr.map(x=>{
-        var topLevelNode:core.BasicNode;
-        var p = x.lowLevel().unit().path();
-        if(isProxy){
-            if(!(proxy.LowLevelProxyNode.isInstance(x.lowLevel()))) {
-                x = exp.createHighLevelNode(x, false);
-                new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
-            }
-        }
-        if(p!=nodePath){
-            topLevelNode = factory.buildWrapperNode(x,false);
-            (<core.NodeMetadataImpl>topLevelNode.meta()).setCalculated();
-        }
-        else{
-            topLevelNode = x.wrapperNode();
-        }
-        return topLevelNode;
-    });
-    return topLevelArr;
-};
 
 export function relativeUriSegments(res:RamlWrapper.Resource):string[]{
     var result:string[] = [];
@@ -778,8 +745,17 @@ function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):Examp
     if(!runtimeDefinition){
         return [];
     }
-    var hlParent = node.highLevel();
-    return examplesFromNominal(runtimeDefinition, hlParent, isSingle);
+    var isTopLevel = runtimeDefinition.getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+    var nodeProperty = node.highLevel().property()
+    var isInTypes = nodeProperty && (universeHelpers.isTypesProperty(nodeProperty)
+        ||universeHelpers.isSchemasProperty(nodeProperty))
+    if(isInTypes || !isTopLevel) {
+        var hlParent = node.highLevel();
+        return examplesFromNominal(runtimeDefinition, hlParent, isSingle);
+    }
+    else {
+        return []
+    }
 };
 
 /**

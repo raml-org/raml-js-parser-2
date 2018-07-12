@@ -86,8 +86,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "MAP_EXPECTED",
-      "message": "Map is expected here",
+      "code": "EXMAPLES_MAP",
+      "message": "'examples' value should be a map",
       "path": "api.raml",
       "range": {
         "start": {

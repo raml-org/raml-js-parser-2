@@ -1,0 +1,117 @@
+{
+  "specification": {
+    "title": "test",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "201",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            ],
+            "body": [
+              {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 2,
+          "column": 0,
+          "position": 23
+        },
+        "end": {
+          "line": 2,
+          "column": 9,
+          "position": 32
+        }
+      }
+    },
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 58
+        },
+        "end": {
+          "line": 5,
+          "column": 13,
+          "position": 67
+        }
+      }
+    }
+  ]
+}

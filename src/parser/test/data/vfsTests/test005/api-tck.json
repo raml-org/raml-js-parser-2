@@ -14,6 +14,31 @@
     ],
     "traits": [
       {
+        "traits.paged": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "contracts.Create<<resourcePathName | !singularize | !uppercamelcase>>Request"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "paged",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
         "paged": {
           "body": {
             "application/json": {
@@ -33,31 +58,6 @@
             }
           },
           "name": "paged"
-        }
-      },
-      {
-        "traits.paged": {
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "contracts.Create<<resourcePathName | !singularize | !uppercamelcase>>Request"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "traits.paged",
-          "__METADATA__": {
-            "calculated": true
-          }
         }
       }
     ],

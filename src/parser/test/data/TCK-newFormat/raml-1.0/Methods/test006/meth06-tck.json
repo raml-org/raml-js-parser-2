@@ -75,5 +75,23 @@
   },
   "ramlVersion": "RAML10",
   "type": "Api",
-  "errors": []
+  "errors": [
+    {
+      "code": "PROTOCOLS_ARRAY",
+      "message": "'protocols' value should be a non empty array",
+      "path": "meth06.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 4,
+          "position": 42
+        },
+        "end": {
+          "line": 4,
+          "column": 13,
+          "position": 51
+        }
+      }
+    }
+  ]
 }

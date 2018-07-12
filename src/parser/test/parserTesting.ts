@@ -18,7 +18,6 @@ import util = require("./test-utils")
 import tools = require("./testTools")
 
 import smg = require("../tools/schemaModelGen");
-import expander = require("../ast.core/expander")
 import hlimpl = require("../highLevelImpl")
 import RamlWrapper = require("../artifacts/raml10parser")
 import json = require("../jsyaml/json2lowLevel")

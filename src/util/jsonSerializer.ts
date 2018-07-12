@@ -3,6 +3,7 @@ import coreApi = require("../parser/wrapped-ast/parserCoreApi");
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
+import tsInterfaces = def.tsInterfaces;
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import yaml = require("yaml-ast-parser");
@@ -186,6 +187,9 @@ export class JsonSerializer {
             }
             if(this.options.sourceMap && typeof obj == "object") {
                 let unitPath = hlImpl.actualPath(node.highLevel());
+                if(node.highLevel().lowLevel() && node.highLevel().lowLevel().actual() && node.highLevel().lowLevel().actual().actualPath){
+                    unitPath = node.highLevel().lowLevel().actual().actualPath
+                }
                 let sourceMap = obj.sourceMap;
                 if(!sourceMap){
                     sourceMap = {};
@@ -372,8 +376,8 @@ export class JsonSerializer {
                 a.children().forEach(x=> {
                     if (x.key() == "type" || x.key() == "schema") {
                         var td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
-                        var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
-                        var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
+                        var hasType = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+                        var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(x.key()))
                         tNode.patchType(builder.doDescrimination(tNode));
                         value = this.dumpInternal(tNode.wrapperNode(),false, false,nodeProperty);
                         propName = x.key();
@@ -394,17 +398,16 @@ export class JsonSerializer {
                     a.children().forEach(x=> {
                         if (x.key() == "items") {
                             var td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
-                            var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+                            var hasType = highLevelNode.definition().universe().type(universe.Universe10.ArrayTypeDeclaration.name);
                             let tNode:hlImpl.ASTNodeImpl;
                             let llNode = x;
-                            let itemType:nominals.ITypeDefinition;
+                            let itemsLocalType:nominals.ITypeDefinition;
                             let stop:boolean;
                             do {
                                 stop = true;
-                                tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
-                                itemType = builder.doDescrimination(tNode);
-                                const itemsLocalType = tNode.localType();
-                                if(itemsLocalType && isEmpty(itemsLocalType)&& itemType.superTypes().length==1){
+                                tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.ArrayTypeDeclaration.properties.items.name));
+                                itemsLocalType = tNode.localType();
+                                if(itemsLocalType && isEmpty(itemsLocalType)&& itemsLocalType.superTypes().length==1){
                                     let tChildren = llNode.children().filter(y=>y.key()=="type");
                                     if(tChildren.length==1){
                                         if(tChildren[0].resolvedValueKind()==yaml.Kind.SCALAR){
@@ -420,8 +423,15 @@ export class JsonSerializer {
                             } while ( !stop );
 
                             if(value==null) {
-                                tNode.patchType(itemType);
+                                tNode.patchType(builder.doDescrimination(tNode));
                                 value = this.dumpInternal(tNode.wrapperNode(), false, false, nodeProperty);
+                            }
+                            if(itemsLocalType.getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+                                && typeof value == "object" && ! Array.isArray(value)){
+                                value = value.type;
+                            }
+                            if(Array.isArray(value)&&value.length==1){
+                                value = value[0]
                             }
                             propName = x.key();
                         }
@@ -579,7 +589,7 @@ export class JsonSerializer {
                     }
                 }
                 obj[propName] = propertyValue;
-                if(props[propName].isValueProperty()){
+                if(props[propName].isValueProperty()&&originalValue){
                     let sPaths:string[] = [];
                     for(let a of originalValue){
                         if(core.AttributeNodeImpl.isInstance(a)){

@@ -1,7 +1,4 @@
-import loader = require("../../../parser/apiLoader");
 import index = require("../../../index");
-import expanderHL=require("../../../parser/ast.core/expanderHL");
-import tckDumperHL = require("../../../util/jsonSerializerHL");
 
 var fs = require('fs');
 

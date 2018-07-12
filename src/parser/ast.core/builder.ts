@@ -15,6 +15,7 @@ import universeHelpers=require("../tools/universeHelpers")
 import services=defs
 import ramlTypes=defs.rt;
 import referencePatcher = require("./referencePatcher");
+import tsInterfaces = defs.tsInterfaces
 var messageRegistry = require("../../../resources/errorMessages");
 
 var mediaTypeParser = require("media-typer");
@@ -1051,6 +1052,10 @@ function patchTypeWithFacets(
             patchedType = new defs.NodeClass(nodeReferencingType.name(),
                 <def.Universe>nodeReferencingType.definition().universe(), "", "");
             patchedType.addAdapter(parsedRType);
+            let prop = nodeReferencingType.property();
+            if(universeHelpers.isPropertiesProperty(prop)||universeHelpers.isItemsProperty(prop)||universeHelpers.isFacetsProperty(prop)){
+                patchedType.putExtra(tsInterfaces.USER_DEFINED_EXTRA,true)
+            }
         }
         patchedType._superTypes.push(originalType);
         doPatchTypeWithFacets(patchedType,nodeReferencingType,parentOfReferencingNode);
@@ -1177,7 +1182,7 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
         n._node['descriminate'] = 1;
     }
     try {
-        if (range == universes.Universe10.TypeDeclaration.name) {
+        if (range == universes.Universe10.TypeDeclaration.name || universeHelpers.isItemsProperty(p) || universeHelpers.isTypeProperty(p) || universeHelpers.isSchemaProperty(p)) {
 
             var res = desc1(p, parent, x);
             if (p || (!p && !parent && x.lowLevel())) {

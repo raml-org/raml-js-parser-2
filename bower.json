@@ -1,5 +1,5 @@
 {
-	"version": "1.1.44",
+	"version": "1.1.45",
 	"name": "raml-1-parser-browser",
 	"main": "browser_version/index.js",
 	"ignore": [

@@ -270,6 +270,41 @@ export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     if (node.associatedType()){
         return <hl.ITypeDefinition>node.associatedType()
     }
+    let root = node.root()
+    let isApi = root.definition() && universeHelpers.isApiSibling(root.definition())
+    let isInLibExpandModel = node.root().lowLevel()['libProcessed']
+    if((!isApi||isInLibExpandModel) && node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
+        let parent = node.parent()
+        if(parent && parent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+            let parentType = parent.localType()
+            if (parentType != null) {
+                if (universeHelpers.isPropertiesProperty(node.property())) {
+                    let name = node.name()
+                    let prop = parentType.properties().find(p => p.nameId() == name)
+                    if (prop) {
+                        let range= prop.range()
+                        if(range){
+                            return range
+                        }
+                    }
+                }
+                else if (universeHelpers.isItemsProperty(node.property())&&parentType.isArray()) {
+                    let ct = parentType.array().componentType()
+                    if(ct){
+                        return ct
+                    }
+                }
+                else if (universeHelpers.isTypeProperty(node.property())) {
+                    let superTypes = parentType.superTypes();
+                    let ct = superTypes && superTypes.length == 1 && superTypes[0]
+                    if(ct){
+                        return ct
+                    }
+                }
+
+            }
+        }
+    }
     var u=node.lowLevel().unit();
     var upath=u?u.path():"";
     ramlTypes.setPropertyConstructor(x=>{

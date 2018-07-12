@@ -30,6 +30,15 @@
         "name": "library.extraResources"
       }
     },
+    "uses": [
+      {
+        "key": "library",
+        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml",
+        "sourceMap": {
+          "path": "overlay.raml"
+        }
+      }
+    ],
     "types": [
       {
         "library.apiResource": {

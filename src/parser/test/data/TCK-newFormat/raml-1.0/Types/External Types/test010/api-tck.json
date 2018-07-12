@@ -50,11 +50,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "api.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {
@@ -64,11 +64,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "api.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "protocols": [
@@ -110,6 +110,13 @@
         }
       }
     ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
     "sourceMap": {
       "path": "api.raml"
     }

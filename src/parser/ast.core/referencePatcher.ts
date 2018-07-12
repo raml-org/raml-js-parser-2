@@ -12,1031 +12,1031 @@ import universeHelpers = require("../tools/universeHelpers");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
-import expander=require("./expander");
+//import expander=require("./expander");
 
 export enum PatchMode{
     DEFAULT, PATH
 }
-
-export class ReferencePatcher{
-    
-    constructor(protected mode:PatchMode = PatchMode.DEFAULT){}
-
-    private _outerDependencies:{[key:string]:DependencyMap} = {};
-
-    private _libModels:{[key:string]:LibModel} = {};
-
-    process(
-        hlNode:hl.IHighLevelNode,
-        rootNode:hl.IHighLevelNode=hlNode,
-        removeUses:boolean=false,
-        patchNodeName:boolean=false){
-        if(hlNode.lowLevel()["libProcessed"]){
-            return;
-        }
-        var resolver = (<jsyaml.Project>hlNode.lowLevel().unit().project()).namespaceResolver();
-        this.patchReferences(hlNode,rootNode,resolver);
-        if(patchNodeName){
-            this.patchNodeName(hlNode,rootNode.lowLevel().unit(),resolver);
-        }
-        if(removeUses){
-            this.removeUses(hlNode);
-        }
-        else {
-            this.patchUses(hlNode, resolver);
-        }
-        //hlNode.elements().forEach(ch=>this.removeUses(ch));
-        this.resetTypes(hlNode);
-        hlNode.lowLevel()["libProcessed"] = true;
-    }
-
-    patchReferences(
-        node:hl.IHighLevelNode,
-        rootNode:hl.IHighLevelNode = node,
-        resolver:namespaceResolver.NamespaceResolver=new namespaceResolver.NamespaceResolver(),
-        units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
-
-        if( (<hlimpl.BasicASTNode><any>node).isReused()){
-            return;
-        }
-
-        var isNode:proxy.LowLevelCompositeNode;
-        if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
-            var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
-            if(!(proxy.LowLevelCompositeNode.isInstance(cNode))){
-                return;
-            }
-            var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
-            var traitNodes = node.attributes(isPropertyName);
-            if(traitNodes.length!=0) {
-                let llIsNodes = node.lowLevel().children().filter(
-                    x=>x.key()==universeDef.Universe10.MethodBase.properties.is.name);
-
-                if(llIsNodes.length==1&&llIsNodes[0].valueKind()==yaml.Kind.SEQ) {
-                    isNode = patchMethodIs(node, traitNodes.map(x => x.lowLevel()).map(x => {
-                        if (!proxy.LowLevelProxyNode.isInstance(x)) {
-                            return {
-                                node: x,
-                                transformer: null
-                            }
-                        }
-                        return {
-                            node: x,
-                            transformer: (<proxy.LowLevelProxyNode>x).transformer()
-                        };
-                    }), units[0].absolutePath());
-                }
-            }
-        }
-
-        var attrs = node.attrs();
-        for(var attr of attrs){
-            var appended = this.appendUnitIfNeeded(attr,units);
-            this.patchReferenceAttr(attr,rootNode,resolver,units);
-            this.popUnitIfNeeded(units,appended);
-        }
-
-        if(universeHelpers.isTypeDeclarationDescendant(node.definition())){
-            var appended = this.appendUnitIfNeeded(node,units);
-            this.patchType(node,rootNode,resolver,units);
-            if(appended){
-                this.removeUses(node);
-            }
-            this.popUnitIfNeeded(units,appended);
-        }
-        
-        var childNodes = node.elements();
-        for( var ch of childNodes) {
-            var appended = this.appendUnitIfNeeded(ch,units);
-            this.patchReferences(ch,rootNode,resolver,units);
-            this.popUnitIfNeeded(units,appended);
-            ch.lowLevel()["libProcessed"] = true;
-        }
-        if(isNode){
-            isNode.filterChildren();
-            var directChildren = node.directChildren();
-            if(directChildren){
-                (<hlimpl.ASTNodeImpl>node)._children = this.filterTraitReferences(directChildren);
-            }
-            var mergedChildren = node.children();
-            if(mergedChildren) {
-                (<hlimpl.ASTNodeImpl>node)._mergedChildren = this.filterTraitReferences(mergedChildren);
-            }
-        }
-    }
-
-    private filterTraitReferences(children:hl.IParseResult[]):hl.IParseResult[]{
-        var newChildren:hl.IParseResult[] = [];
-        var map = {};
-        for(var ch of children){
-            var p = ch.property();
-            if(!p||!universeHelpers.isIsProperty(p)){
-                newChildren.push(ch);
-                continue;
-            }
-            var key = JSON.stringify(json.serialize(ch.lowLevel()));
-            if(map[key]){
-                continue;
-            }
-            map[key] = true;
-            newChildren.push(ch);
-        }
-        return newChildren;
-    }
-
-    patchReferenceAttr(
-        attr:hl.IAttribute,
-        rootNode:hl.IHighLevelNode,
-        resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[],force=false){
-
-        let property = attr.property();
-        let range = property.range();
-        if(!force&&!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
-            return;
-        }
-        let value = attr.value();
-        if(value==null){
-            return;
-        }
-
-        let llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
-        if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
-            return;
-        }
-        let transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
-
-        let isAnnotation = universeHelpers.isAnnotationsProperty(property);
-        if(!isAnnotation && property && def.UserDefinedProp.isInstance(property)){
-            let defNode = (<def.UserDefinedProp>property).node();
-            let srcProp = defNode && defNode.property();
-            isAnnotation = srcProp && universeHelpers.isAnnotationsProperty(defNode.property());
-            if(srcProp && isAnnotation){
-                range = srcProp.range();
-            }
-        }
-        if(typeof value == "string"){
-            let stringToPatch = value;
-            if(transformer!=null){
-                let actualNode = toOriginal(llNode);
-                stringToPatch = actualNode.value();
-            }
-            let embraceAnotation = isAnnotation && stringToPatch.charAt(0)=="(";
-            if(embraceAnotation){
-                stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
-            }
-            var newValue = this.resolveReferenceValue(
-                stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
-            if(newValue!=null){
-                let newValue1 = embraceAnotation ? `(${newValue.value()})` : newValue.value();
-                (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
-                (<hlimpl.ASTPropImpl>attr).overrideValue(newValue1);
-                this.registerPatchedReference(newValue);
-            }
-        }
-        else if (hlimpl.StructuredValue.isInstance(value)){
-            let sValue = <hlimpl.StructuredValue>value;
-            let hlNode = sValue.toHighLevel();
-            if(hlNode) {
-                for (var attr of hlNode.attrs()) {
-                    if (universeHelpers.isSchemaStringType(attr.definition())) {
-                        this.patchReferenceAttr(attr, rootNode, resolver, units, true);
-                    }
-                }
-            }
-            let key = sValue.lowLevel().key();
-            let stringToPatch = key;
-            if(transformer!=null){
-                let actualNode = toOriginal(sValue.lowLevel());
-                stringToPatch = actualNode.key();
-            }
-            if(key!=null){
-                if(isAnnotation){
-                    stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
-                }
-                let newValue = this.resolveReferenceValue(
-                    stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
-                if(newValue!=null) {
-                    let newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
-                    (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
-                    this.registerPatchedReference(newValue);
-                    if(newValue.isChained()){
-                        let metaVal = isAnnotation
-                            ? {value:newValue.value(),kind:'annotationRef'}
-                            : {value:newValue.value(),kind:'typeRef'};
-                        (<proxy.LowLevelProxyNode>sValue.lowLevel()).addMeta("chaining",metaVal);
-                    }
-                }
-            }
-        }
-
-    }
-
-    patchType(
-        node:hl.IHighLevelNode,
-        rootNode:hl.IHighLevelNode,
-        resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[]){
-
-        var nodeType = node.definition();
-        var localType = node.localType();
-        if(localType.isAnnotationType()){
-            var superTypes = localType.superTypes();
-            if(superTypes.length>0) {
-                localType = superTypes[0];
-            }
-        }
-
-        var isExternal = isExternalType(localType);
-        if(!isExternal && localType.isArray()){
-            isExternal = isExternalType((<def.rt.nominalInterfaces.IArrayType>localType).componentType());            
-        }
-        
-        if(!isExternal) {
-
-            var rootUnit = rootNode.lowLevel().unit();
-            var rootPath = rootUnit.absolutePath();
-            
-
-            //if(rootPath != localPath) {
-                var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
-                if(typeAttributes.length==0){
-                    typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.schema.name);
-                }
-            var itemsAttrs = node.attributes(universeDef.Universe10.ArrayTypeDeclaration.properties.items.name);
-            typeAttributes = typeAttributes.concat(itemsAttrs);
-            
-                for( var typeAttr of typeAttributes) {
-                    var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
-                    if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
-                        continue;
-                    }
-                    var localUnit = typeAttr.lowLevel().unit();
-                    var localPath = localUnit.absolutePath();
-
-                    var value = typeAttr.value();
-                    if(value == null){
-                        continue;
-                    }
-                    if(typeof value == "string") {
-
-                        var gotExpression = checkExpression(value);                        
-                        var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
-                        var stringToPatch = value;
-                        var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
-                        var additionalUnits = transformer ? transformer.unitsChain : null;
-                        if(transformer!=null||value.indexOf("<<")>=0){                            
-                            var actualNode = toOriginal(llNode);
-                            var actualValue = actualNode.value();
-                            escapeData = escapeTemplateParameters(actualValue);
-                            if (escapeData.status == ParametersEscapingStatus.OK) {
-                                if (gotExpression) {
-                                    stringToPatch = escapeData.resultingString;
-                                }
-                                else {
-                                    stringToPatch = actualValue;
-                                }
-                            }
-                            else if (escapeData.status == ParametersEscapingStatus.ERROR){
-                                return;
-                            }
-                            else {
-                                transformer = null;
-                            }
-                        }
-                        var appendedAdditional:boolean[];
-                        if(additionalUnits){
-                            appendedAdditional = [];
-                            for(var u of additionalUnits){
-                                appendedAdditional.push(this.appendUnitIfNeeded(u,units));
-                            }
-                        }
-                        var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
-                        
-                        let newValue:string;
-                        let chainingData:any=[];
-                        var parsedExpression;
-                        
-                        try  {
-                            parsedExpression = gotExpression && typeExpressions.parse(stringToPatch);
-                        } catch(exception) {
-                            parsedExpression = null;
-                        }
-                        
-                        if(gotExpression && parsedExpression !== null) {
-                            var expressionPatchFailed = false;
-                            var expr = typeExpressions.parse(stringToPatch);
-                            var gotPatch = false;
-                            typeExpressions.visit(expr, x=> {
-                                if (x.type == "name") {
-                                    var lit = <typeExpressions.Literal>x;
-                                    var typeName = lit.value;
-                                    var unescapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
-                                    var unescaped:string;
-                                    if(escapeData.status == ParametersEscapingStatus.OK){
-                                        unescaped = escapeData.substitutions[typeName];
-                                        if(unescaped==null){
-                                            unescapeData = unescapeTemplateParameters(
-                                                typeName,escapeData.substitutions);
-                                            if(unescapeData.status==ParametersEscapingStatus.OK){
-                                                typeName = unescapeData.resultingString;
-                                            }
-                                            else if(unescapeData.status==ParametersEscapingStatus.ERROR){
-                                                expressionPatchFailed = true;
-                                                return;
-                                            }
-                                        }
-                                        else{
-                                            typeName = unescaped;
-                                        }
-                                    }
-                                    if(transformer==null && (unescaped!=null||unescapeData.status==ParametersEscapingStatus.OK)){
-                                        lit.value = typeName;
-                                        return;
-                                    }
-                                    var patchTransformedValue = true;
-                                    if(typeName.indexOf("<<")>=0&&isCompoundValue(typeName)){
-                                        patchTransformedValue = false;
-                                    }
-                                    var patched = this.resolveReferenceValue(
-                                        typeName, rootUnit, units, resolver, transformer, nodeType, patchTransformedValue);
-                                    if (patched != null) {
-                                        lit.value = patched.value();
-                                        gotPatch = true;
-                                        this.registerPatchedReference(patched);
-                                        if(patched.isChained()){
-                                            chainingData.push({
-                                                kind: 'type',
-                                                value: lit.value
-                                            });
-                                        }
-                                    }
-                                }
-                            });
-                            if(gotPatch&&!expressionPatchFailed) {
-                                newValue = typeExpressions.serializeToString(expr);
-                            }
-                            else{
-                                newValue = value;                                
-                            }
-                        }
-                        else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            if(stringToPatch.indexOf("<<")>=0&&isCompoundValue(stringToPatch)){
-                                stringToPatch = value;
-                                transformer = null;
-                            }
-                            var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, nodeType);
-                            if(patched!=null) {
-                                this.registerPatchedReference(patched);
-                                newValue = patched.value();
-                                if(patched.isChained()) {
-                                    chainingData.push({
-                                        kind: 'type',
-                                        value: newValue
-                                    });
-                                }
-                            }
-                        }
-                        if (newValue != null) {
-                            (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).setValueOverride(newValue);
-                            (<hlimpl.ASTPropImpl>typeAttr).overrideValue(null);
-                            if(chainingData.length>0){
-                                (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).addMeta("chaining",chainingData);
-                            }
-                        }
-                        this.popUnitIfNeeded(units,appendedAttrUnit);
-                        if(appendedAdditional){
-                            for(var ap of appendedAdditional.reverse()){
-                                this.popUnitIfNeeded(units,ap);
-                            }
-                        }
-                    }
-                    else{
-                        var llTypeNode = typeAttr.lowLevel();
-                        if(llTypeNode.key()!=typeAttr.property().nameId()){
-                            llTypeNode = _.find(node.lowLevel().children(),x=>x.key()==typeAttr.property().nameId());
-                        }
-                        if(llTypeNode){
-                            var def = node.definition().universe().type(universeDef.Universe10.TypeDeclaration.name);
-                            var newNode = new hlimpl.ASTNodeImpl(llTypeNode,null,def,null);
-                            var appended = this.appendUnitIfNeeded(newNode,units);
-                            this.patchReferences(newNode,rootNode,resolver,units);
-                            this.popUnitIfNeeded(units,appended);
-                        }
-                    }
-                }
-            // }
-        }
-    }
-
-    private resolveReferenceValue(
-        stringToPatch:string,
-        rootUnit:ll.ICompilationUnit,
-        units:ll.ICompilationUnit[],
-        resolver:namespaceResolver.NamespaceResolver,
-        transformer:expander.DefaultTransformer,
-        range:def.ITypeDefinition,
-        patchTransformedValue = true):PatchedReference
-    {
-        var isAnnotation = universeHelpers.isAnnotationRefTypeOrDescendant(range);
-        var newValue:PatchedReference;
-        if (transformer) {
-            if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
-                var doContinue = true;
-                var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
-                var newValue1 = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
-                    var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, range);
-                    if (newVal == null) {
-                        newVal = new PatchedReference(null,val,this.collectionName(range),rootUnit,false,PatchMode.DEFAULT);
-                    }
-                    if(isAnnotation){
-                        if (types.getAnnotationType(newVal.value()) != null) {
-                            doContinue = false;
-                        }
-                        else {
-                            doContinue = false;
-                        }
-                    }
-                    else if (types.getType(newVal.value()) != null) {
-                        doContinue = false;
-                    }
-                    else {
-                        doContinue = false;
-                    }
-                    return newVal;
-                });
-                newValue = newValue1.value;
-            }
-        }
-        if (newValue === undefined || !instanceOfPatchedReference(newValue)) {
-            newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, range);
-        }
-        return newValue;
-    }
-
-    patchNodeName(
-        hlNode:hl.IHighLevelNode,
-        rootUnit:ll.ICompilationUnit,
-        resolver:namespaceResolver.NamespaceResolver){
-        
-        var llNode = <proxy.LowLevelProxyNode>hlNode.lowLevel();
-        var key = llNode.key();
-        var range  = hlNode.definition();        
-        if(universeHelpers.isTypeDeclarationSibling(range)) {
-            var localType = hlNode.localType();
-            if(localType.isAnnotationType()){
-                range = localType;
-            }
-        }
-        
-        var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],range);
-        if(patched != null){
-            llNode.setKeyOverride(patched.value());
-            (<hlimpl.ASTNodeImpl>hlNode).resetIDs();
-        }
-    }
-
-    resolveReferenceValueBasic(
-        _value:string,
-        rootUnit:ll.ICompilationUnit,
-        resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[],
-        range:def.ITypeDefinition):PatchedReference{
-        
-        if(_value==null || typeof(_value)!="string"){
-            return null;
-        }
-
-        var isType = universeHelpers.isTypeDeclarationDescendant(range);
-        var gotQuestion = isType && util.stringEndsWith(_value,"?");
-        var value = gotQuestion ? _value.substring(0,_value.length-1) : _value;
-
-        if(value.indexOf("<<")>=0){
-            return;
-        }
-
-        let ind = value.lastIndexOf(".");
-
-        let referencedUnit:ll.ICompilationUnit;
-        let plainName:string;
-        let oldNS:string;
-        if (ind >= 0) {
-            oldNS = value.substring(0, ind);
-            plainName = value.substring(ind + 1);
-
-            for(var i = units.length ; i > 0 ; i--) {
-                let localUnit = units[i-1];
-                let nsMap = resolver.nsMap(localUnit);
-
-                let info = nsMap && nsMap[oldNS];
-                if(info==null){
-                    continue;
-                }
-                referencedUnit = info.unit;
-                if(referencedUnit!=null){
-                    break;
-                }
-            }
-        }
-        else {
-            if(isType&&def.rt.builtInTypes().get(value)!=null){
-                return null;
-            }
-            plainName = value;
-            referencedUnit = units[units.length-1];
-        }
-        var collectionName = this.collectionName(range);
-        if(referencedUnit){
-            if(referencedUnit.absolutePath()==rootUnit.absolutePath()) {
-                if (oldNS != null) {
-                    return new PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
-                }
-                return null;
-            }
-        }
-        else{
-            if(oldNS && oldNS.length>0) {
-                let chainedUnit:ll.ICompilationUnit;
-                for(var i = units.length ; i > 0 ; i--) {
-                    let localUnit = units[i-1];
-                    let expandedNSMap = resolver.expandedNSMap(localUnit);
-
-                    let info = expandedNSMap && expandedNSMap[oldNS];
-                    if(info==null){
-                        continue;
-                    }
-                    chainedUnit = info.unit;
-                    if(chainedUnit!=null){
-                        break;
-                    }
-                }
-                if(chainedUnit!=null){
-                    let usesInfo = resolver.resolveNamespace(rootUnit, chainedUnit);
-                    if (usesInfo != null) {
-                        let newNS = usesInfo.namespace();
-                        if (gotQuestion) {
-                            plainName += "?";
-                        }
-                        return new PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
-                    }
-                }
-            }
-            return null;
-        }
-        var usesInfo = resolver.resolveNamespace(rootUnit, referencedUnit);
-        if(usesInfo==null){
-            return null;
-        }
-        var newNS = usesInfo.namespace();
-        if (newNS == null) {
-            return null;
-        }
-        if(this.mode == PatchMode.PATH){
-            var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
-            if(!ll.isWebPath(aPath)){
-                aPath = "file://" + aPath;
-            }
-            newNS = `${aPath}#/${collectionName}`;
-        }
-        if(gotQuestion){
-            plainName += "?";
-        }
-        return new PatchedReference(newNS,plainName,collectionName,referencedUnit,false,this.mode);
-    }
-
-    private patchUses(hlNode:hl.IHighLevelNode,resolver:namespaceResolver.NamespaceResolver){
-        var node = hlNode.lowLevel();
-        hlNode.children();
-        if(!(proxy.LowLevelCompositeNode.isInstance(node))){
-            return;
-        }
-        var unit = node.unit();
-        var extendedUnitMap = resolver.expandedPathMap(unit);
-        if(extendedUnitMap==null){
-            return;
-        }
-        var unitMap = resolver.pathMap(unit);
-        if(!unitMap){
-            unitMap = {};
-        }
-
-        var cNode = <proxy.LowLevelCompositeNode>node;
-        var originalChildren = node.children();
-        var usesPropName = universeDef.Universe10.FragmentDeclaration.properties.uses.name;
-        var usesNodes = originalChildren.filter(x=>x.key()== usesPropName);
-
-        var oNode = toOriginal(node);
-        var yamlNode = oNode;
-        while(proxy.LowLevelProxyNode.isInstance(yamlNode)){
-            yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
-        }
-
-        var usesInfos = Object.keys(unitMap).map(x=>extendedUnitMap[x]);
-        var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
-            .filter(x=>!unitMap[x.absolutePath()]/*&&this.usedNamespaces[x.namespace()]*/);
-
-        var unitPath = unit.absolutePath();
-        var existingLibs = {};
-        var usesNode:proxy.LowLevelCompositeNode;
-        if(usesNodes.length>0){
-            usesNode = <proxy.LowLevelCompositeNode>usesNodes[0];
-            usesNode.children().forEach(x=>existingLibs[x.key()]=true);
-        }
-        else{
-            var newUses = jsyaml.createMapNode("uses");
-            newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
-            newUses.setUnit(yamlNode.unit());
-            usesNode = cNode.replaceChild(null,newUses);
-        }
-        var usesProp = hlNode.definition().property(usesPropName);
-        var usesType = usesProp.range();
-        var directChildren = (<hlimpl.ASTNodeImpl>hlNode)._children.filter(x=>{
-            if(x.lowLevel().unit().absolutePath()==unitPath){
-                return true;
-            }
-            var p = x.property();
-            return !p||!universeHelpers.isUsesProperty(p)
-        });
-        var mergedChildren = (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.filter(x=>{
-            if(x.lowLevel().unit().absolutePath()==unitPath){
-                return true;
-            }
-            var p = x.property();
-            return !p||!universeHelpers.isUsesProperty(p)
-        });;
-        for (var ui of usesInfos.concat(extendedUsesInfos)) {
-            var up = ui.absolutePath();
-            if(existingLibs[ui.namespace()]){
-                continue;
-            }
-            var ip = ui.includePath;
-            var mapping = jsyaml.createMapping(ui.namespace(), ip);
-            mapping.setUnit(yamlNode.unit());
-            var hlUses = new hlimpl.ASTNodeImpl(mapping,hlNode,usesType,usesProp);
-            directChildren.push(hlUses);
-            mergedChildren.push(hlUses);
-            usesNode.replaceChild(null,mapping);
-        }
-        (<hlimpl.ASTNodeImpl>hlNode)._children  = directChildren;
-        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = mergedChildren;
-    }
-
-    removeUses(hlNode:hl.IHighLevelNode){
-        var node = hlNode.lowLevel();
-        if(!(proxy.LowLevelCompositeNode.isInstance(node))){
-            return;
-        }
-        var cNode = <proxy.LowLevelCompositeNode>node;
-        var originalChildren = node.children();
-        var usesNodes = originalChildren.filter(x=>
-            x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
-        if(usesNodes.length>0){
-            cNode.removeChild(usesNodes[0]);
-        }
-        (<hlimpl.ASTNodeImpl>hlNode)._children = hlNode.directChildren().filter(x=>{
-            var p = x.property();
-            return p == null || !universeHelpers.isUsesProperty(p);
-        });
-        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = hlNode.children().filter(x=>{
-            var p = x.property();
-            return p == null || !universeHelpers.isUsesProperty(p);
-        });
-    }
-
-    resetTypes(hlNode:hl.IHighLevelNode) {
-        for(var ch of hlNode.elements()){
-            this.resetTypes(ch);
-        }
-        for(var attr of hlNode.attrs()){
-            var aVal = attr.value();
-            if(hlimpl.StructuredValue.isInstance(aVal)){
-                (<hlimpl.StructuredValue>aVal).resetHighLevelNode();
-            }
-        }
-        delete hlNode.lowLevel().actual().types;
-        delete hlNode["_ptype"];
-        delete hlNode["_types"];
-        (<hlimpl.ASTNodeImpl>hlNode).setAssociatedType(null);
-    };
-
-    appendUnitIfNeeded(node:hl.IParseResult|ll.ICompilationUnit,units:ll.ICompilationUnit[]):boolean{
-        if(jsyaml.CompilationUnit.isInstance(node)){
-            var unit = <ll.ICompilationUnit>node;
-            if (unit.absolutePath() != units[units.length - 1].absolutePath()) {
-                units.push(unit);
-                return true;
-            }
-            return false;
-        }
-        var originalNode = toOriginal((<hl.IParseResult>node).lowLevel());
-        var originalUnit = originalNode.unit();
-        if(originalNode.valueKind()==yaml.Kind.INCLUDE_REF){
-            var ref = originalNode.includePath();
-            var includedUnit = originalUnit.resolve(ref);
-            if(includedUnit) {
-                units.push(includedUnit);
-                return true;
-            }
-            return false;
-        }
-        else {
-            if (originalUnit.absolutePath() != units[units.length - 1].absolutePath()) {
-                units.push(originalUnit);
-                return true;
-            }
-            return false;
-        }
-    }
-    popUnitIfNeeded(units:ll.ICompilationUnit[],appended:boolean) {
-        if (appended) {
-            units.pop();
-        }
-    }
-
-    registerPatchedReference(ref:PatchedReference){
-
-        var collectionName = ref.collectionName();
-        if(!collectionName){
-            return;
-        }
-
-        var aPath = ref.referencedUnit().absolutePath();
-        var libMap = this._outerDependencies[aPath];
-        if(libMap==null){
-            libMap = {};
-            this._outerDependencies[aPath] = libMap;
-        }
-        var collectionMap = libMap[collectionName];
-        if(collectionMap == null){
-            collectionMap = {};
-            libMap[collectionName] = collectionMap;
-        }
-        collectionMap[ref.name()] = ref;
-    }
-
-    private collectionName(range:def.ITypeDefinition):string {
-        var collectionName:string;
-        if (universeHelpers.isResourceTypeRefType(range)||universeHelpers.isResourceTypeType(range)) {
-            collectionName = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
-        }
-        else if (universeHelpers.isTraitRefType(range)||universeHelpers.isTraitType(range)) {
-            collectionName = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
-        }
-        else if (universeHelpers.isSecuritySchemeRefType(range)||universeHelpers.isSecuritySchemaTypeDescendant(range)) {
-            collectionName = def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name;
-        }
-        else if (universeHelpers.isAnnotationRefTypeOrDescendant(range)||range.isAnnotationType()) {
-            collectionName = def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name;
-        }
-        else if (universeHelpers.isTypeDeclarationDescendant(range)||universeHelpers.isSchemaStringType(range)) {
-            collectionName = def.universesInfo.Universe10.LibraryBase.properties.types.name;
-        }
-        return collectionName;
-    }
-
-    expandLibraries(api:hl.IHighLevelNode,excessive=false){
-
-        if(api.lowLevel().actual().libExpanded){
-            return;
-        }
-        var llNode = api.lowLevel();
-        var unit = llNode.unit();
-        var rootPath = unit.absolutePath();
-        var project = unit.project();
-        var libModels:LibModel[] = [];
-        var resolver = (<jsyaml.Project>llNode.unit().project()).namespaceResolver();
-        var expandedPathMap = resolver.expandedPathMap(unit);
-        if(expandedPathMap!=null) {
-            var libPaths = Object.keys(expandedPathMap).sort();
-            for (var ns of libPaths) {
-                var libModel = this._libModels[ns];
-                if (libModel == null) {
-                    var libUnit = project.unit(ns, true);
-                    var usesInfo = resolver.resolveNamespace(unit, libUnit);
-                    if (libUnit && usesInfo != null && usesInfo.namespace() != null) {
-                        libModel = this.extractLibModel(libUnit,unit);
-                    }
-                }
-                if (libModel) {
-                    libModels.push(libModel);
-                }
-            }
-            var gotContribution = false;
-            for (var libModel of libModels) {
-                for (var cName of Object.keys(libModel)) {
-                    var collection:ElementsCollection = <ElementsCollection>libModel[cName];
-                    if (ElementsCollection.isInstance(collection)) {
-                        gotContribution = this.contributeCollection(api,collection) || gotContribution;
-                    }
-                }
-            }
-            if (gotContribution) {
-                var gotPatch = false;
-                do {
-                    gotPatch = this.patchDependencies(api,excessive);
-                }
-                while (gotPatch);
-                if(!excessive) {
-                    this.removeUnusedDependencies(api);
-                }
-            }
-        }
-        this.removeUses(api);//this.patchUses(api,resolver);
-        api.lowLevel().actual().libExpanded = true;
-        this.resetTypes(api);
-    }
-
-    private patchDependencies(api:hl.IHighLevelNode,excessive:boolean):boolean {
-        var result = false;
-        let rootUnit = api.lowLevel().unit();
-        let apiPath = rootUnit.absolutePath();
-        for (var ch of api.children()) {
-            if (!ch.isElement()||ch.lowLevel()["libProcessed"]) {
-                continue;
-            }
-            var chNode = ch.asElement();
-            this.removeUses(chNode);
-            var pName = chNode.property().nameId();
-            if(pName != universeDef.Universe10.LibraryBase.properties.types.name
-                && pName != universeDef.Universe10.LibraryBase.properties.annotationTypes.name
-                && pName != universeDef.Universe10.LibraryBase.properties.resourceTypes.name
-                && pName != universeDef.Universe10.LibraryBase.properties.traits.name
-                && pName != universeDef.Universe10.LibraryBase.properties.securitySchemes.name){
-                continue;
-            }
-            if(!excessive) {
-                var chPath = ch.lowLevel().unit().absolutePath();
-                if (chPath == apiPath && ch.lowLevel().includePath() == null) {
-                    continue;
-                }
-                var dependencies = this._outerDependencies[chPath];
-                if (dependencies == null) {
-                    continue;
-                }
-                var depCollection = dependencies[pName];
-                if (depCollection == null) {
-                    continue;
-                }
-                var chName = chNode.name();
-                if (depCollection[chName] == null) {
-                    continue;
-                }
-                if(pName==def.universesInfo.Universe10.LibraryBase.properties.types.name){
-                    let discriminator = chNode.attr(
-                        def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminator.name);
-                    if(discriminator){
-                        let localType = chNode.localType();
-                        if(localType){
-                            let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
-                            for(let st of localType.allSubTypes()){
-                                let typeName = st.nameId();
-                                if(!typeName){
-                                    continue;
-                                }
-                                let unit = typeUnit(st);
-                                if(!unit){
-                                    continue;
-                                }
-                                let usesInfo = resolver.resolveNamespace(rootUnit,unit);
-                                if(!usesInfo){
-                                    continue;
-                                }
-                                let ns = usesInfo.namespace();
-                                let ref = new PatchedReference(ns,typeName,
-                                    def.universesInfo.Universe10.LibraryBase.properties.types.name,unit,false,this.mode);
-                                this.registerPatchedReference(ref);
-                            }
-                        }
-                    }
-                }
-            }
-            this.process(chNode, api, true, true);
-            result = true;
-        }
-        return result;
-    }
-
-    private removeUnusedDependencies(api:hl.IHighLevelNode) {
-        var llNode = <proxy.LowLevelCompositeNode>api.lowLevel();
-        var apiPath = llNode.unit().absolutePath();
-
-        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
-        //var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
-        var newDirectChildren:hl.IParseResult[] = [];
-        //var newMergedChildren:hl.IParseResult[] = [];
-        for(var ch of directChildren){
-            var chLl = ch.lowLevel();
-            if (ch.isElement()&&chLl["libProcessed"]) {
-                newDirectChildren.push(ch);
-                continue;
-            }
-            var chPath = chLl.unit().absolutePath();
-            if (chPath == apiPath) {
-                newDirectChildren.push(ch);
-                continue;
-            }
-            (<proxy.LowLevelCompositeNode>chLl.parent()).removeChild(chLl);
-        }
-        (<hlimpl.ASTNodeImpl>api)._children = newDirectChildren;
-        (<hlimpl.ASTNodeImpl>api)._mergedChildren = null;
-    }
-
-    private contributeCollection(api:hl.IHighLevelNode, collection:ElementsCollection):boolean {
-
-        var llApi = <proxy.LowLevelCompositeNode>api.lowLevel();
-        if(collection.array.length==0){
-            return false;
-        }
-        var name = collection.name;
-        var prop = api.definition().property(name);
-        var propRange = prop.range();
-        var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
-            llApi.children(),
-            x=>x.key()==name);
-        if(llNode==null){
-            var n = jsyaml.createMapNode(name);
-            llNode = llApi.replaceChild(null,n);
-        }
-        var result = false;
-        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
-        var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
-        for(var e of collection.array){
-            if(llNode.children().some(x=>{
-                    var oNode = toOriginal(x);
-                    if(oNode.unit().absolutePath()!=e.lowLevel().unit().absolutePath()){
-                        return false;
-                    }
-                    return e.lowLevel().key()==oNode.key() && e.lowLevel().unit().absolutePath() == oNode.unit().absolutePath();
-                })){
-                continue;
-            }
-            let newLlNode = llNode.replaceChild(null,e.lowLevel());
-            if(collection.name==def.universesInfo.Universe10.LibraryBase.properties.types.name){
-                const dValPropName = def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminatorValue.name;
-                let discriminatorValue = newLlNode.children().filter(x=> x.key() == dValPropName);
-                if(!discriminatorValue.length){
-                    let dValNode = jsyaml.createMapNode(dValPropName,newLlNode.unit());
-                    let strictProp = jsyaml.createMapping("strict",false);
-                    let valueProp = jsyaml.createMapping("value",newLlNode.key());
-                    dValNode.addChild(valueProp);
-                    dValNode.addChild(strictProp);
-                    newLlNode.replaceChild(null,dValNode);
-                }
-            }
-            var definition = (e.isElement()&&e.asElement().definition())||propRange;
-            var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,definition,prop);
-            directChildren.push(newHLNode);
-            if(mergedChildren){
-                mergedChildren.push(newHLNode);
-            }
-            result = true;
-        }
-        return result;
-    }
-
-
-
-    private extractLibModel(unit:ll.ICompilationUnit,rootUnit:ll.ICompilationUnit):LibModel{
-        var result:LibModel = this._libModels[unit.absolutePath()];
-        if(result!=null){
-            return result;
-        }
-        result = new LibModel(unit);
-        this._libModels[unit.absolutePath()] = result;
-        var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
-        if(hlNode && hlNode.isElement()){
-            let eNode = hlNode.asElement();
-            for(var cName of ["resourceTypes", "traits", "types", "annotationTypes", "securitySchemes"]){
-                var collection = new ElementsCollection(cName);
-                for(var el of eNode.elementsOfKind(cName)){
-                    collection.array.push(el);
-                }
-                result[cName] = collection;
-            }
-            let annotations = eNode.attributes(
-                def.universesInfo.Universe10.Annotable.properties.annotations.name);
-
-            if(annotations.length>0) {
-                let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
-                for (let aNode of annotations) {
-                    let aName = aNode.lowLevel().key();
-                    let l = aName.length;
-                    if(aName.charAt(0)=="(" && aName.charAt(l-1)==")"){
-                        aName = aName.substring(1,l-1);
-                    }
-                    let range = aNode.property().range();
-                    let patchedReference = this.resolveReferenceValueBasic(
-                        aName, rootUnit, resolver, [rootUnit, unit],range);
-                    if(patchedReference) {
-                        this.registerPatchedReference(patchedReference);
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
-}
+//
+// export class ReferencePatcher{
+//
+//     constructor(protected mode:PatchMode = PatchMode.DEFAULT){}
+//
+//     private _outerDependencies:{[key:string]:DependencyMap} = {};
+//
+//     private _libModels:{[key:string]:LibModel} = {};
+//
+//     process(
+//         hlNode:hl.IHighLevelNode,
+//         rootNode:hl.IHighLevelNode=hlNode,
+//         removeUses:boolean=false,
+//         patchNodeName:boolean=false){
+//         if(hlNode.lowLevel()["libProcessed"]){
+//             return;
+//         }
+//         var resolver = (<jsyaml.Project>hlNode.lowLevel().unit().project()).namespaceResolver();
+//         this.patchReferences(hlNode,rootNode,resolver);
+//         if(patchNodeName){
+//             this.patchNodeName(hlNode,rootNode.lowLevel().unit(),resolver);
+//         }
+//         if(removeUses){
+//             this.removeUses(hlNode);
+//         }
+//         else {
+//             this.patchUses(hlNode, resolver);
+//         }
+//         //hlNode.elements().forEach(ch=>this.removeUses(ch));
+//         this.resetTypes(hlNode);
+//         hlNode.lowLevel()["libProcessed"] = true;
+//     }
+//
+//     patchReferences(
+//         node:hl.IHighLevelNode,
+//         rootNode:hl.IHighLevelNode = node,
+//         resolver:namespaceResolver.NamespaceResolver=new namespaceResolver.NamespaceResolver(),
+//         units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
+//
+//         if( (<hlimpl.BasicASTNode><any>node).isReused()){
+//             return;
+//         }
+//
+//         var isNode:proxy.LowLevelCompositeNode;
+//         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
+//             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
+//             if(!(proxy.LowLevelCompositeNode.isInstance(cNode))){
+//                 return;
+//             }
+//             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
+//             var traitNodes = node.attributes(isPropertyName);
+//             if(traitNodes.length!=0) {
+//                 let llIsNodes = node.lowLevel().children().filter(
+//                     x=>x.key()==universeDef.Universe10.MethodBase.properties.is.name);
+//
+//                 if(llIsNodes.length==1&&llIsNodes[0].valueKind()==yaml.Kind.SEQ) {
+//                     isNode = patchMethodIs(node, traitNodes.map(x => x.lowLevel()).map(x => {
+//                         if (!proxy.LowLevelProxyNode.isInstance(x)) {
+//                             return {
+//                                 node: x,
+//                                 transformer: null
+//                             }
+//                         }
+//                         return {
+//                             node: x,
+//                             transformer: (<proxy.LowLevelProxyNode>x).transformer()
+//                         };
+//                     }), units[0].absolutePath());
+//                 }
+//             }
+//         }
+//
+//         var attrs = node.attrs();
+//         for(var attr of attrs){
+//             var appended = this.appendUnitIfNeeded(attr,units);
+//             this.patchReferenceAttr(attr,rootNode,resolver,units);
+//             this.popUnitIfNeeded(units,appended);
+//         }
+//
+//         if(universeHelpers.isTypeDeclarationDescendant(node.definition())){
+//             var appended = this.appendUnitIfNeeded(node,units);
+//             this.patchType(node,rootNode,resolver,units);
+//             if(appended){
+//                 this.removeUses(node);
+//             }
+//             this.popUnitIfNeeded(units,appended);
+//         }
+//
+//         var childNodes = node.elements();
+//         for( var ch of childNodes) {
+//             var appended = this.appendUnitIfNeeded(ch,units);
+//             this.patchReferences(ch,rootNode,resolver,units);
+//             this.popUnitIfNeeded(units,appended);
+//             ch.lowLevel()["libProcessed"] = true;
+//         }
+//         if(isNode){
+//             isNode.filterChildren();
+//             var directChildren = node.directChildren();
+//             if(directChildren){
+//                 (<hlimpl.ASTNodeImpl>node)._children = this.filterTraitReferences(directChildren);
+//             }
+//             var mergedChildren = node.children();
+//             if(mergedChildren) {
+//                 (<hlimpl.ASTNodeImpl>node)._mergedChildren = this.filterTraitReferences(mergedChildren);
+//             }
+//         }
+//     }
+//
+//     private filterTraitReferences(children:hl.IParseResult[]):hl.IParseResult[]{
+//         var newChildren:hl.IParseResult[] = [];
+//         var map = {};
+//         for(var ch of children){
+//             var p = ch.property();
+//             if(!p||!universeHelpers.isIsProperty(p)){
+//                 newChildren.push(ch);
+//                 continue;
+//             }
+//             var key = JSON.stringify(json.serialize(ch.lowLevel()));
+//             if(map[key]){
+//                 continue;
+//             }
+//             map[key] = true;
+//             newChildren.push(ch);
+//         }
+//         return newChildren;
+//     }
+//
+//     patchReferenceAttr(
+//         attr:hl.IAttribute,
+//         rootNode:hl.IHighLevelNode,
+//         resolver:namespaceResolver.NamespaceResolver,
+//         units:ll.ICompilationUnit[],force=false){
+//
+//         let property = attr.property();
+//         let range = property.range();
+//         if(!force&&!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
+//             return;
+//         }
+//         let value = attr.value();
+//         if(value==null){
+//             return;
+//         }
+//
+//         let llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
+//         if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
+//             return;
+//         }
+//         let transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
+//
+//         let isAnnotation = universeHelpers.isAnnotationsProperty(property);
+//         if(!isAnnotation && property && def.UserDefinedProp.isInstance(property)){
+//             let defNode = (<def.UserDefinedProp>property).node();
+//             let srcProp = defNode && defNode.property();
+//             isAnnotation = srcProp && universeHelpers.isAnnotationsProperty(defNode.property());
+//             if(srcProp && isAnnotation){
+//                 range = srcProp.range();
+//             }
+//         }
+//         if(typeof value == "string"){
+//             let stringToPatch = value;
+//             if(transformer!=null){
+//                 let actualNode = toOriginal(llNode);
+//                 stringToPatch = actualNode.value();
+//             }
+//             let embraceAnotation = isAnnotation && stringToPatch.charAt(0)=="(";
+//             if(embraceAnotation){
+//                 stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
+//             }
+//             var newValue = this.resolveReferenceValue(
+//                 stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
+//             if(newValue!=null){
+//                 let newValue1 = embraceAnotation ? `(${newValue.value()})` : newValue.value();
+//                 (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
+//                 (<hlimpl.ASTPropImpl>attr).overrideValue(newValue1);
+//                 this.registerPatchedReference(newValue);
+//             }
+//         }
+//         else if (hlimpl.StructuredValue.isInstance(value)){
+//             let sValue = <hlimpl.StructuredValue>value;
+//             let hlNode = sValue.toHighLevel();
+//             if(hlNode) {
+//                 for (var attr of hlNode.attrs()) {
+//                     if (universeHelpers.isSchemaStringType(attr.definition())) {
+//                         this.patchReferenceAttr(attr, rootNode, resolver, units, true);
+//                     }
+//                 }
+//             }
+//             let key = sValue.lowLevel().key();
+//             let stringToPatch = key;
+//             if(transformer!=null){
+//                 let actualNode = toOriginal(sValue.lowLevel());
+//                 stringToPatch = actualNode.key();
+//             }
+//             if(key!=null){
+//                 if(isAnnotation){
+//                     stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
+//                 }
+//                 let newValue = this.resolveReferenceValue(
+//                     stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
+//                 if(newValue!=null) {
+//                     let newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+//                     (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
+//                     this.registerPatchedReference(newValue);
+//                     if(newValue.isChained()){
+//                         let metaVal = isAnnotation
+//                             ? {value:newValue.value(),kind:'annotationRef'}
+//                             : {value:newValue.value(),kind:'typeRef'};
+//                         (<proxy.LowLevelProxyNode>sValue.lowLevel()).addMeta("chaining",metaVal);
+//                     }
+//                 }
+//             }
+//         }
+//
+//     }
+//
+//     patchType(
+//         node:hl.IHighLevelNode,
+//         rootNode:hl.IHighLevelNode,
+//         resolver:namespaceResolver.NamespaceResolver,
+//         units:ll.ICompilationUnit[]){
+//
+//         var nodeType = node.definition();
+//         var localType = node.localType();
+//         if(localType.isAnnotationType()){
+//             var superTypes = localType.superTypes();
+//             if(superTypes.length>0) {
+//                 localType = superTypes[0];
+//             }
+//         }
+//
+//         var isExternal = isExternalType(localType);
+//         if(!isExternal && localType.isArray()){
+//             isExternal = isExternalType((<def.rt.nominalInterfaces.IArrayType>localType).componentType());
+//         }
+//
+//         if(!isExternal) {
+//
+//             var rootUnit = rootNode.lowLevel().unit();
+//             var rootPath = rootUnit.absolutePath();
+//
+//
+//             //if(rootPath != localPath) {
+//                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
+//                 if(typeAttributes.length==0){
+//                     typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.schema.name);
+//                 }
+//             var itemsAttrs = node.attributes(universeDef.Universe10.ArrayTypeDeclaration.properties.items.name);
+//             typeAttributes = typeAttributes.concat(itemsAttrs);
+//
+//                 for( var typeAttr of typeAttributes) {
+//                     var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
+//                     if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
+//                         continue;
+//                     }
+//                     var localUnit = typeAttr.lowLevel().unit();
+//                     var localPath = localUnit.absolutePath();
+//
+//                     var value = typeAttr.value();
+//                     if(value == null){
+//                         continue;
+//                     }
+//                     if(typeof value == "string") {
+//
+//                         var gotExpression = checkExpression(value);
+//                         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
+//                         var stringToPatch = value;
+//                         var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
+//                         var additionalUnits = transformer ? transformer.unitsChain : null;
+//                         if(transformer!=null||value.indexOf("<<")>=0){
+//                             var actualNode = toOriginal(llNode);
+//                             var actualValue = actualNode.value();
+//                             escapeData = escapeTemplateParameters(actualValue);
+//                             if (escapeData.status == ParametersEscapingStatus.OK) {
+//                                 if (gotExpression) {
+//                                     stringToPatch = escapeData.resultingString;
+//                                 }
+//                                 else {
+//                                     stringToPatch = actualValue;
+//                                 }
+//                             }
+//                             else if (escapeData.status == ParametersEscapingStatus.ERROR){
+//                                 return;
+//                             }
+//                             else {
+//                                 transformer = null;
+//                             }
+//                         }
+//                         var appendedAdditional:boolean[];
+//                         if(additionalUnits){
+//                             appendedAdditional = [];
+//                             for(var u of additionalUnits){
+//                                 appendedAdditional.push(this.appendUnitIfNeeded(u,units));
+//                             }
+//                         }
+//                         var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
+//
+//                         let newValue:string;
+//                         let chainingData:any=[];
+//                         var parsedExpression;
+//
+//                         try  {
+//                             parsedExpression = gotExpression && typeExpressions.parse(stringToPatch);
+//                         } catch(exception) {
+//                             parsedExpression = null;
+//                         }
+//
+//                         if(gotExpression && parsedExpression !== null) {
+//                             var expressionPatchFailed = false;
+//                             var expr = typeExpressions.parse(stringToPatch);
+//                             var gotPatch = false;
+//                             typeExpressions.visit(expr, x=> {
+//                                 if (x.type == "name") {
+//                                     var lit = <typeExpressions.Literal>x;
+//                                     var typeName = lit.value;
+//                                     var unescapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
+//                                     var unescaped:string;
+//                                     if(escapeData.status == ParametersEscapingStatus.OK){
+//                                         unescaped = escapeData.substitutions[typeName];
+//                                         if(unescaped==null){
+//                                             unescapeData = unescapeTemplateParameters(
+//                                                 typeName,escapeData.substitutions);
+//                                             if(unescapeData.status==ParametersEscapingStatus.OK){
+//                                                 typeName = unescapeData.resultingString;
+//                                             }
+//                                             else if(unescapeData.status==ParametersEscapingStatus.ERROR){
+//                                                 expressionPatchFailed = true;
+//                                                 return;
+//                                             }
+//                                         }
+//                                         else{
+//                                             typeName = unescaped;
+//                                         }
+//                                     }
+//                                     if(transformer==null && (unescaped!=null||unescapeData.status==ParametersEscapingStatus.OK)){
+//                                         lit.value = typeName;
+//                                         return;
+//                                     }
+//                                     var patchTransformedValue = true;
+//                                     if(typeName.indexOf("<<")>=0&&isCompoundValue(typeName)){
+//                                         patchTransformedValue = false;
+//                                     }
+//                                     var patched = this.resolveReferenceValue(
+//                                         typeName, rootUnit, units, resolver, transformer, nodeType, patchTransformedValue);
+//                                     if (patched != null) {
+//                                         lit.value = patched.value();
+//                                         gotPatch = true;
+//                                         this.registerPatchedReference(patched);
+//                                         if(patched.isChained()){
+//                                             chainingData.push({
+//                                                 kind: 'type',
+//                                                 value: lit.value
+//                                             });
+//                                         }
+//                                     }
+//                                 }
+//                             });
+//                             if(gotPatch&&!expressionPatchFailed) {
+//                                 newValue = typeExpressions.serializeToString(expr);
+//                             }
+//                             else{
+//                                 newValue = value;
+//                             }
+//                         }
+//                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
+//                             if(stringToPatch.indexOf("<<")>=0&&isCompoundValue(stringToPatch)){
+//                                 stringToPatch = value;
+//                                 transformer = null;
+//                             }
+//                             var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, nodeType);
+//                             if(patched!=null) {
+//                                 this.registerPatchedReference(patched);
+//                                 newValue = patched.value();
+//                                 if(patched.isChained()) {
+//                                     chainingData.push({
+//                                         kind: 'type',
+//                                         value: newValue
+//                                     });
+//                                 }
+//                             }
+//                         }
+//                         if (newValue != null) {
+//                             (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).setValueOverride(newValue);
+//                             (<hlimpl.ASTPropImpl>typeAttr).overrideValue(null);
+//                             if(chainingData.length>0){
+//                                 (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).addMeta("chaining",chainingData);
+//                             }
+//                         }
+//                         this.popUnitIfNeeded(units,appendedAttrUnit);
+//                         if(appendedAdditional){
+//                             for(var ap of appendedAdditional.reverse()){
+//                                 this.popUnitIfNeeded(units,ap);
+//                             }
+//                         }
+//                     }
+//                     else{
+//                         var llTypeNode = typeAttr.lowLevel();
+//                         if(llTypeNode.key()!=typeAttr.property().nameId()){
+//                             llTypeNode = _.find(node.lowLevel().children(),x=>x.key()==typeAttr.property().nameId());
+//                         }
+//                         if(llTypeNode){
+//                             var def = node.definition().universe().type(universeDef.Universe10.TypeDeclaration.name);
+//                             var newNode = new hlimpl.ASTNodeImpl(llTypeNode,null,def,null);
+//                             var appended = this.appendUnitIfNeeded(newNode,units);
+//                             this.patchReferences(newNode,rootNode,resolver,units);
+//                             this.popUnitIfNeeded(units,appended);
+//                         }
+//                     }
+//                 }
+//             // }
+//         }
+//     }
+//
+//     private resolveReferenceValue(
+//         stringToPatch:string,
+//         rootUnit:ll.ICompilationUnit,
+//         units:ll.ICompilationUnit[],
+//         resolver:namespaceResolver.NamespaceResolver,
+//         transformer:expander.DefaultTransformer,
+//         range:def.ITypeDefinition,
+//         patchTransformedValue = true):PatchedReference
+//     {
+//         var isAnnotation = universeHelpers.isAnnotationRefTypeOrDescendant(range);
+//         var newValue:PatchedReference;
+//         if (transformer) {
+//             if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
+//                 var doContinue = true;
+//                 var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
+//                 var newValue1 = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
+//                     var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, range);
+//                     if (newVal == null) {
+//                         newVal = new PatchedReference(null,val,this.collectionName(range),rootUnit,false,PatchMode.DEFAULT);
+//                     }
+//                     if(isAnnotation){
+//                         if (types.getAnnotationType(newVal.value()) != null) {
+//                             doContinue = false;
+//                         }
+//                         else {
+//                             doContinue = false;
+//                         }
+//                     }
+//                     else if (types.getType(newVal.value()) != null) {
+//                         doContinue = false;
+//                     }
+//                     else {
+//                         doContinue = false;
+//                     }
+//                     return newVal;
+//                 });
+//                 newValue = newValue1.value;
+//             }
+//         }
+//         if (newValue === undefined || !instanceOfPatchedReference(newValue)) {
+//             newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, range);
+//         }
+//         return newValue;
+//     }
+//
+//     patchNodeName(
+//         hlNode:hl.IHighLevelNode,
+//         rootUnit:ll.ICompilationUnit,
+//         resolver:namespaceResolver.NamespaceResolver){
+//
+//         var llNode = <proxy.LowLevelProxyNode>hlNode.lowLevel();
+//         var key = llNode.key();
+//         var range  = hlNode.definition();
+//         if(universeHelpers.isTypeDeclarationSibling(range)) {
+//             var localType = hlNode.localType();
+//             if(localType.isAnnotationType()){
+//                 range = localType;
+//             }
+//         }
+//
+//         var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],range);
+//         if(patched != null){
+//             llNode.setKeyOverride(patched.value());
+//             (<hlimpl.ASTNodeImpl>hlNode).resetIDs();
+//         }
+//     }
+//
+//     resolveReferenceValueBasic(
+//         _value:string,
+//         rootUnit:ll.ICompilationUnit,
+//         resolver:namespaceResolver.NamespaceResolver,
+//         units:ll.ICompilationUnit[],
+//         range:def.ITypeDefinition):PatchedReference{
+//
+//         if(_value==null || typeof(_value)!="string"){
+//             return null;
+//         }
+//
+//         var isType = universeHelpers.isTypeDeclarationDescendant(range);
+//         var gotQuestion = isType && util.stringEndsWith(_value,"?");
+//         var value = gotQuestion ? _value.substring(0,_value.length-1) : _value;
+//
+//         if(value.indexOf("<<")>=0){
+//             return;
+//         }
+//
+//         let ind = value.lastIndexOf(".");
+//
+//         let referencedUnit:ll.ICompilationUnit;
+//         let plainName:string;
+//         let oldNS:string;
+//         if (ind >= 0) {
+//             oldNS = value.substring(0, ind);
+//             plainName = value.substring(ind + 1);
+//
+//             for(var i = units.length ; i > 0 ; i--) {
+//                 let localUnit = units[i-1];
+//                 let nsMap = resolver.nsMap(localUnit);
+//
+//                 let info = nsMap && nsMap[oldNS];
+//                 if(info==null){
+//                     continue;
+//                 }
+//                 referencedUnit = info.unit;
+//                 if(referencedUnit!=null){
+//                     break;
+//                 }
+//             }
+//         }
+//         else {
+//             if(isType&&def.rt.builtInTypes().get(value)!=null){
+//                 return null;
+//             }
+//             plainName = value;
+//             referencedUnit = units[units.length-1];
+//         }
+//         var collectionName = this.collectionName(range);
+//         if(referencedUnit){
+//             if(referencedUnit.absolutePath()==rootUnit.absolutePath()) {
+//                 if (oldNS != null) {
+//                     return new PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
+//                 }
+//                 return null;
+//             }
+//         }
+//         else{
+//             if(oldNS && oldNS.length>0) {
+//                 let chainedUnit:ll.ICompilationUnit;
+//                 for(var i = units.length ; i > 0 ; i--) {
+//                     let localUnit = units[i-1];
+//                     let expandedNSMap = resolver.expandedNSMap(localUnit);
+//
+//                     let info = expandedNSMap && expandedNSMap[oldNS];
+//                     if(info==null){
+//                         continue;
+//                     }
+//                     chainedUnit = info.unit;
+//                     if(chainedUnit!=null){
+//                         break;
+//                     }
+//                 }
+//                 if(chainedUnit!=null){
+//                     let usesInfo = resolver.resolveNamespace(rootUnit, chainedUnit);
+//                     if (usesInfo != null) {
+//                         let newNS = usesInfo.namespace();
+//                         if (gotQuestion) {
+//                             plainName += "?";
+//                         }
+//                         return new PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
+//                     }
+//                 }
+//             }
+//             return null;
+//         }
+//         var usesInfo = resolver.resolveNamespace(rootUnit, referencedUnit);
+//         if(usesInfo==null){
+//             return null;
+//         }
+//         var newNS = usesInfo.namespace();
+//         if (newNS == null) {
+//             return null;
+//         }
+//         if(this.mode == PatchMode.PATH){
+//             var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
+//             if(!ll.isWebPath(aPath)){
+//                 aPath = "file://" + aPath;
+//             }
+//             newNS = `${aPath}#/${collectionName}`;
+//         }
+//         if(gotQuestion){
+//             plainName += "?";
+//         }
+//         return new PatchedReference(newNS,plainName,collectionName,referencedUnit,false,this.mode);
+//     }
+//
+//     private patchUses(hlNode:hl.IHighLevelNode,resolver:namespaceResolver.NamespaceResolver){
+//         var node = hlNode.lowLevel();
+//         hlNode.children();
+//         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
+//             return;
+//         }
+//         var unit = node.unit();
+//         var extendedUnitMap = resolver.expandedPathMap(unit);
+//         if(extendedUnitMap==null){
+//             return;
+//         }
+//         var unitMap = resolver.pathMap(unit);
+//         if(!unitMap){
+//             unitMap = {};
+//         }
+//
+//         var cNode = <proxy.LowLevelCompositeNode>node;
+//         var originalChildren = node.children();
+//         var usesPropName = universeDef.Universe10.FragmentDeclaration.properties.uses.name;
+//         var usesNodes = originalChildren.filter(x=>x.key()== usesPropName);
+//
+//         var oNode = toOriginal(node);
+//         var yamlNode = oNode;
+//         while(proxy.LowLevelProxyNode.isInstance(yamlNode)){
+//             yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
+//         }
+//
+//         var usesInfos = Object.keys(unitMap).map(x=>extendedUnitMap[x]);
+//         var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
+//             .filter(x=>!unitMap[x.absolutePath()]/*&&this.usedNamespaces[x.namespace()]*/);
+//
+//         var unitPath = unit.absolutePath();
+//         var existingLibs = {};
+//         var usesNode:proxy.LowLevelCompositeNode;
+//         if(usesNodes.length>0){
+//             usesNode = <proxy.LowLevelCompositeNode>usesNodes[0];
+//             usesNode.children().forEach(x=>existingLibs[x.key()]=true);
+//         }
+//         else{
+//             var newUses = jsyaml.createMapNode("uses");
+//             newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
+//             newUses.setUnit(yamlNode.unit());
+//             usesNode = cNode.replaceChild(null,newUses);
+//         }
+//         var usesProp = hlNode.definition().property(usesPropName);
+//         var usesType = usesProp.range();
+//         var directChildren = (<hlimpl.ASTNodeImpl>hlNode)._children.filter(x=>{
+//             if(x.lowLevel().unit().absolutePath()==unitPath){
+//                 return true;
+//             }
+//             var p = x.property();
+//             return !p||!universeHelpers.isUsesProperty(p)
+//         });
+//         var mergedChildren = (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.filter(x=>{
+//             if(x.lowLevel().unit().absolutePath()==unitPath){
+//                 return true;
+//             }
+//             var p = x.property();
+//             return !p||!universeHelpers.isUsesProperty(p)
+//         });;
+//         for (var ui of usesInfos.concat(extendedUsesInfos)) {
+//             var up = ui.absolutePath();
+//             if(existingLibs[ui.namespace()]){
+//                 continue;
+//             }
+//             var ip = ui.includePath;
+//             var mapping = jsyaml.createMapping(ui.namespace(), ip);
+//             mapping.setUnit(yamlNode.unit());
+//             var hlUses = new hlimpl.ASTNodeImpl(mapping,hlNode,usesType,usesProp);
+//             directChildren.push(hlUses);
+//             mergedChildren.push(hlUses);
+//             usesNode.replaceChild(null,mapping);
+//         }
+//         (<hlimpl.ASTNodeImpl>hlNode)._children  = directChildren;
+//         (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = mergedChildren;
+//     }
+//
+//     removeUses(hlNode:hl.IHighLevelNode){
+//         var node = hlNode.lowLevel();
+//         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
+//             return;
+//         }
+//         var cNode = <proxy.LowLevelCompositeNode>node;
+//         var originalChildren = node.children();
+//         var usesNodes = originalChildren.filter(x=>
+//             x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
+//         if(usesNodes.length>0){
+//             cNode.removeChild(usesNodes[0]);
+//         }
+//         (<hlimpl.ASTNodeImpl>hlNode)._children = hlNode.directChildren().filter(x=>{
+//             var p = x.property();
+//             return p == null || !universeHelpers.isUsesProperty(p);
+//         });
+//         (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = hlNode.children().filter(x=>{
+//             var p = x.property();
+//             return p == null || !universeHelpers.isUsesProperty(p);
+//         });
+//     }
+//
+//     resetTypes(hlNode:hl.IHighLevelNode) {
+//         for(var ch of hlNode.elements()){
+//             this.resetTypes(ch);
+//         }
+//         for(var attr of hlNode.attrs()){
+//             var aVal = attr.value();
+//             if(hlimpl.StructuredValue.isInstance(aVal)){
+//                 (<hlimpl.StructuredValue>aVal).resetHighLevelNode();
+//             }
+//         }
+//         delete hlNode.lowLevel().actual().types;
+//         delete hlNode["_ptype"];
+//         delete hlNode["_types"];
+//         (<hlimpl.ASTNodeImpl>hlNode).setAssociatedType(null);
+//     };
+//
+//     appendUnitIfNeeded(node:hl.IParseResult|ll.ICompilationUnit,units:ll.ICompilationUnit[]):boolean{
+//         if(jsyaml.CompilationUnit.isInstance(node)){
+//             var unit = <ll.ICompilationUnit>node;
+//             if (unit.absolutePath() != units[units.length - 1].absolutePath()) {
+//                 units.push(unit);
+//                 return true;
+//             }
+//             return false;
+//         }
+//         var originalNode = toOriginal((<hl.IParseResult>node).lowLevel());
+//         var originalUnit = originalNode.unit();
+//         if(originalNode.valueKind()==yaml.Kind.INCLUDE_REF){
+//             var ref = originalNode.includePath();
+//             var includedUnit = originalUnit.resolve(ref);
+//             if(includedUnit) {
+//                 units.push(includedUnit);
+//                 return true;
+//             }
+//             return false;
+//         }
+//         else {
+//             if (originalUnit.absolutePath() != units[units.length - 1].absolutePath()) {
+//                 units.push(originalUnit);
+//                 return true;
+//             }
+//             return false;
+//         }
+//     }
+//     popUnitIfNeeded(units:ll.ICompilationUnit[],appended:boolean) {
+//         if (appended) {
+//             units.pop();
+//         }
+//     }
+//
+//     registerPatchedReference(ref:PatchedReference){
+//
+//         var collectionName = ref.collectionName();
+//         if(!collectionName){
+//             return;
+//         }
+//
+//         var aPath = ref.referencedUnit().absolutePath();
+//         var libMap = this._outerDependencies[aPath];
+//         if(libMap==null){
+//             libMap = {};
+//             this._outerDependencies[aPath] = libMap;
+//         }
+//         var collectionMap = libMap[collectionName];
+//         if(collectionMap == null){
+//             collectionMap = {};
+//             libMap[collectionName] = collectionMap;
+//         }
+//         collectionMap[ref.name()] = ref;
+//     }
+//
+//     private collectionName(range:def.ITypeDefinition):string {
+//         var collectionName:string;
+//         if (universeHelpers.isResourceTypeRefType(range)||universeHelpers.isResourceTypeType(range)) {
+//             collectionName = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
+//         }
+//         else if (universeHelpers.isTraitRefType(range)||universeHelpers.isTraitType(range)) {
+//             collectionName = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
+//         }
+//         else if (universeHelpers.isSecuritySchemeRefType(range)||universeHelpers.isSecuritySchemaTypeDescendant(range)) {
+//             collectionName = def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name;
+//         }
+//         else if (universeHelpers.isAnnotationRefTypeOrDescendant(range)||range.isAnnotationType()) {
+//             collectionName = def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name;
+//         }
+//         else if (universeHelpers.isTypeDeclarationDescendant(range)||universeHelpers.isSchemaStringType(range)) {
+//             collectionName = def.universesInfo.Universe10.LibraryBase.properties.types.name;
+//         }
+//         return collectionName;
+//     }
+//
+//     expandLibraries(api:hl.IHighLevelNode,excessive=false){
+//
+//         if(api.lowLevel().actual().libExpanded){
+//             return;
+//         }
+//         var llNode = api.lowLevel();
+//         var unit = llNode.unit();
+//         var rootPath = unit.absolutePath();
+//         var project = unit.project();
+//         var libModels:LibModel[] = [];
+//         var resolver = (<jsyaml.Project>llNode.unit().project()).namespaceResolver();
+//         var expandedPathMap = resolver.expandedPathMap(unit);
+//         if(expandedPathMap!=null) {
+//             var libPaths = Object.keys(expandedPathMap).sort();
+//             for (var ns of libPaths) {
+//                 var libModel = this._libModels[ns];
+//                 if (libModel == null) {
+//                     var libUnit = project.unit(ns, true);
+//                     var usesInfo = resolver.resolveNamespace(unit, libUnit);
+//                     if (libUnit && usesInfo != null && usesInfo.namespace() != null) {
+//                         libModel = this.extractLibModel(libUnit,unit);
+//                     }
+//                 }
+//                 if (libModel) {
+//                     libModels.push(libModel);
+//                 }
+//             }
+//             var gotContribution = false;
+//             for (var libModel of libModels) {
+//                 for (var cName of Object.keys(libModel)) {
+//                     var collection:ElementsCollection = <ElementsCollection>libModel[cName];
+//                     if (ElementsCollection.isInstance(collection)) {
+//                         gotContribution = this.contributeCollection(api,collection) || gotContribution;
+//                     }
+//                 }
+//             }
+//             if (gotContribution) {
+//                 var gotPatch = false;
+//                 do {
+//                     gotPatch = this.patchDependencies(api,excessive);
+//                 }
+//                 while (gotPatch);
+//                 if(!excessive) {
+//                     this.removeUnusedDependencies(api);
+//                 }
+//             }
+//         }
+//         this.removeUses(api);//this.patchUses(api,resolver);
+//         api.lowLevel().actual().libExpanded = true;
+//         this.resetTypes(api);
+//     }
+//
+//     private patchDependencies(api:hl.IHighLevelNode,excessive:boolean):boolean {
+//         var result = false;
+//         let rootUnit = api.lowLevel().unit();
+//         let apiPath = rootUnit.absolutePath();
+//         for (var ch of api.children()) {
+//             if (!ch.isElement()||ch.lowLevel()["libProcessed"]) {
+//                 continue;
+//             }
+//             var chNode = ch.asElement();
+//             this.removeUses(chNode);
+//             var pName = chNode.property().nameId();
+//             if(pName != universeDef.Universe10.LibraryBase.properties.types.name
+//                 && pName != universeDef.Universe10.LibraryBase.properties.annotationTypes.name
+//                 && pName != universeDef.Universe10.LibraryBase.properties.resourceTypes.name
+//                 && pName != universeDef.Universe10.LibraryBase.properties.traits.name
+//                 && pName != universeDef.Universe10.LibraryBase.properties.securitySchemes.name){
+//                 continue;
+//             }
+//             if(!excessive) {
+//                 var chPath = ch.lowLevel().unit().absolutePath();
+//                 if (chPath == apiPath && ch.lowLevel().includePath() == null) {
+//                     continue;
+//                 }
+//                 var dependencies = this._outerDependencies[chPath];
+//                 if (dependencies == null) {
+//                     continue;
+//                 }
+//                 var depCollection = dependencies[pName];
+//                 if (depCollection == null) {
+//                     continue;
+//                 }
+//                 var chName = chNode.name();
+//                 if (depCollection[chName] == null) {
+//                     continue;
+//                 }
+//                 if(pName==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+//                     let discriminator = chNode.attr(
+//                         def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminator.name);
+//                     if(discriminator){
+//                         let localType = chNode.localType();
+//                         if(localType){
+//                             let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+//                             for(let st of localType.allSubTypes()){
+//                                 let typeName = st.nameId();
+//                                 if(!typeName){
+//                                     continue;
+//                                 }
+//                                 let unit = typeUnit(st);
+//                                 if(!unit){
+//                                     continue;
+//                                 }
+//                                 let usesInfo = resolver.resolveNamespace(rootUnit,unit);
+//                                 if(!usesInfo){
+//                                     continue;
+//                                 }
+//                                 let ns = usesInfo.namespace();
+//                                 let ref = new PatchedReference(ns,typeName,
+//                                     def.universesInfo.Universe10.LibraryBase.properties.types.name,unit,false,this.mode);
+//                                 this.registerPatchedReference(ref);
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//             this.process(chNode, api, true, true);
+//             result = true;
+//         }
+//         return result;
+//     }
+//
+//     private removeUnusedDependencies(api:hl.IHighLevelNode) {
+//         var llNode = <proxy.LowLevelCompositeNode>api.lowLevel();
+//         var apiPath = llNode.unit().absolutePath();
+//
+//         var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+//         //var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
+//         var newDirectChildren:hl.IParseResult[] = [];
+//         //var newMergedChildren:hl.IParseResult[] = [];
+//         for(var ch of directChildren){
+//             var chLl = ch.lowLevel();
+//             if (ch.isElement()&&chLl["libProcessed"]) {
+//                 newDirectChildren.push(ch);
+//                 continue;
+//             }
+//             var chPath = chLl.unit().absolutePath();
+//             if (chPath == apiPath) {
+//                 newDirectChildren.push(ch);
+//                 continue;
+//             }
+//             (<proxy.LowLevelCompositeNode>chLl.parent()).removeChild(chLl);
+//         }
+//         (<hlimpl.ASTNodeImpl>api)._children = newDirectChildren;
+//         (<hlimpl.ASTNodeImpl>api)._mergedChildren = null;
+//     }
+//
+//     private contributeCollection(api:hl.IHighLevelNode, collection:ElementsCollection):boolean {
+//
+//         var llApi = <proxy.LowLevelCompositeNode>api.lowLevel();
+//         if(collection.array.length==0){
+//             return false;
+//         }
+//         var name = collection.name;
+//         var prop = api.definition().property(name);
+//         var propRange = prop.range();
+//         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
+//             llApi.children(),
+//             x=>x.key()==name);
+//         if(llNode==null){
+//             var n = jsyaml.createMapNode(name);
+//             llNode = llApi.replaceChild(null,n);
+//         }
+//         var result = false;
+//         var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+//         var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
+//         for(var e of collection.array){
+//             if(llNode.children().some(x=>{
+//                     var oNode = toOriginal(x);
+//                     if(oNode.unit().absolutePath()!=e.lowLevel().unit().absolutePath()){
+//                         return false;
+//                     }
+//                     return e.lowLevel().key()==oNode.key() && e.lowLevel().unit().absolutePath() == oNode.unit().absolutePath();
+//                 })){
+//                 continue;
+//             }
+//             let newLlNode = llNode.replaceChild(null,e.lowLevel());
+//             if(collection.name==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+//                 const dValPropName = def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminatorValue.name;
+//                 let discriminatorValue = newLlNode.children().filter(x=> x.key() == dValPropName);
+//                 if(!discriminatorValue.length){
+//                     let dValNode = jsyaml.createMapNode(dValPropName,newLlNode.unit());
+//                     let strictProp = jsyaml.createMapping("strict",false);
+//                     let valueProp = jsyaml.createMapping("value",newLlNode.key());
+//                     dValNode.addChild(valueProp);
+//                     dValNode.addChild(strictProp);
+//                     newLlNode.replaceChild(null,dValNode);
+//                 }
+//             }
+//             var definition = (e.isElement()&&e.asElement().definition())||propRange;
+//             var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,definition,prop);
+//             directChildren.push(newHLNode);
+//             if(mergedChildren){
+//                 mergedChildren.push(newHLNode);
+//             }
+//             result = true;
+//         }
+//         return result;
+//     }
+//
+//
+//
+//     private extractLibModel(unit:ll.ICompilationUnit,rootUnit:ll.ICompilationUnit):LibModel{
+//         var result:LibModel = this._libModels[unit.absolutePath()];
+//         if(result!=null){
+//             return result;
+//         }
+//         result = new LibModel(unit);
+//         this._libModels[unit.absolutePath()] = result;
+//         var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
+//         if(hlNode && hlNode.isElement()){
+//             let eNode = hlNode.asElement();
+//             for(var cName of ["resourceTypes", "traits", "types", "annotationTypes", "securitySchemes"]){
+//                 var collection = new ElementsCollection(cName);
+//                 for(var el of eNode.elementsOfKind(cName)){
+//                     collection.array.push(el);
+//                 }
+//                 result[cName] = collection;
+//             }
+//             let annotations = eNode.attributes(
+//                 def.universesInfo.Universe10.Annotable.properties.annotations.name);
+//
+//             if(annotations.length>0) {
+//                 let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+//                 for (let aNode of annotations) {
+//                     let aName = aNode.lowLevel().key();
+//                     let l = aName.length;
+//                     if(aName.charAt(0)=="(" && aName.charAt(l-1)==")"){
+//                         aName = aName.substring(1,l-1);
+//                     }
+//                     let range = aNode.property().range();
+//                     let patchedReference = this.resolveReferenceValueBasic(
+//                         aName, rootUnit, resolver, [rootUnit, unit],range);
+//                     if(patchedReference) {
+//                         this.registerPatchedReference(patchedReference);
+//                     }
+//                 }
+//             }
+//         }
+//         return result;
+//     }
+//
+// }
 
 export enum ParametersEscapingStatus{
     OK, NOT_REQUIRED, ERROR
@@ -1138,7 +1138,7 @@ function isFromResourceType(node: ll.ILowLevelASTNode): boolean {
     parent = parent && parent.parent && parent.parent();
     parent = parent && parent.parent && parent.parent();
     parent = parent && parent.parent && parent.parent();
-    
+
     return parent && parent.key && parent.key() === universeDef.Universe10.Api.properties.resourceTypes.name;
 }
 
@@ -1151,9 +1151,9 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
     var ramlVersion = node.definition().universe().version();
     var originalLlMethod = toOriginal(llMethod);
-    
+
     var isFromResourceTypeMethod = isFromResourceType(originalLlMethod);
-            
+
     var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
     var ownIsNode = <proxy.LowLevelCompositeNode>_.find(
         llMethod.children(), x=>x.key() == isPropertyName);
@@ -1182,7 +1182,7 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     if(newTraits.length==0&&traits.length<=1){
         return ownIsNode;
     }
-    
+
     isNode.setChildren(newTraits);
     isNode.filterChildren();
     newTraits = isNode.children();
@@ -1251,7 +1251,7 @@ export class PatchedReference{
         private _referencedUnit:ll.ICompilationUnit,
         private _isChained:boolean,
         private _mode:PatchMode){
-        
+
         var l = this._name.length;
         if(typeof this._name !== "string"){
             this._name = "" + this._name;
@@ -1273,7 +1273,7 @@ export class PatchedReference{
     public getClassIdentifier() : string[] {
         return [ PatchedReference.CLASS_IDENTIFIER_PatchedReference ];
     }
-    
+
     referencedNode: ll.ILowLevelASTNode;
 
     gotQuestion:boolean = false;
@@ -1285,7 +1285,7 @@ export class PatchedReference{
     collectionName():string{ return this._collectionName; }
 
     referencedUnit():ll.ICompilationUnit{ return this._referencedUnit; }
-    
+
     mode():PatchMode{ return this._mode; }
 
     value():string{
@@ -1303,7 +1303,7 @@ export class PatchedReference{
 
 export function instanceOfPatchedReference(instance : any) : instance is PatchedReference {
     if (!instance) return false;
-    
+
     return instance.namespace != null && typeof(instance.namespace) == "function" &&
         instance.name != null && typeof(instance.name) == "function" &&
         instance.collectionName != null && typeof(instance.collectionName) == "function" &&
@@ -1332,7 +1332,7 @@ class ElementsCollection{
 }
 
 class LibModel{
-    
+
     constructor(public unit:ll.ICompilationUnit){}
 
     resourceTypes:ElementsCollection;
@@ -1344,8 +1344,8 @@ class LibModel{
     annotationTypes:ElementsCollection;
 
     types:ElementsCollection;
-    
-    
+
+
 
 }
 
@@ -1357,11 +1357,11 @@ export function getDeclaration(
     units:ll.ICompilationUnit[]):hl.IHighLevelNode{
 
     let resolver =  (<jsyaml.Project>units[0].project()).namespaceResolver();
-    
+
     if(!elementName){
         return null;
     }
-    
+
     var ns = "";
     var name = elementName;
     var ind = elementName.lastIndexOf(".");
@@ -1392,7 +1392,7 @@ export function getDeclaration(
                     actualUnit = info.unit;
                 }
             }
-        } 
+        }
         if(!actualUnit){
             continue;
         }

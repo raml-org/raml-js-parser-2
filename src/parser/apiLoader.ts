@@ -11,7 +11,6 @@ import hl=require("../parser/highLevelAST")
 import hlimpl=require("../parser/highLevelImpl")
 import ll=require("../parser/lowLevelAST")
 import llimpl=require("../parser/jsyaml/jsyaml2lowLevel")
-import expander=require("../parser/ast.core/expander")
 import expanderLL=require("../parser/ast.core/expanderLL")
 import util=require("../util/index")
 import universeDef=require("../parser/tools/universe")
@@ -174,7 +173,7 @@ function loadRAMLInternalHL(apiPath:string,arg1?:string[]|parserCoreApi.Options,
             //calling to perform the checks, we do not actually need the api itself
             extensionUnits.forEach(extensionUnit=>toApi(extensionUnit, options))
 
-            api = toApi(expander.mergeAPIs(unit, extensionUnits, hlimpl.OverlayMergeMode.MERGE), options);
+            api = toApi(expanderLL.mergeAPIs(unit, extensionUnits, hlimpl.OverlayMergeMode.MERGE), options);
         } else {
 
             api = toApi(unit, options);
@@ -276,7 +275,7 @@ export function loadRAMLAsyncHL(ramlPath:string,arg1?:string[]|parserCoreApi.Opt
                 var overlayUnits = []
                 apis.forEach(currentApi=>overlayUnits.push(currentApi.lowLevel().unit()))
 
-                var result = expander.mergeAPIs(masterApi.lowLevel().unit(), overlayUnits,
+                var result = expanderLL.mergeAPIs(masterApi.lowLevel().unit(), overlayUnits,
                     hlimpl.OverlayMergeMode.MERGE);
                 return result;
             }).then(mergedHighLevel=>{
@@ -450,7 +449,7 @@ export function loadApis1(projectRoot:string,cacheChildren:boolean = false,expan
         var api:RamlWrapper1.Api = new RamlWrapper1Impl.ApiImpl(new hlimpl.ASTNodeImpl(lowLevel, null, <any>apiType, null));
 
         if(expandTraitsAndResourceTypes){
-            api = expander.expandTraitsAndResourceTypes(api);
+            api = expanderLL.expandTraitsAndResourceTypes(api);
         }
         result.push(api);
     });

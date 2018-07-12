@@ -14,9 +14,17 @@
     "traits": [
       {
         "lib.boolean": {
-          "name": "lib.boolean",
+          "securedBy": [
+            "lib.number"
+          ],
+          "name": "boolean",
           "__METADATA__": {
-            "calculated": true
+            "calculated": true,
+            "primitiveValuesMeta": {
+              "securedBy": {
+                "calculated": true
+              }
+            }
           },
           "sourceMap": {
             "path": "lib.raml"
@@ -34,7 +42,7 @@
             "lib.oauth",
             "lib.number"
           ],
-          "name": "lib.number",
+          "name": "number",
           "__METADATA__": {
             "calculated": true
           },

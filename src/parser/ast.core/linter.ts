@@ -22,8 +22,7 @@ import universeProvider=require("../definition-system/universeProvider")
 import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
-import expander=require("./expander")
-import expanderLL=require("./expanderLL")
+import expander=require("./expanderLL")
 import builder = require('./builder')
 import search = require("../../search/search-interface")
 import rtypes=def.rt;
@@ -534,7 +533,7 @@ function createUnknownNodeIssue(node:hlimpl.BasicASTNode):hl.ValidationIssue {
         if(d) {
             let propName = node.name();
             let typeName = d.nameId();
-            if(expanderLL.isPossibleMethodName(propName)){
+            if(expander.isPossibleMethodName(propName)){
                 issue = createIssue1(
                     messageRegistry.INVALID_METHOD_USAGE, { typeName: typeName }, node);
             }
@@ -934,7 +933,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             validateBasic(<hlimpl.BasicASTNode>node,v);
         }
         new UriParametersValidator().validate(highLevelNode,v);
-
+        new ProtocolsValidator().validate(highLevelNode,v)
         new CompositeNodeValidator().validate(highLevelNode,v);
         new TemplateCyclesDetector().validate(highLevelNode,v);
     }
@@ -2417,7 +2416,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 paramsMap[ch.key()] = ch.value(true);
             }
             var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
-            var unitsChain = expander.toUnits(node);
+            var unitsChain = expander.toUnits(node.lowLevel());
             var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(),unitsChain,paramsMap);
             var parent = node.parent();
             var def = parent?parent.definition():node.definition();
@@ -2676,13 +2675,6 @@ class TypeDeclarationValidator implements NodeValidator{
             };
         }
 
-        let examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
-
-        if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
-            let issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
-
-            v.accept(issue);
-        }
         if((node.property()&&universeHelpers.isAnnotationTypesProperty(node.property()))
             ||hlimpl.isAnnotationTypeFragment(node)){
             var atAttrs = node.attributes(universes.Universe10.TypeDeclaration.properties.allowedTargets.name);
@@ -3141,6 +3133,32 @@ class NodeSpecificValidator implements NodeValidator {
     }
 }
 
+class ProtocolsValidator implements NodeValidator{
+
+    validate(node: hl.IHighLevelNode, cb: hl.ValidationAcceptor) {
+        var def = node.definition()
+        if(!def){
+            return
+        }
+        if(!(universeHelpers.isApiSibling(def)||universeHelpers.isMethodBaseSibling(def))){
+            return
+        }
+        var llNode = node.lowLevel()
+        var pNode = llNode.children().find(x=>x.key()==universes.Universe10.Api.properties.protocols.name)
+        if(!pNode){
+            return
+        }
+        var val = pNode.value()
+        if(val == null && pNode.children().length == 0){
+            cb.accept(createLLIssue1(messageRegistry.PROTOCOLS_ARRAY, {}, pNode, node))
+        }
+        else if(pNode.resolvedValueKind()!=yaml.Kind.SEQ){
+            cb.accept(createLLIssue1(messageRegistry.PROTOCOLS_ARRAY,{},pNode,node))
+        }
+    }
+
+}
+
 
 class OverlayNodesValidator implements NodeValidator{
 
@@ -3535,10 +3553,69 @@ class ValidateChildrenKeys implements NodeValidator {
 class UsesEntryValidator implements  NodeValidator{
     validate(highLevelNode:hl.IHighLevelNode,v:hl.ValidationAcceptor){
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
-            var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
-            var libPath = vn && vn.value();
+            let vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
+            let libPath = vn && vn.value();
             if (libPath!=null && typeof libPath == "string"){
-                var rs=highLevelNode.lowLevel().unit().resolve(libPath);
+                let rs=highLevelNode.lowLevel().unit().resolve(libPath);
+                if(highLevelNode.root().lowLevel().actual().libExpanded){
+                    let libUnit = rs
+                    let libNode = libUnit.ast()
+                    let libAnnotations = libNode.children().filter(x=>{
+                        let key = x.key()
+                        return util.startsWith(key,"(") && util.endsWith(key,")")
+                    })
+                    if(libAnnotations.length>0){
+                        let rootUnit = highLevelNode.root().lowLevel().unit()
+                        let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver()
+                        let annotableType = highLevelNode.root().definition().universe().type(universes.Universe10.Annotable.name)
+                        let annotationsProp = annotableType.property(universes.Universe10.Annotable.properties.annotations.name)
+                        let usesEntryAnnotations:any[] = [];
+                        for(let a of libAnnotations){
+                            let dumped = a.dumpToObject();
+                            let aObj = {
+                                name: a.key().substring(1,a.key().length-1),
+                                value: dumped[Object.keys(dumped)[0]]
+                            }
+                            if(!aObj || !aObj.name){
+                                continue;
+                            }
+                            let aName = aObj.name;
+                            let name = aName
+                            let ns:string = null
+                            let ind = aName.lastIndexOf(".");
+                            if(ind>=0){
+                               ns = aName.substring(0,ind)
+                                name = aName.substring(ind+1)
+                            }
+                            let u = libUnit
+                            if(ns){
+                                let map = resolver.nsMap(libUnit)
+                                if(map.hasOwnProperty(ns)) {
+                                    u = map[ns].unit
+                                }
+                            }
+                            let err = false
+                            if(!u){
+                                err = true;
+                            }
+                            else {
+                                let uModel = resolver.unitModel(u)
+                                if(!uModel.annotationTypes.hasElement(name)){
+                                    err = true;
+                                }
+                            }
+                            if(err){
+                                let mEntry = rtypes.messageRegistry["UNKNOWN_ANNOTATION_TYPE"]
+                                var mainIssue = createLLIssue1(mEntry,{typeName: aName},a,highLevelNode)
+                                let traceIssue = createIssue1(messageRegistry.ISSUES_IN_THE_LIBRARY,
+                                    { value : libPath}, highLevelNode, true)
+                                mainIssue.extras.push(traceIssue)
+                                v.accept(mainIssue)
+                            }
+                        }
+                    }
+                    return
+                }
                 if (!rs || rs.contents() === null){
                     v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
                         {path:libPath},highLevelNode,false));
@@ -3562,7 +3639,7 @@ class UsesEntryValidator implements  NodeValidator{
                         issues.forEach(x=> {
                             x.unit = x.unit == null ? rs : x.unit;
                             if (!x.path) {
-                                x.path = rs.absolutePath();
+                                x.path = rs.path();
                             }
                         });
                         for(var issue of issues) {
@@ -4068,11 +4145,19 @@ class TemplateCyclesDetector implements NodeValidator {
         var traitsProp = universes.Universe10.LibraryBase.properties.traits.name;
         var isProp = universes.Universe10.MethodBase.properties.is.name;
 
-        var allResourceTypes = search.globalDeclarations(node)
-            .filter(x=>universeHelpers.isResourceTypeType(x.definition()));
+        var allResourceTypes:hl.IHighLevelNode[]
+        var alltraits:hl.IHighLevelNode[]
 
-        var alltraits = search.globalDeclarations(node)
-            .filter(x=>universeHelpers.isTraitType(x.definition()));
+        if(node.root().lowLevel().actual().libExpanded){
+            allResourceTypes = node.elementsOfKind(universes.Universe10.LibraryBase.properties.resourceTypes.name)
+            alltraits = node.elementsOfKind(universes.Universe10.LibraryBase.properties.traits.name)
+        }
+        else {
+            allResourceTypes = search.globalDeclarations(node)
+                .filter(x => universeHelpers.isResourceTypeType(x.definition()));
+            alltraits = search.globalDeclarations(node)
+                .filter(x => universeHelpers.isTraitType(x.definition()));
+        }
 
         this.checkCycles(allResourceTypes,typeProp,v);
         this.checkCycles(alltraits,isProp,v);

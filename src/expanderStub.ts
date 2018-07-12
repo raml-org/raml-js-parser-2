@@ -1,4 +1,4 @@
-import ex=require ("./parser/ast.core/expander");
+import ex=require ("./parser/ast.core/expanderLL");
 
 
 export function expandTraitsAndResourceTypes<T>(api:T):T {

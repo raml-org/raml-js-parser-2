@@ -7,7 +7,7 @@
         "key": "lib",
         "value": "libs/lib.raml",
         "sourceMap": {
-          "path": "api.raml"
+          "path": "fragments/rt.raml"
         }
       }
     ],

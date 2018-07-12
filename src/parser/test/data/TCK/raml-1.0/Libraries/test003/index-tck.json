@@ -7,14 +7,14 @@
         "key": "files",
         "value": "libraries/files.raml",
         "sourceMap": {
-          "path": "index.raml"
+          "path": "files-resource.raml"
         }
       }
     ],
     "traits": [
       {
         "files.hello": {
-          "name": "files.hello",
+          "name": "hello",
           "__METADATA__": {
             "calculated": true
           },

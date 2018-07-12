@@ -298,11 +298,11 @@ describe('Method', function(){
         testErrors(util.data('parser/method/meth05.raml'));
     });
 
-    it('Should allows to set single protocol value and validate it', function(){
-        testErrors(util.data('parser/method/meth06.raml'));
+    it('Should not allow to set single protocol value', function(){
+        testErrors(util.data('parser/method/meth06.raml'), ["'protocols' value should be a non empty array"]);
     });
 
-    it('Should allows to set array protocol value and validate it 2', function(){
+    it('Should allow to set array protocol value and validate it 2', function(){
         testErrors(util.data('parser/method/meth07.raml'));
     });
 
@@ -1084,7 +1084,7 @@ describe('Object values for template parameters tests', function () {
     this.timeout(15000);
     it("Parameter used in key must have scalar value", function () {
         this.timeout(15000);
-        testErrors(util.data("parser/resourceType/resType21.raml"), ["Property 'param' must be a string","Unknown node: '{\"param\":{\"p1\":null,\"p2\":null}}'"]);
+        testErrors(util.data("parser/resourceType/resType21.raml"), ["Property 'param' must be a string"]);
     })
 
     it("Parameter used inside string value must have scalar value", function () {

@@ -1,17 +1,21 @@
+import has = Reflect.has;
+
 var universe = require("../parser/tools/universe");
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");
 import def = require("raml-definition-system");
+import tsInterfaces = def.tsInterfaces
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../parser/highLevelImpl");
 import linter = require("../parser/ast.core/linter");
-import expander=require("../parser/ast.core/expanderHL");
+import expander=require("../parser/ast.core/expanderLL");
 import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
 import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
+import referencePatcherLL=require("../parser/ast.core/referencePatcherLL");
 import typeExpander = require("./typeExpander");
 import jsonSerializerTL = require("./jsonSerializer");
 import builder = require("../parser/ast.core/builder");
@@ -1243,17 +1247,16 @@ class ItemsTransformer extends BasicTransformation {
         let highLevelNode = node.asElement();
         let result = value[0];
         let td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
-        let hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+        let hasType = highLevelNode.definition().universe().type(universe.Universe10.ArrayTypeDeclaration.name);
         let tNode:hlImpl.ASTNodeImpl;
         let llNode = highLevelNode.attr("items").lowLevel();
-        let itemType:nominals.ITypeDefinition;
+        let itemsLocalType:nominals.ITypeDefinition;
         let stop:boolean;
         do {
             stop = true;
-            tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
-            itemType = builder.doDescrimination(tNode);
-            const itemsLocalType = tNode.localType();
-            if(itemsLocalType && jsonSerializerTL.isEmpty(itemsLocalType)&& itemType.superTypes().length==1){
+            tNode = new hlImpl.ASTNodeImpl(llNode, highLevelNode, td, hasType.property(universe.Universe10.ArrayTypeDeclaration.properties.items.name));
+            itemsLocalType = tNode.localType();
+            if(itemsLocalType && jsonSerializerTL.isEmpty(itemsLocalType)&& itemsLocalType.superTypes().length==1){
                 let tChildren = llNode.children().filter(y=>y.key()=="type");
                 if(tChildren.length==1){
                     if(tChildren[0].resolvedValueKind()==yaml.Kind.SCALAR){
@@ -1268,6 +1271,10 @@ class ItemsTransformer extends BasicTransformation {
                 }
             }
         } while ( !stop );
+        if(itemsLocalType.getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+            && typeof result == "object" && ! Array.isArray(result)){
+            result = result.type;
+        }
         if(!Array.isArray(result)){
             result = [ result ];
         }
@@ -1380,33 +1387,38 @@ class TypeTransformer extends BasicTransformation{
         //         delete value.name;
         //     }
         // }
-        var exampleObj = helpersLL.typeExample(
-            node.asElement(),this.options.dumpXMLRepresentationOfExamples);
-        if(exampleObj){
-            value["examples"] = [ exampleObj ];
-        }
-        else {
-            var examples = helpersLL.typeExamples(
+        var isTopLevel = node.asElement().localType().getExtra(tsInterfaces.TOP_LEVEL_EXTRA)
+        var isInTypes = nodeProperty && (universeHelpers.isTypesProperty(nodeProperty)
+            ||universeHelpers.isSchemasProperty(nodeProperty))
+        if(isInTypes || !isTopLevel) {
+            var exampleObj = helpersLL.typeExample(
                 node.asElement(), this.options.dumpXMLRepresentationOfExamples);
-            if (examples.length > 0) {
-                value["examples"] = examples;
+            if (exampleObj) {
+                value["examples"] = [exampleObj];
             }
-        }
-        delete value["example"];
-        if(value["examples"]!=null){
-            value["simplifiedExamples"] = value["examples"].map(x=>{
-                if(x==null){
-                    return x;
+            else {
+                var examples = helpersLL.typeExamples(
+                    node.asElement(), this.options.dumpXMLRepresentationOfExamples);
+                if (examples.length > 0) {
+                    value["examples"] = examples;
                 }
-                let val = x["value"];
-                if(val==null){
+            }
+            delete value["example"];
+            if (value["examples"] != null) {
+                value["simplifiedExamples"] = value["examples"].map(x => {
+                    if (x == null) {
+                        return x;
+                    }
+                    let val = x["value"];
+                    if (val == null) {
+                        return val;
+                    }
+                    else if (typeof val === "object") {
+                        return JSON.stringify(val);
+                    }
                     return val;
-                }
-                else if(typeof val === "object"){
-                    return JSON.stringify(val);
-                }
-                return val;
-            });
+                });
+            }
         }
         if(value.hasOwnProperty("schema")){
             if(!value.hasOwnProperty("type")){
@@ -2018,10 +2030,10 @@ class UsesDeclarationTransformer extends BasicTransformation {
         super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
     }
 
-    private referencePatcher:referencePatcher.ReferencePatcher;
+    private referencePatcher:referencePatcherLL.ReferencePatcher;
 
     private getReferencePatcher(){
-        this.referencePatcher = this.referencePatcher || new referencePatcher.ReferencePatcher();
+        this.referencePatcher = this.referencePatcher || new referencePatcherLL.ReferencePatcher();
         return this.referencePatcher;
     }
 
@@ -2054,27 +2066,35 @@ class UsesDeclarationTransformer extends BasicTransformation {
                 continue;
             }
             let libUnit = usesEntry.unit;
-            let lib = libUnit.highLevel();
-            if(!lib.isElement()){
-                continue;
-            }
-            let libAnnotations = lib.asElement().attributes(annotationsPropName);
-            let libUsage = lib.asElement().attr(usagePropName);
-
+            let libNode = libUnit.ast()
+            let libAnnotations = libNode.children().filter(x=>{
+                var key = x.key()
+                return util.stringStartsWith(key,"(") && util.stringEndsWith(key,")")
+            })
+            let libUsage = libNode.children().find(x=>x.key()==usagePropName)
             if(libUsage){
                 u[usagePropName] = libUsage.value();
             }
             if(libAnnotations.length>0){
+                var annotableType = node.root().definition().universe().type(universes.Universe10.Annotable.name)
+                var annotationsProp = annotableType.property(universes.Universe10.Annotable.properties.annotations.name)
                 let usesEntryAnnotations:any[] = [];
                 for(let a of libAnnotations){
-                    let aObj = this.dumper.dump(a);
+                    let dumped = a.dumpToObject();
+                    let aObj = {
+                        name: a.key().substring(1,a.key().length-1),
+                        value: dumped[Object.keys(dumped)[0]]
+                    }
                     if(!aObj || !aObj.name){
                         continue;
                     }
                     let aName = aObj.name;
-                    let range = a.property().range();
+                    var hasRootMediaType = unit.ast().children().some(x=>x.key()==universes.Universe10.Api.properties.mediaType.name)
+                    var scope = new referencePatcherLL.Scope()
+                    scope.hasRootMediaType = hasRootMediaType
+                    var state = new referencePatcherLL.State(this.getReferencePatcher(),unit,scope,resolver)
                     let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
-                        aName, unit, resolver, [unit, libUnit],range);
+                        aName, state, annotationsProp.nameId(),[unit, libUnit]);
 
                     if(!patchedReference){
                         continue;

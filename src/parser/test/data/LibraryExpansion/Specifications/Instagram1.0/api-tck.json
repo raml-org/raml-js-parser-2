@@ -2,6 +2,15 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
+    "uses": [
+      {
+        "key": "types",
+        "value": "types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
     "types": [
       {
         "types.Location": {

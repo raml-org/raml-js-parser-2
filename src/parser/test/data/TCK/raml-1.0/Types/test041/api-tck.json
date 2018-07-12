@@ -1,0 +1,149 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ids": {
+          "name": "ids",
+          "displayName": "ids",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "identification": {
+              "name": "identification",
+              "displayName": "identification",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "examples": [
+                {
+                  "value": "MuleSoft",
+                  "strict": true,
+                  "structuredValue": "MuleSoft",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                },
+                {
+                  "value": "Salesforce",
+                  "strict": true,
+                  "structuredValue": "Salesforce",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "api.raml"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "New API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "ids"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/organization",
+        "displayName": "/organization",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "organization"
+        ],
+        "absoluteUri": "/organization"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "EXMAPLES_MAP",
+      "message": "'examples' value should be a map",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 8,
+          "position": 125
+        },
+        "end": {
+          "line": 9,
+          "column": 16,
+          "position": 133
+        }
+      }
+    }
+  ]
+}

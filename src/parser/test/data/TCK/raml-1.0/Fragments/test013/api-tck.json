@@ -21,7 +21,7 @@
     "resourceTypes": [
       {
         "rtLib.rt": {
-          "name": "rtLib.rt",
+          "name": "rt",
           "__METADATA__": {
             "calculated": true
           },

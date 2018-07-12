@@ -300,12 +300,16 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var result:hl.IHighLevelNode[] = [];
     var rp = new referencePatcher.ReferencePatcher();
+    var pName = (typeName == "ResourceType" ? "resourceTypes": "traits")
+    var prop = hlNode.definition().allProperties().find(x=>x.nameId()==pName)
     for(var x of arr){
         var p = x.lowLevel().unit().path();
         if(isProxy){
             if(!proxy.LowLevelProxyNode.isInstance(x.lowLevel())) {
                 x = exp.createHighLevelNode(x, false, rp, true, false);
                 rp.process(x.lowLevel(),hlNode.lowLevel(),typeName,true,true);
+                x.setParent(hlNode);
+                (<hlimpl.ASTNodeImpl>x).patchProp(prop);
             }
         }
         if(serializeMetadata&&p!=nodePath){
