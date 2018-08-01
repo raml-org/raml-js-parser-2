@@ -64,7 +64,8 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
                         if (x.definition().key() == universes.Universe10.UsesDeclaration) {
                             var mm = x.attr("value");
                             if (mm) {
-                                var unit = x.root().lowLevel().unit().resolve(mm.value());
+                                var u:ll.ICompilationUnit = belongsToFragment(x) ? x.lowLevel().unit() : x.root().lowLevel().unit()
+                                var unit = u.resolve(mm.value());
                                 if (unit != null) {
                                     var key = x.attr("key");
                                     if (key) {
@@ -2420,9 +2421,24 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
 
     var rfl = ramlFirstLine(contents);
     var spec = (rfl && rfl[1])||"";
-    var ptype = (rfl && rfl.length > 2 && rfl[2]) || "Api";
+    var ptype = fragmentType(contents)
     var originalPType = rfl && rfl.length > 2 && rfl[2];
     var localUniverse = spec == "1.0" ? new def.Universe(null,"RAML10", universeProvider("RAML10"),"RAML10") : new def.Universe(null,"RAML08", universeProvider("RAML08"));
+
+    localUniverse.setOriginalTopLevelText(originalPType);
+    localUniverse.setTopLevel(ptype);
+    localUniverse.setTypedVersion(spec);
+
+    // localUniverse.setDescription(spec);
+    return { ptype: ptype, localUniverse: localUniverse };
+};
+
+function fragmentType(content:string):string {
+    if(!content.startsWith("#%RAML 1.0")){
+        return null
+    }
+    var rfl = ramlFirstLine(content);
+    var ptype = (rfl && rfl.length > 2 && rfl[2]) || "Api";
 
     if (ptype=='API'){
         ptype="Api"
@@ -2439,15 +2455,8 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     else if (ptype=='AnnotationTypeDeclaration'){
         ptype="TypeDeclaration"
     }
-
-
-    localUniverse.setOriginalTopLevelText(originalPType);
-    localUniverse.setTopLevel(ptype);
-    localUniverse.setTypedVersion(spec);
-
-    // localUniverse.setDescription(spec);
-    return { ptype: ptype, localUniverse: localUniverse };
-};
+    return ptype
+}
 
 export function ramlFirstLine(content:string):RegExpMatchArray{
     return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
@@ -2992,4 +3001,22 @@ function mergeLibs(from:rTypes.IParsedTypeCollection,to:rTypes.IParsedTypeCollec
         }
     }
 
+}
+
+function belongsToFragment(n:hl.IParseResult):boolean {
+    var unit = n.lowLevel().unit()
+    var content = unit.contents()
+    if(!content.trim().startsWith("#%RAML")){
+        return false
+    }
+    var tName = fragmentType(content)
+    var node:hl.IHighLevelNode = n.isElement() ? n.asElement() : n.parent()
+    var t = node.definition().universe().type(tName)
+    if(t==null){
+        return true
+    }
+    if (universeHelpers.isLibraryBaseSibling(t)){
+        return false
+    }
+    return true
 }
