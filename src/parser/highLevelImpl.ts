@@ -2434,7 +2434,7 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
 };
 
 function fragmentType(content:string):string {
-    if(!content.startsWith("#%RAML 1.0")){
+    if(!content.trim().startsWith("#%RAML 1.0")){
         return null
     }
     var rfl = ramlFirstLine(content);
