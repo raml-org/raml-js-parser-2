@@ -32,6 +32,7 @@ type IAttribute=high.IAttribute
 
 import contentprovider = require('../util/contentprovider')
 import utils = require('../utils')
+import {isLowLevelProxyNode} from "./ast.core/LowLevelASTProxy";
 
 let messageRegistry = require("../../resources/errorMessages");
 
@@ -1366,7 +1367,22 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 const thisPath = unit.absolutePath();
                 const includePath = this.lowLevel().includePath();
                 let included = !isInLibExpandMode && includePath!=null;
-                let parentTypes = this.parent().types();
+
+                let parent = this.parent()
+                let isRAML10 = this.definition().universe().version() == "RAML10"
+                if(isRAML10 && includePath && !isInLibExpandMode && proxy.LowLevelCompositeNode.isInstance(this.lowLevel()) && (universeHelpers.isMethodType(parent.definition())||universeHelpers.isResourceType(parent.definition()))){
+                    var aNodes = (<proxy.LowLevelCompositeNode>this.lowLevel()).adoptedNodes()
+                    var includer = aNodes.find(x=>x.includePath()==includePath)
+                    if(includer){
+                        let includedUnit = includer.unit().resolve(includePath);
+                        if(includedUnit) {
+                            let includedRoot = includedUnit.highLevel();
+                            parent = includedRoot.isElement() ? includedRoot.asElement() : parent
+                        }
+                    }
+                }
+
+                let parentTypes = parent.types();
                 let thisDef = this.definition();
                 if(!included||!thisDef||!universeHelpers.canBeFragment(thisDef)){
                     return parentTypes;

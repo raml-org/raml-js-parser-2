@@ -147,6 +147,10 @@ export const transitions = {
     },
     "Response" : {
         "body" : "$Body",
+        "headers" : {
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
+        },
         "/\\(.+\\)/" : "$Annotation"
     },
     "Body" : {

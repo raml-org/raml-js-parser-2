@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: sr_20180731
+
+uses:
+  types_1: /subfolder/lib.raml
+ 
+/foo_1:
+  get:
+    is: [types_1.traits]
