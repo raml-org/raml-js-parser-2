@@ -1,0 +1,11 @@
+#%RAML 1.0 ResourceType
+
+uses: 
+  lib2: ../lib2.raml
+
+is: [ lib2.trait1 ]
+get:
+  responses:
+    200:
+      headers:         
+        h1:

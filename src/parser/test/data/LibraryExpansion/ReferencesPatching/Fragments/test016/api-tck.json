@@ -1,0 +1,154 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "types_1",
+        "value": "/subfolder/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      },
+      {
+        "key": "types_1.types",
+        "value": "subfolder/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "types": [
+      {
+        "types_1.types.t": {
+          "name": "t",
+          "displayName": "t",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "subfolder/types.raml"
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "types_1.traits": {
+          "responses": {
+            "200": {
+              "code": "200",
+              "headers": {
+                "h": {
+                  "name": "h",
+                  "displayName": "h",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "types_1.types.t"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "sourceMap": {
+                    "path": "subfolder/traits.raml"
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "subfolder/traits.raml"
+              }
+            }
+          },
+          "name": "traits",
+          "sourceMap": {
+            "path": "subfolder/traits.raml"
+          }
+        }
+      }
+    ],
+    "title": "sr_20180731",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "headers": {
+                  "h": {
+                    "name": "h",
+                    "displayName": "h",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "types_1.types.t"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "sourceMap": {
+                      "path": "subfolder/traits.raml"
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "subfolder/traits.raml"
+                }
+              }
+            },
+            "is": [
+              "types_1.traits"
+            ],
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/foo_1",
+        "displayName": "/foo_1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "foo_1"
+        ],
+        "absoluteUri": "/foo_1"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

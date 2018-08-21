@@ -78,6 +78,9 @@ describe('Virtual File System Tests', function() {
     it("Invalid includes 3123123", function (done) {
         testAPI("./vfsTests/test008/api.raml").should.be.fulfilled.and.notify(done);
     });
+    it("test 009", function (done) {
+        testAPI("./vfsTests/test009/api.raml").should.be.fulfilled.and.notify(done);
+    });
     it('Including PNG file', function (done) {
         // process.once("uncaughtException", function (error) {
         //     console.log("HEREHERE: " + error)
