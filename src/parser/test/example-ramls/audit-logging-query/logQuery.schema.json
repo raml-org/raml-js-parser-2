@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json-schema.org/draft-04/",
   "title": "Audit Log Query Schema",
   "type": "object",
   "description": "Queries for log entries. Note that all filters below will be ANDed to each other.",

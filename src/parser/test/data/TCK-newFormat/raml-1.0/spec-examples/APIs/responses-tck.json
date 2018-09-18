@@ -26,11 +26,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "responses.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           {
             "name": "vendorName",
@@ -52,11 +52,11 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "sourceMap": {
               "path": "responses.raml"
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
         "__METADATA__": {
@@ -69,11 +69,11 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "sourceMap": {
           "path": "responses.raml"
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Example with responses",
@@ -112,11 +112,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "responses.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
                     "__METADATA__": {
@@ -126,11 +126,11 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "sourceMap": {
                       "path": "responses.raml"
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "sourceMap": {
@@ -170,6 +170,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    },
                     "examples": [
                       {
                         "value": "/invoices/45612",
@@ -181,10 +184,7 @@
                       "/invoices/45612"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "responses.raml"
-                    }
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "body": [
@@ -196,7 +196,7 @@
                       "path": "schemas/invoice.json"
                     },
                     "type": [
-                      "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}"
+                      "{\n    \"$schema\": \"http://json-schema.org/draft-04/\",\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -263,11 +263,11 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "sourceMap": {
                           "path": "responses.raml"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
                     "__METADATA__": {
@@ -279,6 +279,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "responses.raml"
                     },
                     "examples": [
                       {
@@ -293,10 +296,7 @@
                       "{\"error\":\"Amount cannot be negative\"}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "sourceMap": {
-                      "path": "responses.raml"
-                    }
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "sourceMap": {
@@ -318,11 +318,11 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "sourceMap": {
                   "path": "responses.raml"
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",
