@@ -492,6 +492,10 @@ export class JsonSerializer {
                     }
                     if(llAttrNode&&llAttrNode.valueKind()!=yaml.Kind.SCALAR) {
                         val = aNode.lowLevel().dumpToObject();
+                        var pName = prop.nameId()
+                        if(aNode.lowLevel().key() == pName && typeof val == "object" && val.hasOwnProperty(pName)){
+                            val = val[pName]
+                        }
                     }
                 }
             }

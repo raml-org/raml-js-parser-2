@@ -40,6 +40,7 @@ export class JsonSerializer {
     private nodeTransformers:Transformation[] = [
         new ResourcesTransformer(),
         new TypeExampleTransformer(),
+        new TypeDefaultValueTransformer(),
         //new ParametersTransformer(),
         new ArrayExpressionTransformer(),
         new TypesTransformer(),
@@ -1060,6 +1061,40 @@ class TypeExampleTransformer implements Transformation{
             if(structuredExample){
                 x['example'] = structuredExample.structuredValue;
                 x['structuredExample'] = structuredExample;
+            }
+        });
+        return isArray ? arr : arr[0];
+    }
+}
+
+class TypeDefaultValueTransformer implements Transformation{
+
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        return node.definition && universeHelpers.isTypeDeclarationSibling(node.definition());
+    }
+
+    transform(value:any,node?:coreApi.BasicNode|coreApi.AttributeNode){
+        var hlNode = node.highLevel()
+        if(hlNode==null||!hlNode.isElement()){
+            return value;
+        }
+        var element = hlNode.asElement()
+        let propName = universe.Universe10.TypeDeclaration.properties.default.name;
+        var attr = element.attr(propName)
+        if(attr == null || attr.value() != null){
+            return value;
+        }
+        var isArray = Array.isArray(value);
+        var arr = isArray ? value : [ value ];
+        arr.forEach(x=>{
+            if(x[propName] == null){
+                var dVal = attr.lowLevel().dumpToObject()
+                if(typeof dVal == "object" && dVal.hasOwnProperty(propName)){
+                    x[propName] = dVal[propName]
+                }
+                else {
+                    x[propName] = dVal
+                }
             }
         });
         return isArray ? arr : arr[0];
