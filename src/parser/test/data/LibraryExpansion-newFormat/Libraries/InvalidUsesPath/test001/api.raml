@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: test API
+
+uses:
+  local-lib: subfolder/no_lib.raml
+
+traits:
+ tr:
+    headers:
+      h1:
+        type: string
+      h2:
+        type: string
+
+/res1:
+  get:

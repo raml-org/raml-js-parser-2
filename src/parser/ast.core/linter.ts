@@ -3557,7 +3557,7 @@ class UsesEntryValidator implements  NodeValidator{
             let libPath = vn && vn.value();
             if (libPath!=null && typeof libPath == "string"){
                 let rs=highLevelNode.lowLevel().unit().resolve(libPath);
-                if(highLevelNode.root().lowLevel().actual().libExpanded){
+                if(rs != null && highLevelNode.root().lowLevel().actual().libExpanded){
                     let libUnit = rs
                     let libNode = libUnit.ast()
                     let libAnnotations = libNode.children().filter(x=>{

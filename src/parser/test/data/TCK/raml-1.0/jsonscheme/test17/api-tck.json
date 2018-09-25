@@ -1,0 +1,116 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Request": {
+          "name": "Request",
+          "displayName": "Request",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\":{\n    \"prop1\": {\n      \"type\": \"object\"\n    },\n    \"prop2\": {\n      \"type\": \"object\"\n    }\n  },\n  \"required\": [\"prop1\",\"prop2\"]\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
+          }
+        }
+      }
+    ],
+    "title": "test api",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "400": {
+                "code": "400",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "any"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              }
+            },
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "sourceMap": {
+          "path": "api.raml"
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": [
+    {
+      "code": "REQUIRED_MUST_BE_BOOLEAN_IN_DRAFT_3",
+      "message": "Draft 3 schema must have boolean as 'required' property value",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 8,
+          "position": 311
+        },
+        "end": {
+          "line": 17,
+          "column": 37,
+          "position": 340
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "local-lib",
+        "value": "subfolder/no_lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "traits": [
+      {
+        "headers": [
+          {
+            "name": "h1",
+            "displayName": "h1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
+            "name": "h2",
+            "displayName": "h2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "sourceMap": {
+              "path": "api.raml"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "name": "tr",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "method": "get",
+            "parentUri": "/res1",
+            "absoluteParentUri": "/res1",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "relativeUri": "/res1",
+        "displayName": "/res1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res1"
+        ],
+        "absoluteUri": "/res1",
+        "completeRelativeUri": "/res1",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_LIBRARY_PATH",
+      "message": "Can not resolve library from path: 'subfolder/no_lib.raml'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 36
+        },
+        "end": {
+          "line": 4,
+          "column": 11,
+          "position": 45
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+#%RAML 0.8
+title: test api
+
+schemas:
+
+  - Request: |
+      {
+        "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object",
+        "properties":{
+          "prop1": {
+            "type": "object",
+            "properties":{
+                "prop11": {
+                  "type": "object"
+                },
+              "prop12": {
+                "type": "object"
+              }
+            },
+            "required": ["prop11","prop12"]
+          },
+          "prop2": {
+            "type": "object"
+          }
+        }
+      }
+
+
+/resource:
+
+  post:
+    body:
+     application/json:
+    responses:
+      200:
+      400:
