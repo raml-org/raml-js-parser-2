@@ -680,6 +680,9 @@ describe('Parser regression tests', function () {
     //it ("recursive includes" ,function(){
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
+    it ("Library usage in included resource" ,function(){
+        testErrors(util.data("parser/include/libUsage/api.raml"));
+    })
     it ("custom facets validator" ,function(){
         testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'"]);
     })

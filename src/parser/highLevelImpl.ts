@@ -1375,9 +1375,10 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                     var includer = aNodes.find(x=>x.includePath()==includePath)
                     if(includer){
                         let includedUnit = includer.unit().resolve(includePath);
-                        if(includedUnit) {
+                        if(includedUnit && isFragment(includedUnit)) {
                             let includedRoot = includedUnit.highLevel();
-                            parent = includedRoot.isElement() ? includedRoot.asElement() : parent
+                            let newParent = includedRoot.isElement() ? includedRoot.asElement() : parent;
+                            parent = newParent
                         }
                     }
                 }
@@ -2472,6 +2473,12 @@ function fragmentType(content:string):string {
         ptype="TypeDeclaration"
     }
     return ptype
+}
+
+function isFragment(unit:ll.ICompilationUnit):boolean {
+    let rfl = ramlFirstLine(unit.contents());
+    let result = rfl && rfl[2];
+    return result != null && result.length > 0
 }
 
 export function ramlFirstLine(content:string):RegExpMatchArray{
