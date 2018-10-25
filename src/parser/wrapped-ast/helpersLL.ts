@@ -307,7 +307,7 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
         if(isProxy){
             if(!proxy.LowLevelProxyNode.isInstance(x.lowLevel())) {
                 x = exp.createHighLevelNode(x, false, rp, true, false);
-                rp.process(x.lowLevel(),hlNode.lowLevel(),typeName,true,true);
+                rp.process(x.lowLevel(),hlNode.lowLevel(),typeName,true,true, pName);
                 x.setParent(hlNode);
                 (<hlimpl.ASTNodeImpl>x).patchProp(prop);
             }

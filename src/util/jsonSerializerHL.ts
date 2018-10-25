@@ -2098,7 +2098,7 @@ class UsesDeclarationTransformer extends BasicTransformation {
                     scope.hasRootMediaType = hasRootMediaType
                     var state = new referencePatcherLL.State(this.getReferencePatcher(),unit,scope,resolver)
                     let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
-                        aName, state, annotationsProp.nameId(),[unit, libUnit]);
+                        aName, state, "annotationTypes",[unit, libUnit]);
 
                     if(!patchedReference){
                         continue;

@@ -867,100 +867,140 @@ export class ReferencePatcher {
             return;
         }
 
-        let ind = value.lastIndexOf(".");
+        let bestPossibleResult:referencePatcherHL.PatchedReference = null
+        let result:referencePatcherHL.PatchedReference = null
+        let started = true
+        for(let ind = 0 ; result == null && ind >= 0 ; ind = value.indexOf(".",ind+1)) {
 
-        let referencedUnit:ll.ICompilationUnit;
-        let plainName:string;
-        let oldNS:string;
-        var units = unitsOverride || state.units;
-        if (ind >= 0) {
-            oldNS = value.substring(0, ind);
-            plainName = value.substring(ind + 1);
-
-            for (let i = units.length; i > 0; i--) {
-                let localUnit = units[i - 1];
-                let nsMap = this.libExpMode
-                    ? state.resolver.expandedNSMap(localUnit)
-                    : state.resolver.nsMap(localUnit);
-
-                let info = nsMap && nsMap[oldNS];
-                if (info == null) {
-                    continue;
-                }
-                referencedUnit = info.unit;
-                if (referencedUnit != null) {
-                    break;
-                }
+            if(started){
+                started = false
+                ind = -1
             }
-        }
-        else {
-            if (isType && def.rt.builtInTypes().get(value) != null) {
-                return null;
-            }
-            plainName = value;
-            referencedUnit = units[units.length - 1];
-        }
-        if (referencedUnit == null && !this.libExpMode){
-            if(oldNS && oldNS.length>0) {
-                let chainedUnit:ll.ICompilationUnit;
+
+            let referencedUnit: ll.ICompilationUnit;
+            let plainName: string;
+            let oldNS: string;
+            var units = unitsOverride || state.units;
+            if (ind >= 0) {
+                oldNS = value.substring(0, ind);
+                plainName = value.substring(ind + 1);
+
                 for (let i = units.length; i > 0; i--) {
                     let localUnit = units[i - 1];
-                    let expandedNSMap = state.resolver.expandedNSMap(localUnit);
+                    let nsMap = this.libExpMode
+                        ? state.resolver.expandedNSMap(localUnit)
+                        : state.resolver.nsMap(localUnit);
 
-                    let info = expandedNSMap && expandedNSMap[oldNS];
+                    let info = nsMap && nsMap[oldNS];
                     if (info == null) {
                         continue;
                     }
-                    chainedUnit = info.unit;
-                    if (chainedUnit != null) {
+                    referencedUnit = info.unit;
+                    if (referencedUnit != null) {
                         break;
                     }
                 }
-                if(chainedUnit!=null){
-                    let usesInfo = state.resolver.resolveNamespace(state.rootUnit, chainedUnit);
-                    if (usesInfo != null) {
-                        let newNS = usesInfo.namespace();
-                        if (gotQuestion) {
-                            plainName += "?";
+            }
+            else {
+                if (isType && def.rt.builtInTypes().get(value) != null) {
+                    continue;
+                }
+                plainName = value;
+                referencedUnit = units[units.length - 1];
+            }
+            if (referencedUnit == null && !this.libExpMode) {
+                if (oldNS && oldNS.length > 0) {
+                    let chainedUnit: ll.ICompilationUnit;
+                    for (let i = units.length; i > 0; i--) {
+                        let localUnit = units[i - 1];
+                        let expandedNSMap = state.resolver.expandedNSMap(localUnit);
+
+                        let info = expandedNSMap && expandedNSMap[oldNS];
+                        if (info == null) {
+                            continue;
                         }
-                        return new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
+                        chainedUnit = info.unit;
+                        if (chainedUnit != null) {
+                            break;
+                        }
+                    }
+                    if (chainedUnit != null) {
+                        let usesInfo = state.resolver.resolveNamespace(state.rootUnit, chainedUnit);
+                        if (usesInfo != null) {
+                            let newNS = usesInfo.namespace();
+                            if (gotQuestion) {
+                                plainName += "?";
+                            }
+                            let unitModel = state.resolver.unitModel(chainedUnit)
+                            if(bestPossibleResult == null){
+                                bestPossibleResult = new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
+                            }
+                            if(unitModel != null) {
+                                let c = unitModel.collection(collectionName)
+                                if(c != null && c.getElement(plainName) != null ) {
+                                    result = new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
+                                }
+                            }
+                        }
                     }
                 }
+                continue;
             }
-            return null;
-        }
-        if(referencedUnit.absolutePath() == state.rootUnit.absolutePath()) {
-            if(oldNS==null||oldNS.length==0){
-                return null;
+            if (referencedUnit != null && referencedUnit.absolutePath() == state.rootUnit.absolutePath()) {
+                if (oldNS != null && oldNS.length > 0) {
+                    let unitModel = state.resolver.unitModel(referencedUnit)
+                    if(bestPossibleResult == null){
+                        bestPossibleResult = new referencePatcherHL.PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
+                    }
+                    if(unitModel != null) {
+                        let c = unitModel.collection(collectionName)
+                        if (c != null && c.getElement(plainName) != null) {
+                            result = new referencePatcherHL.PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
+                        }
+                    }
+                }
+                continue
             }
-            return new referencePatcherHL.PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
-        }
-        var usesInfo = state.resolver.resolveNamespace(state.rootUnit, referencedUnit);
-        if (usesInfo == null) {
-            return null;
-        }
-        var newNS = usesInfo.namespace();
-        if (newNS == null) {
-            return null;
-        }
-        if (this.mode == referencePatcherHL.PatchMode.PATH) {
-            var aPath = referencedUnit.absolutePath().replace(/\\/g, "/");
-            if (!ll.isWebPath(aPath)) {
-                aPath = "file://" + aPath;
+            var usesInfo = state.resolver.resolveNamespace(state.rootUnit, referencedUnit);
+            if (usesInfo == null) {
+                continue;
             }
-            newNS = `${aPath}#/${collectionName}`;
+            var newNS = usesInfo.namespace();
+            if (newNS == null) {
+                continue;
+            }
+            if (this.mode == referencePatcherHL.PatchMode.PATH) {
+                var aPath = referencedUnit.absolutePath().replace(/\\/g, "/");
+                if (!ll.isWebPath(aPath)) {
+                    aPath = "file://" + aPath;
+                }
+                newNS = `${aPath}#/${collectionName}`;
+            }
+            if (gotQuestion) {
+                plainName += "?";
+            }
+            let unitModel = state.resolver.unitModel(referencedUnit)
+            if(bestPossibleResult == null){
+                bestPossibleResult = new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, referencedUnit, false, this.mode);
+            }
+            if(unitModel != null) {
+                let c = unitModel.collection(collectionName)
+                if (c != null && c.getElement(plainName) != null) {
+                    result = new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, referencedUnit, false, this.mode);
+                }
+            }
         }
-        if (gotQuestion) {
-            plainName += "?";
+        if(result==null){
+            result = bestPossibleResult
         }
-        return new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, referencedUnit, false, this.mode);
+        return result
     }
 
     patchNodeName(node:ll.ILowLevelASTNode, state:State, collectionName:string) {
 
         var llNode = <proxy.LowLevelProxyNode>node;
         var key = llNode.key();
-        var isAnnotation = (collectionName == "annotationTypes");
+        var isAnnotation = (collectionName == "annotationTypes") && util.stringStartsWith(key,"(") && util.stringEndsWith(key,")");
         if (isAnnotation) {
             key = key.substring(1, key.length-1);
         }
@@ -1289,7 +1329,7 @@ export class ReferencePatcher {
                         }
                     }
                 }
-                this.process(chNode, api, typeName, true, true);
+                this.process(chNode, api, typeName, true, true, collectionName);
                 result = true;
             }
         }
