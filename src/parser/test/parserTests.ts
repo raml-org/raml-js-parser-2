@@ -1472,7 +1472,7 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
         testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib1.raml"));
     });
 
-    it("test002", function () {
+    it("test003", function () {
         this.timeout(15000);
         testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib2.raml"));
     });
@@ -1513,6 +1513,24 @@ describe('JSON Extension default attributes',function(){
     });
 });
 
+describe('Errors in extensions',function(){
+    this.timeout(15000);
+    it("error in base", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_base/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_base/extension_1.raml"), util.data("./extensions/examples/error_in_base/extension_2.raml")]);
+    });
+
+    it("error in extension 1", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_extension_1/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_extension_1/extension_1.raml"), util.data("./extensions/examples/error_in_extension_1/extension_2.raml")]);
+    });
+
+    it("error in extension 2", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_extension_2/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_extension_2/extension_1.raml"), util.data("./extensions/examples/error_in_extension_2/extension_2.raml")]);
+    });
+});
+
 function testDump(apiPath: string, options: any) {
     var api = util.loadApi(apiPath);
     var dumpPath = util.dumpPath(apiPath);
@@ -1546,12 +1564,12 @@ function testErrorsEnd(p:string) {
 
 }
 
-export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
+export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false, extensions:string[] = []){
     console.log("Starting test errors for " + p)
     // var api=util.loadApi(p);
     // api = util.expandHighIfNeeded(api);
 
-    let topLevel = parserIndex.loadRAMLSync(p, []);
+    let topLevel = parserIndex.loadRAMLSync(p, extensions);
     let api = topLevel.highLevel();
     api = util.expandHighIfNeeded(<any>api);
 

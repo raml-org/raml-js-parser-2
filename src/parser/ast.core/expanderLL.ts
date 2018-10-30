@@ -20,7 +20,7 @@ var mediaTypeParser = require("media-typer");
 
 var changeCase = require('change-case');
 
-export function expandTraitsAndResourceTypes<T>(api:T):T{
+export function expandTraitsAndResourceTypes<T>(api:T, merge=false):T{
 
     if(!core.BasicNodeImpl.isInstance(api)){
         // if(!((<any>api).kind
@@ -28,7 +28,7 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
         return null;
     }
     var apiNode = <core.BasicNodeImpl><any>api;
-    var hlNode = expandTraitsAndResourceTypesHL(apiNode.highLevel());
+    var hlNode = expandTraitsAndResourceTypesHL(apiNode.highLevel(), merge);
     if(!hlNode){
         return null;
     }
@@ -37,7 +37,7 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
     return <T><any>result;
 }
 
-export function expandTraitsAndResourceTypesHL(api:hl.IHighLevelNode):hl.IHighLevelNode{
+export function expandTraitsAndResourceTypesHL(api:hl.IHighLevelNode, merge=false):hl.IHighLevelNode{
     if(api==null){
         return null;
     }
@@ -45,7 +45,7 @@ export function expandTraitsAndResourceTypesHL(api:hl.IHighLevelNode):hl.IHighLe
     if(!(definition&&universeHelpers.isApiSibling(definition))){
         return null;
     }
-    var result = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
+    var result = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api, null, false, merge);
     return result;
 }
 
@@ -146,7 +146,8 @@ export class TraitsAndResourceTypesExpander {
     expandTraitsAndResourceTypes(
         api:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy:boolean=false):hl.IHighLevelNode {
+        forceProxy:boolean=false,
+        merge=false):hl.IHighLevelNode {
 
         this.init(api);
 
@@ -158,7 +159,7 @@ export class TraitsAndResourceTypesExpander {
             return api;
         }
 
-        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api,false,rp);
+        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api,merge,rp);
         if (api.definition().key()==def.universesInfo.Universe10.Overlay){
             return hlNode;
         }

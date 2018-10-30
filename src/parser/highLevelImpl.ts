@@ -1330,7 +1330,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var k=this.definition().key();
         if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Extension){
             if (!this.isExpanded()){
-                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
+                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode(),true);
                 var hlnode=nm.highLevel();
                 hlnode.resetChildren();
                 hlnode.children();
