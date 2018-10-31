@@ -34,6 +34,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                },
                 "examples": [
                   {
                     "value": {
@@ -47,10 +50,7 @@
                   "{\"prop\":\"stringValue\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "fragments/rt.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",
@@ -84,21 +84,23 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "examples": [
                   {
-                    "value": "stringValue",
+                    "value": {
+                      "prop": "stringValue"
+                    },
                     "strict": true,
                     "name": null
                   }
                 ],
                 "simplifiedExamples": [
-                  "stringValue"
+                  "{\"prop\":\"stringValue\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "put",
@@ -123,6 +125,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                },
                 "examples": [
                   {
                     "value": {
@@ -136,10 +141,7 @@
                   "{\"prop\":\"stringValue\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "sourceMap": {
-                  "path": "fragments/rt.raml"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",

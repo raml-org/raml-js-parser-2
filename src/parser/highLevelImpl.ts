@@ -1369,6 +1369,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 let included = !isInLibExpandMode && includePath!=null;
 
                 let parent = this.parent()
+                let parentPatch = false
                 let isRAML10 = this.definition().universe().version() == "RAML10"
                 if(isRAML10 && includePath && !isInLibExpandMode && proxy.LowLevelCompositeNode.isInstance(this.lowLevel()) && (universeHelpers.isMethodType(parent.definition())||universeHelpers.isResourceType(parent.definition()))){
                     var aNodes = (<proxy.LowLevelCompositeNode>this.lowLevel()).adoptedNodes()
@@ -1379,21 +1380,33 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                             let includedRoot = includedUnit.highLevel();
                             let newParent = includedRoot.isElement() ? includedRoot.asElement() : parent;
                             parent = newParent
+                            parentPatch = true
                         }
                     }
                 }
 
                 let parentTypes = parent.types();
                 let thisDef = this.definition();
-                if(!included||!thisDef||!universeHelpers.canBeFragment(thisDef)){
+                if(!included||!thisDef){
                     return parentTypes;
                 }
-                let iUnit = unit.resolve(includePath);
+                var inncluder = unit
+                if(proxy.LowLevelCompositeNode.isInstance(this.lowLevel())){
+                    let actualIncluder = (<proxy.LowLevelCompositeNode>this.lowLevel()).adoptedNodes().find(x=>x.includePath()!=null);
+                    if(actualIncluder) {
+                        inncluder = actualIncluder.unit()
+                    }
+                }
+                let iUnit = inncluder.resolve(includePath);
                 if(!iUnit||!iUnit.isRAMLUnit()){
                     return parentTypes;
                 }
                 let thisTypes = iUnit.highLevel().asElement().types()
                 mergeLibs(parentTypes,thisTypes);
+                if(parentPatch){
+                    let originalParentTypes = unit.highLevel().asElement().types()
+                    mergeLibs(originalParentTypes,thisTypes);
+                }
                 this._types = thisTypes;
                 return thisTypes;
             }

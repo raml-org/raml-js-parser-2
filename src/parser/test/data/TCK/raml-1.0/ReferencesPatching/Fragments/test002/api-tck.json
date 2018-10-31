@@ -81,7 +81,9 @@
                 "type": [
                   "lib.MyType"
                 ],
-                "example": "stringValue",
+                "example": {
+                  "prop": "stringValue"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -93,10 +95,12 @@
                   "path": "api.raml"
                 },
                 "structuredExample": {
-                  "value": "stringValue",
+                  "value": "{\n  \"prop\": \"stringValue\"\n}",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "stringValue",
+                  "structuredValue": {
+                    "prop": "stringValue"
+                  },
                   "sourceMap": {
                     "path": "api.raml"
                   }

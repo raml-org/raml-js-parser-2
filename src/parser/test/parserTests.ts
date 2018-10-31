@@ -21,7 +21,7 @@ import tools = require("./testTools")
 import index = require("../../index");
 
 import parserIndex = require("../../index")
-
+import parserCore = require("../wrapped-ast/parserCoreApi")
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
 
@@ -1512,7 +1512,15 @@ describe('JSON Extension default attributes',function(){
         assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
     });
 });
+describe('Template tests', function () {
+    it("templates test 1", function () {
+        testErrors(util.data("./parser/templates/example_1/api.raml"), [], false, [],{ rejectOnErrors: true});
+    });
 
+    it("templates test 2", function () {
+        testErrors(util.data("./parser/templates/example_2/api.raml"), [], false, [],{ rejectOnErrors: true});
+    });
+});
 describe('Errors in extensions',function(){
     this.timeout(15000);
     it("error in base", function () {
@@ -1564,12 +1572,12 @@ function testErrorsEnd(p:string) {
 
 }
 
-export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false, extensions:string[] = []){
+export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false, extensions:string[] = [],opts:parserCore.Options = {}){
     console.log("Starting test errors for " + p)
     // var api=util.loadApi(p);
     // api = util.expandHighIfNeeded(api);
 
-    let topLevel = parserIndex.loadRAMLSync(p, extensions);
+    let topLevel = parserIndex.loadRAMLSync(p, extensions, opts);
     let api = topLevel.highLevel();
     api = util.expandHighIfNeeded(<any>api);
 

@@ -1,0 +1,9 @@
+#%RAML 1.0 ResourceType
+---
+
+get:
+  responses:
+    200:
+      body:
+        application/json:
+          type: <<typeName>>  # If this line is removed or commented, the error does not occur.
