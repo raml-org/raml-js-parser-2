@@ -1330,7 +1330,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var k=this.definition().key();
         if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Extension){
             if (!this.isExpanded()){
-                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
+                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode(),true);
                 var hlnode=nm.highLevel();
                 hlnode.resetChildren();
                 hlnode.children();
@@ -1369,30 +1369,44 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 let included = !isInLibExpandMode && includePath!=null;
 
                 let parent = this.parent()
+                let parentPatch = false
                 let isRAML10 = this.definition().universe().version() == "RAML10"
                 if(isRAML10 && includePath && !isInLibExpandMode && proxy.LowLevelCompositeNode.isInstance(this.lowLevel()) && (universeHelpers.isMethodType(parent.definition())||universeHelpers.isResourceType(parent.definition()))){
                     var aNodes = (<proxy.LowLevelCompositeNode>this.lowLevel()).adoptedNodes()
                     var includer = aNodes.find(x=>x.includePath()==includePath)
                     if(includer){
                         let includedUnit = includer.unit().resolve(includePath);
-                        if(includedUnit) {
+                        if(includedUnit && isFragment(includedUnit)) {
                             let includedRoot = includedUnit.highLevel();
-                            parent = includedRoot.isElement() ? includedRoot.asElement() : parent
+                            let newParent = includedRoot.isElement() ? includedRoot.asElement() : parent;
+                            parent = newParent
+                            parentPatch = true
                         }
                     }
                 }
 
                 let parentTypes = parent.types();
                 let thisDef = this.definition();
-                if(!included||!thisDef||!universeHelpers.canBeFragment(thisDef)){
+                if(!included||!thisDef){
                     return parentTypes;
                 }
-                let iUnit = unit.resolve(includePath);
+                var inncluder = unit
+                if(proxy.LowLevelCompositeNode.isInstance(this.lowLevel())){
+                    let actualIncluder = (<proxy.LowLevelCompositeNode>this.lowLevel()).adoptedNodes().find(x=>x.includePath()!=null);
+                    if(actualIncluder) {
+                        inncluder = actualIncluder.unit()
+                    }
+                }
+                let iUnit = inncluder.resolve(includePath);
                 if(!iUnit||!iUnit.isRAMLUnit()){
                     return parentTypes;
                 }
                 let thisTypes = iUnit.highLevel().asElement().types()
                 mergeLibs(parentTypes,thisTypes);
+                if(parentPatch){
+                    let originalParentTypes = unit.highLevel().asElement().types()
+                    mergeLibs(originalParentTypes,thisTypes);
+                }
                 this._types = thisTypes;
                 return thisTypes;
             }
@@ -2472,6 +2486,12 @@ function fragmentType(content:string):string {
         ptype="TypeDeclaration"
     }
     return ptype
+}
+
+function isFragment(unit:ll.ICompilationUnit):boolean {
+    let rfl = ramlFirstLine(unit.contents());
+    let result = rfl && rfl[2];
+    return result != null && result.length > 0
 }
 
 export function ramlFirstLine(content:string):RegExpMatchArray{

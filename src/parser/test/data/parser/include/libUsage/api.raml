@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: API
+protocols: [ HTTPS ]
+mediaType: application/json
+uses:
+  Lib: library.raml
+
+traits:
+  admin_only:
+    usage: add this to methods that are only allowed for company admins
+    responses:
+      403:
+        description: trying to perform this operation as a non-admin
+
+/v1:
+# DOES NOT WORK
+  /api: !include resource.raml
+# Manually pasted content of resource.raml works
+#  /api:
+#    get:
+#      is: [admin_only]
+#      responses:
+#        200:
+#          body:
+#            type: Lib.SomeType

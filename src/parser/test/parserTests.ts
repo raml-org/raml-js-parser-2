@@ -21,7 +21,7 @@ import tools = require("./testTools")
 import index = require("../../index");
 
 import parserIndex = require("../../index")
-
+import parserCore = require("../wrapped-ast/parserCoreApi")
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
 
@@ -680,6 +680,9 @@ describe('Parser regression tests', function () {
     //it ("recursive includes" ,function(){
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
+    it ("Library usage in included resource" ,function(){
+        testErrors(util.data("parser/include/libUsage/api.raml"));
+    })
     it ("custom facets validator" ,function(){
         testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'"]);
     })
@@ -1469,7 +1472,7 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
         testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib1.raml"));
     });
 
-    it("test002", function () {
+    it("test003", function () {
         this.timeout(15000);
         testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib2.raml"));
     });
@@ -1509,6 +1512,32 @@ describe('JSON Extension default attributes',function(){
         assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
     });
 });
+describe('Template tests', function () {
+    it("templates test 1", function () {
+        testErrors(util.data("./parser/templates/example_1/api.raml"), [], false, [],{ rejectOnErrors: true});
+    });
+
+    it("templates test 2", function () {
+        testErrors(util.data("./parser/templates/example_2/api.raml"), [], false, [],{ rejectOnErrors: true});
+    });
+});
+describe('Errors in extensions',function(){
+    this.timeout(15000);
+    it("error in base", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_base/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_base/extension_1.raml"), util.data("./extensions/examples/error_in_base/extension_2.raml")]);
+    });
+
+    it("error in extension 1", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_extension_1/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_extension_1/extension_1.raml"), util.data("./extensions/examples/error_in_extension_1/extension_2.raml")]);
+    });
+
+    it("error in extension 2", function () {
+        this.timeout(15000);
+        testErrors(util.data("./extensions/examples/error_in_extension_2/base.raml"), ["Inheriting from unknown type"], false, [util.data("./extensions/examples/error_in_extension_2/extension_1.raml"), util.data("./extensions/examples/error_in_extension_2/extension_2.raml")]);
+    });
+});
 
 function testDump(apiPath: string, options: any) {
     var api = util.loadApi(apiPath);
@@ -1543,12 +1572,12 @@ function testErrorsEnd(p:string) {
 
 }
 
-export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
+export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false, extensions:string[] = [],opts:parserCore.Options = {}){
     console.log("Starting test errors for " + p)
     // var api=util.loadApi(p);
     // api = util.expandHighIfNeeded(api);
 
-    let topLevel = parserIndex.loadRAMLSync(p, []);
+    let topLevel = parserIndex.loadRAMLSync(p, extensions, opts);
     let api = topLevel.highLevel();
     api = util.expandHighIfNeeded(<any>api);
 

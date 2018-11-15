@@ -582,6 +582,25 @@ export class UnitModel{
         }
         return this._extensionChain;
     }
+
+    collection(collectionName:string):ElementsCollection {
+        if(collectionName == "types"){
+            return this.types
+        }
+        else if(collectionName == "annotationTypes"){
+            return this.annotationTypes
+        }
+        else if(collectionName == "resourceTypes"){
+            return this.resourceTypes
+        }
+        else if(collectionName == "traits"){
+            return this.traits
+        }
+        else if(collectionName == "securitySchemes"){
+            return this.securitySchemes
+        }
+        return null;
+    }
 }
 
 

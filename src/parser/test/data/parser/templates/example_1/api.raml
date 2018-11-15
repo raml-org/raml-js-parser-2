@@ -1,0 +1,23 @@
+#%RAML 1.0
+---
+title: Test API
+version: v1
+baseUri: http://api.test.com/{version}
+mediaType: application/json
+protocols: [ HTTPS ]
+description: Test API. Release v0.0.1
+
+traits:
+  Trait1: !include trait_1.raml
+
+types:
+  Type1: !include type_1.raml
+
+resourceTypes:
+  Item: !include item.raml
+
+/element1:
+  type: { Item: { typeName : Type1 } }
+  get:
+    is:
+      - Trait1
