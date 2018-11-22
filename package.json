@@ -91,7 +91,7 @@
     "rimraf": "*",
     "raml-1-parser-test-utils": "1.0.10",
     "typescript-compiler": "1.4.1-2",
-    "ts-structure-parser": "0.0.19",
+    "ts-structure-parser": "0.0.18",
     "gulp-istanbul": "*"
   },
   "browser": {
