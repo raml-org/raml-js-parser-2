@@ -40,7 +40,6 @@
     "q": "1.5.0",
     "raml-definition-system": "0.0.85",
     "ts-model": "0.0.18",
-    "ts-structure-parser": "0.0.17",
     "underscore": "1.9.1",
     "urlsafe-base64": "^1.0.0",
     "xhr2": "0.1.4",
@@ -92,6 +91,7 @@
     "rimraf": "*",
     "raml-1-parser-test-utils": "1.0.10",
     "typescript-compiler": "1.4.1-2",
+    "ts-structure-parser": "0.0.19",
     "gulp-istanbul": "*"
   },
   "browser": {
