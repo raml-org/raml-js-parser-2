@@ -76,7 +76,7 @@
     "@types/mkdirp": "0.5.2",
     "@types/pluralize": "0.0.29",
     "@types/fs-extra": "5.0.5",
-    "mocha": "6.0.2",
+    "mocha": "5.2.0",
     "chai": "4.2.0",
     "ajv": "6.9.2",
     "typescript": "3.3.3333",
