@@ -84,11 +84,22 @@ var testFilesAll = [
   'dist/parser/test/model-editing-tests-add.js',
   'dist/parser/test/model-editing-tests-refactoring.js',
   'dist/parser/test/model-editing-tests-remove.js',
-  'dist/parser/test/model-editing-tests-sig.js',
   'dist/parser/test/typeExpansionTests.js'
 ].concat(testFilesExpand);
 
-gulp.task('test:ts', ['pre-test'], function () {
+gulp.task('pre-test', function () {
+    return gulp.src([
+      'dist/*.js',
+      'dist/parser/**/*.js',
+      'dist/util/**/*.js'
+    ])
+    // Covering files
+    .pipe(istanbul())
+    // Force `require` to return covered files
+    .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test:ts',  gulp.series('pre-test', function () {
     global.isExpanded = null;
 
     return gulp.src(testFilesAll, { read: false })
@@ -97,7 +108,7 @@ gulp.task('test:ts', ['pre-test'], function () {
             reporter: 'spec'
         }))
         .pipe(istanbul.writeReports());
-});
+}));
 
 gulp.task('testExpand:ts', function () {
   global.isExpanded = true;
@@ -119,19 +130,6 @@ gulp.task('testLibExpand:ts', function () {
         reporter: 'spec'
       }));
 });
-
-gulp.task('pre-test', function () {
-    return gulp.src([
-            'dist/*.js',
-            'dist/parser/**/*.js',
-            'dist/util/**/*.js'
-    ])
-        // Covering files
-        .pipe(istanbul())
-        // Force `require` to return covered files
-        .pipe(istanbul.hookRequire());
-});
-
 
 gulp.task('testCompat', function () {
   //return gulp.src(['src/**/*.test.js', 'test/**/*.js', 'src/parser/test/model-editing-tests-attrs.js', 'src/parser/test/model-editing-tests-add.js', 'src/parser/test/*.js'], { read: false })
@@ -155,7 +153,7 @@ gulp.task('testCompat', function () {
 });
 
 
-gulp.task('test',['test:ts','testExpand:ts']);
+gulp.task('test', gulp.series('test:ts','testExpand:ts'));
 
 gulp.task('watch:test', function () {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test']);
@@ -168,9 +166,7 @@ gulp.task('coffee', function (done) {
   return spawn(path, ['-c', 'src'], done);
 });
 
-gulp.task('build', [
-  'microsite'
-]);
+gulp.task('build');
 
 gulp.task('watch:coffee', function (done) {
   var isWin = /^win/.test(process.platform);
@@ -218,7 +214,7 @@ gulp.task('package-readme', function () {
     .pipe(gulp.dest('atom-package'))
 })
 
-gulp.task('package-build', ['coffee'], function (done) {
+gulp.task('package-build', gulp.series('coffee', function (done) {
   var config =  {
     entry: join(__dirname, 'src/atom/main'),
     output: {
@@ -289,17 +285,17 @@ gulp.task('package-build', ['coffee'], function (done) {
     webpackOutput(err, stats);
     done();
   });
-});
+}));
 
 gulp.task('package-clean', function () {
   rimraf.sync('atom-package');
 });
 
-gulp.task('package-deps', ['package-clean', 'package-readme', 'package-build', 'package-copy', 'package-assets', 'package-json']);
+gulp.task('package-deps', gulp.series('package-clean', 'package-readme', 'package-build', 'package-json'));
 
-gulp.task('package-publish', ['package-deps'], function (done) {
+gulp.task('package-publish', gulp.series('package-deps', function (done) {
   childProcess.exec('VERSION=`node -p "require(\'./package.json\').version"` && cd atom-package && git init . && git add . && git reset --  main.js.map && git commit -m "Prepare v$VERSION" && git tag -a "v$VERSION" -m "v$VERSION" && git remote add origin https://github.com/'+API_WORKBENCH_PACKAGE_ORG+'/'+API_WORKBENCH_PACKAGE_REPO+'.git && git push origin master --force && git push --force origin refs/tags/v$VERSION:refs/tags/v$VERSION && apm publish --tag "v$VERSION"', done);
-});
+}));
 /**
  * Spawn a child process for gulp.
  */

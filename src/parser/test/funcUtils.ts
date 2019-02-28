@@ -22,7 +22,7 @@ export function loadWrappersData() {
 
         var dataPath08 = dataDir + '/RAML08data.json';
         var dataPath10 = dataDir + '/RAML10data.json';
-        
+
         found08 = JSON.parse(fs.readFileSync(dataPath08).toString());
         found10 = JSON.parse(fs.readFileSync(dataPath10).toString());
     }
@@ -47,7 +47,7 @@ export function callMethods(wrapper, holder, name) {
 
             holder.called[method] = ret;
         } catch (exception) {
-            
+
         }
     });
 }
@@ -73,7 +73,7 @@ export function storeIfNeededFor(highLevel) {
 
     var dataPath = dataDir + '/' + highLevel.definition().universe().version() + 'data.json';
 
-    if(fs.exists(dataPath)) {
+    if(fs.existsSync(dataPath)) {
         return;
     }
 
@@ -167,15 +167,15 @@ export function findAs(highLevel, name, kind) {
     var children2 = (highLevel.directChildren && highLevel.directChildren()) || [];
 
     var children = children1.concat(children2);
-    
+
     for(var i = 0; i < children.length; i++) {
         var res = findAs(children[i], name, kind);
-        
+
         if(res) {
             return res;
         }
     }
-    
+
     return null;
 }
 
@@ -215,19 +215,19 @@ function findSubs(type, name) {
 
 function firstType(type, previous = null) {
     var supers = type.allSuperTypes();
-    
+
     if(!supers || supers.length === 0) {
         return previous || type;
     }
-    
+
     for(var i = 0; i < supers.length; i++) {
         var res = firstType(supers[i], type);
-        
+
         if(res) {
             return res;
         }
     }
-    
+
     return null;
 }
 
