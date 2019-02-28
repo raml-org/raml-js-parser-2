@@ -6,7 +6,6 @@ describe ("Tests with expanded APIs.", function () {
     require("./model-editing-tests-refactoring")
     require("./model-editing-tests-remove")
     require("./model-editing-tests-attrs")
-    require("./model-editing-tests-sig")
     require("./schema-model-tests")
     require("./parserTests")
     require("./parserTests2")
