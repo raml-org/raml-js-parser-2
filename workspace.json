@@ -7,12 +7,14 @@
   },
   "raml-definition-system" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/raml-org/raml-definition-system.git"
+    "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
+    "gitBranch": "upgrade_nodejs"
   },
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
-    "gitUrl" : "https://github.com/raml-org/raml-typesystem.git"
+    "gitUrl" : "https://github.com/raml-org/raml-typesystem.git",
+    "gitBranch": "upgrade_nodejs"
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
