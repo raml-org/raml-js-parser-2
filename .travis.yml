@@ -7,6 +7,9 @@ notifications:
 
 node_js:
   - "6"
+  - "8"
+  - "10"
+  - "node"
 
 before_script: npm run devInstall
 
