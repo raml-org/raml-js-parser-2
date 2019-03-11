@@ -6,7 +6,10 @@ notifications:
     on_failure: change
 
 node_js:
-  - "4.0"
+  - "6"
+  - "8"
+  - "10"
+  - "node"
 
 before_script: npm run devInstall
 
