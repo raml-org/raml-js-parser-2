@@ -14,3 +14,10 @@ node_js:
 before_script: npm run devInstall
 
 script: npm run buildall && npm run testall
+
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN https://docs.travis-ci.com/user/deployment/npm/#npm-auth-token"
+  on:
+    tags: true
