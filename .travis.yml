@@ -17,7 +17,8 @@ script: npm run buildall && npm run testall
 
 deploy:
   provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN https://docs.travis-ci.com/user/deployment/npm/#npm-auth-token"
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
   on:
     tags: true
