@@ -72,7 +72,7 @@
     "@types/underscore": "1.8.10",
     "@types/q": "1.5.1",
     "@types/invariant": "2.2.29",
-    "@types/marked": "0.6.2",
+    "@types/marked": "0.6.5",
     "@types/mkdirp": "0.5.2",
     "@types/pluralize": "0.0.29",
     "@types/fs-extra": "5.0.5",
