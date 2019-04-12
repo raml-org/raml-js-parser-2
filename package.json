@@ -46,7 +46,7 @@
     "xmldom": "0.1.27",
     "xmlhttprequest": "1.8.0",
     "yaml-ast-parser": "0.0.43",
-    "z-schema": "3.25.1"
+    "z-schema": "4.0.1"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
