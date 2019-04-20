@@ -33,7 +33,7 @@
     "json-stable-stringify": "1.0.1",
     "loophole": "1.1.0",
     "lrucache": "1.0.3",
-    "media-typer": "1.0.1",
+    "media-typer": "1.0.2",
     "mkdirp": "0.5.1",
     "pluralize": "7.0.0",
     "promise-polyfill": "8.1.0",
