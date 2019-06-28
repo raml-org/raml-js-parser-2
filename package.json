@@ -38,7 +38,7 @@
     "pluralize": "7.0.0",
     "promise-polyfill": "8.1.0",
     "q": "1.5.1",
-    "raml-definition-system": "0.0.87",
+    "raml-definition-system": "0.0.88",
     "ts-model": "0.0.18",
     "underscore": "1.9.1",
     "urlsafe-base64": "^1.0.0",
