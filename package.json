@@ -75,7 +75,7 @@
     "@types/marked": "0.6.5",
     "@types/mkdirp": "0.5.2",
     "@types/pluralize": "0.0.29",
-    "@types/fs-extra": "5.0.5",
+    "@types/fs-extra": "8.0.0",
     "mocha": "5.2.0",
     "chai": "4.2.0",
     "ajv": "6.10.0",
