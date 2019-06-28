@@ -66,13 +66,13 @@
     "url": "https://github.com/raml-org/raml-js-parser-2/issues"
   },
   "devDependencies": {
-    "@types/node": "11.9.6",
+    "@types/node": "12.0.10",
     "@types/chai": "4.1.7",
     "@types/mocha": "5.2.7",
     "@types/underscore": "1.8.10",
-    "@types/q": "1.5.1",
+    "@types/q": "1.5.2",
     "@types/invariant": "2.2.29",
-    "@types/marked": "0.6.2",
+    "@types/marked": "0.6.5",
     "@types/mkdirp": "0.5.2",
     "@types/pluralize": "0.0.29",
     "@types/fs-extra": "5.0.5",
