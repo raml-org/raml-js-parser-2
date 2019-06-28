@@ -36,7 +36,7 @@ var su = def.getSchemaUtils();
 var mediaTypeParser=require("media-typer")
 
 import xmlutil = require('../../util/xmlutil')
-import {error} from "util";
+var error = require("util").error
 import {LowLevelWrapperForTypeSystem} from "../highLevelImpl";
 import {find} from "../../util/index";
 import {Operation, MethodBase, ResourceBase} from "../artifacts/raml10parserapi";
