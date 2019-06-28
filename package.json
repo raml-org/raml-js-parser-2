@@ -42,7 +42,7 @@
     "ts-model": "0.0.18",
     "underscore": "1.9.1",
     "urlsafe-base64": "^1.0.0",
-    "xhr2": "0.1.4",
+    "xhr2": "0.2.0",
     "xmldom": "0.1.27",
     "xmlhttprequest": "1.8.0",
     "yaml-ast-parser": "0.0.43",
