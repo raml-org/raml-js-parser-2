@@ -34,8 +34,8 @@ node node_modules/raml-1-parser/test/testAsync02.js  //asynchronously loads XKCD
 ```
 
 ## Usage
-* For parser usage example refer to `node_modules/raml-1-parser/test/test.js`
-* For asynchrounous usage example refer to `node_modules/raml-1-parser/test/testAsync.js`
+* For parser usage example refer to `node_modules/raml-1-parser/test/test01.js`
+* For asynchrounous usage example refer to `node_modules/raml-1-parser/test/testAsync01.js`
 
 Parser documentation: https://raml-org.github.io/raml-js-parser-2/
 
