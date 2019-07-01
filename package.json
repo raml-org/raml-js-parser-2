@@ -69,7 +69,7 @@
     "@types/node": "11.9.6",
     "@types/chai": "4.1.7",
     "@types/mocha": "5.2.6",
-    "@types/underscore": "1.8.10",
+    "@types/underscore": "1.9.2",
     "@types/q": "1.5.1",
     "@types/invariant": "2.2.29",
     "@types/marked": "0.6.2",
