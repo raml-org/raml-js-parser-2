@@ -1,3 +1,6 @@
+DEPRECATION NOTICE: please note that this parser is now deprecated, please use [webapi-parser](https://github.com/raml-org/webapi-parser) instead.
+
+—-
 # RAML 1.0 JS Parser
 
 [![Build Status](https://travis-ci.org/raml-org/raml-js-parser-2.svg?branch=master)](https://travis-ci.org/raml-org/raml-js-parser-2) [![Greenkeeper badge](https://badges.greenkeeper.io/raml-org/raml-js-parser-2.svg)](https://greenkeeper.io/)
