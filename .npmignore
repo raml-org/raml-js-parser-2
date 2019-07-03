@@ -1,5 +1,6 @@
 /*
 !/dist
+!/dist/parser/ast.core/
 
 /dist/devUtil
 /dist/browserVersionGenerator
