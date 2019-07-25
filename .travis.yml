@@ -15,26 +15,11 @@ before_script: npm run devInstall
 
 script: npm run buildall && npm run testall
 
-jobs:
-  include:
-    - stage: npm release (regular)
-      node_js: "node"
-      deploy:
-        provider: npm
-        email: "$NPM_EMAIL"
-        api_key: "$NPM_TOKEN"
-        skip_cleanup: true
-        on:
-          tags: true
-          node: "node"
-    - stage: npm release (browser)
-      node_js: "node"
-      script: npm run buildBrowserPublishNpm && cd browser_version_npm
-      deploy:
-        provider: npm
-        email: "$NPM_EMAIL"
-        api_key: "$NPM_TOKEN"
-        skip_cleanup: true
-        on:
-          tags: true
-          node: "node"
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
+  on:
+    tags: true
+    node: "node"
