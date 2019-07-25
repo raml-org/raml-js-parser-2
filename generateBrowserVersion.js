@@ -20,12 +20,12 @@ childProcess.execSync(isNpm ? "mkdir browser_version_npm" : "mkdir browser_versi
 function webPackForBrowserLib() {
     var plugins = [];
 
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        minimize: true,
-        compress: { warnings: false }
-    }));
-
     var config = {
+        mode: 'production',
+        optimization: {
+            minimize: true
+        },
+
         entry: path.resolve(__dirname, "./dist/index.js"),
 
         plugins: plugins,
@@ -39,11 +39,6 @@ function webPackForBrowserLib() {
             libraryTarget: "umd"
         },
 
-        module: {
-            loaders: [
-                { test: /\.json$/, loader: "json" }
-            ]
-        },
         resolve: {
             alias: {
                 fs: path.resolve(__dirname, "./web-tools/modules/emptyFS.js")
@@ -81,7 +76,7 @@ function webPackForBrowserLib() {
         console.log(stats.toString({reasons : true, errorDetails: true}));
 
         updateVersion();
-        
+
         if(isNpm) {
             childProcess.execSync('cd browser_version_npm && npm publish');
         }
