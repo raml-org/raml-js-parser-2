@@ -76,10 +76,6 @@ function webPackForBrowserLib() {
         console.log(stats.toString({reasons : true, errorDetails: true}));
 
         updateVersion();
-
-        if(isNpm) {
-            childProcess.execSync('cd browser_version_npm && npm publish');
-        }
     });
 }
 
