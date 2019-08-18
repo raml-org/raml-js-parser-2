@@ -82,7 +82,7 @@
     "typescript": "3.3.3333",
     "gulp": "4.0.2",
     "webpack": "4.35.0",
-    "gulp-mocha": "6.0.0",
+    "gulp-mocha": "7.0.0",
     "chai-as-promised": "7.1.1",
     "json-loader": "0.5.7",
     "marked": "0.6.2",
