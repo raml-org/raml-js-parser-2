@@ -2,6 +2,9 @@
   "name": "raml-1-parser",
   "version": "1.1.56",
   "main": "dist/index.js",
+  "engines": {
+    "node": ">=6.17.1"
+  },
   "scripts": {
     "compile": "rimraf dist && tsc",
     "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks",
