@@ -16,7 +16,8 @@
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/raml-xml-validation.git"
+    "gitUrl" : "https://github.com/mulesoft-labs/raml-xml-validation.git",
+    "gitBranch" : "0.0.15"
   },
   "raml-json-validation" : {
     "build" : "npm run build",
