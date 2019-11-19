@@ -78,7 +78,7 @@
     "@types/node": "^12.11.6",
     "@types/pluralize": "0.0.29",
     "@types/q": "1.5.2",
-    "@types/underscore": "1.9.3",
+    "@types/underscore": "1.9.4",
     "ajv": "6.10.2",
     "atom-text-typer": "0.0.1",
     "chai": "4.2.0",
