@@ -16,8 +16,6 @@ import expander=require("./expanderLL");
 
 import referencePatcherHL = require("./referencePatcher");
 
-var changeCase = require('change-case');
-
 var transitionsMap:TransitionMap;
 
 function initTransitions(){

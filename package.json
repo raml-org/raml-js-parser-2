@@ -44,6 +44,7 @@
     "raml-definition-system": "^0.0.91",
     "ts-model": "0.0.18",
     "underscore": "1.9.1",
+    "upper-case-first": "^2.0.1",
     "urlsafe-base64": "1.0.0",
     "xhr2": "0.2.0",
     "xmldom-alpha": "^0.1.28",

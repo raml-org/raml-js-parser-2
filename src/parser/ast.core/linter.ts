@@ -41,6 +41,7 @@ import {LowLevelWrapperForTypeSystem} from "../highLevelImpl";
 import {find} from "../../util/index";
 import {Operation, MethodBase, ResourceBase} from "../artifacts/raml10parserapi";
 var changeCase = require('change-case');
+var upperCase = require('upper-case-first');
 var pluralize = require('pluralize');
 
 let messageRegistry = require("../../../resources/errorMessages");
@@ -3426,7 +3427,7 @@ class ValidateChildrenKeys implements NodeValidator {
                 var parameters:any = { name: childElement.name() };
                 var messageEntry = messageRegistry.ALREADY_EXISTS_IN_CONTEXT;
                 if (humanReadableName) {
-                    parameters.capitalized = changeCase.upperCaseFirst(humanReadableName);
+                    parameters.capitalized = upperCase.upperCaseFirst(humanReadableName);
                     messageEntry= messageRegistry.ALREADY_EXISTS;
                 }
 
@@ -3472,7 +3473,7 @@ class ValidateChildrenKeys implements NodeValidator {
                     var messageEntry = messageRegistry.PROPERTY_USED;
                     var humanReadableParent = getHumanReadableNodeName(attribute.parent());
                     if (humanReadableParent) {
-                        parameters.parent = changeCase.upperCaseFirst(humanReadableParent);
+                        parameters.parent = upperCase.upperCaseFirst(humanReadableParent);
                         messageEntry = messageRegistry.PARENT_PROPERTY_USED;
                     }
                     var issue=createIssue1(messageEntry,parameters,attribute);
@@ -3499,7 +3500,7 @@ class ValidateChildrenKeys implements NodeValidator {
                     var messageEntry = messageRegistry.PROPERTY_USED;
                     var humanReadableNode = getHumanReadableNodeName(node);
                     if (humanReadableNode) {
-                        parameters.parent = changeCase.upperCaseFirst(humanReadableNode);
+                        parameters.parent = upperCase.upperCaseFirst(humanReadableNode);
                         messageEntry = messageRegistry.PARENT_PROPERTY_USED;
                     }
                     keyToLowLevelChildren[lowLevelChildKey].forEach(lowLevelChild=>{
@@ -4001,9 +4002,9 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
 }
 
 var toReadableName = function (template:string, toLowerCase?:boolean, pluralize_?:boolean) {
-    var templateName = changeCase.sentence(template).toLowerCase();
+    var templateName = changeCase.sentenceCase(template).toLowerCase();
     if(!toLowerCase) {
-        templateName =  changeCase.ucFirst(templateName);
+        templateName =  upperCase.upperCaseFirst(templateName);
     }
     if(pluralize_) {
         templateName = pluralize.plural(templateName);
@@ -4120,8 +4121,8 @@ class UriParametersValidator implements NodeValidator {
                                 return;
                             }
                         }
-                        var propNameReadable = changeCase.upperCaseFirst(
-                            pluralize.singular(changeCase.sentence(paramsPropName)));
+                        var propNameReadable = upperCase.upperCaseFirst(
+                            pluralize.singular(changeCase.sentenceCase(paramsPropName)));
                         var issue = createIssue1(messageRegistry.PROPERTY_UNUSED, {propName: propNameReadable}, x, true);
                         v.accept(issue);
                     }

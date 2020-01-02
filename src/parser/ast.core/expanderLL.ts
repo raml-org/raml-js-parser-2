@@ -785,7 +785,7 @@ var transformers: TransformMatches[] = [
             return arg;
         }
 
-        var snakeCase = changeCase.snake(arg);
+        var snakeCase = changeCase.snakeCase(arg);
 
         return snakeCase.toLowerCase();
     }),
@@ -795,7 +795,7 @@ var transformers: TransformMatches[] = [
             return arg;
         }
 
-        var snakeCase = changeCase.snake(arg);
+        var snakeCase = changeCase.snakeCase(arg);
 
         return snakeCase.toUpperCase();
     }),
@@ -805,7 +805,7 @@ var transformers: TransformMatches[] = [
             return arg;
         }
 
-        var paramCase = changeCase.param(arg);
+        var paramCase = changeCase.paramCase(arg);
 
         return paramCase.toLowerCase();
     }),
@@ -815,7 +815,7 @@ var transformers: TransformMatches[] = [
             return arg;
         }
 
-        var paramCase = changeCase.param(arg);
+        var paramCase = changeCase.paramCase(arg);
 
         return paramCase.toUpperCase();
     }),
