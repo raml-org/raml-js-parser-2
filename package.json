@@ -90,7 +90,7 @@
     "gulp-mocha": "^6.0.0",
     "json-loader": "0.5.7",
     "marked": "^0.8.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.1",
     "raml-1-parser-test-utils": "1.0.10",
     "rimraf": "3.0.0",
     "ts-structure-parser": "0.0.19",
