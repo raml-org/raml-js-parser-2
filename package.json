@@ -92,7 +92,7 @@
     "marked": "^0.8.0",
     "mocha": "^6.2.2",
     "raml-1-parser-test-utils": "1.0.10",
-    "rimraf": "3.0.0",
+    "rimraf": "3.0.1",
     "ts-structure-parser": "0.0.19",
     "typescript": "3.3.3333",
     "typescript-compiler": "1.4.1-2",
