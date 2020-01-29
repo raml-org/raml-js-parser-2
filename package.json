@@ -75,7 +75,7 @@
     "@types/invariant": "^2.2.31",
     "@types/marked": "^0.7.2",
     "@types/mkdirp": "0.5.2",
-    "@types/mocha": "5.2.7",
+    "@types/mocha": "7.0.0",
     "@types/node": "^13.1.2",
     "@types/pluralize": "0.0.29",
     "@types/q": "1.5.2",
