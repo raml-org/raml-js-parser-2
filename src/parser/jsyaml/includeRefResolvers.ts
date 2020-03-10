@@ -1,6 +1,6 @@
 import _= require("underscore");
 
-var DOMParser = require('xmldom').DOMParser;
+var DOMParser = require('xmldom-alpha').DOMParser;
 
 var base64 = require('urlsafe-base64');
 

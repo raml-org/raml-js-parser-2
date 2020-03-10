@@ -1,4 +1,4 @@
-var DomParser = require("xmldom");
+var DomParser = require("xmldom-alpha");
 import util = require("./index");
 
 function elementChildrenByName(parent: any, tagName: string, ns:string): any[] {
