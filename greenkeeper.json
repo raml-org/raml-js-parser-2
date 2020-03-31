@@ -1,6 +1,8 @@
 {
   "ignore": [
     "mkdirp",
-    "mocha"
+    "mocha",
+    "fs-extra",
+    "gulp-mocha"
   ]
 }
