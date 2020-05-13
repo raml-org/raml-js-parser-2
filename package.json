@@ -76,7 +76,7 @@
     "@types/marked": "^0.7.3",
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.9.1",
+    "@types/node": "^14.0.0",
     "@types/pluralize": "0.0.29",
     "@types/q": "1.5.2",
     "@types/underscore": "^1.9.4",
