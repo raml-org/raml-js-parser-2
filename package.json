@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
-    "@types/fs-extra": "^8.1.0",
+    "@types/fs-extra": "^9.0.0",
     "@types/invariant": "^2.2.31",
     "@types/marked": "^0.7.3",
     "@types/mkdirp": "^1.0.0",
